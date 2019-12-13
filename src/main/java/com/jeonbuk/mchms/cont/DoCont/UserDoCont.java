@@ -51,6 +51,13 @@ public class UserDoCont {
                 session.setAttribute("id", (String)userInfo.get("ID"));
             }
 
+            List<Map<String, Object>> cities = dataService.getCities();
+            List<Map<String, Object>> museums = dataService.getMuseums();
+
+            mv.addObject("City", cities);
+            mv.addObject("Museum", museums);
+            mv.addObject("MID_Page", "Main/Main.html");
+
             mv.addObject("session", session);
 
             return mv;

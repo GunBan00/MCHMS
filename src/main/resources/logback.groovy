@@ -3,9 +3,9 @@ import ch.qos.logback.core.rolling.RollingFileAppender
 import ch.qos.logback.core.rolling.TimeBasedRollingPolicy
 
 //logFileRootPath = '/install/log/MCHMS/'
-logFileRootPath = '/Users/jihoonOh/log/MCHMS/'
+//logFileRootPath = '/Users/jihoonOh/log/MCHMS/'
 
-//logFileRootPath = 'C:\\log\\MCHMS\\'
+logFileRootPath = 'C:\\log\\MCHMS\\'
 
 logPattern = '[%d{HH:mm:ss}][%5p][%-20F:%-3L][%X{URI}][%X{ID}][%t] %m%n'
 
