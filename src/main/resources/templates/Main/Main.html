@@ -22,7 +22,7 @@
 				<p>Yangon</p></div></div>
 		<div >
 			<ul class="card_list">
-				<li th:each="ms : ${Museum}" th:if="${ms.Cities} == Yangon"><a th:href="@{/MCHMSSearch/(City_id=${ms.City_id})}" th:text="${ms.Museum}"></a></li>
+				<li th:each="ms : ${Museum}" th:if="${ms.cities} == Yangon"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 			</ul></div></li>
 
 	</div>
@@ -31,72 +31,72 @@
 			<div class="list1_img_02"><p>Mandalay</p></div></div>
 		<div >
 			<ul class="card_list">
-				<li th:each="ms : ${Museum}" th:if="${ms.Cities} == Mandalay"><a th:href="@{/MCHMSSearch/(City_id=${ms.City_id})}" th:text="${ms.Museum}"></a></li>
+				<li th:each="ms : ${Museum}" th:if="${ms.cities} == Mandalay"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 			</ul></div></li>
 
 	</div><div class="grid-item" style="position: absolute; left: 636px; top: 0px;"><div class="card_tit_03" style="background-image: url(&quot;/images/mainImg/62597f8373744ed6856bcfc62c2dba59.jpg&quot;);"><div class="list1_img_03"><p>Bago</p></div></div>
 	<div th:each="ms : ${Museum}">
 		<ul class="card_list">
 
-			<li th:if="${ms.Cities} == Bago"><a th:href="@{/MCHMSSearch/(City_id=${ms.City_id})}" th:text="${ms.Museum}"></a></li>
+			<li th:if="${ms.cities} == Bago"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 		</ul></div></li>
 </div><div class="grid-item" style="position: absolute; left: 0px; top: 330px;"><div class="card_tit_04" style="background-image: url(&quot;/images/mainImg/fedee10ee0bf4e0da310f35feb3b83e8.jpg&quot;);"><div class="list1_img_04"><p>Mon</p></div></div>
 	<div >
 		<ul class="card_list">
-			<li th:each="ms : ${Museum}" th:if="${ms.Cities} == Mon"><a th:href="@{/MCHMSSearch/(City_id=${ms.City_id})}" th:text="${ms.Museum}"></a></li>
+			<li th:each="ms : ${Museum}" th:if="${ms.cities} == Mon"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 		</ul></div></li>
 
 </div><div class="grid-item" style="position: absolute; left: 318px; top: 330px;"><div class="card_tit_05" style="background-image: url(&quot;/images/mainImg/803c4ce2c4c148089ae627e423f94cbe.jpg&quot;);"><div class="list1_img_05"><p>Sagaing</p></div></div>
 	<ul class="card_list" >
-		<li th:each="ms : ${Museum}" th:if="${ms.Cities} == Sagaing"><a th:href="@{/MCHMSSearch/(City_id=${ms.City_id})}" th:text="${ms.Museum}"></a></li>
+		<li th:each="ms : ${Museum}" th:if="${ms.cities} == Sagaing"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 	</ul></li>
 
 </div><div class="grid-item" style="position: absolute; left: 636px; top: 330px;"><div class="card_tit_06" style="background-image: url(&quot;/images/mainImg/b1a68fe321c04f13af3f8f6113e48ace.jpg&quot;);"><div class="list1_img_06"><p>Magway</p></div></div>
 	<ul class="card_list" >
 
-		<li th:each="ms : ${Museum}" th:if="${ms.Cities} == Magway"><a th:href="@{/MCHMSSearch/(City_id=${ms.City_id})}" th:text="${ms.Museum}"></a></li>
+		<li th:each="ms : ${Museum}" th:if="${ms.cities} == Magway"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 	</ul></li>
 </div><div class="grid-item" style="position: absolute; left: 0px; top: 618px;"><div class="card_tit_07" style="background-image: url(&quot;/images/mainImg/3f2cbc993b8d4277894ae2c48c2a4753.jpg&quot;);"><div class="list1_img_07"><p>Kayin</p></div></div>
 	<ul class="card_list" >
 
-		<li th:each="ms : ${Museum}" th:if="${ms.Cities} == Kayin"><a th:href="@{/MCHMSSearch/(City_id=${ms.City_id})}" th:text="${ms.Museum}"></a></li>
+		<li th:each="ms : ${Museum}" th:if="${ms.cities} == Kayin"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 	</ul></li>
 </div><div class="grid-item" style="position: absolute; left: 318px; top: 660px;"><div class="card_tit_08" style="background-image: url(&quot;/images/mainImg/32e95cce63a24bf383d3b7541e6883e8.jpg&quot;);"><div class="list1_img_08"><p>Kachin</p></div></div>
 	<ul class="card_list" >
 
-		<li th:each="ms : ${Museum}" th:if="${ms.Cities} == Kachin"><a th:href="@{/MCHMSSearch/(City_id=${ms.City_id})}" th:text="${ms.Museum}"></a></li>
+		<li th:each="ms : ${Museum}" th:if="${ms.cities} == Kachin"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 	</ul></li>
 </div><div class="grid-item" style="position: absolute; left: 636px; top: 660px;"><div class="card_tit_09" style="background-image: url(&quot;/images/mainImg/bb0ad15de4f9432b8b60fd0fecd9195d.jpg&quot;);"><div class="list1_img_09"><p>Tanintharyi</p></div></div>
 	<ul class="card_list" >
-		<li th:each="ms : ${Museum}" th:if="${ms.Cities} == Tanintharyi"><a th:href="@{/MCHMSSearch/(City_id=${ms.City_id})}" th:text="${ms.Museum}"></a></li>
+		<li th:each="ms : ${Museum}" th:if="${ms.cities} == Tanintharyi"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 	</ul></li></div><div class="grid-item" style="position: absolute; left: 0px; top: 906px;"><div class="card_tit_010" style="background-image: url(&quot;/images/mainImg/84506264a94c43889d0233832844da39.jpg&quot;);"><div class="list1_img_010"><p>Ayeyarwady</p></div></div>
 	<ul class="card_list" >
-		<li th:each="ms : ${Museum}" th:if="${ms.Cities} == Ayeyarwady"><a th:href="@{/MCHMSSearch/(City_id=${ms.City_id})}" th:text="${ms.Museum}"></a></li>
+		<li th:each="ms : ${Museum}" th:if="${ms.cities} == Ayeyarwady"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 	</ul></li>
 
 </div><div class="grid-item" style="position: absolute; left: 318px; top: 906px;"><div class="card_tit_011" style="background-image: url(&quot;/images/mainImg/9349d52320dc44b480f1f39724ddb7df.jpg&quot;);"><div class="list1_img_011"><p>Rakhine</p></div></div>
 	<ul class="card_list" >
-		<li th:each="ms : ${Museum}" th:if="${ms.Cities} == Rakhine"><a th:href="@{/MCHMSSearch/(City_id=${ms.City_id})}" th:text="${ms.Museum}"></a></li>
+		<li th:each="ms : ${Museum}" th:if="${ms.cities} == Rakhine"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 	</ul></li>
 </div><div class="grid-item" style="position: absolute; left: 636px; top: 906px;"><div class="card_tit_012" style="background-image: url(&quot;/images/mainImg/c8637111477a483bbed8f01a6c4a50bf.JPG&quot;);"><div class="list1_img_012"><p>Shan</p></div></div>
 	<ul class="card_list" >
-		<li th:each="ms : ${Museum}" th:if="${ms.Cities} == Shan"><a th:href="@{/MCHMSSearch/(City_id=${ms.City_id})}" th:text="${ms.Museum}"></a></li>
+		<li th:each="ms : ${Museum}" th:if="${ms.cities} == Shan"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 	</ul></li>
 </div><div class="grid-item" style="position: absolute; left: 0px; top: 1152px;"><div class="card_tit_013" style="background-image: url(&quot;/images/mainImg/9368e6b413424e86babbeddc271e63b2.jpg&quot;);"><div class="list1_img_013"><p>Chin</p></div></div>
 	<ul class="card_list" >
-		<li th:each="ms : ${Museum}" th:if="${ms.Cities} == Chin"><a th:href="@{/MCHMSSearch/(City_id=${ms.City_id})}" th:text="${ms.Museum}"></a></li>
+		<li th:each="ms : ${Museum}" th:if="${ms.cities} == Chin"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 	</ul></li>
 </div><div class="grid-item" style="position: absolute; left: 318px; top: 1236px;"><div class="card_tit_014" style="background-image: url(&quot;/images/mainImg/b9a515a9f4a1404bbdd92e05559b82d4.jpg&quot;);"><div class="list1_img_014"><p>Kayah</p></div></div>
 	<ul class="card_list" >
-		<li th:each="ms : ${Museum}" th:if="${ms.Cities} == Kayah"><a th:href="@{/MCHMSSearch/(City_id=${ms.City_id})}" th:text="${ms.Museum}"></a></li>
+		<li th:each="ms : ${Museum}" th:if="${ms.cities} == Kayah"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 	</ul></li>
 </div><div class="grid-item" style="position: absolute; left: 636px; top: 1236px;"><div class="card_tit_015" style="background-image: url(&quot;/images/mainImg/b956aef3701846e3b5007d24596c9243.jpg&quot;);"><div class="list1_img_015"><p>Naypyitaw</p></div></div>
 	<ul class="card_list" >
-		<li th:each="ms : ${Museum}" th:if="${ms.Cities} == Naypyitaw"><a th:href="@{/MCHMSSearch/(City_id=${ms.City_id})}" th:text="${ms.Museum}"></a></li>
+		<li th:each="ms : ${Museum}" th:if="${ms.cities} == Naypyitaw"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 	</ul></li>
 </div><div class="grid-item" style="position: absolute; left: 0px; top: 1356px;"><div class="card_tit_016" style="background-image: url(&quot;/images/mainImg/649277fa4ceb491996e477b38acf6cb7.jpg&quot;);"><div class="list1_img_016"><p>Nationwide</p></div></div>
 	<ul class="card_list" >
-		<li th:each="ms : ${Museum}" th:if="${ms.Cities} == Nationwide"><a th:href="@{/MCHMSSearch/(City_id=${ms.City_id})}" th:text="${ms.Museum}"></a></li>
+		<li th:each="ms : ${Museum}" th:if="${ms.cities} == Nationwide"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 </div></div><!-- div class="grid" 끝 -->
 </div>
 <!-- <script>

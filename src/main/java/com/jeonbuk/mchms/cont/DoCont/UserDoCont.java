@@ -1,6 +1,7 @@
 package com.jeonbuk.mchms.cont.DoCont;
 
 import com.jeonbuk.mchms.cont.DispacherCont.main.MainController;
+import com.jeonbuk.mchms.domain.City;
 import com.jeonbuk.mchms.domain.User;
 import com.jeonbuk.mchms.service.data.DataService;
 import com.jeonbuk.mchms.service.user.UserService;
@@ -51,8 +52,8 @@ public class UserDoCont {
                 session.setAttribute("id", (String)userInfo.get("ID"));
             }
 
-            List<Map<String, Object>> cities = dataService.getCities();
-            List<Map<String, Object>> museums = dataService.getMuseums();
+            List<City> cities = dataService.getCities();
+            List<City> museums = dataService.getMuseums();
 
             mv.addObject("City", cities);
             mv.addObject("Museum", museums);

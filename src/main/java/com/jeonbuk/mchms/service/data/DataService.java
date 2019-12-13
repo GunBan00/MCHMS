@@ -1,5 +1,7 @@
 package com.jeonbuk.mchms.service.data;
 
+import com.jeonbuk.mchms.domain.City;
+import com.jeonbuk.mchms.domain.DataDomain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,23 +15,31 @@ public class DataService {
     @Autowired
     private DataMapper dataMapper;
 
-    public Map<String, Object> getEventInfo(String id) throws Exception {
-        Map<String, Object> ret = dataMapper.selectData(id);
-        return ret;
+    public DataDomain getEventInfo(String id) throws Exception {
+        DataDomain dataDomain = dataMapper.selectData(id);
+        return dataDomain;
     }
 
 
-    public List<Map<String, Object>> getCities() throws Exception {
+    public List<City> getCities() throws Exception {
 
         return dataMapper.getCities();
     }
 
 
-
-
-    public List<Map<String, Object>> getMuseums() throws Exception {
+    public List<City> getMuseums() throws Exception {
 
         return dataMapper.getMuseums();
+    }
+
+    public List<Map<String, Object>> getDataByKeyword(String keyword) throws Exception{
+
+        return dataMapper.getDataByKeyword(keyword);
+    }
+
+    public List<Map<String, Object>> getClassficationById(int classId) throws Exception{
+
+        return dataMapper.getClassficationById(classId);
     }
 
 

@@ -1,6 +1,8 @@
 package com.jeonbuk.mchms.cont.DispacherCont.main;
 
 
+import com.jeonbuk.mchms.domain.City;
+import com.jeonbuk.mchms.domain.DataDomain;
 import com.jeonbuk.mchms.service.data.DataService;
 
 import groovy.util.logging.Slf4j;
@@ -33,12 +35,12 @@ public class MainController {
 
         HttpSession session = request.getSession();
         try {
-            Map<String, Object> ret = dataService.getEventInfo(request.getParameter("ID"));
+           DataDomain dataDomain = dataService.getEventInfo(request.getParameter("ID"));
 
 
-            String remarks_en = (String)ret.get("Remarks_en");
+            String remarks_en = dataDomain.getRemarksEn();
 
-            mv.addObject("ResultView", ret);
+            mv.addObject("ResultView", dataDomain);
             mv.addObject("session",session);
             mv.setViewName("View/MCHMSView");
 
@@ -58,8 +60,8 @@ public class MainController {
         HttpSession session = request.getSession();
         try {
 
-            List<Map<String, Object>> cities = dataService.getCities();
-            List<Map<String, Object>> museums = dataService.getMuseums();
+            List<City> cities = dataService.getCities();
+            List<City> museums = dataService.getMuseums();
 
             mv.addObject("City", cities);
             mv.addObject("Museum", museums);
