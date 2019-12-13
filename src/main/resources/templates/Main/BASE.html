@@ -169,7 +169,7 @@
 							var regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi
 							str = SearchKey.replace(regExp,"");
 							if(str == ""){
-								path = "http://mchms.net/MCHMSSearch/?&Keyword=" + SearchKey;
+								path = "http://mchms.net:8080/MCHMSSearch/?&Keyword=" + SearchKey;
 
 
 								window.location.href = path;
@@ -179,7 +179,7 @@
 							}else{
 								var ESearchKey = encodeURI(SearchKey);
 
-								path = "http://mchms.net/MCHMSSearch/?&Keyword=" + ESearchKey;
+								path = "http://mchms.net:8080/MCHMSSearch/?&Keyword=" + ESearchKey;
 
 
 								window.location.href = path;

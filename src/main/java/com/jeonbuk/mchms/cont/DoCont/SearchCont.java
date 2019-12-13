@@ -1,16 +1,23 @@
 package com.jeonbuk.mchms.cont.DoCont;
 
+import com.jeonbuk.mchms.domain.City;
+import com.jeonbuk.mchms.domain.Classification;
+import com.jeonbuk.mchms.domain.DataDomain;
+import com.jeonbuk.mchms.service.city.CityService;
 import com.jeonbuk.mchms.service.data.DataService;
 import groovy.util.logging.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.xml.crypto.Data;
 import java.util.List;
 import java.util.Map;
 
@@ -22,66 +29,105 @@ public class SearchCont {
     @Autowired
     private DataService dataService;
 
+    @Autowired
+    private CityService cityService;
+
     @RequestMapping(value = "/MCHMSSearch", method = RequestMethod.GET)
     public ModelAndView base(ModelAndView mv, HttpServletRequest request) {
 
-            String cityId = request.getParameter("City_id");
-            String keyWord = request.getParameter("Keyword");
-
         try {
-            List<Map<String, Object>> totalList = dataService.getDataByKeyword(keyWord);
-            int totalLength = totalList.size();
-            double avgLat;
-            double avgLong;
+            mv.setViewName("Search/MCHMSSearch");
+
+            HttpSession session = request.getSession();
+            String cityId = request.getParameter("City_id");
+
+            int flag = 0;
+            double avgLat = 0;
+            double avgLong = 0;
+            List<City> museums = cityService.getMuseums();
+
+            if(StringUtils.isEmpty(cityId)) {
+                String keyWord = request.getParameter("Keyword");
+                List<DataDomain> totalList = dataService.getDataByKeyword(keyWord);
+                int totalLength = totalList.size();
 
 
-            if(totalLength != 0) {
-                avgLat = 0;
-                avgLong = 0;
-            }
+//            if(totalLength != 0) {
+//                avgLat = 0;
+//                avgLong = 0;
+//            }
 
+                if(totalLength ==0) {
+                    avgLat = 19.75056;
+                    avgLong = 96.10056;
 
+                    mv.addObject("total", totalLength);
+                    mv.addObject("avg_Lat", avgLat);
+                    mv.addObject("avg_Long", avgLong);
+                }else {
+                    int pi = 0;
+                    flag = 1;
 
+                    int index = 1;
+                    for(DataDomain dataDomain : totalList) {
+                        Classification classification = dataService.getClassficationById(dataDomain.getClassificationId());
+                        dataDomain.setClResult("");
+                        dataDomain.setIndex(index);
+                        avgLat = avgLat + dataDomain.getLatitude();
+                        avgLong = avgLong + dataDomain.getLongitude();
+                        index++;
+                    }
 
+                    avgLat = avgLat / totalLength;
+                    avgLong = avgLong / totalLength;
 
-
-            if(totalLength ==0) {
-                avgLat = 19.75056;
-                avgLong = 96.10056;
-
-                mv.addObject("total", totalLength);
-                mv.addObject("avg_Lat", avgLat);
-                mv.addObject("avg_Long", avgLong);
+                    mv.addObject("avg_Lat", avgLat);
+                    mv.addObject("avg_Long", avgLong);
+                    mv.addObject("Keyword", keyWord);
+                    mv.addObject("total", totalLength);
+                    mv.addObject("lists", totalList);
+                    mv.addObject("Museum", museums);
+                    mv.addObject("City_id", cityId);
+                    mv.addObject("Session", session);
+                    mv.addObject("flag", flag);
+                }
             }else {
-                int pi = 0;
+                List<DataDomain> totalList =  dataService.getDataByCityId(Integer.parseInt(cityId));
 
-                Object[][] desc= new Object[8][totalLength];
+                int totalLength = totalList.size();
 
-                for(int i = 0; i < totalList.size(); i++) {
-                    desc[i][0] = i+1;
-                    int classId = (Integer)totalList.get(i).get("City_id");
-
-
-
-
-
+                int index = 1;
+                for(DataDomain dataDomain : totalList) {
+                    dataDomain.setIndex(index);
+                    avgLat = avgLat + dataDomain.getLatitude();
+                    avgLong = avgLong + dataDomain.getLongitude();
                 }
 
+                if(totalLength != 0) {
+                    avgLat = avgLat / totalLength;
+                    avgLong = avgLong / totalLength;
+                }else {
+                    avgLat = 19.75056;
+                    avgLong = 96.10056;
+                }
 
-
-
+                mv.addObject("cl", totalList);
+                mv.addObject("avg_Lat", avgLat);
+                mv.addObject("avg_Long", avgLong);
+                mv.addObject("total", totalLength);
+                mv.addObject("lists", totalList);
+                mv.addObject("Museum", museums);
+                mv.addObject("City_id", cityId);
+                mv.addObject("Session", session);
+                mv.addObject("flag", flag);
 
             }
-
-
-
-
 
         } catch (Exception e) {
            logger.error(e.toString());
         }
 
 
-        return null;
+        return mv;
     }
 }

@@ -3,6 +3,7 @@ package com.jeonbuk.mchms.cont.DispacherCont.main;
 
 import com.jeonbuk.mchms.domain.City;
 import com.jeonbuk.mchms.domain.DataDomain;
+import com.jeonbuk.mchms.service.city.CityService;
 import com.jeonbuk.mchms.service.data.DataService;
 
 import groovy.util.logging.Slf4j;
@@ -26,6 +27,9 @@ public class MainController {
 
     @Autowired
     DataService dataService;
+
+    @Autowired
+    CityService cityService;
 
     private static Logger logger = LoggerFactory.getLogger(MainController.class);
 
@@ -60,8 +64,8 @@ public class MainController {
         HttpSession session = request.getSession();
         try {
 
-            List<City> cities = dataService.getCities();
-            List<City> museums = dataService.getMuseums();
+            List<City> cities = cityService.getCities();
+            List<City> museums = cityService.getMuseums();
 
             mv.addObject("City", cities);
             mv.addObject("Museum", museums);

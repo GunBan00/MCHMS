@@ -112,8 +112,8 @@ $("#CODE_TITLE").val(text22); */
 		<div>
 			<a href="/" class="logo"><img src="/Static/MCHMS/mams/mchms_logo_small.svg" alt="MCHMS"  width="35px;" height="35px;"></a>
 			<div>
-                
-					<!-- 
+
+					<!--
 					<div id="TOP_MUESUM" class="select">
                     <a href="#a"><span> Business management</span></a>
                     <div id="TOP_MUESUM_CODE"></div>-->
@@ -122,16 +122,16 @@ $("#CODE_TITLE").val(text22); */
 						<input type="hidden" name="TOP_MUESUM_NAME" value="">
                     </form>
                 	<!-- </div> -->
-				
+
                 <div class="select">
                     <div>
                         <ul>
                         	<!-- <li id="APPROVER_CHK"></li>--><!-- 승인요청 -->
-	                        
+
 								<!-- <li><a href="javascript:dataHaveMng()"><span id="spanMoveMngt">Move manager</span></a></li> -->
 								<li><a href="javascript:userMng()"><span id="spanMoveMngt">Move manager</span></a></li>
-	                        
-	                        <!-- 
+
+	                        <!--
 							<li><a href="javascript:regdata()"><span id="spanRegMtrl">자료등록</span></a></li>
                             <li><a href="/user/mypage/RegdataList.do"><span id="spanRegBox">등록자료함</span></a></li>
                             <li><a href="/user/mypage/BookmarkList.do"><span id="spanBookmark">북마크함</span></a></li>
@@ -144,20 +144,21 @@ $("#CODE_TITLE").val(text22); */
                         </ul>
                     </div>
                 </div>
-						{% if Session == -1 %}
+				<div th:if="${session.value == null}">
 				<select id="SLT_USER_LANG" name="USER_LANG" onchange="selectUserLang();">
 					<option value="EN">English</option>
 					<option value="MY">မြန်မာ</option>
 				</select>
 				<a href="/MCHMSLogin" class="btnLogout on" ><span id="spanLogout">Login</span></a>
-				{% else %}
+				</div>
+				<div th:unless="${session.value == null}">
 				<span class="info" id="spanWelcome">Welcome to {{Session.0}}</span>&nbsp;
 				<select id="SLT_USER_LANG" name="USER_LANG" onchange="selectUserLang();">
 					<option value="EN">English</option>
 					<option value="MY">မြန်မာ</option>
 				</select>
 				<a href="/MCHMSLogout" class="btnLogout on" ><span id="spanLogout">Logout</span></a>
-				{% endif %}
+				</div>
 			</div>
 		</div>
 	</div>
@@ -169,22 +170,22 @@ $("#CODE_TITLE").val(text22); */
 				<form action = "/MCHMSSearch_process/?City_id={{City_id}}" method = "post" enctype="multipart/form-data" id="AdvsearchFrom" name="AdvsearchFrom">
 				<input type="hidden" id="SRCH_MODE" name="SRCH_MODE">
 				<input type="hidden" id="SELECT_DEPTH" name="SELECT_DEPTH">
-				<input type="hidden" id="StrMODE" name="StrMODE" value="MORE">	
+				<input type="hidden" id="StrMODE" name="StrMODE" value="MORE">
 				<input type="hidden" id="TSSEARCH" name="USER_TSGROUP_CODE" value="PS01001001_000000013">
 				<input type="hidden" id="USER_TSGROUP_CODE" name="USER_TSGROUP_CODE" value="PS01001001_000000013">
 				<input type="hidden" id="USER_LGROUP_CODE_SEQ" name="USER_LGROUP_CODE_SEQ" value="20190730193223383814_000000102">
                 <input type="hidden" id="STR_TOP_SEARCH_MUESUM_CODE" name="STR_TOP_SEARCH_MUESUM_CODE" value="">
-                
+
                 <!-- isKang 추가 190628 -->
                 <input type="hidden" name="LANG" value="EN">
                 <input type="hidden" id="STR_SRCH_MUESUM_CODE" name="STR_SRCH_MUESUM_CODE" value="">
-                
-            
+
+
 				<div class="searchBox">
 					<input type="text" id="TOP_TOPWORD" name="TOP_TOPWORD" onkeypress="speCharBlock(this)" value="">
 					<a href="#" onclick="Search();" class="serch_icon"><img src="/Static/MCHMS/mams/serch_icon_06.svg" alt="Search Btn" style="height: 22px;">Search</a>
 					<script>
-					
+
 					function Search() {
 						SearchKey = $("#TOP_TOPWORD").val();
 
@@ -200,9 +201,9 @@ $("#CODE_TITLE").val(text22); */
 
 						}else{
 							var ESearchKey = encodeURI(SearchKey);
-		
+
 							path = "http://mchms.net/MCHMSSearch/?&Keyword=" + ESearchKey;
-		
+
 
 							window.location.href = path;
 						}
@@ -286,7 +287,7 @@ $("#CODE_TITLE").val(text22); */
 									<td>
 										<script>
 										$(function() {
-											
+
 											SRCH_REG_SRT_DATE = $("#SRCH_REG_SRT_DATE").datepicker({
 												showOn: "button",
 												buttonImage: "/Static/MCHMS/btn_calender.gif",
@@ -311,15 +312,15 @@ $("#CODE_TITLE").val(text22); */
 												changeYear: true
 											});
 
-											function customRange(input) { 
+											function customRange(input) {
 												return {
 													minDate: (input.id == "SRCH_REG_END_DATE" ? $("#SRCH_REG_SRT_DATE").datepicker("getDate") : new Date())
-												}; 
+												};
 											}
-											function customRangeStart(input) { 
+											function customRangeStart(input) {
 												return {
 													maxDate:(input.id == "SRCH_REG_SRT_DATE" ? $("#SRCH_REG_END_DATE").datepicker("getDate") : null)
-												}; 
+												};
 											}
 										});
 										</script>
@@ -347,9 +348,9 @@ $("#CODE_TITLE").val(text22); */
 								<a a href="#" onclick="adv_Search();" class="btn type2 btnB">Search</a>
 								<script>
 									function adv_Search(){
-										
-										AdvsearchFrom.submit();	
-		
+
+										AdvsearchFrom.submit();
+
 									}
 								</script>
 								<a href="javascript:reset();" class="btn type2">Reset</a>
@@ -370,25 +371,25 @@ function submit() {
 
 		if(frm.event_title.value == "")
 		{
-			alert("Please enter Title"); 
-			frm.event_title.focus(); 
-			return; 
+			alert("Please enter Title");
+			frm.event_title.focus();
+			return;
 		}
 
 		if(frm.summernote.value == "")
 		{
-			alert("Please enter Contents"); 
-			frm.summernote.focus(); 
-			return; 
+			alert("Please enter Contents");
+			frm.summernote.focus();
+			return;
 		}
-		
+
 		if(radio_value == "EVENTS")
 		{
 			if(frm.start_year.options[frm.start_year.selectedIndex].text == "Year" || frm.start_month.options[frm.start_month.selectedIndex].text == "Month" || frm.start_day.options[frm.start_day.selectedIndex].text == "Day" || frm.end_year.options[frm.end_year.selectedIndex].text == "Year" || frm.end_month.options[frm.end_month.selectedIndex].text == "Month" || frm.end_day.options[frm.end_day.selectedIndex].text == "Day")
 			{
-				alert("Please enter correct date"); 
-				frm.start_month.focus(); 
-				return; 
+				alert("Please enter correct date");
+				frm.start_month.focus();
+				return;
 			}
 		}
 
@@ -396,8 +397,8 @@ function submit() {
 		{
 			if(frm.start_year.options[frm.start_year.selectedIndex].text == "Year" || frm.start_month.options[frm.start_month.selectedIndex].text == "Month" || frm.start_day.options[frm.start_day.selectedIndex].text == "Day")
 			{
-				alert("Please enter correct date"); 
-				frm.start_month.focus(); 
+				alert("Please enter correct date");
+				frm.start_month.focus();
 				return;
 			}
 		}
@@ -408,8 +409,8 @@ function submit() {
 	$("#SLT_USER_LANG").val("EN").prop("selected", true);
 	if(getLang().toLowerCase().indexOf("my") == -1){ //언어 != 미얀마이면 isKang 190619
 		$('#SLT_USER_LANG').val("EN").prop("selected", true);
-	
-		
+
+
 		$('#spanMoveMngt').text("Move manager");
 		$('#spanRegMtrl').text("Article registration");
 		$('#spanRegBox').text("Registration Box");
@@ -422,17 +423,17 @@ function submit() {
 	}else{
 		$('#SLT_USER_LANG').val("MY").prop("selected", true);
 	}
-	
+
 	function goMain(){
 		var url = 'http://103.83.190.250/WEB-INF/jsp/user/board/userBoardListN.jsp';
-		
+
 		if(url.indexOf('unione') > -1)
 			frm = $('#searchFrom');
 		else{
 			if($('#listForm').length > 0) frm = $('#listForm');
-			if($('#SearchForm').length > 0) frm = $('#SearchForm'); 
+			if($('#SearchForm').length > 0) frm = $('#SearchForm');
 		}
-		
+
 		frm.attr("action",_CONTEXT_PATH + "/main.do");
 		frm.submit();
 	}
@@ -467,23 +468,23 @@ function submit() {
 			frm.attr("method","post");
 			frm.attr("action",_CONTEXT_PATH + "/user/board/BoardViewModfiy.do");
 			frm.submit();
-		}else if(window.location.href.indexOf("/user/imgSearch.do") > -1){	
+		}else if(window.location.href.indexOf("/user/imgSearch.do") > -1){
 			imgSearch();
-		}else if(window.location.href.indexOf("/user/docSearch.do") > -1){	
+		}else if(window.location.href.indexOf("/user/docSearch.do") > -1){
 			pdfSearch();
 		}else if(window.location.href.indexOf("/user/movieSearch.do") > -1){
 			aviSearch();
 		}else if(window.location.href.indexOf("/user/Search.do") > -1 && $("#listForm #SRCH_MODE").val() == "상세검색"){
 			topSearchinit('ON');
-			
+
 			setTimeout(function() {
-				Searchchk('st');	
+				Searchchk('st');
 			}, 1500);
 		}else if(window.location.href.indexOf("/user/Search.do") > -1 && $("#SearchForm #SRCH_MODE").val() == "상세검색"){
 			topSearchinit('ON');
-			
+
 			setTimeout(function() {
-				Searchchk('st');	
+				Searchchk('st');
 			}, 1500);
 		}else{
 			console.log("reload");
@@ -492,7 +493,7 @@ function submit() {
 	}
 </script>
 
-	
+
 
 <div id="inlineContent" style=" display:none;">
 	<img src="" alt="Loading">
@@ -506,7 +507,7 @@ function submit() {
 <script>
 	function ck()
 	{
-		
+
 		var ls = $("#n").css("display");
 			if(ls== "none")
             $("#n").css("display","block");
@@ -515,7 +516,7 @@ function submit() {
 	}
 	function ck1()
 	{
-		
+
 		var ls = $("#n1").css("display");
 			if(ls== "none")
             $("#n1").css("display","block");
@@ -524,7 +525,7 @@ function submit() {
 	}
 	function ck2()
 	{
-		
+
 		var ls = $("#n2").css("display");
 			if(ls== "none")
             $("#n2").css("display","block");
@@ -533,7 +534,7 @@ function submit() {
 	}
 	function ck3()
 	{
-		
+
 		var ls = $("#n3").css("display");
 			if(ls== "none")
             $("#n3").css("display","block");
@@ -542,7 +543,7 @@ function submit() {
 	}
 	function ck4()
 	{
-		
+
 		var ls = $("#n4").css("display");
 			if(ls== "none")
             $("#n4").css("display","block");
@@ -551,7 +552,7 @@ function submit() {
 	}
 	function ck5()
 	{
-		
+
 		var ls = $("#n5").css("display");
 			if(ls== "none")
             $("#n5").css("display","block");
@@ -560,7 +561,7 @@ function submit() {
 	}
 	function ck6()
 	{
-		
+
 		var ls = $("#n6").css("display");
 			if(ls== "none")
             $("#n6").css("display","block");
@@ -569,7 +570,7 @@ function submit() {
 	}
 	function ck7()
 	{
-		
+
 		var ls = $("#n7").css("display");
 			if(ls== "none")
             $("#n7").css("display","block");
@@ -578,7 +579,7 @@ function submit() {
 	}
 	function ck8()
 	{
-		
+
 		var ls = $("#n8").css("display");
 			if(ls== "none")
             $("#n8").css("display","block");
@@ -587,7 +588,7 @@ function submit() {
 	}
 	function ck9()
 	{
-		
+
 		var ls = $("#n9").css("display");
 			if(ls== "none")
             $("#n9").css("display","block");
@@ -596,7 +597,7 @@ function submit() {
 	}
 	function ck10()
 	{
-		
+
 		var ls = $("#n10").css("display");
 			if(ls== "none")
             $("#n10").css("display","block");
@@ -605,7 +606,7 @@ function submit() {
 	}
 	function ck11()
 	{
-		
+
 		var ls = $("#n11").css("display");
 			if(ls== "none")
             $("#n11").css("display","block");
@@ -614,7 +615,7 @@ function submit() {
 	}
 	function ck12()
 	{
-		
+
 		var ls = $("#n12").css("display");
 			if(ls== "none")
             $("#n12").css("display","block");
@@ -623,7 +624,7 @@ function submit() {
 	}
 	function ck13()
 	{
-		
+
 		var ls = $("#n13").css("display");
 			if(ls== "none")
             $("#n13").css("display","block");
@@ -632,7 +633,7 @@ function submit() {
 	}
 	function ck14()
 	{
-		
+
 		var ls = $("#n").css("display");
 			if(ls== "none")
             $("#n14").css("display","block");
@@ -641,7 +642,7 @@ function submit() {
 	}
 	function ck15()
 	{
-		
+
 		var ls = $("#n").css("display");
 			if(ls== "none")
             $("#n15").css("display","block");
@@ -657,145 +658,83 @@ function submit() {
 	<ul class="mainSide" id="menu">
 	<li><a href="#" id="mn04" onclick ="ck();" style = "display:block">Yangon</a>
 		<ul id="n" >
-		{% for i in Museum %}
-			{% if i.1 == "Yangon" %}
-				<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
-			{% endif %}
-		{% endfor %}
-	</ul></li>
-	<li><a href="#" id="mn06"onclick ="ck1();" >Mandalay</a><ul id="n1">
-	{% for i in Museum %}
-		{% if i.1 == "Mandalay" %}
-			<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
-		{% endif %}
-	{% endfor %}
-	</ul></li>
-	
+			<li th:each="ms : ${Museum}" th:if="${ms.cities} == Yangon"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+		</ul>
+	</li>
+	<li><a href="#" id="mn06"onclick ="ck1();" >Mandalay</a>
+	    <ul id="n1">
+			<li th:each="ms : ${Museum}" th:if="${ms.cities} == Mandalay"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+		</ul>
+	</li>
+
 	<li><a href="#" id="mn01"onclick ="ck2();" >Bago</a><ul id="n2">
-	{% for i in Museum %}
-		{% if i.1 == "Bago" %}
-			<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
-		{% endif %}
-	{% endfor %}
-	
+		<li th:each="ms : ${Museum}" th:if="${ms.cities} == Bago"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
 	</ul></li>
-	
+
 	<li><a href="#" id="mn04"onclick ="ck3();" >Mon</a>
 		<ul id="n3"  style = "display:blck">
-		{% for i in Museum %}
-			{% if i.1 == "Mon" %}
-				<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
-			{% endif %}
-		{% endfor %}
+			<li th:each="ms : ${Museum}" th:if="${ms.cities} == Mon"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
 	</ul></li>
 
 	<li><a href="#" id="mn04"onclick ="ck4();" >Sagaing</a>
 		<ul id="n4"  style = "display:blck">
-		{% for i in Museum %}
-			{% if i.1 == "Sagaing" %}
-				<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
-			{% endif %}
-		{% endfor %}
+			<li th:each="ms : ${Museum}" th:if="${ms.cities} == Sagaing"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
 	</ul></li>
 
 	<li><a href="#" id="mn04"onclick ="ck5();" >Magway</a>
 		<ul id="n5"  style = "display:blck">
-		{% for i in Museum %}
-			{% if i.1 == "Magway" %}
-				<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
-			{% endif %}
-		{% endfor %}
+			<li th:each="ms : ${Museum}" th:if="${ms.cities} == Magway"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
 	</ul></li>
 
 
 	<li><a href="#" id="mn04"onclick ="ck6();" >Kayin</a>
 		<ul id="n6"  style = "display:blck">
-		{% for i in Museum %}
-			{% if i.1 == "Kayin" %}
-				<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
-			{% endif %}
-		{% endfor %}
+			<li th:each="ms : ${Museum}" th:if="${ms.cities} == Kayin"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
 	</ul></li>
 
 	<li><a href="#" id="mn04"onclick ="ck7();" >Kachin</a>
 		<ul id="n7"  style = "display:blck">
-		{% for i in Museum %}
-			{% if i.1 == "Kachin" %}
-				<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
-			{% endif %}
-		{% endfor %}
+			<li th:each="ms : ${Museum}" th:if="${ms.cities} == Kachin"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
 	</ul></li>
 
 	<li><a href="#" id="mn04"onclick ="ck8();" >Tanintharyi</a>
 		<ul id="n8"  style = "display:blck">
-		{% for i in Museum %}
-			{% if i.1 == "Tanintharyi" %}
-				<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
-			{% endif %}
-		{% endfor %}
+			<li th:each="ms : ${Museum}" th:if="${ms.cities} == Tanintharyi"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
 	</ul></li>
 
 	<li><a href="#" id="mn04"onclick ="ck9();" >Ayeyarwady</a>
 		<ul id="n9"  style = "display:blck">
-		{% for i in Museum %}
-			{% if i.1 == "Ayeyarwady" %}
-				<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
-			{% endif %}
-		{% endfor %}
+			<li th:each="ms : ${Museum}" th:if="${ms.cities} == Ayeyarwady"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
 	</ul></li>
 
 	<li><a href="#" id="mn04"onclick ="ck10();" >Rakhine</a>
 		<ul id="n10"  style = "display:blck">
-		{% for i in Museum %}
-			{% if i.1 == "Rakhine" %}
-				<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
-			{% endif %}
-		{% endfor %}
+			<li th:each="ms : ${Museum}" th:if="${ms.cities} == Rakhine"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
 	</ul></li>
 
 	<li><a href="#" id="mn04"onclick ="ck11();" >Shan</a>
 		<ul id="n11"  style = "display:blck">
-		{% for i in Museum %}
-			{% if i.1 == "Shan" %}
-				<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
-			{% endif %}
-		{% endfor %}
+			<li th:each="ms : ${Museum}" th:if="${ms.cities} == Shan"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
 	</ul></li>
 
 	<li><a href="#" id="mn04"onclick ="ck12();" >Chin</a>
 		<ul id="n12"  style = "display:blck">
-		{% for i in Museum %}
-			{% if i.1 == "Chin" %}
-				<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
-			{% endif %}
-		{% endfor %}
+			<li th:each="ms : ${Museum}" th:if="${ms.cities} == Chin"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
 	</ul></li>
 
 	<li><a href="#" id="mn04"onclick ="ck13();" >Kayah</a>
 		<ul id="n13"  style = "display:blck">
-		{% for i in Museum %}
-			{% if i.1 == "Kayah" %}
-				<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
-			{% endif %}
-		{% endfor %}
+			<li th:each="ms : ${Museum}" th:if="${ms.cities} == Kayah"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
 	</ul></li>
 
 	<li><a href="#" id="mn04"onclick ="ck14();" >Naypyitaw</a>
 		<ul id="n14"  style = "display:blck">
-		{% for i in Museum %}
-			{% if i.1 == "Naypyitaw" %}
-				<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
-			{% endif %}
-		{% endfor %}
+			<li th:each="ms : ${Museum}" th:if="${ms.cities} == Naypyitaw"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
 	</ul></li>
 
 	<li><a href="#" id="mn04"onclick ="ck15();" >Nationwide</a>
 		<ul  id="n15"  style = "display:blck">
-		{% for i in Museum %}
-			{% if i.1 == "Nationwide" %}
-				<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
-			{% endif %}
-		{% endfor %}
+			<li th:each="ms : ${Museum}" th:if="${ms.cities} == Nationwide"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
 	</ul></li>
 	</ul>
 	<div class="quickBox" style="display:none;">
@@ -809,45 +748,45 @@ function submit() {
 		<input type="hidden" id="DEPTH" name="DEPTH" value="2">
 		<input type="hidden" id="LANG" name="LANG" value="EN">
 		<input type="hidden" id="StrMODE" name="StrMODE" value="">
-		
+
 		<!-- 상세검색 Start-->
 		<input type="hidden" name="SRCH_TITLE" value="">
 		<input type="hidden" name="SRCH_TITLE_OP" value="AND">
 		<input type="hidden" name="SRCH_TITLE_MY" value="">
 		<input type="hidden" name="SRCH_TITLE_MY_OP" value="AND">
-		
+
 		<input type="hidden" name="SRCH_REMARK1" value="">
 		<input type="hidden" name="SRCH_REMARK1_OP" value="AND">
 		<input type="hidden" name="SRCH_REMARK1_MY" value="">
 		<input type="hidden" name="SRCH_REMARK1_MY_OP" value="AND">
-		
+
 		<input type="hidden" name="SRCH_REMARK2" value="">
 		<input type="hidden" name="SRCH_REMARK2_OP" value="AND">
 		<input type="hidden" name="SRCH_REMARK2_MY" value="">
 		<input type="hidden" name="SRCH_REMARK2_MY_OP" value="AND">
-		
+
 		<input type="hidden" name="SRCH_REG" value="">
 		<input type="hidden" name="SRCH_REG_OP" value="AND">
 		<input type="hidden" name="SRCH_MUESUM_CODE" value="">
-		
+
 		<input type="hidden" name="SRCH_LEVEL1_SEQ" value="">
 		<input type="hidden" name="SRCH_LEVEL2_SEQ" value="">
 		<input type="hidden" name="SRCH_LARGE_SEQ" value="">
 		<input type="hidden" name="SRCH_MEDIUM_SEQ" value="">
 		<input type="hidden" name="SRCH_SMALL_SEQ" value="">
-		
+
 		<input type="hidden" name="SRCH_LEVEL1_MY_SEQ" value="">
 		<input type="hidden" name="SRCH_LEVEL2_MY_SEQ" value="">
 		<input type="hidden" name="SRCH_LARGE_MY_SEQ" value="">
 		<input type="hidden" name="SRCH_MEDIUM_MY_SEQ" value="">
 		<input type="hidden" name="SRCH_SMALL_MY_SEQ" value="">
-		
+
 		<input type="hidden" name="SRCH_REG_SRT_DATE" value="">
 		<input type="hidden" name="SRCH_REG_END_DATE" value="">
 		<input type="hidden" name="SRCH_BIZ_SRT_DATE" value="">
 		<input type="hidden" name="SRCH_BIZ_END_DATE" value="">
 		<input type="hidden" name="SRCH_RELIC_NUM" value="">
-		
+
 		<input type="hidden" id="SRCH_MODE" name="SRCH_MODE" value="상세검색">
 		<!-- 상세검색 End-->
 	</form>
@@ -865,17 +804,17 @@ function submit() {
 	}else{
 		$('.quickBox').hide(); //버마어일때 최근등록자료 숨김
 	}
-	
+
 </script>
 <!-- 내용부분 -->
 	<div class="conts">
-		
+
 		<div id="divContsTtl">
 			<h4></h4>
-       
+
 		</div>
-		
-		
+
+
         <h4 id="BOARD_TITLE" style="display: block;"></h4>
 		<form id="listForm" name="listForm" method="post">
 			<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX" value="1">
@@ -901,56 +840,56 @@ function submit() {
 			<input type="hidden" name="MCSJGBNC_CODE" id="MCSJGBNC_CODE">
 			<input type="hidden" name="MCSJGBNC_LV" id="MCSJGBNC_LV">
 			<input type="hidden" name="CODECOPY" id="CODECOPY">
-			<input type="hidden" name="tdCount" id="tdCount" value="">			
+			<input type="hidden" name="tdCount" id="tdCount" value="">
 			<input type="hidden" name="TOP_TOPWORD" id="TOP_TOPWORD" value="an">
 
 			<!-- isKang 추가 190625 Start-->
 			<input type="hidden" id="pageId" value="BoardList">
 			<input type="hidden" name="LANG" id="LANG" value="EN">
 			<!-- isKang 추가 190625 End-->
-			
+
 			<!-- 상세검색 Start-->
 			<input type="hidden" name="SRCH_TITLE" value="">
 			<input type="hidden" name="SRCH_TITLE_OP" value="AND">
 			<input type="hidden" name="SRCH_TITLE_MY" value="">
 			<input type="hidden" name="SRCH_TITLE_MY_OP" value="AND">
-			
+
 			<input type="hidden" name="SRCH_REMARK1" value="">
 			<input type="hidden" name="SRCH_REMARK1_OP" value="AND">
 			<input type="hidden" name="SRCH_REMARK1_MY" value="">
 			<input type="hidden" name="SRCH_REMARK1_MY_OP" value="AND">
-			
+
 			<input type="hidden" name="SRCH_REMARK2" value="">
 			<input type="hidden" name="SRCH_REMARK2_OP" value="AND">
 			<input type="hidden" name="SRCH_REMARK2_MY" value="">
 			<input type="hidden" name="SRCH_REMARK2_MY_OP" value="AND">
-			
+
 			<input type="hidden" name="SRCH_REG" value="">
 			<input type="hidden" name="SRCH_REG_OP" value="AND">
 			<input type="hidden" name="SRCH_MUESUM_CODE" value="">
-			
+
 			<input type="hidden" name="SRCH_LEVEL1_SEQ" value="">
 			<input type="hidden" name="SRCH_LEVEL2_SEQ" value="">
 			<input type="hidden" name="SRCH_LARGE_SEQ" value="">
 			<input type="hidden" name="SRCH_MEDIUM_SEQ" value="">
 			<input type="hidden" name="SRCH_SMALL_SEQ" value="">
-			
+
 			<input type="hidden" name="SRCH_LEVEL1_MY_SEQ" value="">
 			<input type="hidden" name="SRCH_LEVEL2_MY_SEQ" value="">
 			<input type="hidden" name="SRCH_LARGE_MY_SEQ" value="">
 			<input type="hidden" name="SRCH_MEDIUM_MY_SEQ" value="">
 			<input type="hidden" name="SRCH_SMALL_MY_SEQ" value="">
-			
+
 			<input type="hidden" name="SRCH_REG_SRT_DATE" value="">
 			<input type="hidden" name="SRCH_REG_END_DATE" value="">
 			<input type="hidden" name="SRCH_BIZ_SRT_DATE" value="">
 			<input type="hidden" name="SRCH_BIZ_END_DATE" value="">
 			<input type="hidden" name="SRCH_RELIC_NUM" value="">
-			
+
 			<input type="hidden" id="SRCH_MODE" name="SRCH_MODE" value="상세검색">
 			<input type="hidden" id="CATEGORY_NAME2" name="CATEGORY_NAME2" value="">
 			<!-- 상세검색 End-->
-			
+
 			<!-- menuForm 추가 Start -->
 			<input type="hidden" id="MENU_DEPT_SEQ1" name="MENU_DEPT_SEQ1" value="">
 			<input type="hidden" id="MENU_DEPT_SEQ2" name="MENU_DEPT_SEQ2" value="">
@@ -958,21 +897,21 @@ function submit() {
 			<input type="hidden" id="LANG" name="LANG" value="EN">
 			<input type="hidden" id="StrMODE" name="StrMODE" value="">
 			<!-- menuForm 추가 End -->
-			
+
 			<!--	 <h4>타이틀</h4> 유민재 추가 	190820 -->
 			<input type="hidden" value="" name="CODE_TITLE" id="CODE_TITLE">
-			
+
 			<div id="divRegAtclGuid">
 			</div>
-			
-				
+
+
 					<div class="searchBox04" style="visibility:hidden">
 						<input name="LARGE_SEQ" id="LARGE_SEQ" value="" type="hidden">
 						<input name="MEDIUM_SEQ" id="MEDIUM_SEQ" value="" type="hidden">
 						<input name="SMALL_SEQ" id="SMALL_SEQ" value="" type="hidden">
-				
-				
-			
+
+
+
 		</div>
         <div id="map"></div>
 				<script>
@@ -980,7 +919,7 @@ function submit() {
 						var locations = [{% for list in lists %}
 							['{{ list.2 }}', {{ list.6 }}, {{ list.7 }}, "<a href='/MCHMSView/?&ID={{list.5}}'>{{ list.2 }}</a>"],
 						{% endfor %}];
-						
+
 
 						var map = new google.maps.Map(document.getElementById('map'), {
 							zoom: 13,
@@ -998,7 +937,7 @@ function submit() {
 								title : locations[i][0],
 								map: map
 							});
-							
+
 							google.maps.event.addListener(marker, 'click', (function(marker, i) {
 								return function() {
 									infowindow.setContent(locations[i][3]);
@@ -1011,11 +950,11 @@ function submit() {
 				<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg2U2hyWyH76p5rXTIptibx3d9SkuiEDQ&callback=initMap"></script>
         <div class="floatBox" style="margin-top: 40px;">
             <div class="flBox">
-                <div class="cnb_1" id="tottalcnt"><span style="font-weight:bold;color:#999"> {{total}} items total</span></div>
+                <div class="cnb_1" id="tottalcnt"><span style="font-weight:bold;color:#999" th:text="|${total} items total|"></span></div>
             </div>
             <div class="frBox">
 				<span id="REG_BTN" class="REG_BTN" style="display: none;">
-				
+
                 </span>
             </div>
         </div>
@@ -1028,40 +967,32 @@ function submit() {
 				<th><a href="javascript:userSorting('FIELD_REGISTER');">Registrant</a></th>
 				<th><a href="javascript:userSorting('FIELD_REG_DATE');">Registration date</a></th></tr></thead>
 				<tbody id="list1">
-				{% if flag == 1 %}
-				{% for list in lists %}
-						<tr style = "cursor:pointer;" onClick = " location.href='/MCHMSView/?&ID={{list.5}}'">
-							<td class="FILE_CNT"><div>{{list.0}}</div></td>
-							<td class="FIELD_CATEGORY" title="Monuments"><div>{{list.1}}</div></td>
-							<td class="FIELD_TITLE al elli"><div>{{list.2}}</div></td>
-							<td class="FIELD_REGISTER"><div>{{list.3}}</div></td>
-							<td class="FIELD_REG_DATE"><div>{{list.4}}</div></td>
+						<tr th:if="${flag} == 1" th:each="dataDomain : ${lists}" style = "cursor:pointer;" onClick = " location.href='/MCHMSView/?&ID=${dataDomain.id}'">
+							<td class="FILE_CNT"><div th:text="${dataDomain.index}"></div></td>
+							<td class="FIELD_CATEGORY" title="Monuments"><div th:text="${dataDomain.clResult}"></div></td>
+							<td class="FIELD_TITLE al elli"><div th:text="${dataDomain.title}"></div></td>
+							<td class="FIELD_REGISTER"><div th:text="${dataDomain.registrant}"></div></td>
+							<td class="FIELD_REG_DATE"><div th:text="${dataDomain.registrationDate}"></div></td>
 						</tr>
-				{% endfor %}
-				{% else %}
-				{% for i in cl %}
-						<tr style = "cursor:pointer;" onClick = " location.href='/MCHMSView/?&ID={{i.0}}'">
-							<td class="FILE_CNT" style = "text-align= center"><div>{{i.0}}</div></td>
+
+						<tr th:unless="${flag} == 1" th:each="dataDomain : ${cl}" style = "cursor:pointer;" onClick = " location.href='/MCHMSView/?&ID=${dataDomain.id}'">
+							<td class="FILE_CNT" style = "text-align= center"><div th:text="${dataDomain.id}"></div></td>
 							<td class="FIELD_CATEGORY" title="Monuments"><div></div></td>
-							<td class="FIELD_TITLE elli"><div>{{i.1}}</div></td>
-							<td class="FIELD_REGISTER"><div>{{i.20}}</div></td>
-							<td class="FIELD_REG_DATE"><div>{{i.21}}</div></td>
+							<td class="FIELD_TITLE elli"><div th:text="${dataDomain.title}"></div></td>
+							<td class="FIELD_REGISTER"><div th:text="${dataDomain.registrant}"></div></td>
+							<td class="FIELD_REG_DATE"><div th:text="${dataDomain.registrationDate}"></div></td>
 						</tr>
-				{% endfor %}
-				{% endif %}
 				</tbody>
 			</table>
 			</div>
             <div class="floatBox" style="margin-top: 10px;">
                 <div class="flBox">
-				
+
                     <div class="frBox REG_BTN" style="display: block; float:left;">
-					{% if Session != -1 %}
-	                    <a href="/MCHMSWrite/?City_id={{City_id}}" style = "right:0; position : absolute" class="btn btnB">Upload</a>
-					{% endif %}
+	                    <a th:if="${session.value == null}" href="/MCHMSWrite/?City_id=${City_id}" style = "right:0; position : absolute" class="btn btnB">Upload</a>
 	                </div>
                 </div>
-                
+
             </div>
 		</form>
 	</div>

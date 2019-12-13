@@ -29,4 +29,6 @@ public class DataDomain {
     String fileName;
     String registrant;
     String registrationDate;
+    String clResult;
+    int index;
 }
