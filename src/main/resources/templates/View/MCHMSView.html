@@ -1,0 +1,1508 @@
+<html xmlns="http://www.w3.org/1999/xhtml" style="overflow-y:auto;">
+<head>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>MAMS Myanmar Asset Management System</title>
+<link rel="stylesheet" href="/Static/css/MCH/style.css" type="text/css" />
+<link rel="stylesheet" href="/Static/css/MCH/font.css" type="text/css" />
+<link rel="stylesheet" href="/Static/css/MCH/common.css" type="text/css" />
+<link rel="stylesheet" href="/Static/css/MCH/layout.css" type="text/css" />
+<link rel="stylesheet" href="/Static/common/css/jquery-ui.css" type="text/css" />
+<script type="text/javascript">
+var _CONTEXT_PATH = "";
+var _CONTEXT_PORT = '80';
+var _CONTEXT_DOMAIN = "localhost:8080/";
+</script>
+
+<script type="text/javascript" src="/Static/js2/jquery-3.3.1.min.js"></script>
+
+<script type="text/javascript" src="/Static/js2/jquery-1.10.2.min.js"></script>
+
+<script type="text/javascript" src="/Static/common/js/jquery-ui-1.8.23.custom.min.js"></script>
+<script type="text/javascript" src="/Static/common/js/jquery.tmpl.js"></script>
+<script type="text/javascript" src="/Static/common/js/jquery.form.js"></script>
+<script type="text/javascript" src="/Static/common/js/jquery.DOMWindow.js"></script>
+<script type="text/javascript" src="/Static/common/js/link.js"></script>
+<script type="text/javascript" src="/Static/common/js/jkds.js"></script>
+<script type="text/javascript" src="/Static/common/js/patch_flash_tran.js"></script>
+<script type="text/javascript" src="/Static/common/js/AC_RunActiveContent.js"></script>
+<!-- <script type="text/javascript" src="/common/js/Calendar.js" ></script> -->
+<script type="text/javascript" src="/Static/common/js/makeDiv.js"></script><link type="text/css" rel="stylesheet" href="http://103.83.190.250/dext5upload/css/dext5upload.popup.min.css?ver=2.7.1265670.1600.01">
+
+<script type="text/javascript">
+
+	$(document).ready(function() {
+		$("#LARGE_SEQ").change(function() {	//사용자가 Classification 영역 selectBox를 변경할 경우
+var target = document.getElementById("LARGE_SEQ");
+var text22 = target.options[target.selectedIndex].text;
+$("#FIELD_CODE_NM").val(text22);
+/* console.log('셀렉트 박스 변경되었습니다')
+$("#CODE_TITLE").val(text22); */
+		});
+		if($("#FIELD_CODE_NM option:selected").text()){
+		}
+	});
+</script>
+
+</head>
+
+<body><div id="divpop" style="z-index:150; position:absolute; display:none;" onmousedown="ddInit()" onmousemove="dd()" onmouseup="stopdrag()">
+<div style="position:absolute; top:0px; left:0px; width:100%; height:38px;">
+<table border="0" width="100%" cellpadding="0" cellspacing="0" background="/images/common/pop_top_bg2.gif">
+<tbody><tr>
+<td width="120"><img id="popTitle" src=""></td>
+<td class="menu1"><span id="textTitle"></span>&nbsp;</td>
+<td width="40" align="center" background="/images/common/pop_top_bg2.gif"><input type="button" value="X" onclick="noCheck2()" style="width:20px"></td>
+</tr>
+</tbody></table>
+</div>
+<iframe src="" height="38" width="100%" frameborder="0" scrolling="no"></iframe>
+<div id="dwindowcontent" style="height:100%">
+<iframe name="fr01" src="" height="100%" width="100%" frameborder="0" scrolling="no"></iframe>
+</div>
+</div>
+
+<!-- <script type="text/javascript" src="/common/cab/InnoFD.js" ></script> -->
+<script type="text/javascript" src="/Static/common/js/default.js"></script>
+<script type="text/javascript" src="/Static/common/js/tree.js"></script>
+<script type="text/javascript" src="/Static/common/js/sortTable.js"></script>
+<script type="text/javascript" src="/Static/common/js/commonCode.js"></script>
+
+<script type="text/javascript" src="/Static/imageViewer/ZoomifyImageViewerPro-min.js"></script>
+<script type="text/javascript" src="/Static/js2/common.js"></script>
+
+
+
+
+
+<script type="text/javascript" src="/dext5upload/js/dext5upload.js"></script>
+<script type="text/javascript" src="/Static/js2/board/BoardViewN.js?version=20190806"></script>
+
+<script type="text/javascript" src="/Static/common/js/jcalendar.js"></script>
+<script type="text/javascript" src="/Static/common/js/flowplayer-3.2.6.min.js"></script>
+
+
+<!-- <script type="text/javascript" src="/js/jquery.mb.browser.min.js"></script>
+<script type="text/javascript" src="/js/jquery.printElement.min.js"></script> -->
+
+
+<script type="text/javascript"></script>
+<link rel="stylesheet" href="/Static/js/bxslider/dist/jquery.bxslider.css">
+<script src="/Static/js/bxslider/dist/jquery.bxslider.min.js"></script>
+
+
+<script>
+
+$(document).ready(function(){
+	$('.slider').bxSlider({
+		auto: false,
+		speed: 500,
+		pause: 4000,
+		mode:'fade',
+		autoControls: false,
+		pager:true,
+		captions:true,
+		//adaptiveHeight:true,
+		autoHover: true,
+	});
+});
+</script>
+<style>
+.bx-wrapper {
+	width: 802px;
+	height: 402px;
+	min-height:450px;
+	margin-top:30px;
+	box-shadow: none !important;
+	border: 1px solid #eee !important;
+}
+
+.bx-viewport {
+    position: absolute !important;
+	height:100% !important;
+}
+
+.slider {
+	height: 100% !important;
+	padding-left: 0px;
+}
+
+.slider li {
+	height:100%;
+}
+
+.slider a {
+	text-decoration:none;
+}
+
+.slider a:visited {
+	color:blue;
+}
+
+.slider li {
+    list-style: none;
+    line-height: 15px;
+}
+
+.slider li img {
+	margin:0px auto;
+	height:100%;
+	width: auto;
+	max-width: 100%;
+}
+
+.slider {
+	width: auto;
+	height: auto;
+	max-width: 100%;
+	max-height: 100%;
+	display:block;
+	margin:auto;
+	text-align:center;
+}
+
+.bx-prev, .bx-next {
+	display: none;
+}
+</style>
+<script>
+function goPrint() {
+	var initBody = document.body.innerHTML;
+	var REMARK1 = $('#FIELD_REMARK1').text();
+	var REMARK2 = $('#FIELD_REMARK2').text();
+	var REMARK1_MY = $('#FIELD_REMARK1_MY').text();
+	var REMARK2_MY = $('#FIELD_REMARK2_MY').text();
+	
+	
+	
+	window.onbeforeprint = function () {
+		
+		document.body.innerHTML = document.getElementById("printarea").innerHTML;
+
+	}
+
+	window.onafterprint = function () {
+		
+		document.body.innerHTML = initBody;
+	}
+
+	window.print();
+	location.reload();
+	
+} 
+
+function printTest(){
+	
+}
+
+//textarea만 인쇄 가능
+function printTextArea() {
+    childWindow = window.open('','childWindow','location=yes, menubar=yes, toolbar=yes');
+    childWindow.document.open();
+    childWindow.document.write('<html><head></head><body>');
+    childWindow.document.write(document.getElementById('FIELD_REMARK1').value.replace(/\n/gi,'<br>'));
+    childWindow.document.write('</body></html>');
+    childWindow.document.write('<html><head></head><body>');
+    childWindow.document.write('<br><br>');
+    childWindow.document.write('</body></html>');
+    childWindow.document.write('<html><head></head><body>');
+    childWindow.document.write(document.getElementById('FIELD_REMARK2').value.replace(/\n/gi,'<br>'));
+    childWindow.document.write('</body></html>');
+    childWindow.print();
+    childWindow.document.close();
+    childWindow.close(); 
+  }
+
+$(document).ready(function() {
+	$("#btnTest").click(function() {
+		var textMj = $("#FIELD_REMARK1").val();
+		/* var remark1 = $("#REMARK1_TEXT").val(); */
+		alert(textMj);
+	});
+	
+});
+
+
+/* function printIt(printThis)  {
+	var win=null;
+  win = window.open();
+  self.focus();
+  win.document.open();
+  win.document.write('<'+'html'+'><'+'head'+'><'+'style'+'>');
+  win.document.write('body, td { font-family: Verdana; font-size: 10pt;}');
+  win.document.write('<'+'/'+'style'+'><'+'/'+'head'+'><'+'body'+'>');
+  win.document.write(printThis);
+  win.document.write('<'+'/'+'body'+'><'+'/'+'html'+'>');
+  win.document.close();
+  win.print();
+  win.close();
+} */
+</script>
+<style type="text/css">
+/* 	#header, #nav, .noprint
+{
+display: none;
+} */
+  @media print {
+  @page { margin: 0; }
+  body { margin: 1.6cm; }
+}
+#map {
+	height: 400px;
+	width: 100%;
+}
+
+
+
+
+</style>
+
+
+
+
+
+<script type="text/javascript" src="/Static/js2/cmm/inc/Inc.js"></script>
+<!-- 미얀마어 메인페이지 -->
+<div id="header">
+	<div class="top">
+		<div>
+			<a href="/" class="logo"><img src="/Static/MCHMS/mams/mchms_logo_small.svg" alt="MCHMS"  width="35px;" height="35px;"></a>
+			<div>
+                
+					<!-- 
+					<div id="TOP_MUESUM" class="select">
+                    <a href="#a"><span> Business management</span></a>
+                    <div id="TOP_MUESUM_CODE"></div>-->
+                    <form id="museumForm" name="museumForm" method="post">
+                        <input type="hidden" name="TOP_MUESUM_CODE" value="">
+						<input type="hidden" name="TOP_MUESUM_NAME" value="">
+                    </form>
+                	<!-- </div> -->
+				
+                <div class="select">
+                    <div>
+                        <ul>
+                        	<!-- <li id="APPROVER_CHK"></li>--><!-- 승인요청 -->
+	                        
+								<!-- <li><a href="javascript:dataHaveMng()"><span id="spanMoveMngt">Move manager</span></a></li> -->
+								<li><a href="javascript:userMng()"><span id="spanMoveMngt">Move manager</span></a></li>
+	                        
+	                        <!-- 
+							<li><a href="javascript:regdata()"><span id="spanRegMtrl">자료등록</span></a></li>
+                            <li><a href="/user/mypage/RegdataList.do"><span id="spanRegBox">등록자료함</span></a></li>
+                            <li><a href="/user/mypage/BookmarkList.do"><span id="spanBookmark">북마크함</span></a></li>
+                             -->
+							<li><a href="/user/mypage/MyboxList.do"><span id="spanDown">Downloaded</span></a></li>
+                            <li><a href="/user/mypage/UserInfoModify.do"><span id="spanEditPri">Edit personal info.</span></a></li>
+							<!-- <li><a href="javascript:coomEnema()"><span id="spanTalk">관리자와 대화</span></a></li> -->
+							<li><a href="javascript:boardNotice()"><span id="spanNtc">Notice</span></a></li>
+							<!-- <li><a href="javascript:boardError()"><span id="spanErr">오류게시판</span></a></li> -->
+                        </ul>
+                    </div>
+                </div>
+				{% if Session == -1 %}
+				<select id="SLT_USER_LANG" name="USER_LANG" onchange="selectUserLang();">
+					<option value="EN">English</option>
+					<option value="MY">မြန်မာ</option>
+				</select>
+				<a href="/MCHMSLogin" class="btnLogout on" ><span id="spanLogout">Login</span></a>
+				{% else %}
+				<span class="info" id="spanWelcome">Welcome to {{Session.0}}</span>&nbsp;
+				<select id="SLT_USER_LANG" name="USER_LANG" onchange="selectUserLang();">
+					<option value="EN">English</option>
+					<option value="MY">မြန်မာ</option>
+				</select>
+				<a href="/MCHMSLogout" class="btnLogout on" ><span id="spanLogout">Logout</span></a>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	<div>
+		<div>
+			<h1>
+				<a href="/"><img src="/Static/MCHMS/mams/mchms_logo_02.svg" alt="MAMS Myanmar Asset Management System"></a>
+			</h1>
+			<form action = "/MCHMSSearch_process/?City_id={{City_id}}" method = "post" enctype="multipart/form-data" id="AdvsearchFrom" name="AdvsearchFrom">
+				<input type="hidden" id="SRCH_MODE" name="SRCH_MODE">
+				<input type="hidden" id="SELECT_DEPTH" name="SELECT_DEPTH">
+				<input type="hidden" id="StrMODE" name="StrMODE" value="MORE">	
+				<input type="hidden" id="TSSEARCH" name="USER_TSGROUP_CODE" value="PS01001001_000000013">
+				<input type="hidden" id="USER_TSGROUP_CODE" name="USER_TSGROUP_CODE" value="PS01001001_000000013">
+				<input type="hidden" id="USER_LGROUP_CODE_SEQ" name="USER_LGROUP_CODE_SEQ" value="20190730193223383814_000000102">
+                <input type="hidden" id="STR_TOP_SEARCH_MUESUM_CODE" name="STR_TOP_SEARCH_MUESUM_CODE" value="">
+                
+                <!-- isKang 추가 190628 -->
+                <input type="hidden" name="LANG" value="EN">
+                <input type="hidden" id="STR_SRCH_MUESUM_CODE" name="STR_SRCH_MUESUM_CODE" value="">
+                
+            
+				<div class="searchBox">
+					<input type="text" id="TOP_TOPWORD" name="TOP_TOPWORD" onkeydown="topEnter('Search')" onkeypress="speCharBlock(this)" value="">
+					<a href="#" onclick="Search();" class="serch_icon"><img src="/Static/MCHMS/mams/serch_icon_06.svg" alt="Search Btn" style="height: 22px;">Search</a>
+					<script>
+					
+					function Search() {
+						SearchKey = $("#TOP_TOPWORD").val();
+
+						var regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi
+						str = SearchKey.replace(regExp,"");
+						if(str == ""){
+							path = "http://mchms.net/MCHMSSearch/?&Keyword=" + SearchKey;
+
+
+							window.location.href = path;
+						}else if(str.length < 2) {
+							alert("검색어를 두 글자 이상으로 입력해 주세요.");
+
+						}else{
+							var ESearchKey = encodeURI(SearchKey);
+		
+							path = "http://mchms.net/MCHMSSearch/?&Keyword=" + ESearchKey;
+		
+
+							window.location.href = path;
+						}
+					}
+					$('#TOP_TOPWORD').keypress(function(event){
+						if ( event.which == 13 ) {
+							Search();
+							return false;
+						}
+					});
+					</script>
+
+					<a href="#layerPopup" class="btnSearch"><img src="/Static/MCHMS/mams/serch_icon_07.svg" alt="" style="height: 22px;">Advanced</a>
+					<script>
+						$('.btnSearch').click(function(){
+							var $href = $(this).attr('href');
+							layer_popup($href);
+						});
+						function layer_popup(el){
+
+							var $el = $(el);        //레이어의 id를 $el 변수에 저장
+							var isDim = $el.prev().hasClass('dimBg');   //dimmed 레이어를 감지하기 위한 boolean 변수
+
+							isDim ? $('.dim-layer').fadeIn() : $el.fadeIn();
+
+							var $elWidth = ~~($el.outerWidth()),
+							$elHeight = ~~($el.outerHeight()),
+							docWidth = $(document).width(),
+							docHeight = $(document).height();
+
+
+							$el.find('a.btn-layerClose').click(function(){
+								isDim ? $('.dim-layer').fadeOut() : $el.fadeOut(); // 닫기 버튼을 클릭하면 레이어가 닫힌다.
+								return false;
+							});
+
+							$('.layer .dimBg').click(function(){
+								$('.dim-layer').fadeOut();
+								return false;
+							});
+
+						}
+					</script>
+				</div>
+				<div id="detailSearchLayer" class="layerPopup">
+					<div>
+						<p class="tit">Advanced search</p>
+						<div class="content">
+							<table class="tbType01 type2">
+								<colgroup>
+									<col style="width:160px">
+									<col>
+								</colgroup>
+								<tbody>
+								<tr id="trSrchTitleEn">
+									<th>Title(En)</th>
+									<td>
+										<input type="text" class="sizeL" id="SRCH_TITLE" name="SRCH_TITLE" value="" onkeypress="speCharBlock(this)">
+										
+									</td>
+								</tr>
+								<tr id="trSrchRemark1En">
+									<th>Remark1(En)</th>
+									<td>
+										<input type="text" class="sizeL" id="SRCH_REMARK1" name="SRCH_REMARK1" value="" onkeypress="speCharBlock(this)">
+										
+									</td>
+								</tr>
+								<tr id="trSrchRemark2En">
+									<th>Remark2(En)</th>
+									<td>
+										<input type="text" class="sizeL" id="SRCH_REMARK2" name="SRCH_REMARK2" value="" onkeypress="speCharBlock(this)">
+										
+									</td>
+								</tr>
+								<tr>
+									<th>Registrant</th>
+									<td>
+										<input type="text" class="sizeL" id="SRCH_REG" name="SRCH_REG" value="" onkeypress="speCharBlock(this)">
+										
+									</td>
+								</tr>
+								<tr>
+									<th>Registration date</th>
+									<td>
+										<script>
+										$(function() {
+											
+											SRCH_REG_SRT_DATE = $("#SRCH_REG_SRT_DATE").datepicker({
+												showOn: "button",
+												buttonImage: "/Static/MCHMS/btn_calender.gif",
+												buttonImageOnly: true,
+												buttonText: "Select date",
+												dateFormat: 'yy-mm-dd',
+												beforeShow: customRangeStart,
+												maxDate: null,
+												defaultDate: "+1w",
+												changeMonth: true,
+												changeYear: true
+											}),
+											SRCH_REG_END_DATE = $("#SRCH_REG_END_DATE").datepicker({
+												showOn: "button",
+												buttonImage: "/Static/MCHMS/btn_calender.gif",
+												buttonImageOnly: true,
+												buttonText: "Select date",
+												dateFormat: 'yy-mm-dd',
+												beforeShow: customRange,
+												defaultDate: "+1w",
+												changeMonth: true,
+												changeYear: true
+											});
+
+											function customRange(input) { 
+												return {
+													minDate: (input.id == "SRCH_REG_END_DATE" ? $("#SRCH_REG_SRT_DATE").datepicker("getDate") : new Date())
+												}; 
+											}
+											function customRangeStart(input) { 
+												return {
+													maxDate:(input.id == "SRCH_REG_SRT_DATE" ? $("#SRCH_REG_END_DATE").datepicker("getDate") : null)
+												}; 
+											}
+										});
+										</script>
+										<div class="calBox">
+											<input type="text" size="6" readonly="readonly" id="SRCH_REG_SRT_DATE" name="SRCH_REG_SRT_DATE">
+										</div>
+										~
+										<div class="calBox">
+											<input type="text" size="6" readonly="readonly" id="SRCH_REG_END_DATE" name="SRCH_REG_END_DATE">
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th>Relic number</th>
+									<td>
+										<input type="text" class="sizeS" name="SRCH_RELIC_NUM" id="SRCH_RELIC_NUM" value="" size="6" onkeypress="speCharBlock(this)">
+									</td>
+								</tr>
+								</tbody>
+							</table>
+							<div class="btnC">
+								<input type="hidden" name="TOPMCSJGBNC_CODE" id="TOPMCSJGBNC_CODE">
+								<input type="hidden" name="TOPMCSJGBNC_LV" id="TOPMCSJGBNC_LV">
+								<input type="hidden" name="TOPCODECOPY" id="TOPCODECOPY">
+								<a href="#" onclick="adv_Search();" class="btn type2 btnB">Search</a>
+								<script>
+									function adv_Search(){
+										
+										AdvsearchFrom.submit();	
+		
+									}
+								</script>
+								<a href="javascript:reset();" class="btn type2">Reset</a>
+							</div>
+						</div>
+						<a href="#a" class="close"><img src="/Static/MCHMS/btn/close.png" alt=""></a>
+					</div>
+				</div>
+			</form>
+		</div>
+    </div>
+</div>
+<script type="text/javascript">
+	$("#SLT_USER_LANG").val("[Ljava.lang.String;@cebda04").prop("selected", true);
+	if(getLang().toLowerCase().indexOf("my") == -1){ //언어 != 미얀마이면 isKang 190619
+		$('#SLT_USER_LANG').val("EN").prop("selected", true);
+	
+		
+		$('#spanMoveMngt').text("Move manager");
+		$('#spanRegMtrl').text("Article registration");
+		$('#spanRegBox').text("Registration Box");
+		$('#spanBookmark').text("Bookmark");
+		$('#spanDown').text("Downloaded");
+		$('#spanEditPri').text("Edit personal info.");
+		$('#spanTalk').text("Conversation with manager");
+		$('#spanNtc').text("Notice");
+		$('#spanErr').text("Error board");
+	}else{
+		$('#SLT_USER_LANG').val("MY").prop("selected", true);
+	}
+	
+	function goMain(){
+		var url = 'http://103.83.190.250/WEB-INF/jsp/user/board/userBoardViewN.jsp';
+		
+		if(url.indexOf('unione') > -1)
+			frm = $('#searchFrom');
+		else{
+			if($('#listForm').length > 0) frm = $('#listForm');
+			if($('#SearchForm').length > 0) frm = $('#SearchForm'); 
+		}
+		
+		frm.attr("action",_CONTEXT_PATH + "/main.do");
+		frm.submit();
+	}
+
+	function selectUserLang(){
+		var userLang = $('#SLT_USER_LANG').val();
+		setCookie('DAMS_USER_LANG', userLang, 3650); /* 10년 뒤 만료됨 */
+		$('input[name="LANG"]').attr('value', userLang);
+
+		if($("#pageId").val() == "BoardList" && $("#listForm #SRCH_MODE").val() != "상세검색"){
+			SearchKey = $("#TOP_TOPWORD").val();
+			console.log("BoardList");
+			console.log(" ");
+			if("" != "" && "" != ""){
+				boardpagemove("", "");
+			}else{
+				console.log("goList");
+				goList("/MCHMSSearch/?&Keyword=" + SearchKey);
+			}
+		}else if($("#pageId").val() == "userBoardReg"){
+			console.log("userBoardReg");
+			BoardWrite();
+		}else if($("#pageId").val() == "BoardView"){
+			console.log("BoardView");
+			$("input[name^='Str']").remove(); //StrStr~로 꼬임 isKang 190626(근본적으로 문제해결을 안하고 땜빵으로 해놨네.ㅜㅡ)
+			var frm = $('#listForm');
+			frm.attr("method","post");
+			frm.attr("action",_CONTEXT_PATH + "/user/board/BoardView.do");
+			frm.submit();
+		}
+		}else if(window.location.href.indexOf("/user/imgSearch.do") > -1){	
+			imgSearch();
+		}else if(window.location.href.indexOf("/user/docSearch.do") > -1){	
+			pdfSearch();
+		}else if(window.location.href.indexOf("/user/movieSearch.do") > -1){
+			aviSearch();
+		}else if(window.location.href.indexOf("/user/Search.do") > -1 && $("#listForm #SRCH_MODE").val() == "상세검색"){
+			topSearchinit('ON');
+			
+
+		}else if(window.location.href.indexOf("/user/Search.do") > -1 && $("#SearchForm #SRCH_MODE").val() == "상세검색"){
+			topSearchinit('ON');
+			
+
+		}else{
+			console.log("reload");
+			location.reload();
+		}
+	}
+</script>
+
+	<script type="text/javascript">
+		$.post(_CONTEXT_PATH + "/user/mypage/getApprover_menu.do", $('#searchFrom').serialize(), function(result) {
+			if("Y"==result.APPROVER){
+				if(getLang().toLowerCase().indexOf("my") == -1){ //언어 != 미얀마이면 isKang 190619
+					/* $('#APPROVER_CHK').html("<a href=\"javascript:fileauthList()\"  class=\"strong tn_3\"> Request approval "+result.APPROVER_COUNT+"s</a>"); */
+				}else{
+					/* $('#APPROVER_CHK').html("<a href=\"javascript:fileauthList()\"  class=\"strong tn_3\"> 승인요청 "+result.APPROVER_COUNT+"건</a>"); */
+				}
+			}else{
+				$("select[name=mypage] option[value=4]").remove();
+			}
+	
+			if($.trim(result.TSGROUP_CODE)!=""){
+				$('#TOP_MUESUM').show();
+				var HTML="<ul>";
+				//박물관 리스터
+	            $.each(result.MUSEUMLIST, function(i) {
+	                HTML += "\t<li><a href=\"javascript:changeMuseum('"+result.MUSEUMLIST[i].MUSEUM_CODE+"', '"+result.MUSEUMLIST[i].MUSEUM_NAME+"');\">"+result.MUSEUMLIST[i].MUSEUM_NAME+"</a></li>";
+	            });
+	
+	            HTML+="</ul>";
+				$('#TOP_MUESUM_CODE').html(HTML);
+			}
+	
+			var SELECT ="";
+			var SELECTHTML = "";
+			$.each(result.TOPMCSJGBNC1, function(i) {
+				SELECT += "<option value=\"" + result.TOPMCSJGBNC1[i].CODE + "\">" + result.TOPMCSJGBNC1[i].NAME + "</option>";
+			} );
+			$('#TOPMCSJGBNC1').html(SELECT);
+	
+			SELECT ="";
+			$.each(result.TOPMCSJGBNC2, function(i) {
+				if($('#TOP_MUESUM_CODE').val() ==result.TOPMCSJGBNC2[i].CODE){
+					SELECTHTML += "  selected=\"selected\"  ";
+				}else{
+					SELECTHTML ="";
+				}
+	
+				SELECT += "<option value=\"" + result.TOPMCSJGBNC2[i].CODE + "\""+SELECTHTML+">" + result.TOPMCSJGBNC2[i].NAME + "</option>";
+			} );
+			$('#TOPMCSJGBNC2').html(SELECT);
+	
+			SELECT ="";
+			$.each(result.TOPMCSJGBNC3, function(i) {
+				SELECT += "<option value=\"" + result.TOPMCSJGBNC3[i].CODE + "\">" + result.TOPMCSJGBNC3[i].NAME + "</option>";
+			} );
+			$('#TOPMCSJGBNC3').html(SELECT);
+		}, "json");
+	</script>
+
+<div id="inlineContent" style=" display:none;">
+	<img src="/images/loading.gif" alt="Loading">
+	<div style="margin-top:10px;" id="dot01">Loading...</div>
+</div>
+
+<div id="nav"></div>
+<div class="subContent">
+<script>
+	function ck()
+	{
+		
+		var ls = $("#n").css("display");
+			if(ls== "none")
+            $("#n").css("display","block");
+			if(ls == "block")
+            $("#n").css("display","none");
+	}
+	function ck1()
+	{
+		
+		var ls = $("#n1").css("display");
+			if(ls== "none")
+            $("#n1").css("display","block");
+			if(ls == "block")
+            $("#n1").css("display","none");
+	}
+	function ck2()
+	{
+		
+		var ls = $("#n2").css("display");
+			if(ls== "none")
+            $("#n2").css("display","block");
+			if(ls == "block")
+            $("#n2").css("display","none");
+	}
+	function ck3()
+	{
+		
+		var ls = $("#n3").css("display");
+			if(ls== "none")
+            $("#n3").css("display","block");
+			if(ls == "block")
+            $("#n3").css("display","none");
+	}
+	function ck4()
+	{
+		
+		var ls = $("#n4").css("display");
+			if(ls== "none")
+            $("#n4").css("display","block");
+			if(ls == "block")
+            $("#n4").css("display","none");
+	}
+	function ck5()
+	{
+		
+		var ls = $("#n5").css("display");
+			if(ls== "none")
+            $("#n5").css("display","block");
+			if(ls == "block")
+            $("#n5").css("display","none");
+	}
+	function ck6()
+	{
+		
+		var ls = $("#n6").css("display");
+			if(ls== "none")
+            $("#n6").css("display","block");
+			if(ls == "block")
+            $("#n6").css("display","none");
+	}
+	function ck7()
+	{
+		
+		var ls = $("#n7").css("display");
+			if(ls== "none")
+            $("#n7").css("display","block");
+			if(ls == "block")
+            $("#n7").css("display","none");
+	}
+	function ck8()
+	{
+		
+		var ls = $("#n8").css("display");
+			if(ls== "none")
+            $("#n8").css("display","block");
+			if(ls == "block")
+            $("#n8").css("display","none");
+	}
+	function ck9()
+	{
+		
+		var ls = $("#n9").css("display");
+			if(ls== "none")
+            $("#n9").css("display","block");
+			if(ls == "block")
+            $("#n9").css("display","none");
+	}
+	function ck10()
+	{
+		
+		var ls = $("#n10").css("display");
+			if(ls== "none")
+            $("#n10").css("display","block");
+			if(ls == "block")
+            $("#n10").css("display","none");
+	}
+	function ck11()
+	{
+		
+		var ls = $("#n11").css("display");
+			if(ls== "none")
+            $("#n11").css("display","block");
+			if(ls == "block")
+            $("#n11").css("display","none");
+	}
+	function ck12()
+	{
+		
+		var ls = $("#n12").css("display");
+			if(ls== "none")
+            $("#n12").css("display","block");
+			if(ls == "block")
+            $("#n12").css("display","none");
+	}
+	function ck13()
+	{
+		
+		var ls = $("#n13").css("display");
+			if(ls== "none")
+            $("#n13").css("display","block");
+			if(ls == "block")
+            $("#n13").css("display","none");
+	}
+	function ck14()
+	{
+		
+		var ls = $("#n").css("display");
+			if(ls== "none")
+            $("#n14").css("display","block");
+			if(ls == "block")
+            $("#n14").css("display","none");
+	}
+	function ck15()
+	{
+		
+		var ls = $("#n").css("display");
+			if(ls== "none")
+            $("#n15").css("display","block");
+			if(ls == "block")
+            $("#n15").css("display","none");
+	}
+
+
+	</script>
+
+
+	<div class="leftM2">
+	<ul class="mainSide" id="menu">
+	<li><a href="#" id="mn04" onclick ="ck();" style = "display:block">Yangon</a>
+		<ul id="n" >
+		{% for i in Museum %}
+			{% if i.1 == "Yangon" %}
+				<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+			{% endif %}
+		{% endfor %}
+	</ul></li>
+	<li><a href="#" id="mn06"onclick ="ck1();" >Mandalay</a><ul id="n1">
+	{% for i in Museum %}
+		{% if i.1 == "Mandalay" %}
+			<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+		{% endif %}
+	{% endfor %}
+	</ul></li>
+	
+	<li><a href="#" id="mn01"onclick ="ck2();" >Bago</a><ul id="n2">
+	{% for i in Museum %}
+		{% if i.1 == "Bago" %}
+			<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+		{% endif %}
+	{% endfor %}
+	
+	</ul></li>
+	
+	<li><a href="#" id="mn04"onclick ="ck3();" >Mon</a>
+		<ul id="n3"  style = "display:blck">
+		{% for i in Museum %}
+			{% if i.1 == "Mon" %}
+				<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+			{% endif %}
+		{% endfor %}
+	</ul></li>
+
+	<li><a href="#" id="mn04"onclick ="ck4();" >Sagaing</a>
+		<ul id="n4"  style = "display:blck">
+		{% for i in Museum %}
+			{% if i.1 == "Sagaing" %}
+				<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+			{% endif %}
+		{% endfor %}
+	</ul></li>
+
+	<li><a href="#" id="mn04"onclick ="ck5();" >Magway</a>
+		<ul id="n5"  style = "display:blck">
+		{% for i in Museum %}
+			{% if i.1 == "Magway" %}
+				<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+			{% endif %}
+		{% endfor %}
+	</ul></li>
+
+
+	<li><a href="#" id="mn04"onclick ="ck6();" >Kayin</a>
+		<ul id="n6"  style = "display:blck">
+		{% for i in Museum %}
+			{% if i.1 == "Kayin" %}
+				<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+			{% endif %}
+		{% endfor %}
+	</ul></li>
+
+	<li><a href="#" id="mn04"onclick ="ck7();" >Kachin</a>
+		<ul id="n7"  style = "display:blck">
+		{% for i in Museum %}
+			{% if i.1 == "Kachin" %}
+				<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+			{% endif %}
+		{% endfor %}
+	</ul></li>
+
+	<li><a href="#" id="mn04"onclick ="ck8();" >Tanintharyi</a>
+		<ul id="n8"  style = "display:blck">
+		{% for i in Museum %}
+			{% if i.1 == "Tanintharyi" %}
+				<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+			{% endif %}
+		{% endfor %}
+	</ul></li>
+
+	<li><a href="#" id="mn04"onclick ="ck9();" >Ayeyarwady</a>
+		<ul id="n9"  style = "display:blck">
+		{% for i in Museum %}
+			{% if i.1 == "Ayeyarwady" %}
+				<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+			{% endif %}
+		{% endfor %}
+	</ul></li>
+
+	<li><a href="#" id="mn04"onclick ="ck10();" >Rakhine</a>
+		<ul id="n10"  style = "display:blck">
+		{% for i in Museum %}
+			{% if i.1 == "Rakhine" %}
+				<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+			{% endif %}
+		{% endfor %}
+	</ul></li>
+
+	<li><a href="#" id="mn04"onclick ="ck11();" >Shan</a>
+		<ul id="n11"  style = "display:blck">
+		{% for i in Museum %}
+			{% if i.1 == "Shan" %}
+				<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+			{% endif %}
+		{% endfor %}
+	</ul></li>
+
+	<li><a href="#" id="mn04"onclick ="ck12();" >Chin</a>
+		<ul id="n12"  style = "display:blck">
+		{% for i in Museum %}
+			{% if i.1 == "Chin" %}
+				<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+			{% endif %}
+		{% endfor %}
+	</ul></li>
+
+	<li><a href="#" id="mn04"onclick ="ck13();" >Kayah</a>
+		<ul id="n13"  style = "display:blck">
+		{% for i in Museum %}
+			{% if i.1 == "Kayah" %}
+				<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+			{% endif %}
+		{% endfor %}
+	</ul></li>
+
+	<li><a href="#" id="mn04"onclick ="ck14();" >Naypyitaw</a>
+		<ul id="n14"  style = "display:blck">
+		{% for i in Museum %}
+			{% if i.1 == "Naypyitaw" %}
+				<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+			{% endif %}
+		{% endfor %}
+	</ul></li>
+
+	<li><a href="#" id="mn04"onclick ="ck15();" >Nationwide</a>
+		<ul  id="n15"  style = "display:blck">
+		{% for i in Museum %}
+			{% if i.1 == "Nationwide" %}
+				<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+			{% endif %}
+		{% endfor %}
+	</ul></li>
+	</ul>
+	</div>
+	<form id="menuForm" name="menuForm" method="post">
+		<input type="hidden" id="MENU_DEPT_SEQ1" name="MENU_DEPT_SEQ1" value="">
+		<input type="hidden" id="MENU_DEPT_SEQ2" name="MENU_DEPT_SEQ2" value="">
+		<input type="hidden" id="DEPTH" name="DEPTH" value="2">
+		<input type="hidden" id="LANG" name="LANG" value="EN">
+		<input type="hidden" id="StrMODE" name="StrMODE" value="">
+		
+		<!-- 상세검색 Start-->
+		<input type="hidden" name="SRCH_TITLE" value="">
+		<input type="hidden" name="SRCH_TITLE_OP" value="AND">
+		<input type="hidden" name="SRCH_TITLE_MY" value="">
+		<input type="hidden" name="SRCH_TITLE_MY_OP" value="AND">
+		
+		<input type="hidden" name="SRCH_REMARK1" value="">
+		<input type="hidden" name="SRCH_REMARK1_OP" value="AND">
+		<input type="hidden" name="SRCH_REMARK1_MY" value="">
+		<input type="hidden" name="SRCH_REMARK1_MY_OP" value="AND">
+		
+		<input type="hidden" name="SRCH_REMARK2" value="">
+		<input type="hidden" name="SRCH_REMARK2_OP" value="AND">
+		<input type="hidden" name="SRCH_REMARK2_MY" value="">
+		<input type="hidden" name="SRCH_REMARK2_MY_OP" value="AND">
+		
+		<input type="hidden" name="SRCH_REG" value="">
+		<input type="hidden" name="SRCH_REG_OP" value="AND">
+		<input type="hidden" name="SRCH_MUESUM_CODE" value="">
+		
+		<input type="hidden" name="SRCH_LEVEL1_SEQ" value="">
+		<input type="hidden" name="SRCH_LEVEL2_SEQ" value="">
+		<input type="hidden" name="SRCH_LARGE_SEQ" value="">
+		<input type="hidden" name="SRCH_MEDIUM_SEQ" value="">
+		<input type="hidden" name="SRCH_SMALL_SEQ" value="">
+		
+		<input type="hidden" name="SRCH_LEVEL1_MY_SEQ" value="">
+		<input type="hidden" name="SRCH_LEVEL2_MY_SEQ" value="">
+		<input type="hidden" name="SRCH_LARGE_MY_SEQ" value="">
+		<input type="hidden" name="SRCH_MEDIUM_MY_SEQ" value="">
+		<input type="hidden" name="SRCH_SMALL_MY_SEQ" value="">
+		
+		<input type="hidden" name="SRCH_REG_SRT_DATE" value="">
+		<input type="hidden" name="SRCH_REG_END_DATE" value="">
+		<input type="hidden" name="SRCH_BIZ_SRT_DATE" value="">
+		<input type="hidden" name="SRCH_BIZ_END_DATE" value="">
+		<input type="hidden" name="SRCH_RELIC_NUM" value="">
+		
+		<input type="hidden" id="SRCH_MODE" name="SRCH_MODE" value="상세검색">
+		<!-- 상세검색 End-->
+	</form>
+
+<!-- 내용부분 -->
+	<div class="conts">
+		
+		<div><h4>{{ResultView.1}}</h4></div>
+		
+		<h4 id="BOARD_TITLE" style="font-size: 20px;">
+			
+		null</h4>
+
+		<div id="map"></div>
+				<script>
+					function initMap() {
+						var locations = [['{{ResultView.1}}', {{ x }}, {{ y }}]];
+
+						var map = new google.maps.Map(document.getElementById('map'), {
+							zoom: 16,
+							scrollwheel: false,
+							mapTypeId: google.maps.MapTypeId.HYBRID,
+							center: new google.maps.LatLng({{ x }},{{ y }})
+						});
+
+						var marker, i;
+						for(i=0;i<=locations.length;i++){
+							var marker = new google.maps.Marker({
+								position: new google.maps.LatLng({{x}}, {{y}}),
+								map: map
+							});
+						}
+					}
+				</script>
+				<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg2U2hyWyH76p5rXTIptibx3d9SkuiEDQ&callback=initMap"></script>
+		<form id="listForm" name="listForm" method="post">
+			<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX" value="1">
+			<input type="hidden" id="DEPT_SEQ1" name="DEPT_SEQ1" value="">
+			<input type="hidden" id="DEPT_SEQ2" name="DEPT_SEQ2" value="">
+			<input type="hidden" id="DEPT_SEQ3" name="DEPT_SEQ3" value="20190703184803683345_000002870">
+			<input type="hidden" id="BOARD_SEQ" name="BOARD_SEQ" value="20190923131955980647_000000040">
+			<input type="hidden" id="SMUSEUM_CODE" name="SMUSEUM_CODE" value="PS01001001">
+			<input type="hidden" id="IMGMODE" name="IMGMODE" value="LIST">
+			<input type="hidden" id="MODE" name="MODE" value="LIST">
+			<input type="hidden" id="FILSDOWNS" name="FILSDOWNS" value="">
+			<input type="hidden" id="DOWNLOAD_EXPIRATION_DATE" name="DOWNLOAD_EXPIRATION_DATE" value="0">
+			<input type="hidden" id="FILEMODE" name="FILEMODE" value="BOARD">
+			<input type="hidden" id="DOWNLOAD_APPROVE_YN" name="DOWNLOAD_APPROVE_YN" value="N">
+			<input type="hidden" id="info_Appro" name="info_Appro" value="N">
+			<input type="hidden" id="view_Appro" name="view_Appro" value="">
+			<input type="hidden" id="VUSER_ID" name="VUSER_ID" value="myadmin">
+	        <input type="hidden" id="ADMIN_YN_CHK" name="ADMIN_YN_CHK" value="Y">
+			<input type="hidden" id="select_relic" name="select_relic" value="">
+				<input type="hidden" name="StrBOARDS" id="StrBOARDS" value="">
+	<input type="hidden" name="StrBOARD_SEQ" id="StrBOARD_SEQ" value="20190923131955980647_000000040">
+	<input type="hidden" name="StrCATEGORY_NAME2" id="StrCATEGORY_NAME2" value="">
+	<input type="hidden" name="StrCODECOPY" id="StrCODECOPY" value="">
+	<input type="hidden" name="StrCODE_TITLE" id="StrCODE_TITLE" value="">
+	<input type="hidden" name="StrDEPTH" id="StrDEPTH" value="2">
+	<input type="hidden" name="StrDEPT_NAME1" id="StrDEPT_NAME1" value="">
+	<input type="hidden" name="StrDEPT_NAME2" id="StrDEPT_NAME2" value="">
+	<input type="hidden" name="StrDEPT_SEQ1" id="StrDEPT_SEQ1" value="">
+	<input type="hidden" name="StrDEPT_SEQ2" id="StrDEPT_SEQ2" value="">
+	<input type="hidden" name="StrDEPT_SEQ3" id="StrDEPT_SEQ3" value="20190703184803683345_000002870">
+	<input type="hidden" name="StrFIELD_REG_DATEEND" id="StrFIELD_REG_DATEEND" value="">
+	<input type="hidden" name="StrFIELD_REG_DATESTAT" id="StrFIELD_REG_DATESTAT" value="">
+	<input type="hidden" name="StrKEY" id="StrKEY" value="">
+	<input type="hidden" name="StrKEYWORD" id="StrKEYWORD" value="">
+	<input type="hidden" name="StrLANG" id="StrLANG" value="[Ljava.lang.String;@cebda04">
+	<input type="hidden" name="StrLARGE_SEQ" id="StrLARGE_SEQ" value="">
+	<input type="hidden" name="StrLEVEL1_SEQ" id="StrLEVEL1_SEQ" value="">
+	<input type="hidden" name="StrLEVEL2_SEQ" id="StrLEVEL2_SEQ" value="">
+	<input type="hidden" name="StrMCSJGBNC1" id="StrMCSJGBNC1" value="PS01001">
+	<input type="hidden" name="StrMCSJGBNC2" id="StrMCSJGBNC2" value="PS01001001">
+	<input type="hidden" name="StrMCSJGBNC3" id="StrMCSJGBNC3" value="PS01001001001">
+	<input type="hidden" name="StrMCSJGBNC_CODE" id="StrMCSJGBNC_CODE" value="">
+	<input type="hidden" name="StrMCSJGBNC_LV" id="StrMCSJGBNC_LV" value="">
+	<input type="hidden" name="StrMEDIUM_SEQ" id="StrMEDIUM_SEQ" value="">
+	<input type="hidden" name="StrMENU_DEPT_SEQ1" id="StrMENU_DEPT_SEQ1" value="">
+	<input type="hidden" name="StrMENU_DEPT_SEQ2" id="StrMENU_DEPT_SEQ2" value="">
+	<input type="hidden" name="StrMENU_SEQ" id="StrMENU_SEQ" value="20190703184803683345_000002870">
+	<input type="hidden" name="StrMODE" id="StrMODE" value="LIST">
+	<input type="hidden" name="StrMOVE_AUTH" id="StrMOVE_AUTH" value="N">
+	<input type="hidden" name="StrPAGECNT" id="StrPAGECNT" value="10">
+	<input type="hidden" name="StrPAGE_INDEX" id="StrPAGE_INDEX" value="1">
+	<input type="hidden" name="StrREG_AUTH" id="StrREG_AUTH" value="N">
+	<input type="hidden" name="StrRELIC_NO1" id="StrRELIC_NO1" value="">
+	<input type="hidden" name="StrRELIC_NO2" id="StrRELIC_NO2" value="">
+	<input type="hidden" name="StrSELECT_DEPTH" id="StrSELECT_DEPTH" value="">
+	<input type="hidden" name="StrSMALL_SEQ" id="StrSMALL_SEQ" value="">
+	<input type="hidden" name="StrSMUSEUM_CODE" id="StrSMUSEUM_CODE" value="PS01001001">
+	<input type="hidden" name="StrSORT_FIELD" id="StrSORT_FIELD" value="">
+	<input type="hidden" name="StrSORT_MODE" id="StrSORT_MODE" value="">
+	<input type="hidden" name="StrSRCH_BIZ_END_DATE" id="StrSRCH_BIZ_END_DATE" value="">
+	<input type="hidden" name="StrSRCH_BIZ_SRT_DATE" id="StrSRCH_BIZ_SRT_DATE" value="">
+	<input type="hidden" name="StrSRCH_LARGE_MY_SEQ" id="StrSRCH_LARGE_MY_SEQ" value="">
+	<input type="hidden" name="StrSRCH_LARGE_SEQ" id="StrSRCH_LARGE_SEQ" value="">
+	<input type="hidden" name="StrSRCH_LEVEL1_MY_SEQ" id="StrSRCH_LEVEL1_MY_SEQ" value="">
+	<input type="hidden" name="StrSRCH_LEVEL1_SEQ" id="StrSRCH_LEVEL1_SEQ" value="">
+	<input type="hidden" name="StrSRCH_LEVEL2_MY_SEQ" id="StrSRCH_LEVEL2_MY_SEQ" value="">
+	<input type="hidden" name="StrSRCH_LEVEL2_SEQ" id="StrSRCH_LEVEL2_SEQ" value="">
+	<input type="hidden" name="StrSRCH_MEDIUM_MY_SEQ" id="StrSRCH_MEDIUM_MY_SEQ" value="">
+	<input type="hidden" name="StrSRCH_MEDIUM_SEQ" id="StrSRCH_MEDIUM_SEQ" value="">
+	<input type="hidden" name="StrSRCH_MODE" id="StrSRCH_MODE" value="상세검색">
+	<input type="hidden" name="StrSRCH_MUESUM_CODE" id="StrSRCH_MUESUM_CODE" value="">
+	<input type="hidden" name="StrSRCH_REG" id="StrSRCH_REG" value="">
+	<input type="hidden" name="StrSRCH_REG_END_DATE" id="StrSRCH_REG_END_DATE" value="">
+	<input type="hidden" name="StrSRCH_REG_OP" id="StrSRCH_REG_OP" value="AND">
+	<input type="hidden" name="StrSRCH_REG_SRT_DATE" id="StrSRCH_REG_SRT_DATE" value="">
+	<input type="hidden" name="StrSRCH_RELIC_NUM" id="StrSRCH_RELIC_NUM" value="">
+	<input type="hidden" name="StrSRCH_REMARK1" id="StrSRCH_REMARK1" value="">
+	<input type="hidden" name="StrSRCH_REMARK1_MY" id="StrSRCH_REMARK1_MY" value="">
+	<input type="hidden" name="StrSRCH_REMARK1_MY_OP" id="StrSRCH_REMARK1_MY_OP" value="AND">
+	<input type="hidden" name="StrSRCH_REMARK1_OP" id="StrSRCH_REMARK1_OP" value="AND">
+	<input type="hidden" name="StrSRCH_REMARK2" id="StrSRCH_REMARK2" value="">
+	<input type="hidden" name="StrSRCH_REMARK2_MY" id="StrSRCH_REMARK2_MY" value="">
+	<input type="hidden" name="StrSRCH_REMARK2_MY_OP" id="StrSRCH_REMARK2_MY_OP" value="AND">
+	<input type="hidden" name="StrSRCH_REMARK2_OP" id="StrSRCH_REMARK2_OP" value="AND">
+	<input type="hidden" name="StrSRCH_SMALL_MY_SEQ" id="StrSRCH_SMALL_MY_SEQ" value="">
+	<input type="hidden" name="StrSRCH_SMALL_SEQ" id="StrSRCH_SMALL_SEQ" value="">
+	<input type="hidden" name="StrSRCH_TITLE" id="StrSRCH_TITLE" value="">
+	<input type="hidden" name="StrSRCH_TITLE_MY" id="StrSRCH_TITLE_MY" value="">
+	<input type="hidden" name="StrSRCH_TITLE_MY_OP" id="StrSRCH_TITLE_MY_OP" value="AND">
+	<input type="hidden" name="StrSRCH_TITLE_OP" id="StrSRCH_TITLE_OP" value="AND">
+	<input type="hidden" name="StrStrMODE" id="StrStrMODE" value="">
+	<input type="hidden" name="StrTOP_TOPWORD" id="StrTOP_TOPWORD" value="">
+	<input type="hidden" name="StrTOTAL_UPLOAD" id="StrTOTAL_UPLOAD" value="N">
+	<input type="hidden" name="StrUSERS" id="StrUSERS" value="myadmin">
+	<input type="hidden" name="StrUSER_ID" id="StrUSER_ID" value="myadmin">
+	<input type="hidden" name="StrtdCount" id="StrtdCount" value="">
+
+			
+			<!-- isKang 추가 190625 Start-->
+			<input type="hidden" id="MENU_SEQ" name="MENU_SEQ" value="20190703184803683345_000002870">
+			<input type="hidden" id="pageId" value="BoardView">
+			<input type="hidden" name="LANG" id="LANG" value="EN">
+			<!-- isKang 추가 190625 End-->
+			
+			<!-- 상세검색 Start-->
+			<input type="hidden" name="SRCH_TITLE" value="">
+			<input type="hidden" name="SRCH_TITLE_OP" value="AND">
+			<input type="hidden" name="SRCH_TITLE_MY" value="">
+			<input type="hidden" name="SRCH_TITLE_MY_OP" value="AND">
+			
+			<input type="hidden" name="SRCH_REMARK1" value="">
+			<input type="hidden" name="SRCH_REMARK1_OP" value="AND">
+			<input type="hidden" name="SRCH_REMARK1_MY" value="">
+			<input type="hidden" name="SRCH_REMARK1_MY_OP" value="AND">
+			
+			<input type="hidden" name="SRCH_REMARK2" value="">
+			<input type="hidden" name="SRCH_REMARK2_OP" value="AND">
+			<input type="hidden" name="SRCH_REMARK2_MY" value="">
+			<input type="hidden" name="SRCH_REMARK2_MY_OP" value="AND">
+			
+			<input type="hidden" name="SRCH_REG" value="">
+			<input type="hidden" name="SRCH_REG_OP" value="AND">
+			<input type="hidden" name="SRCH_MUESUM_CODE" value="">
+			
+			<input type="hidden" name="SRCH_LEVEL1_SEQ" value="">
+			<input type="hidden" name="SRCH_LEVEL2_SEQ" value="">
+			<input type="hidden" name="SRCH_LARGE_SEQ" value="">
+			<input type="hidden" name="SRCH_MEDIUM_SEQ" value="">
+			<input type="hidden" name="SRCH_SMALL_SEQ" value="">
+			
+			<input type="hidden" name="SRCH_LEVEL1_MY_SEQ" value="">
+			<input type="hidden" name="SRCH_LEVEL2_MY_SEQ" value="">
+			<input type="hidden" name="SRCH_LARGE_MY_SEQ" value="">
+			<input type="hidden" name="SRCH_MEDIUM_MY_SEQ" value="">
+			<input type="hidden" name="SRCH_SMALL_MY_SEQ" value="">
+			
+			<input type="hidden" name="SRCH_REG_SRT_DATE" value="">
+			<input type="hidden" name="SRCH_REG_END_DATE" value="">
+			<input type="hidden" name="SRCH_BIZ_SRT_DATE" value="">
+			<input type="hidden" name="SRCH_BIZ_END_DATE" value="">
+			<input type="hidden" name="SRCH_RELIC_NUM" value="">
+			
+			<input type="hidden" id="SRCH_MODE" name="SRCH_MODE" value="상세검색">
+			<!-- 상세검색 End-->
+			
+            <div class="floatBox">
+            	<!-- 
+                <div class="flBox">
+                    <a href="#" onclick="javascript:bookmarkadd();" class="btn type2 btnG">Add bookmark</a>
+                </div> -->
+                
+                <div class="flBox">
+                    <a href="#" onclick="goPrint();" class="btn type2 btnG" id="btnPrint">Print</a>
+                </div>&nbsp;
+                
+                <div class="flBox" style="padding-left: 4px;">
+                    <!-- <a href="#" id="btnTest" class="btn type2 btnG">테스트2</a> 
+                    <a href="javascript:goPrint();"  class="btn type2 btnG">테스트</a> -->
+                    <!-- <button type="button" onclick="javascript:mjTest();">유민재</button> -->
+                    <!-- <a href="#" onclick="javascript:mjTest();" id="UPDATE_BTN1" class="btn type2 btnB">자바스크립트</a>  --> 
+                    <!-- <a href="javascript:printTextArea();" class="btn type2 btnG">테스트</a> -->
+                </div>
+                <script>
+					function Alert_Del(){
+						if (confirm("You want to delete?") == true){    //확인
+							location.href="/MCHMSDelete/?ID={{ResultView.0}}";
+						
+						}else{   //취소
+							return;
+						}
+					}
+
+				</script>
+            </div>
+			
+			
+            <!-- 게시물 삭제사유 팝업 -->
+			<div id="boardDeleteInfo" class="boardFilePopup01" style="top:122px;right:82px;display:none; ">
+				<h5>Post removal reason</h5>
+				<div class="pt01">
+					<div>
+						<select id="REQ_DEL_REASON_CODE" name="REQ_DEL_REASON_CODE">
+						</select>
+					</div>
+				</div>
+				<div class="pt01 cont">
+					<textarea cols="20" rows="6" id="DELETE_AND_RESTORE_REASON" name="DELETE_AND_RESTORE_REASON"></textarea>
+				</div>
+<!-- 				<div class="pt02"> -->
+				<div class="floatBox" style="width:500px;">
+					<div class="flBox">
+					<a href="#" onclick="Alert_Del()'" id="DELETE_BTN2" class="btn type2 btnB">Delete</a>
+					</div>
+					<div class="flBox">
+					<a href="javascript:boardDelete('OFF')" class="btn type2 btnC btnR" style="margin-top:0px;margin-bottom:10px;margin-left:10px;">Cancel</a>
+					</div>
+				</div>
+			</div>
+			<!-- //게시물 삭제사유 팝업 -->
+			
+			<div id="printarea">
+			<table class="tbType01 type2">
+            <tbody id="WriteUi">
+				<tr> <th>Classification</th>				<td colspan="3">
+				{% for i in Cityinfo %}
+					{{i}}
+				{% endfor %}
+				{{Clinfo.0}}-{{Clinfo.1}}-{{Clinfo.2}}</td></tr>
+				<tr> <th>Title(EN)</th>						<td colspan="3">{{ResultView.1}}</td></tr>
+				<tr> <th>Period</th>						<td colspan="3">{{ResultView.3}}</td></tr>
+				<tr> <th>Location</th>						<td colspan="3">{{ResultView.4}}</td></tr>
+				<tr> <th>Place of Origin</th>				<td colspan="3">{{ResultView.5}}</td></tr>
+				<tr> <th>Material</th>						<td colspan="3">{{ResultView.6}}</td></tr>
+				<tr> <th>Serial Number<span>(*)</span></th>	<td colspan="3">{{ResultView.7}}</td></tr>
+				<tr> <th>Latitude</th>						<td colspan="3">{{ResultView.8}}</td></tr>
+				<tr> <th>Longitude</th>						<td colspan="3">{{ResultView.9}}</td></tr>
+				<tr> <th>Department</th>					<td colspan="3">Business management 관리</td></tr>
+				<tr> <th>Registrant</th>					<td>{{ResultView.20}}</td>	<th>Registration date</th>	<td>2019.09.23</td></tr>
+</tbody>
+            </table>
+
+            <table class="tbType01 type2">
+                <tbody><tr id="trRemark1">
+                    <!-- <td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Remark1(En)</strong></td> -->
+                    <td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Image</strong></td>
+					<script>
+					//slider에 마우스 오버시에만 사진 넘기는 버튼 표시
+						$(function(){
+							$(".bx-wrapper").hover(
+								function(){
+									{% if Image_num|length > 1 %}
+										$(".bx-prev").css("display", "block");
+										$(".bx-next").css("display", "block");
+									{% endif %}
+								},
+							function(){
+								$(".bx-prev").css("display", "block");
+								$(".bx-next").css("display", "block");
+							});
+						});
+					</script>
+                    <td style="padding:10px 0 10px 20px" id="FIELD_REMARK1">
+						{% if Image_num != 0 %}
+						<ul class="slider"> 
+							{% for i in Image %}
+								{%for j in i %}
+									{% if j != "" %}
+										<li>
+											
+											<img src="/Static/MCHMS/{{j}}" style="cursor:pointer;"/>
+											
+										</li>
+									{% endif %}
+								{%endfor%}
+							{%endfor%}
+						</ul>
+					{% endif %}
+					</td>
+                </tr>
+				<tr id="trRemark1">
+                    <!-- <td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Remark1(En)</strong></td> -->
+                    <td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Remarks(En)</strong></td>
+					<td style="padding:10px 0 10px 20px" id="FIELD_REMARK2">{{ResultView.12}}</td>
+                </tr>
+               
+                <tr id="trRemark1My" style="display: none;">
+                    <!-- <td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Remark1(My)</strong></td> -->
+                     <td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Remarks(My)</strong></td> 
+                    <td style="padding:10px 0 10px 20px">{{ResultView.13}
+                        <!-- <textarea rows="8" cols="80" id="FIELD_REMARK1_MY" name="FIELD_REMARK1_MY" readonly="readonly"></textarea> -->
+                    </td>
+                </tr>
+                <tr id="trRemark2">
+                    <!-- <td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Remark2(En)</strong></td> -->
+                    <td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Reference(En)</strong></td>
+                    <td style="padding:10px 0 10px 20px" id="FIELD_REMARK2">{{ Reference_en }}</td>
+                </tr>
+                <tr id="trRemark2My" style="display: none;">
+                    <td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Reference(My)</strong></td>
+                    <td style="padding:10px 0 10px 20px" id="FIELD_REMARK2_MY">
+                        <!-- <textarea rows="8" cols="80" id="FIELD_REMARK2_MY" name="FIELD_REMARK2_MY" readonly="readonly"></textarea> -->
+                    </td>
+                </tr>
+			</tbody></table>
+			</div>
+
+			<div class="floatBox">
+				<div class="flBox" style="">
+					{% if Session != -1 %}
+	                    <a href="/MCHMSWrite/?City_id={{ResultView.17}}"style = "right:0; position : absolute" class="btn btnB">Upload</a>
+					{% endif %}
+				</div>
+				<div class="frBox" style ="right: 10%; position: absolute;">
+				{% if Session.0 == ResultView.20 %}
+                    <a onclick="Alert_Del()" id="DELETE_BTN1" class="btn type2 btnB">Delete</a>
+                    <a href="/MCHMSModify/?ID={{ResultView.0}}" onclick="" id="UPDATE_BTN1" class="btn type2 btnB">Modify</a>
+				{% endif %}
+                    <a href="/MCHMSSearch/?City_id={{ResultView.17}}" class="btn type2 btnG">List</a>
+                </div>
+			</div>
+		</form>
+	</div>
+</div>
+<!-- //내용부분 -->
+
+
+<div id="imgViewLayer" class="layerPopup">
+    <div>
+        <p class="tit" id="title"></p>
+        <div class="content">
+            <div class="imgViewer" id="myContainer">
+            </div>
+            <p id="subject"></p>
+            <div class="btnC funcBtn">
+            <!-- 
+                <a href="#a" class="btnZoomIn" onmousedown="Z.Viewport.zoom('in')" onmouseup="Z.Viewport.zoom('stop')" ontouchstart="Z.Viewport.zoom('in')" ontouchend="Z.Viewport.zoom('stop')">확대</a>
+                <a href="#a" class="btnZoomOut" onmousedown="Z.Viewport.zoom('out')" onmouseup="Z.Viewport.zoom('stop')" ontouchstart="Z.Viewport.zoom('out')" ontouchend="Z.Viewport.zoom('stop')">축소</a>
+                
+                <a href="javascript:Z.Viewport.toggleFullViewModeExternal();" class="btnFull">화면크기</a>
+                <a href="javascript:Z.Viewport.reset();" class="btnDefault">원본크기</a>
+                -->
+                <a href="javascript:Z.Viewport.toggleFullViewModeExternal();" class="btnFull">Full</a>
+                <a href="#a" class="btnDefault btnDown">Go to post</a><!-- btnDown -->
+            </div>
+        </div>
+        <a href="#a" class="close"><img src="/images/btn/close.png" alt=""></a>
+    </div>
+</div>
+<div id="footer">MCHMS Myanmar Culture Heritage Management System &nbsp;&nbsp; &nbsp;&nbsp; Copyright. All right reserved.</div>
+<form id="openForm" name="openForm" method="post">
+<input type="hidden" id="BOARD_SEQ" name="BOARD_SEQ">
+<input type="hidden" id="FILE_SEQ" name="FILE_SEQ">
+<input type="hidden" id="FILE_PATH" name="FILE_PATH">
+<input type="hidden" id="FILE_NAME" name="FILE_NAME">
+<input type="hidden" id="FILE_SIZE" name="FILE_SIZE">
+</form>
+<form id="SearchForm" name="SearchForm" method="post">
+	<input type="hidden" name="StrBOARDS" id="StrBOARDS" value="">
+	<input type="hidden" name="StrBOARD_SEQ" id="StrBOARD_SEQ" value="20190923131955980647_000000040">
+	<input type="hidden" name="StrCATEGORY_NAME2" id="StrCATEGORY_NAME2" value="">
+	<input type="hidden" name="StrCODECOPY" id="StrCODECOPY" value="">
+	<input type="hidden" name="StrCODE_TITLE" id="StrCODE_TITLE" value="">
+	<input type="hidden" name="StrDEPTH" id="StrDEPTH" value="2">
+	<input type="hidden" name="StrDEPT_NAME1" id="StrDEPT_NAME1" value="">
+	<input type="hidden" name="StrDEPT_NAME2" id="StrDEPT_NAME2" value="">
+	<input type="hidden" name="StrDEPT_SEQ1" id="StrDEPT_SEQ1" value="">
+	<input type="hidden" name="StrDEPT_SEQ2" id="StrDEPT_SEQ2" value="">
+	<input type="hidden" name="StrDEPT_SEQ3" id="StrDEPT_SEQ3" value="20190703184803683345_000002870">
+	<input type="hidden" name="StrFIELD_REG_DATEEND" id="StrFIELD_REG_DATEEND" value="">
+	<input type="hidden" name="StrFIELD_REG_DATESTAT" id="StrFIELD_REG_DATESTAT" value="">
+	<input type="hidden" name="StrKEY" id="StrKEY" value="">
+	<input type="hidden" name="StrKEYWORD" id="StrKEYWORD" value="">
+	<input type="hidden" name="StrLANG" id="StrLANG" value="[Ljava.lang.String;@cebda04">
+	<input type="hidden" name="StrLARGE_SEQ" id="StrLARGE_SEQ" value="">
+	<input type="hidden" name="StrLEVEL1_SEQ" id="StrLEVEL1_SEQ" value="">
+	<input type="hidden" name="StrLEVEL2_SEQ" id="StrLEVEL2_SEQ" value="">
+	<input type="hidden" name="StrMCSJGBNC1" id="StrMCSJGBNC1" value="PS01001">
+	<input type="hidden" name="StrMCSJGBNC2" id="StrMCSJGBNC2" value="PS01001001">
+	<input type="hidden" name="StrMCSJGBNC3" id="StrMCSJGBNC3" value="PS01001001001">
+	<input type="hidden" name="StrMCSJGBNC_CODE" id="StrMCSJGBNC_CODE" value="">
+	<input type="hidden" name="StrMCSJGBNC_LV" id="StrMCSJGBNC_LV" value="">
+	<input type="hidden" name="StrMEDIUM_SEQ" id="StrMEDIUM_SEQ" value="">
+	<input type="hidden" name="StrMENU_DEPT_SEQ1" id="StrMENU_DEPT_SEQ1" value="">
+	<input type="hidden" name="StrMENU_DEPT_SEQ2" id="StrMENU_DEPT_SEQ2" value="">
+	<input type="hidden" name="StrMENU_SEQ" id="StrMENU_SEQ" value="20190703184803683345_000002870">
+	<input type="hidden" name="StrMODE" id="StrMODE" value="LIST">
+	<input type="hidden" name="StrMOVE_AUTH" id="StrMOVE_AUTH" value="N">
+	<input type="hidden" name="StrPAGECNT" id="StrPAGECNT" value="10">
+	<input type="hidden" name="StrPAGE_INDEX" id="StrPAGE_INDEX" value="1">
+	<input type="hidden" name="StrREG_AUTH" id="StrREG_AUTH" value="N">
+	<input type="hidden" name="StrRELIC_NO1" id="StrRELIC_NO1" value="">
+	<input type="hidden" name="StrRELIC_NO2" id="StrRELIC_NO2" value="">
+	<input type="hidden" name="StrSELECT_DEPTH" id="StrSELECT_DEPTH" value="">
+	<input type="hidden" name="StrSMALL_SEQ" id="StrSMALL_SEQ" value="">
+	<input type="hidden" name="StrSMUSEUM_CODE" id="StrSMUSEUM_CODE" value="PS01001001">
+	<input type="hidden" name="StrSORT_FIELD" id="StrSORT_FIELD" value="">
+	<input type="hidden" name="StrSORT_MODE" id="StrSORT_MODE" value="">
+	<input type="hidden" name="StrSRCH_BIZ_END_DATE" id="StrSRCH_BIZ_END_DATE" value="">
+	<input type="hidden" name="StrSRCH_BIZ_SRT_DATE" id="StrSRCH_BIZ_SRT_DATE" value="">
+	<input type="hidden" name="StrSRCH_LARGE_MY_SEQ" id="StrSRCH_LARGE_MY_SEQ" value="">
+	<input type="hidden" name="StrSRCH_LARGE_SEQ" id="StrSRCH_LARGE_SEQ" value="">
+	<input type="hidden" name="StrSRCH_LEVEL1_MY_SEQ" id="StrSRCH_LEVEL1_MY_SEQ" value="">
+	<input type="hidden" name="StrSRCH_LEVEL1_SEQ" id="StrSRCH_LEVEL1_SEQ" value="">
+	<input type="hidden" name="StrSRCH_LEVEL2_MY_SEQ" id="StrSRCH_LEVEL2_MY_SEQ" value="">
+	<input type="hidden" name="StrSRCH_LEVEL2_SEQ" id="StrSRCH_LEVEL2_SEQ" value="">
+	<input type="hidden" name="StrSRCH_MEDIUM_MY_SEQ" id="StrSRCH_MEDIUM_MY_SEQ" value="">
+	<input type="hidden" name="StrSRCH_MEDIUM_SEQ" id="StrSRCH_MEDIUM_SEQ" value="">
+	<input type="hidden" name="StrSRCH_MODE" id="StrSRCH_MODE" value="상세검색">
+	<input type="hidden" name="StrSRCH_MUESUM_CODE" id="StrSRCH_MUESUM_CODE" value="">
+	<input type="hidden" name="StrSRCH_REG" id="StrSRCH_REG" value="">
+	<input type="hidden" name="StrSRCH_REG_END_DATE" id="StrSRCH_REG_END_DATE" value="">
+	<input type="hidden" name="StrSRCH_REG_OP" id="StrSRCH_REG_OP" value="AND">
+	<input type="hidden" name="StrSRCH_REG_SRT_DATE" id="StrSRCH_REG_SRT_DATE" value="">
+	<input type="hidden" name="StrSRCH_RELIC_NUM" id="StrSRCH_RELIC_NUM" value="">
+	<input type="hidden" name="StrSRCH_REMARK1" id="StrSRCH_REMARK1" value="">
+	<input type="hidden" name="StrSRCH_REMARK1_MY" id="StrSRCH_REMARK1_MY" value="">
+	<input type="hidden" name="StrSRCH_REMARK1_MY_OP" id="StrSRCH_REMARK1_MY_OP" value="AND">
+	<input type="hidden" name="StrSRCH_REMARK1_OP" id="StrSRCH_REMARK1_OP" value="AND">
+	<input type="hidden" name="StrSRCH_REMARK2" id="StrSRCH_REMARK2" value="">
+	<input type="hidden" name="StrSRCH_REMARK2_MY" id="StrSRCH_REMARK2_MY" value="">
+	<input type="hidden" name="StrSRCH_REMARK2_MY_OP" id="StrSRCH_REMARK2_MY_OP" value="AND">
+	<input type="hidden" name="StrSRCH_REMARK2_OP" id="StrSRCH_REMARK2_OP" value="AND">
+	<input type="hidden" name="StrSRCH_SMALL_MY_SEQ" id="StrSRCH_SMALL_MY_SEQ" value="">
+	<input type="hidden" name="StrSRCH_SMALL_SEQ" id="StrSRCH_SMALL_SEQ" value="">
+	<input type="hidden" name="StrSRCH_TITLE" id="StrSRCH_TITLE" value="">
+	<input type="hidden" name="StrSRCH_TITLE_MY" id="StrSRCH_TITLE_MY" value="">
+	<input type="hidden" name="StrSRCH_TITLE_MY_OP" id="StrSRCH_TITLE_MY_OP" value="AND">
+	<input type="hidden" name="StrSRCH_TITLE_OP" id="StrSRCH_TITLE_OP" value="AND">
+	<input type="hidden" name="StrStrMODE" id="StrStrMODE" value="">
+	<input type="hidden" name="StrTOP_TOPWORD" id="StrTOP_TOPWORD" value="">
+	<input type="hidden" name="StrTOTAL_UPLOAD" id="StrTOTAL_UPLOAD" value="N">
+	<input type="hidden" name="StrUSERS" id="StrUSERS" value="myadmin">
+	<input type="hidden" name="StrUSER_ID" id="StrUSER_ID" value="myadmin">
+	<input type="hidden" name="StrtdCount" id="StrtdCount" value="">
+
+<input type="hidden" id="SEARCH_AUTH" name="SEARCH_AUTH" value="Y">
+<input type="hidden" id="UPDATE_AUTH" name="UPDATE_AUTH" value="Y">
+<input type="hidden" id="DELETE_AUTH" name="DELETE_AUTH" value="Y">
+<input type="hidden" id="DOWNLOAD_AUTH" name="DOWNLOAD_AUTH" value="Y">
+
+<!-- isKang 추가 190625 Start-->
+<input type="hidden" name="LANG" id="LANG" value="EN">
+<!-- isKang 추가 190625 End-->
+
+<!-- 상세검색 Start-->
+<input type="hidden" name="SRCH_TITLE" value="">
+<input type="hidden" name="SRCH_TITLE_OP" value="AND">
+<input type="hidden" name="SRCH_TITLE_MY" value="">
+<input type="hidden" name="SRCH_TITLE_MY_OP" value="AND">
+
+<input type="hidden" name="SRCH_REMARK1" value="">
+<input type="hidden" name="SRCH_REMARK1_OP" value="AND">
+<input type="hidden" name="SRCH_REMARK1_MY" value="">
+<input type="hidden" name="SRCH_REMARK1_MY_OP" value="AND">
+
+<input type="hidden" name="SRCH_REMARK2" value="">
+<input type="hidden" name="SRCH_REMARK2_OP" value="AND">
+<input type="hidden" name="SRCH_REMARK2_MY" value="">
+<input type="hidden" name="SRCH_REMARK2_MY_OP" value="AND">
+
+<input type="hidden" name="SRCH_REG" value="">
+<input type="hidden" name="SRCH_REG_OP" value="AND">
+<input type="hidden" name="SRCH_MUESUM_CODE" value="">
+
+<input type="hidden" name="SRCH_LEVEL1_SEQ" value="">
+<input type="hidden" name="SRCH_LEVEL2_SEQ" value="">
+<input type="hidden" name="SRCH_LARGE_SEQ" value="">
+<input type="hidden" name="SRCH_MEDIUM_SEQ" value="">
+<input type="hidden" name="SRCH_SMALL_SEQ" value="">
+
+<input type="hidden" name="SRCH_LEVEL1_MY_SEQ" value="">
+<input type="hidden" name="SRCH_LEVEL2_MY_SEQ" value="">
+<input type="hidden" name="SRCH_LARGE_MY_SEQ" value="">
+<input type="hidden" name="SRCH_MEDIUM_MY_SEQ" value="">
+<input type="hidden" name="SRCH_SMALL_MY_SEQ" value="">
+
+<input type="hidden" name="SRCH_REG_SRT_DATE" value="">
+<input type="hidden" name="SRCH_REG_END_DATE" value="">
+<input type="hidden" name="SRCH_BIZ_SRT_DATE" value="">
+<input type="hidden" name="SRCH_BIZ_END_DATE" value="">
+<input type="hidden" name="SRCH_RELIC_NUM" value="">
+
+<input type="hidden" id="SRCH_MODE" name="SRCH_MODE" value="상세검색">
+<!-- 상세검색 End-->
+</form>
+
+
+<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div><div id="DEXT_fiVe_UP_ly_wrapper" class="DEXT_fiVe_UP_ly_wrapper" style="width:470px; height:260px; display:none;"><div id="DEXT_fiVe_UP_ly_content" class="DEXT_fiVe_UP_upload_popup_blue" style=" border-color:"><div class="DEXT_fiVe_UP_ly_uploadbox"><div class="popup_header dext5_en-us" style="; "><span class="icon_total_upload"></span><span id="DEXT_fiVe_UP_total_upload_percent" class="total_upload_percent_new"></span><span class="bar_line">-</span><span id="DEXT_fiVe_UP_current_upload_file_name"></span><div class="DEXT_fiVe_UP_btn_cls dext5_en-us" style=""><button id="DEXT_fiVe_UP_close_btn" type="button" value="Close">Close</button></div></div><div class="DEXT_fiVe_UP_ly_statusbox"><p class="progressbar"><span class="tit dext5_en-us">Total Upload</span><span class="pbar"><span id="DEXT_fiVe_UP_total_upload_progress_bar" style="width: 0%;" class="pbar_value"></span></span></p></div><span class="line" style=""><em class="blind"></em></span><div class="tbl_status"><table class="dext5_en-us" width="100%" summary="upload transfer window list"><caption>upload transfer window</caption><colgroup><col width=""><col width=""><col width=""><col width=""></colgroup><tbody><tr><th class="dext5_en-us" scope="row">Sent File :</th><td class="dext5_en-us" id="DEXT_fiVe_UP_upload_count">0/0</td><th class="dext5_en-us" scope="row">Sent Size :</th><td class="dext5_en-us" id="DEXT_fiVe_UP_upload_size">0/0</td></tr><tr id="DEXT_fiVe_UP_upload_speed_tr"><th class="dext5_en-us" scope="row">Speed :</th><td class="dext5_en-us" id="DEXT_fiVe_UP_upload_speed">-</td><th class="dext5_en-us" scope="row">Remain :</th><td class="dext5_en-us" id="DEXT_fiVe_UP_upload_remainingtime">-</td></tr></tbody></table></div><div class="ly_uploadfile"><div class="uploadfile_h"><span class="fname">File Name</span><span class="fprogress">Sent Size</span><span class="transfer_status dext5_en-us">Status</span></div><div id="DEXT_fiVe_UP_uploadfile_lst" class="uploadfile_lst dext5_en-us"><ul id="DEXT_fiVe_UP_uploading_file_list"></ul></div></div><div class="upload_security"></div><div class="DEXT_fiVe_UP_uploadbox_btn" id="DEXT_fiVe_UP_uploadbox_btn"><span class="logo_area" style="background:url(http://103.83.190.250/dext5upload/images/dext5_logo.png?version=1) no-repeat;"></span><button id="DEXT_fiVe_UP_upload_cancel" type="button" value="cancel" class="input_image2 dext5_en-us2" style=";">Cancel</button></div></div></div></div><iframe id="dext5upload_context_menu" title="DEXT5Upload Context" scrolling="no" frameborder="0" src="" style="margin: 0px; padding: 0px; z-index: 5000; position: absolute; overflow: hidden; display: none;"></iframe></body>

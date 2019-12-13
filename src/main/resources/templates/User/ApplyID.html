@@ -1,0 +1,202 @@
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>MAMS Myanmar Asset Management System</title>
+
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no target-densitydpi=medium-dpi"> -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="stylesheet" type="text/css" href="/Static/css/MCH/style.css">
+<link rel="stylesheet" type="text/css" href="/Static/css/MCH/spearlee.css">
+<script language="javascript">
+    var _CONTEXT_PATH = "";
+</script>
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+	
+	$(document).ready(function () {
+	    
+		$("#btnChkId").click(function() {
+			var USER_ID = $("#USER_ID").val();
+			
+			if($.trim($('#USER_ID').val())=="" ){
+				alert("Please enter your ID.");
+				$('#USER_ID').focus();
+	
+			}else{
+			
+			$('input[name=USER_ID]').attr('value',USER_ID);
+	
+				$.ajax({
+					type: "POST",
+					url: "/Checking_ID/",
+					data: {"USER_ID":USER_ID},
+					dataType: "json",
+					success: function(result) {
+							console.log(result.CHK_ID)
+						
+						if(result.CHK_ID=='Y'){
+							$('#SUSER_ID').attr("readonly",true);
+							/* console.log('Y') */
+							$('#CHK_YN').val('Y');
+	 						/* alert("사용가능합니다."); */
+	 						alert("It's possible to use.");
+						}else{
+							/* console.log('N') */
+							alert("The ID being used. Please enter it again.");
+							$('#CHK_YN').val('N');
+							$('#USER_ID').val('');
+							$('#USER_ID').focus();
+						}
+					},//success
+					error : function (e){
+						console.log(e);
+					}
+				});//ajax
+			}
+		 });
+	});
+function submit() {
+	alert("submit Complete");
+}
+function testMj2() {
+		var re = /^[a-zA-Z0-9]{5,20}$/; // 아이디와 패스워드가 적합한지 검사할 정규식
+		/*var reg_pw = /^.*(?=.{8,16})(?=.*[0-9])(?=.*[a-zA-Z]).*$/; */
+		/*var reg_pw = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,16}$/;*/
+		var reg_pw = /^.*(?=^.{8,16}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+		var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		// 이메일이 적합한지 검사할 정규식
+		
+		
+		var id = document.getElementById("USER_ID");
+	    var pw = document.getElementById("USER_PASS");
+	    var name = document.getElementById("USER_NAME").value;
+	    var email = document.getElementById("USER_EMAIL");
+	    /*var form = document.getElementById("frmLogin");*/
+		/*console.log("패스워드 길이:: "+pw.value.length);*/
+	    
+	    if(!check(re,id,"Please enter only 5-20 alphanumeric characters.")) {
+//	    if(!check(re,id,"아이디는 5~20자의 영문 소문자와 숫자로만 입력")) {
+	        return false;
+	    }
+
+	    /*if(!check(reg_pw,pw,"패스워드는 8~16자의 영문 대소문자와 숫자로만 입력")) {
+	        return false;
+	    }*/
+	    
+	    if(pw.value.match('/([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~,-])|([!,@,#,$,%,^,&,*,?,_,~,-].*[a-zA-Z0-9])/')){
+//	    	alert("패스워드는 8~16자의 영문 대소문자와 숫자로만 입력");
+	    	alert("Please enter a password using only 8-16 letters.");
+	    	pw.value = "";
+	    	pw.focus();
+	    	return false;
+	    }else{
+	    	if(pw.value.length<8 || pw.value.length>17){
+	    		alert("Password can only be used between 8 and 16 digits.");
+//	    		alert("패스워드는 8~16자리까지만 사용 가능합니다.");
+	    		pw.value = "";
+	    		pw.focus();
+	    		return false;
+	    	}
+	    }
+
+	    
+	    
+	    if(!check(re2, email, "Please verify your email address.")) {
+//	    if(!check(re2, email, "이메일 주소를 확인바랍니다.")) {
+	        return false;
+	    }
+	
+	
+	if($('#CHK_YN').val()=="N" || $('#CHK_YN').val()==""){
+		alert("Please check ID duplicate.");
+//		alert("아이디중복검사 를 해주세요");
+		return;
+	}
+	
+	if($('#USER_PASS').val() == ""){
+		alert("Please enter a password.");
+		return;
+	}
+	
+	if($('#USER_NAME').val() == ""){
+		alert("Please enter your name.");
+		return;
+	}
+	
+	if($('#USER_EMAIL').val() == ""){
+		alert("Please enter your email.");
+		return;
+	}
+	
+	
+	var url = "";
+	var frm =document.frmLogin;
+    frm.action = '/Apply_process/';
+    frm.method ="post";
+    frm.submit();
+}
+
+function check(re, what, message) {
+    if(re.test(what.value)) {
+        return true;
+    }
+    alert(message);
+    what.value = "";
+    what.focus();
+    //return false;
+}
+</script>
+	
+
+
+</head>
+
+<body>
+
+
+
+<!-- <Script Language='JavaScript'>document.write(Object_GPKIInstaller);</Script> -->
+<div class="login">
+    <div>
+        <div class="loginBox">
+        <h1><img src="/Static/MCHMS/mchms_logo_02.svg" alt="DAMS Digital Asset Management System"></h1>
+            <div class="logon applyid" id="input_type_1">
+                <p class="tit">Register ID</p>
+                <form id="frmLogin" name="frmLogin" method="post">
+                    <input type="hidden" name="LOGIN_FLAG" value="true">
+                    <input type="hidden" value="" name="CHK_YN" id="CHK_YN">
+                    <div class="applyid_text">
+                    	<p class="text">ID</p>
+					<p class="chk_btn" id="btnChkId">Duplicate Check</p>
+						
+                    	<p class="fall">5-20 English case and number only available</p>
+                    </div>
+					<input type="text" id="USER_ID" name="USER_ID" style="ime-mode:disabled" placeholder="ID" maxlength="20">
+					
+					<div class="applyid_text">
+                    	<p class="text">Pw</p>
+                    	<p class="fall">8-16 use English, numbers, and special characters.</p>
+                    </div>
+					<input type="password" id="USER_PASS" name="USER_PASS" placeholder="Password" maxlength="16">
+					<div class="applyid_text">
+                    	<p class="text">Name</p>
+                    	<p class="fall">Please enter</p>
+                    </div>
+					<input type="text" id="USER_NAME" name="USER_NAME" style="ime-mode:disabled" placeholder="Name" onkeypress="if((event.keyCode > 32 &amp;&amp; event.keyCode < 48)||(event.keyCode > 57 &amp;&amp; event.keyCode < 65)||(event.keyCode > 90 &amp;&amp; event.keyCode < 97)||event.keyCode == '13'){event.returnValue = false;}">
+					<div class="applyid_text">
+                    	<p class="text">Email</p>
+                    	<p class="fall">Please check your email address.</p>
+                    </div>
+					<input type="text" id="USER_EMAIL" name="USER_EMAIL" style="ime-mode:disabled" placeholder="E-mail">
+					
+					<input type="hidden" id="TOP_MANAGER" name="TOP_MANAGER" value="N">
+					<div class="btnC"><a class="btn btnB2 btnB2_hover type3" onclick = "testMj2()">Register ID</a></div>
+                </form>
+            </div>
+            <p id="err_message"></p>
+
+        </div>
+        <div class="foot">DIGITAL ARCHIVES MANAGEMENT SYSTEM. COPYRIGHT ALL RIGHT RESERVED.</div>
+    </div>
+</div>
+
+
+</body>

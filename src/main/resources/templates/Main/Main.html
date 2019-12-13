@@ -1,0 +1,249 @@
+
+				<!------------------>
+				<!---카드 배경 이미지-->
+				<!------------------>
+				<style type="text/css">
+					[class*="card_tit"]::before {
+						background-repeat: no-repeat;
+						background-position: center center;
+						background-size: cover;
+						height: 100%;
+						width: 100%;
+						background-image: url(images/mams/card_bg_al.png);
+						content: "";
+						display: inline-block;
+						border-radius: 5px 5px 0 0;
+					}
+				</style>
+						<div class="grid" id="list1" style="position: relative; height: 1518px;">
+								<div class="grid-item" style="position: absolute; left: 0px; top: 0px;">
+									<div class="card_tit_01">
+									<div class="list1_img_01">
+										<p>Yangon</p></div></div>
+										<ul class="card_list">
+										{% for i in Museum %}
+									{% if i.1 == "Yangon" %}
+										<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+										{% endif %}
+									{% endfor %}
+							</ul></li>
+						</div>
+						<div class="grid-item" style="position: absolute; left: 318px; top: 0px;">
+						<div class="card_tit_02">
+						<div class="list1_img_02"><p>Mandalay</p></div></div>
+						<ul class="card_list">
+						{% for i in Museum %}
+							{% if i.1 == "Mandalay" %}
+								<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+							{% endif %}
+						{% endfor %}
+						</ul></li>
+				
+						</div><div class="grid-item" style="position: absolute; left: 636px; top: 0px;"><div class="card_tit_03" ><div class="list1_img_03"><p>Bago</p></div></div><ul class="card_list">
+						{% for i in Museum %}
+					{% if i.1 == "Bago" %}
+						<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+					{% endif %}
+				{% endfor %}
+				
+				</ul></li>
+						</div><div class="grid-item" style="position: absolute; left: 0px; top: 330px;"><div class="card_tit_04"><div class="list1_img_04"><p>Mon</p></div></div><ul class="card_list">
+						{% for i in Museum %}
+						{% if i.1 == "Mon" %}
+							<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+								{% endif %}
+							{% endfor %}
+						</ul></li>
+								
+						</div><div class="grid-item" style="position: absolute; left: 318px; top: 330px;"><div class="card_tit_05" ><div class="list1_img_05"><p>Sagaing</p></div></div><ul class="card_list">
+						
+						{% for i in Museum %}
+						{% if i.1 == "Sagaing" %}
+							<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+						{% endif %}
+					{% endfor %}
+				</ul></li>
+						
+						</div><div class="grid-item" style="position: absolute; left: 636px; top: 330px;"><div class="card_tit_06" ><div class="list1_img_06"><p>Magway</p></div></div><ul class="card_list">
+						
+						{% for i in Museum %}
+						{% if i.1 == "Magway" %}
+							<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+						{% endif %}
+					{% endfor %}
+				</ul></li>
+						</div><div class="grid-item" style="position: absolute; left: 0px; top: 618px;"><div class="card_tit_07" ><div class="list1_img_07"><p>Kayin</p></div></div><ul class="card_list">
+						
+						{% for i in Museum %}
+						{% if i.1 == "Kayin" %}
+							<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+						{% endif %}
+					{% endfor %}
+				</ul></li>
+						</div><div class="grid-item" style="position: absolute; left: 318px; top: 660px;"><div class="card_tit_08" ><div class="list1_img_08"><p>Kachin</p></div></div><ul class="card_list">
+						
+						{% for i in Museum %}
+						{% if i.1 == "Kachin" %}
+							<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+						{% endif %}
+					{% endfor %}
+				</ul></li>
+				</div><div class="grid-item" style="position: absolute; left: 636px; top: 660px;"><div class="card_tit_09" ><div class="list1_img_09"><p>Tanintharyi</p></div></div><ul class="card_list">{% for i in Museum %}
+						{% if i.1 == "Tanintharyi" %}
+							<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+						{% endif %}
+					{% endfor %}
+				</ul></li></div><div class="grid-item" style="position: absolute; left: 0px; top: 906px;"><div class="card_tit_010"><div class="list1_img_010"><p>Ayeyarwady</p></div></div><ul class="card_list">
+						
+						{% for i in Museum %}
+						{% if i.1 == "Ayeyarwady" %}
+							<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+						{% endif %}
+					{% endfor %}
+				</ul></li>
+
+						</div><div class="grid-item" style="position: absolute; left: 318px; top: 906px;"><div class="card_tit_011" ><div class="list1_img_011"><p>Rakhine</p></div></div><ul class="card_list">
+						
+						{% for i in Museum %}
+						{% if i.1 == "Rakhine" %}
+							<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+						{% endif %}
+					{% endfor %}
+				</ul></li>
+						</div><div class="grid-item" style="position: absolute; left: 636px; top: 906px;"><div class="card_tit_012"><div class="list1_img_012"><p>Shan</p></div></div><ul class="card_list">
+						
+						{% for i in Museum %}
+						{% if i.1 == "Shan" %}
+							<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+						{% endif %}
+					{% endfor %}
+				</ul></li>
+						</div><div class="grid-item" style="position: absolute; left: 0px; top: 1152px;"><div class="card_tit_013" ><div class="list1_img_013"><p>Chin</p></div></div><ul class="card_list">
+						
+						{% for i in Museum %}
+						{% if i.1 == "Chin" %}
+							<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+						{% endif %}
+					{% endfor %}
+				</ul></li>
+						</div><div class="grid-item" style="position: absolute; left: 318px; top: 1236px;"><div class="card_tit_014" ><div class="list1_img_014"><p>Kayah</p></div></div><ul class="card_list">
+						
+						{% for i in Museum %}
+						{% if i.1 == "Kayah" %}
+							<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+						{% endif %}
+					{% endfor %}
+				</ul></li>
+						</div><div class="grid-item" style="position: absolute; left: 636px; top: 1236px;"><div class="card_tit_015" ><div class="list1_img_015"><p>Naypyitaw</p></div></div><ul class="card_list">
+						
+						{% for i in Museum %}
+						{% if i.1 == "Naypyitaw" %}
+							<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+						{% endif %}
+					{% endfor %}
+				</ul></li>
+						</div><div class="grid-item" style="position: absolute; left: 0px; top: 1356px;"><div class="card_tit_016" ><div class="list1_img_016"><p>Nationwide</p></div></div><ul class="card_list">
+						
+						{% for i in Museum %}
+						{% if i.1 == "Nationwide" %}
+							<li><a href="/MCHMSSearch/?City_id={{i.0}}">{{i.2}}</a></li>
+						{% endif %}
+		{% endfor %}
+			</div></div><!-- div class="grid" 끝 -->
+		</div>
+		<!-- <script>    
+		$("#menucent li:first-child").addClass("first");</script> -->
+		 <div class="wrapperMain">
+			<div class="main02">
+				<div class="main_regiData">
+					<div class="main_Btit">
+						<span id="spanMainNtc">Notice</span>
+						<div class="btn_more"><a href="/user/mypage/getNEBoardList.do?TYPE=N"><!--<img src="images/more_icon.svg" alt="더보기" width="20px">--></a></div>
+					</div>
+					<ul class="regidataList">
+							<li>
+								<a href="#" onClick="noticePopView('20190524105311363607_000000001')">
+									<div class="tit">
+												JKDS DAMS CONTROL 
+									</div>
+									<div class="date">2019.05.24</div>
+									<div class="name">dev</div>
+								</a>
+							</li>
+					</ul>				
+				</div>
+			</div>
+		</div>   	<!-- div class="wrapperMain" 끝 -->
+	</div>
+	</div><!-- //내용부분 -->
+</div>
+
+<div id="footer">
+	MCHMS Myanmar Culture Heritage Management System Copyright. All rights reserved.
+</div>
+<form id="SearchForm" name="SearchForm" method="post">
+	<input type='hidden' name='StrLEVEL1_SEQ' id='StrLEVEL1_SEQ' value=''/>
+	<input type='hidden' name='StrLEVEL2_SEQ' id='StrLEVEL2_SEQ' value=''/>
+	<input type='hidden' name='StrDEPT_SEQ1' id='StrDEPT_SEQ1' value=''/>
+	<input type='hidden' name='StrDEPT_SEQ2' id='StrDEPT_SEQ2' value=''/>
+	<input type='hidden' name='StrDEPT_SEQ3' id='StrDEPT_SEQ3' value=''/>
+	<input type='hidden' name='StrLARGE_SEQ' id='StrLARGE_SEQ' value=''/>
+	<input type='hidden' name='StrMEDIUM_SEQ' id='StrMEDIUM_SEQ' value=''/>
+	<input type='hidden' name='StrSMALL_SEQ' id='StrSMALL_SEQ' value=''/>
+	<input type='hidden' name='StrPAGE_INDEX' id='StrPAGE_INDEX' value='1'/>
+	<input type='hidden' name='StrPAGECNT' id='StrPAGECNT' value='10'/>
+	<input type='hidden' name='StrKEY' id='StrKEY' value='FIELD_TITLE'/>
+	<input type='hidden' name='StrKEYWORD' id='StrKEYWORD' value=''/>
+	<input type='hidden' name='StrMODE' id='StrMODE' value='LIST'/>
+	<input type='hidden' name='StrSELECT_DEPTH' id='StrSELECT_DEPTH' value='4'/>
+	<input type='hidden' name='CATEGORY' id='CATEGORY' value=''/>
+	<input type='hidden' name='DEPT_SEQ3' id='DEPT_SEQ3' value=''/>
+	<input type='hidden' name='BOARD_SEQ' id='BOARD_SEQ' value=''/>
+	<input type='hidden' name='LARGE_SEQ' id='LARGE_SEQ' value=''/>
+	<input type='hidden' name='MEDIUM_SEQ' id='MEDIUM_SEQ' value=''/>
+	<input type='hidden' name='SMALL_SEQ' id='SMALL_SEQ' value=''/>
+	<input type='hidden' name='MENU_SEQ' id='MENU_SEQ' value=''/>
+	<input type='hidden' name='MODIFIY' id='MODIFIY' value='MOD'/>
+	<!-- 상세검색 Start-->
+	<input type="hidden" name="SRCH_TITLE" value="" />
+	<input type="hidden" name="SRCH_TITLE_OP" value="" />
+	<input type="hidden" name="SRCH_TITLE_MY" value="" />
+	<input type="hidden" name="SRCH_TITLE_MY_OP" value="" />
+	<input type="hidden" name="SRCH_REMARK1" value="" />
+	<input type="hidden" name="SRCH_REMARK1_OP" value="" />
+	<input type="hidden" name="SRCH_REMARK1_MY" value="" />
+	<input type="hidden" name="SRCH_REMARK1_MY_OP" value="" />
+	<input type="hidden" name="SRCH_REMARK2" value="" />
+	<input type="hidden" name="SRCH_REMARK2_OP" value="" />
+	<input type="hidden" name="SRCH_REMARK2_MY" value="" />
+	<input type="hidden" name="SRCH_REMARK2_MY_OP" value="" />
+	<input type="hidden" name="SRCH_REG" value="" />
+	<input type="hidden" name="SRCH_REG_OP" value="" />
+	<input type="hidden" name="SRCH_MUESUM_CODE" value="" />
+	<input type="hidden" name="SRCH_LEVEL1_SEQ" value="" />
+	<input type="hidden" name="SRCH_LEVEL2_SEQ" value="" />
+	<input type="hidden" name="SRCH_LARGE_SEQ" value="" />
+	<input type="hidden" name="SRCH_MEDIUM_SEQ" value="" />
+	<input type="hidden" name="SRCH_SMALL_SEQ" value="" />
+	<input type="hidden" name="SRCH_LEVEL1_MY_SEQ" value="" />
+	<input type="hidden" name="SRCH_LEVEL2_MY_SEQ" value="" />
+	<input type="hidden" name="SRCH_LARGE_MY_SEQ" value="" />
+	<input type="hidden" name="SRCH_MEDIUM_MY_SEQ" value="" />
+	<input type="hidden" name="SRCH_SMALL_MY_SEQ" value="" />
+	<input type="hidden" name="SRCH_REG_SRT_DATE" value="" />
+	<input type="hidden" name="SRCH_REG_END_DATE" value="" />
+	<input type="hidden" name="SRCH_BIZ_SRT_DATE" value="" />
+	<input type="hidden" name="SRCH_BIZ_END_DATE" value="" />
+	<input type="hidden" name="SRCH_RELIC_NUM" value="" />
+	<input type="hidden" id="SRCH_MODE" name="SRCH_MODE" value="" />
+	<!-- 상세검색 End-->
+</form>
+<script type="text/javascript">
+	</script>
+<script type="text/javascript">
+	if(getLang().toLowerCase().indexOf("my") == -1){ //언어 != 미얀마이면 isKang 190619
+		$('#spanMainNtc').text("Notice");
+	}
+</script>
+</body>
+</html>

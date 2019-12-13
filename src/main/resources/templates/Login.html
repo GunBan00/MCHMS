@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="/Static/css/MCH/style.css" type="text/css">
+<link rel="stylesheet" href="/Static/common/css/jquery-ui.css" type="text/css"> 
+
+<div class="login">
+    <div>
+        <div class="loginBox">
+            <div class="logon" id="input_type_1">
+        <h1><img src="/Static/MCHMS/mams/mchms_logo_02.svg" alt="DAMS Digital Asset Management System"></h1>
+                <p class="tit">Login</p>
+                <form id="frmLogin" name="frmLogin" method="post">
+                    <input type="hidden" name="LOGIN_FLAG" value="true">
+                    <input type="text" id="USER_ID" name="USER_ID" style="ime-mode:disabled" placeholder="ID" onkeypress="if((event.keyCode > 32 &amp;&amp; event.keyCode < 48)||(event.keyCode > 57 &amp;&amp; event.keyCode < 65)||(event.keyCode > 90 &amp;&amp; event.keyCode < 97)||event.keyCode == '13'){event.returnValue = false;}">
+                    <input type="password" id="USER_PASS" name="USER_PASS" placeholder="Password" onkeypress="if(event.keyCode == '13'){goLogin();}">
+                    <div class="save_apply">
+                    	<label><input type="checkbox">Save ID</label>
+                    	<p class="btnS"><a href="/MCHMSApply">Register ID</a></p>
+                    </div>
+                    <div class="btnC"><a href="#" onclick="goLogin(this.event);" class="btn btnB2 btnB2_hover type3">Login</a></div>
+                </form>
+            </div>
+
+            <p id="err_message">Please contact the administrator for login account inquiries.</p>
+        </div>
+        <div class="foot">DIGITAL ARCHIVES MANAGEMENT SYSTEM. COPYRIGHT ALL RIGHT RESERVED.</div>
+    </div>
+</div>
+<script>
+function goLogin(){
+
+	var form = document.getElementById("frmLogin");
+	if (form.USER_ID.value == "") {
+		alert("Please enter your ID.");
+		form.USER_ID.focus();
+		return false;
+	}
+
+	if (form.USER_PASS.value == "") {
+		alert("Please enter a password.");
+		form.USER_PASS.focus();
+		return false;
+	}
+
+	form.action = "/MCHMSlogin_process/";
+	form.submit();
+
+    return false;
+}
+</script>
