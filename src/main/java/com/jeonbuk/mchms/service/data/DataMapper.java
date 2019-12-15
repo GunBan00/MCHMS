@@ -12,7 +12,7 @@ import java.util.Map;
 @Mapper
 public interface DataMapper {
 
-    @Select("SELECT City_id as cityId, Remarks_en as remarksEn FROM Data WHERE ID = #{id}")
+    @Select("SELECT City_id as cityId, Remarks_en as remarksEn , Latitude as latitude ,Longitude as longitude FROM Data WHERE ID = #{id}")
     DataDomain selectData(String id);
 
     @Select("SELECT ID as id, Title as title, Latitude as latitude, Longitude as longitude, Classification_id as classificationId, Registrant as registrant,Registration_Date as registrationDate  FROM Data WHERE match(Title, Serial_Number, Remarks_en, Reference_en) against(#{keyword} in boolean mode)")

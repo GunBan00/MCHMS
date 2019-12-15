@@ -1,99 +1,99 @@
 <html xmlns="http://www.w3.org/1999/xhtml" style="overflow-y:auto;">
 <head>
 
-<link rel="stylesheet" href="/Static/js/jquery-ui-1.12.1/jquery-ui.min.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="/Static/js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="/js/jquery-ui-1.12.1/jquery-ui.min.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="/js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>MAMS Myanmar Asset Management System</title>
-<link rel="stylesheet" href="/Static/css/MCH/style.css" type="text/css" />
-<link rel="stylesheet" href="/Static/css/MCH/font.css" type="text/css" />
-<link rel="stylesheet" href="/Static/css/MCH/common.css" type="text/css" />
-<link rel="stylesheet" href="/Static/css/MCH/layout.css" type="text/css" />
-<link rel="stylesheet" href="/Static/common/css/jquery-ui.css" type="text/css" />
-<script type="text/javascript">
-var _CONTEXT_PATH = "";
-var _CONTEXT_PORT = '80';
-var _CONTEXT_DOMAIN = "localhost:8080/";
-</script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>MAMS Myanmar Asset Management System</title>
+	<link rel="stylesheet" href="/css/MCH/style.css" type="text/css" />
+	<link rel="stylesheet" href="/css/MCH/font.css" type="text/css" />
+	<link rel="stylesheet" href="/css/MCH/common.css" type="text/css" />
+	<link rel="stylesheet" href="/css/MCH/layout.css" type="text/css" />
+	<link rel="stylesheet" href="/common/css/jquery-ui.css" type="text/css" />
+	<script type="text/javascript">
+		var _CONTEXT_PATH = "";
+		var _CONTEXT_PORT = '80';
+		var _CONTEXT_DOMAIN = "localhost:8080/";
+	</script>
 
-<script type="text/javascript" src="/Static/js2/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="/js2/jquery-3.3.1.min.js"></script>
 
-<script type="text/javascript" src="/Static/js2/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="/js2/jquery-1.10.2.min.js"></script>
 
-<script type="text/javascript" src="/Static/common/js/jquery-ui-1.8.23.custom.min.js"></script>
-<script type="text/javascript" src="/Static/common/js/jquery.tmpl.js"></script>
-<script type="text/javascript" src="/Static/common/js/jquery.form.js"></script>
-<script type="text/javascript" src="/Static/common/js/jquery.DOMWindow.js"></script>
-<script type="text/javascript" src="/Static/common/js/link.js"></script>
-<script type="text/javascript" src="/Static/common/js/jkds.js"></script>
-<script type="text/javascript" src="/Static/common/js/patch_flash_tran.js"></script>
-<script type="text/javascript" src="/Static/common/js/AC_RunActiveContent.js"></script>
-<!-- <script type="text/javascript" src="/common/js/Calendar.js" ></script> -->
-<script type="text/javascript" src="/Static/common/js/makeDiv.js"></script><link type="text/css" rel="stylesheet" >
+	<script type="text/javascript" src="/common/js/jquery-ui-1.8.23.custom.min.js"></script>
+	<script type="text/javascript" src="/common/js/jquery.tmpl.js"></script>
+	<script type="text/javascript" src="/common/js/jquery.form.js"></script>
+	<script type="text/javascript" src="/common/js/jquery.DOMWindow.js"></script>
+	<script type="text/javascript" src="/common/js/link.js"></script>
+	<script type="text/javascript" src="/common/js/jkds.js"></script>
+	<script type="text/javascript" src="/common/js/patch_flash_tran.js"></script>
+	<script type="text/javascript" src="/common/js/AC_RunActiveContent.js"></script>
+	<!-- <script type="text/javascript" src="/common/js/Calendar.js" ></script> -->
+	<script type="text/javascript" src="/common/js/makeDiv.js"></script><link type="text/css" rel="stylesheet" >
 
-<style>
-#map {
-	height: 400px;
-	width: 100%;
-}
-</style>
-<!-- 게시판 리스트 페이지  (영어)-->
-
-<script type="text/javascript">
-
-	$(document).ready(function() {
-		$("#LARGE_SEQ").change(function() {	//사용자가 Classification 영역 selectBox를 변경할 경우
-var target = document.getElementById("LARGE_SEQ");
-var text22 = target.options[target.selectedIndex].text;
-$("#FIELD_CODE_NM").val(text22);
-/* console.log('셀렉트 박스 변경되었습니다')
-$("#CODE_TITLE").val(text22); */
-		});
-		if($("#FIELD_CODE_NM option:selected").text()){
+	<style>
+		#map {
+			height: 400px;
+			width: 100%;
 		}
-	});
-</script>
+	</style>
+	<!-- 게시판 리스트 페이지  (영어)-->
+
+	<script type="text/javascript">
+
+		$(document).ready(function() {
+			$("#LARGE_SEQ").change(function() {	//사용자가 Classification 영역 selectBox를 변경할 경우
+				var target = document.getElementById("LARGE_SEQ");
+				var text22 = target.options[target.selectedIndex].text;
+				$("#FIELD_CODE_NM").val(text22);
+				/* console.log('셀렉트 박스 변경되었습니다')
+                $("#CODE_TITLE").val(text22); */
+			});
+			if($("#FIELD_CODE_NM option:selected").text()){
+			}
+		});
+	</script>
 
 </head>
 <!-- 미얀마어 메인페이지 -->
 <body onload="BoardViewinit()"><div id="divpop" style="z-index:150; position:absolute; display:none;" onmousedown="ddInit()" onmousemove="dd()" onmouseup="stopdrag()">
-<div style="position:absolute; top:0px; left:0px; width:100%; height:38px;">
-<table border="0" width="100%" cellpadding="0" cellspacing="0" background="/images/common/pop_top_bg2.gif">
-<tbody><tr>
-<td width="120"><img id="popTitle" src=""></td>
-<td class="menu1"><span id="textTitle"></span>&nbsp;</td>
-<td width="40" align="center" background="/images/common/pop_top_bg2.gif"><input type="button" value="X" onclick="noCheck2()" style="width:20px"></td>
-</tr>
-</tbody></table>
-</div>
-<iframe src="" height="38" width="100%" frameborder="0" scrolling="no"></iframe>
-<div id="dwindowcontent" style="height:100%">
-<iframe name="fr01" src="" height="100%" width="100%" frameborder="0" scrolling="no"></iframe>
-</div>
+	<div style="position:absolute; top:0px; left:0px; width:100%; height:38px;">
+		<table border="0" width="100%" cellpadding="0" cellspacing="0" background="/images/common/pop_top_bg2.gif">
+			<tbody><tr>
+				<td width="120"><img id="popTitle" src=""></td>
+				<td class="menu1"><span id="textTitle"></span>&nbsp;</td>
+				<td width="40" align="center" background="/images/common/pop_top_bg2.gif"><input type="button" value="X" onclick="noCheck2()" style="width:20px"></td>
+			</tr>
+			</tbody></table>
+	</div>
+	<iframe src="" height="38" width="100%" frameborder="0" scrolling="no"></iframe>
+	<div id="dwindowcontent" style="height:100%">
+		<iframe name="fr01" src="" height="100%" width="100%" frameborder="0" scrolling="no"></iframe>
+	</div>
 </div>
 
 <!-- <script type="text/javascript" src="/common/cab/InnoFD.js" ></script> -->
-<script type="text/javascript" src="/Static/common/js/default.js"></script>
-<script type="text/javascript" src="/Static/common/js/tree.js"></script>
-<script type="text/javascript" src="/Static/common/js/sortTable.js"></script>
-<script type="text/javascript" src="/Static/common/js/commonCode.js"></script>
+<script type="text/javascript" src="/common/js/default.js"></script>
+<script type="text/javascript" src="/common/js/tree.js"></script>
+<script type="text/javascript" src="/common/js/sortTable.js"></script>
+<script type="text/javascript" src="/common/js/commonCode.js"></script>
 
-<script type="text/javascript" src="/Static/imageViewer/ZoomifyImageViewerPro-min.js"></script>
-<script type="text/javascript" src="/Static/js2/common.js"></script>
+<script type="text/javascript" src="/imageViewer/ZoomifyImageViewerPro-min.js"></script>
+<script type="text/javascript" src="/js2/common.js"></script>
 
 
 
 
 
 <script type="text/javascript" src="/dext5upload/js/dext5upload.js"></script>
-<script type="text/javascript" src="/Static/js2/board/BoardViewN.js?version=20190806"></script>
+<script type="text/javascript" src="/js2/board/BoardViewN.js?version=20190806"></script>
 
-<script type="text/javascript" src="/Static/common/js/jcalendar.js"></script>
-<script type="text/javascript" src="/Static/common/js/flowplayer-3.2.6.min.js"></script>
+<script type="text/javascript" src="/common/js/jcalendar.js"></script>
+<script type="text/javascript" src="/common/js/flowplayer-3.2.6.min.js"></script>
 
 
 <!-- <script type="text/javascript" src="/js/jquery.mb.browser.min.js"></script>
@@ -101,63 +101,63 @@ $("#CODE_TITLE").val(text22); */
 
 
 <script type="text/javascript"></script>
-<link rel="stylesheet" href="/Static/js/bxslider/dist/jquery.bxslider.css">
-<script src="/Static/js/bxslider/dist/jquery.bxslider.min.js"></script>
+<link rel="stylesheet" href="/js/bxslider/dist/jquery.bxslider.css">
+<script src="/js/bxslider/dist/jquery.bxslider.min.js"></script>
 
 
-<script type="text/javascript" src="/Static/js2/cmm/inc/Inc.js"></script>
+<script type="text/javascript" src="/js2/cmm/inc/Inc.js"></script>
 
 <div id="header">
 	<div class="top">
 		<div>
-			<a href="/" class="logo"><img src="/Static/MCHMS/mams/mchms_logo_small.svg" alt="MCHMS"  width="35px;" height="35px;"></a>
+			<a href="/" class="logo"><img src="/MCHMS/mams/mchms_logo_small.svg" alt="MCHMS"  width="35px;" height="35px;"></a>
 			<div>
 
-					<!--
-					<div id="TOP_MUESUM" class="select">
-                    <a href="#a"><span> Business management</span></a>
-                    <div id="TOP_MUESUM_CODE"></div>-->
-                    <form id="museumForm" name="museumForm" method="post">
-                        <input type="hidden" name="TOP_MUESUM_CODE" value="">
-						<input type="hidden" name="TOP_MUESUM_NAME" value="">
-                    </form>
-                	<!-- </div> -->
+				<!--
+                <div id="TOP_MUESUM" class="select">
+                <a href="#a"><span> Business management</span></a>
+                <div id="TOP_MUESUM_CODE"></div>-->
+				<form id="museumForm" name="museumForm" method="post">
+					<input type="hidden" name="TOP_MUESUM_CODE" value="">
+					<input type="hidden" name="TOP_MUESUM_NAME" value="">
+				</form>
+				<!-- </div> -->
 
-                <div class="select">
-                    <div>
-                        <ul>
-                        	<!-- <li id="APPROVER_CHK"></li>--><!-- 승인요청 -->
+				<div class="select">
+					<div>
+						<ul>
+							<!-- <li id="APPROVER_CHK"></li>--><!-- 승인요청 -->
 
-								<!-- <li><a href="javascript:dataHaveMng()"><span id="spanMoveMngt">Move manager</span></a></li> -->
-								<li><a href="javascript:userMng()"><span id="spanMoveMngt">Move manager</span></a></li>
+							<!-- <li><a href="javascript:dataHaveMng()"><span id="spanMoveMngt">Move manager</span></a></li> -->
+							<li><a href="javascript:userMng()"><span id="spanMoveMngt">Move manager</span></a></li>
 
-	                        <!--
-							<li><a href="javascript:regdata()"><span id="spanRegMtrl">자료등록</span></a></li>
+							<!--
+                            <li><a href="javascript:regdata()"><span id="spanRegMtrl">자료등록</span></a></li>
                             <li><a href="/user/mypage/RegdataList.do"><span id="spanRegBox">등록자료함</span></a></li>
                             <li><a href="/user/mypage/BookmarkList.do"><span id="spanBookmark">북마크함</span></a></li>
                              -->
 							<li><a href="/user/mypage/MyboxList.do"><span id="spanDown">Downloaded</span></a></li>
-                            <li><a href="/user/mypage/UserInfoModify.do"><span id="spanEditPri">Edit personal info.</span></a></li>
+							<li><a href="/user/mypage/UserInfoModify.do"><span id="spanEditPri">Edit personal info.</span></a></li>
 							<!-- <li><a href="javascript:coomEnema()"><span id="spanTalk">관리자와 대화</span></a></li> -->
 							<li><a href="javascript:boardNotice()"><span id="spanNtc">Notice</span></a></li>
 							<!-- <li><a href="javascript:boardError()"><span id="spanErr">오류게시판</span></a></li> -->
-                        </ul>
-                    </div>
-                </div>
+						</ul>
+					</div>
+				</div>
 				<div th:if="${session.value == null}">
-				<select id="SLT_USER_LANG" name="USER_LANG" onchange="selectUserLang();">
-					<option value="EN">English</option>
-					<option value="MY">မြန်မာ</option>
-				</select>
-				<a href="/MCHMSLogin" class="btnLogout on" ><span id="spanLogout">Login</span></a>
+					<select id="SLT_USER_LANG" name="USER_LANG" onchange="selectUserLang();">
+						<option value="EN">English</option>
+						<option value="MY">မြန်မာ</option>
+					</select>
+					<a href="/MCHMSLogin" class="btnLogout on" ><span id="spanLogout">Login</span></a>
 				</div>
 				<div th:unless="${session.value == null}">
-				<span class="info" id="spanWelcome">Welcome to {{Session.0}}</span>&nbsp;
-				<select id="SLT_USER_LANG" name="USER_LANG" onchange="selectUserLang();">
-					<option value="EN">English</option>
-					<option value="MY">မြန်မာ</option>
-				</select>
-				<a href="/MCHMSLogout" class="btnLogout on" ><span id="spanLogout">Logout</span></a>
+					<span class="info" id="spanWelcome" th:text="|Welcome to ${session.id}|"></span>&nbsp;
+					<select id="SLT_USER_LANG" name="USER_LANG" onchange="selectUserLang();">
+						<option value="EN">English</option>
+						<option value="MY">မြန်မာ</option>
+					</select>
+					<a href="/MCHMSLogout" class="btnLogout on" ><span id="spanLogout">Logout</span></a>
 				</div>
 			</div>
 		</div>
@@ -165,58 +165,58 @@ $("#CODE_TITLE").val(text22); */
 	<div>
 		<div>
 			<h1>
-			<a href="/"><img src="/Static/MCHMS/mams/mchms_logo_02.svg" alt="MAMS Myanmar Asset Management System"></a>
+				<a href="/"><img src="/MCHMS/mams/mchms_logo_02.svg" alt="MAMS Myanmar Asset Management System"></a>
 			</h1>
-				<form action = "/MCHMSSearch_process/?City_id={{City_id}}" method = "post" enctype="multipart/form-data" id="AdvsearchFrom" name="AdvsearchFrom">
+			<form action = "/MCHMSSearch_process/?City_id=${City_id}" method = "post" enctype="multipart/form-data" id="AdvsearchFrom" name="AdvsearchFrom">
 				<input type="hidden" id="SRCH_MODE" name="SRCH_MODE">
 				<input type="hidden" id="SELECT_DEPTH" name="SELECT_DEPTH">
 				<input type="hidden" id="StrMODE" name="StrMODE" value="MORE">
 				<input type="hidden" id="TSSEARCH" name="USER_TSGROUP_CODE" value="PS01001001_000000013">
 				<input type="hidden" id="USER_TSGROUP_CODE" name="USER_TSGROUP_CODE" value="PS01001001_000000013">
 				<input type="hidden" id="USER_LGROUP_CODE_SEQ" name="USER_LGROUP_CODE_SEQ" value="20190730193223383814_000000102">
-                <input type="hidden" id="STR_TOP_SEARCH_MUESUM_CODE" name="STR_TOP_SEARCH_MUESUM_CODE" value="">
+				<input type="hidden" id="STR_TOP_SEARCH_MUESUM_CODE" name="STR_TOP_SEARCH_MUESUM_CODE" value="">
 
-                <!-- isKang 추가 190628 -->
-                <input type="hidden" name="LANG" value="EN">
-                <input type="hidden" id="STR_SRCH_MUESUM_CODE" name="STR_SRCH_MUESUM_CODE" value="">
+				<!-- isKang 추가 190628 -->
+				<input type="hidden" name="LANG" value="EN">
+				<input type="hidden" id="STR_SRCH_MUESUM_CODE" name="STR_SRCH_MUESUM_CODE" value="">
 
 
 				<div class="searchBox">
 					<input type="text" id="TOP_TOPWORD" name="TOP_TOPWORD" onkeypress="speCharBlock(this)" value="">
-					<a href="#" onclick="Search();" class="serch_icon"><img src="/Static/MCHMS/mams/serch_icon_06.svg" alt="Search Btn" style="height: 22px;">Search</a>
+					<a href="#" onclick="Search();" class="serch_icon"><img src="/MCHMS/mams/serch_icon_06.svg" alt="Search Btn" style="height: 22px;">Search</a>
 					<script>
 
-					function Search() {
-						SearchKey = $("#TOP_TOPWORD").val();
+						function Search() {
+							SearchKey = $("#TOP_TOPWORD").val();
 
-						var regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi
-						str = SearchKey.replace(regExp,"");
-						if(str == ""){
-							path = "http://mchms.net/MCHMSSearch/?&Keyword=" + SearchKey;
-
-
-							window.location.href = path;
-						}else if(str.length < 2) {
-							alert("검색어를 두 글자 이상으로 입력해 주세요.");
-
-						}else{
-							var ESearchKey = encodeURI(SearchKey);
-
-							path = "http://mchms.net/MCHMSSearch/?&Keyword=" + ESearchKey;
+							var regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi
+							str = SearchKey.replace(regExp,"");
+							if(str == ""){
+								path = "/MCHMSSearch/?&Keyword=" + SearchKey;
 
 
-							window.location.href = path;
+								window.location.href = path;
+							}else if(str.length < 2) {
+								alert("검색어를 두 글자 이상으로 입력해 주세요.");
+
+							}else{
+								var ESearchKey = encodeURI(SearchKey);
+
+								path = "/MCHMSSearch/?&Keyword=" + ESearchKey;
+
+
+								window.location.href = path;
+							}
 						}
-					}
-					$('#TOP_TOPWORD').keypress(function(event){
-						if ( event.which == 13 ) {
-							Search();
-							return false;
-						}
-					});
+						$('#TOP_TOPWORD').keypress(function(event){
+							if ( event.which == 13 ) {
+								Search();
+								return false;
+							}
+						});
 					</script>
 
-					<a href="#layerPopup" id="btnSearch" class="btnSearch"><img src="/Static/MCHMS/mams/serch_icon_07.svg" alt="" style="height: 22px;">Advanced</a>
+					<a href="#layerPopup" id="btnSearch" class="btnSearch"><img src="/MCHMS/mams/serch_icon_07.svg" alt="" style="height: 22px;">Advanced</a>
 					<script>
 						$('.btnSearch').click(function(){
 							var $href = $(this).attr('href');
@@ -230,9 +230,9 @@ $("#CODE_TITLE").val(text22); */
 							isDim ? $('.dim-layer').fadeIn() : $el.fadeIn();
 
 							var $elWidth = ~~($el.outerWidth()),
-							$elHeight = ~~($el.outerHeight()),
-							docWidth = $(document).width(),
-							docHeight = $(document).height();
+									$elHeight = ~~($el.outerHeight()),
+									docWidth = $(document).width(),
+									docHeight = $(document).height();
 
 
 							$el.find('a.btn-layerClose').click(function(){
@@ -286,43 +286,43 @@ $("#CODE_TITLE").val(text22); */
 									<th>Registration date</th>
 									<td>
 										<script>
-										$(function() {
+											$(function() {
 
-											SRCH_REG_SRT_DATE = $("#SRCH_REG_SRT_DATE").datepicker({
-												showOn: "button",
-												buttonImage: "/Static/MCHMS/btn_calender.gif",
-												buttonImageOnly: true,
-												buttonText: "Select date",
-												dateFormat: 'yy-mm-dd',
-												beforeShow: customRangeStart,
-												maxDate: null,
-												defaultDate: "+1w",
-												changeMonth: true,
-												changeYear: true
-											}),
-											SRCH_REG_END_DATE = $("#SRCH_REG_END_DATE").datepicker({
-												showOn: "button",
-												buttonImage: "/Static/MCHMS/btn_calender.gif",
-												buttonImageOnly: true,
-												buttonText: "Select date",
-												dateFormat: 'yy-mm-dd',
-												beforeShow: customRange,
-												defaultDate: "+1w",
-												changeMonth: true,
-												changeYear: true
+												SRCH_REG_SRT_DATE = $("#SRCH_REG_SRT_DATE").datepicker({
+													showOn: "button",
+													buttonImage: "/MCHMS/btn_calender.gif",
+													buttonImageOnly: true,
+													buttonText: "Select date",
+													dateFormat: 'yy-mm-dd',
+													beforeShow: customRangeStart,
+													maxDate: null,
+													defaultDate: "+1w",
+													changeMonth: true,
+													changeYear: true
+												}),
+														SRCH_REG_END_DATE = $("#SRCH_REG_END_DATE").datepicker({
+															showOn: "button",
+															buttonImage: "/MCHMS/btn_calender.gif",
+															buttonImageOnly: true,
+															buttonText: "Select date",
+															dateFormat: 'yy-mm-dd',
+															beforeShow: customRange,
+															defaultDate: "+1w",
+															changeMonth: true,
+															changeYear: true
+														});
+
+												function customRange(input) {
+													return {
+														minDate: (input.id == "SRCH_REG_END_DATE" ? $("#SRCH_REG_SRT_DATE").datepicker("getDate") : new Date())
+													};
+												}
+												function customRangeStart(input) {
+													return {
+														maxDate:(input.id == "SRCH_REG_SRT_DATE" ? $("#SRCH_REG_END_DATE").datepicker("getDate") : null)
+													};
+												}
 											});
-
-											function customRange(input) {
-												return {
-													minDate: (input.id == "SRCH_REG_END_DATE" ? $("#SRCH_REG_SRT_DATE").datepicker("getDate") : new Date())
-												};
-											}
-											function customRangeStart(input) {
-												return {
-													maxDate:(input.id == "SRCH_REG_SRT_DATE" ? $("#SRCH_REG_END_DATE").datepicker("getDate") : null)
-												};
-											}
-										});
 										</script>
 										<div class="calBox">
 											<input type="text" size="6" readonly="readonly" id="SRCH_REG_SRT_DATE" name="SRCH_REG_SRT_DATE">
@@ -356,16 +356,16 @@ $("#CODE_TITLE").val(text22); */
 								<a href="javascript:reset();" class="btn type2">Reset</a>
 							</div>
 						</div>
-						<a href="#a" class="close"><img src="/Static/MCHMS/btn/close.png" alt=""></a>
+						<a href="#a" class="close"><img src="/MCHMS/btn/close.png" alt=""></a>
 					</div>
 				</div>
 			</form>
 		</div>
-    </div>
+	</div>
 </div>
 <script type="text/javascript">
 
-function submit() {
+	function submit() {
 		var radio_value = $("input[type='radio'][name='event_subject']:checked").val();
 		frm.start_year.options[frm.start_year.selectedIndex].text
 
@@ -404,7 +404,7 @@ function submit() {
 		}
 
 		frm.submit();
-}
+	}
 
 	$("#SLT_USER_LANG").val("EN").prop("selected", true);
 	if(getLang().toLowerCase().indexOf("my") == -1){ //언어 != 미얀마이면 isKang 190619
@@ -504,241 +504,241 @@ function submit() {
 <div class="subContent">
 
 
-<script>
-	function ck()
-	{
+	<script>
+		function ck()
+		{
 
-		var ls = $("#n").css("display");
+			var ls = $("#n").css("display");
 			if(ls== "none")
-            $("#n").css("display","block");
+				$("#n").css("display","block");
 			if(ls == "block")
-            $("#n").css("display","none");
-	}
-	function ck1()
-	{
+				$("#n").css("display","none");
+		}
+		function ck1()
+		{
 
-		var ls = $("#n1").css("display");
+			var ls = $("#n1").css("display");
 			if(ls== "none")
-            $("#n1").css("display","block");
+				$("#n1").css("display","block");
 			if(ls == "block")
-            $("#n1").css("display","none");
-	}
-	function ck2()
-	{
+				$("#n1").css("display","none");
+		}
+		function ck2()
+		{
 
-		var ls = $("#n2").css("display");
+			var ls = $("#n2").css("display");
 			if(ls== "none")
-            $("#n2").css("display","block");
+				$("#n2").css("display","block");
 			if(ls == "block")
-            $("#n2").css("display","none");
-	}
-	function ck3()
-	{
+				$("#n2").css("display","none");
+		}
+		function ck3()
+		{
 
-		var ls = $("#n3").css("display");
+			var ls = $("#n3").css("display");
 			if(ls== "none")
-            $("#n3").css("display","block");
+				$("#n3").css("display","block");
 			if(ls == "block")
-            $("#n3").css("display","none");
-	}
-	function ck4()
-	{
+				$("#n3").css("display","none");
+		}
+		function ck4()
+		{
 
-		var ls = $("#n4").css("display");
+			var ls = $("#n4").css("display");
 			if(ls== "none")
-            $("#n4").css("display","block");
+				$("#n4").css("display","block");
 			if(ls == "block")
-            $("#n4").css("display","none");
-	}
-	function ck5()
-	{
+				$("#n4").css("display","none");
+		}
+		function ck5()
+		{
 
-		var ls = $("#n5").css("display");
+			var ls = $("#n5").css("display");
 			if(ls== "none")
-            $("#n5").css("display","block");
+				$("#n5").css("display","block");
 			if(ls == "block")
-            $("#n5").css("display","none");
-	}
-	function ck6()
-	{
+				$("#n5").css("display","none");
+		}
+		function ck6()
+		{
 
-		var ls = $("#n6").css("display");
+			var ls = $("#n6").css("display");
 			if(ls== "none")
-            $("#n6").css("display","block");
+				$("#n6").css("display","block");
 			if(ls == "block")
-            $("#n6").css("display","none");
-	}
-	function ck7()
-	{
+				$("#n6").css("display","none");
+		}
+		function ck7()
+		{
 
-		var ls = $("#n7").css("display");
+			var ls = $("#n7").css("display");
 			if(ls== "none")
-            $("#n7").css("display","block");
+				$("#n7").css("display","block");
 			if(ls == "block")
-            $("#n7").css("display","none");
-	}
-	function ck8()
-	{
+				$("#n7").css("display","none");
+		}
+		function ck8()
+		{
 
-		var ls = $("#n8").css("display");
+			var ls = $("#n8").css("display");
 			if(ls== "none")
-            $("#n8").css("display","block");
+				$("#n8").css("display","block");
 			if(ls == "block")
-            $("#n8").css("display","none");
-	}
-	function ck9()
-	{
+				$("#n8").css("display","none");
+		}
+		function ck9()
+		{
 
-		var ls = $("#n9").css("display");
+			var ls = $("#n9").css("display");
 			if(ls== "none")
-            $("#n9").css("display","block");
+				$("#n9").css("display","block");
 			if(ls == "block")
-            $("#n9").css("display","none");
-	}
-	function ck10()
-	{
+				$("#n9").css("display","none");
+		}
+		function ck10()
+		{
 
-		var ls = $("#n10").css("display");
+			var ls = $("#n10").css("display");
 			if(ls== "none")
-            $("#n10").css("display","block");
+				$("#n10").css("display","block");
 			if(ls == "block")
-            $("#n10").css("display","none");
-	}
-	function ck11()
-	{
+				$("#n10").css("display","none");
+		}
+		function ck11()
+		{
 
-		var ls = $("#n11").css("display");
+			var ls = $("#n11").css("display");
 			if(ls== "none")
-            $("#n11").css("display","block");
+				$("#n11").css("display","block");
 			if(ls == "block")
-            $("#n11").css("display","none");
-	}
-	function ck12()
-	{
+				$("#n11").css("display","none");
+		}
+		function ck12()
+		{
 
-		var ls = $("#n12").css("display");
+			var ls = $("#n12").css("display");
 			if(ls== "none")
-            $("#n12").css("display","block");
+				$("#n12").css("display","block");
 			if(ls == "block")
-            $("#n12").css("display","none");
-	}
-	function ck13()
-	{
+				$("#n12").css("display","none");
+		}
+		function ck13()
+		{
 
-		var ls = $("#n13").css("display");
+			var ls = $("#n13").css("display");
 			if(ls== "none")
-            $("#n13").css("display","block");
+				$("#n13").css("display","block");
 			if(ls == "block")
-            $("#n13").css("display","none");
-	}
-	function ck14()
-	{
+				$("#n13").css("display","none");
+		}
+		function ck14()
+		{
 
-		var ls = $("#n").css("display");
+			var ls = $("#n").css("display");
 			if(ls== "none")
-            $("#n14").css("display","block");
+				$("#n14").css("display","block");
 			if(ls == "block")
-            $("#n14").css("display","none");
-	}
-	function ck15()
-	{
+				$("#n14").css("display","none");
+		}
+		function ck15()
+		{
 
-		var ls = $("#n").css("display");
+			var ls = $("#n").css("display");
 			if(ls== "none")
-            $("#n15").css("display","block");
+				$("#n15").css("display","block");
 			if(ls == "block")
-            $("#n15").css("display","none");
-	}
+				$("#n15").css("display","none");
+		}
 
 
 	</script>
 
 
 	<div class="leftM2">
-	<ul class="mainSide" id="menu">
-	<li><a href="#" id="mn04" onclick ="ck();" style = "display:block">Yangon</a>
-		<ul id="n" >
-			<li th:each="ms : ${Museum}" th:if="${ms.cities} == Yangon"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+		<ul class="mainSide" id="menu">
+			<li><a href="#" id="mn04" onclick ="ck();" style = "display:block">Yangon</a>
+				<ul id="n" >
+					<li th:each="ms : ${Museum}" th:if="${ms.cities} == Yangon"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+				</ul>
+			</li>
+			<li><a href="#" id="mn06"onclick ="ck1();" >Mandalay</a>
+				<ul id="n1">
+					<li th:each="ms : ${Museum}" th:if="${ms.cities} == Mandalay"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+				</ul>
+			</li>
+
+			<li><a href="#" id="mn01"onclick ="ck2();" >Bago</a><ul id="n2">
+				<li th:each="ms : ${Museum}" th:if="${ms.cities} == Bago"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+			</ul></li>
+
+			<li><a href="#" id="mn04"onclick ="ck3();" >Mon</a>
+				<ul id="n3"  style = "display:blck">
+					<li th:each="ms : ${Museum}" th:if="${ms.cities} == Mon"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+				</ul></li>
+
+			<li><a href="#" id="mn04"onclick ="ck4();" >Sagaing</a>
+				<ul id="n4"  style = "display:blck">
+					<li th:each="ms : ${Museum}" th:if="${ms.cities} == Sagaing"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+				</ul></li>
+
+			<li><a href="#" id="mn04"onclick ="ck5();" >Magway</a>
+				<ul id="n5"  style = "display:blck">
+					<li th:each="ms : ${Museum}" th:if="${ms.cities} == Magway"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+				</ul></li>
+
+
+			<li><a href="#" id="mn04"onclick ="ck6();" >Kayin</a>
+				<ul id="n6"  style = "display:blck">
+					<li th:each="ms : ${Museum}" th:if="${ms.cities} == Kayin"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+				</ul></li>
+
+			<li><a href="#" id="mn04"onclick ="ck7();" >Kachin</a>
+				<ul id="n7"  style = "display:blck">
+					<li th:each="ms : ${Museum}" th:if="${ms.cities} == Kachin"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+				</ul></li>
+
+			<li><a href="#" id="mn04"onclick ="ck8();" >Tanintharyi</a>
+				<ul id="n8"  style = "display:blck">
+					<li th:each="ms : ${Museum}" th:if="${ms.cities} == Tanintharyi"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+				</ul></li>
+
+			<li><a href="#" id="mn04"onclick ="ck9();" >Ayeyarwady</a>
+				<ul id="n9"  style = "display:blck">
+					<li th:each="ms : ${Museum}" th:if="${ms.cities} == Ayeyarwady"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+				</ul></li>
+
+			<li><a href="#" id="mn04"onclick ="ck10();" >Rakhine</a>
+				<ul id="n10"  style = "display:blck">
+					<li th:each="ms : ${Museum}" th:if="${ms.cities} == Rakhine"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+				</ul></li>
+
+			<li><a href="#" id="mn04"onclick ="ck11();" >Shan</a>
+				<ul id="n11"  style = "display:blck">
+					<li th:each="ms : ${Museum}" th:if="${ms.cities} == Shan"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+				</ul></li>
+
+			<li><a href="#" id="mn04"onclick ="ck12();" >Chin</a>
+				<ul id="n12"  style = "display:blck">
+					<li th:each="ms : ${Museum}" th:if="${ms.cities} == Chin"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+				</ul></li>
+
+			<li><a href="#" id="mn04"onclick ="ck13();" >Kayah</a>
+				<ul id="n13"  style = "display:blck">
+					<li th:each="ms : ${Museum}" th:if="${ms.cities} == Kayah"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+				</ul></li>
+
+			<li><a href="#" id="mn04"onclick ="ck14();" >Naypyitaw</a>
+				<ul id="n14"  style = "display:blck">
+					<li th:each="ms : ${Museum}" th:if="${ms.cities} == Naypyitaw"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+				</ul></li>
+
+			<li><a href="#" id="mn04"onclick ="ck15();" >Nationwide</a>
+				<ul  id="n15"  style = "display:blck">
+					<li th:each="ms : ${Museum}" th:if="${ms.cities} == Nationwide"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+				</ul></li>
 		</ul>
-	</li>
-	<li><a href="#" id="mn06"onclick ="ck1();" >Mandalay</a>
-	    <ul id="n1">
-			<li th:each="ms : ${Museum}" th:if="${ms.cities} == Mandalay"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
-		</ul>
-	</li>
-
-	<li><a href="#" id="mn01"onclick ="ck2();" >Bago</a><ul id="n2">
-		<li th:each="ms : ${Museum}" th:if="${ms.cities} == Bago"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
-	</ul></li>
-
-	<li><a href="#" id="mn04"onclick ="ck3();" >Mon</a>
-		<ul id="n3"  style = "display:blck">
-			<li th:each="ms : ${Museum}" th:if="${ms.cities} == Mon"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
-	</ul></li>
-
-	<li><a href="#" id="mn04"onclick ="ck4();" >Sagaing</a>
-		<ul id="n4"  style = "display:blck">
-			<li th:each="ms : ${Museum}" th:if="${ms.cities} == Sagaing"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
-	</ul></li>
-
-	<li><a href="#" id="mn04"onclick ="ck5();" >Magway</a>
-		<ul id="n5"  style = "display:blck">
-			<li th:each="ms : ${Museum}" th:if="${ms.cities} == Magway"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
-	</ul></li>
-
-
-	<li><a href="#" id="mn04"onclick ="ck6();" >Kayin</a>
-		<ul id="n6"  style = "display:blck">
-			<li th:each="ms : ${Museum}" th:if="${ms.cities} == Kayin"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
-	</ul></li>
-
-	<li><a href="#" id="mn04"onclick ="ck7();" >Kachin</a>
-		<ul id="n7"  style = "display:blck">
-			<li th:each="ms : ${Museum}" th:if="${ms.cities} == Kachin"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
-	</ul></li>
-
-	<li><a href="#" id="mn04"onclick ="ck8();" >Tanintharyi</a>
-		<ul id="n8"  style = "display:blck">
-			<li th:each="ms : ${Museum}" th:if="${ms.cities} == Tanintharyi"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
-	</ul></li>
-
-	<li><a href="#" id="mn04"onclick ="ck9();" >Ayeyarwady</a>
-		<ul id="n9"  style = "display:blck">
-			<li th:each="ms : ${Museum}" th:if="${ms.cities} == Ayeyarwady"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
-	</ul></li>
-
-	<li><a href="#" id="mn04"onclick ="ck10();" >Rakhine</a>
-		<ul id="n10"  style = "display:blck">
-			<li th:each="ms : ${Museum}" th:if="${ms.cities} == Rakhine"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
-	</ul></li>
-
-	<li><a href="#" id="mn04"onclick ="ck11();" >Shan</a>
-		<ul id="n11"  style = "display:blck">
-			<li th:each="ms : ${Museum}" th:if="${ms.cities} == Shan"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
-	</ul></li>
-
-	<li><a href="#" id="mn04"onclick ="ck12();" >Chin</a>
-		<ul id="n12"  style = "display:blck">
-			<li th:each="ms : ${Museum}" th:if="${ms.cities} == Chin"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
-	</ul></li>
-
-	<li><a href="#" id="mn04"onclick ="ck13();" >Kayah</a>
-		<ul id="n13"  style = "display:blck">
-			<li th:each="ms : ${Museum}" th:if="${ms.cities} == Kayah"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
-	</ul></li>
-
-	<li><a href="#" id="mn04"onclick ="ck14();" >Naypyitaw</a>
-		<ul id="n14"  style = "display:blck">
-			<li th:each="ms : ${Museum}" th:if="${ms.cities} == Naypyitaw"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
-	</ul></li>
-
-	<li><a href="#" id="mn04"onclick ="ck15();" >Nationwide</a>
-		<ul  id="n15"  style = "display:blck">
-			<li th:each="ms : ${Museum}" th:if="${ms.cities} == Nationwide"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
-	</ul></li>
-	</ul>
-	<div class="quickBox" style="display:none;">
-		<a href="javascript:goList('/user/board/BoardList.do?StrMODE=MORE');" class="btnTalk type2"></a>
+		<div class="quickBox" style="display:none;">
+			<a href="javascript:goList('/user/board/BoardList.do?StrMODE=MORE');" class="btnTalk type2"></a>
 		</div>
 	</div>
 
@@ -790,23 +790,23 @@ function submit() {
 		<input type="hidden" id="SRCH_MODE" name="SRCH_MODE" value="상세검색">
 		<!-- 상세검색 End-->
 	</form>
-<script type="text/javascript">
-	function goList(url){
-		var frm = $("#menuForm");
-		$("input[name=StrMODE]").val("MORE");
-		$("#LANG").val(getLang());
-		frm.attr("action", url);
-		frm.submit();
-	}
-	if(getLang().toLowerCase().indexOf("my") == -1){ //언어 != 미얀마이면 isKang 190619
-		$('#spanRecntMtr').text("Recent registration materials");
-		$('.quickBox').hide(); //버마어일때 최근등록자료 숨김
-	}else{
-		$('.quickBox').hide(); //버마어일때 최근등록자료 숨김
-	}
+	<script type="text/javascript">
+		function goList(url){
+			var frm = $("#menuForm");
+			$("input[name=StrMODE]").val("MORE");
+			$("#LANG").val(getLang());
+			frm.attr("action", url);
+			frm.submit();
+		}
+		if(getLang().toLowerCase().indexOf("my") == -1){ //언어 != 미얀마이면 isKang 190619
+			$('#spanRecntMtr').text("Recent registration materials");
+			$('.quickBox').hide(); //버마어일때 최근등록자료 숨김
+		}else{
+			$('.quickBox').hide(); //버마어일때 최근등록자료 숨김
+		}
 
-</script>
-<!-- 내용부분 -->
+	</script>
+	<!-- 내용부분 -->
 	<div class="conts">
 
 		<div id="divContsTtl">
@@ -815,7 +815,7 @@ function submit() {
 		</div>
 
 
-        <h4 id="BOARD_TITLE" style="display: block;"></h4>
+		<h4 id="BOARD_TITLE" style="display: block;"></h4>
 		<form id="listForm" name="listForm" method="post">
 			<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX" value="1">
 			<input type="hidden" id="DEPT_SEQ1" name="DEPT_SEQ1" value="">
@@ -905,95 +905,95 @@ function submit() {
 			</div>
 
 
-					<div class="searchBox04" style="visibility:hidden">
-						<input name="LARGE_SEQ" id="LARGE_SEQ" value="" type="hidden">
-						<input name="MEDIUM_SEQ" id="MEDIUM_SEQ" value="" type="hidden">
-						<input name="SMALL_SEQ" id="SMALL_SEQ" value="" type="hidden">
+			<div class="searchBox04" style="visibility:hidden">
+				<input name="LARGE_SEQ" id="LARGE_SEQ" value="" type="hidden">
+				<input name="MEDIUM_SEQ" id="MEDIUM_SEQ" value="" type="hidden">
+				<input name="SMALL_SEQ" id="SMALL_SEQ" value="" type="hidden">
 
 
 
-		</div>
-        <div id="map"></div>
-				<script>
-					function initMap() {
-						var locations = [{% for list in lists %}
-							['{{ list.2 }}', {{ list.6 }}, {{ list.7 }}, "<a href='/MCHMSView/?&ID={{list.5}}'>{{ list.2 }}</a>"],
-						{% endfor %}];
+			</div>
+			<div id="map"></div>
+			<script>
+				function initMap() {
+					var locations = [{% for list in lists %}
+					['{{ list.2 }}', {{ list.6 }}, {{ list.7 }}, "<a href='/MCHMSView/?&ID={{list.5}}'>{{ list.2 }}</a>"],
+					{% endfor %}];
 
 
-						var map = new google.maps.Map(document.getElementById('map'), {
-							zoom: 13,
-							scrollwheel: false,
-							zoomControl: true,
-							center: new google.maps.LatLng({{ avg_Lat }}, {{ avg_Long }})
+					var map = new google.maps.Map(document.getElementById('map'), {
+						zoom: 13,
+						scrollwheel: false,
+						zoomControl: true,
+						center: new google.maps.LatLng({{ avg_Lat }}, {{ avg_Long }})
+				});
+
+					var infowindow = new google.maps.InfoWindow();
+
+					var marker, i;
+					for(i=0;i<=locations.length;i++){
+						var marker = new google.maps.Marker({
+							position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+							title : locations[i][0],
+							map: map
 						});
 
-						 var infowindow = new google.maps.InfoWindow();
-
-						var marker, i;
-						for(i=0;i<=locations.length;i++){
-							var marker = new google.maps.Marker({
-								position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-								title : locations[i][0],
-								map: map
-							});
-
-							google.maps.event.addListener(marker, 'click', (function(marker, i) {
-								return function() {
-									infowindow.setContent(locations[i][3]);
-									infowindow.open(map, marker);
-								}
-							})(marker, i));
-						}
+						google.maps.event.addListener(marker, 'click', (function(marker, i) {
+							return function() {
+								infowindow.setContent(locations[i][3]);
+								infowindow.open(map, marker);
+							}
+						})(marker, i));
 					}
-				</script>
-				<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg2U2hyWyH76p5rXTIptibx3d9SkuiEDQ&callback=initMap"></script>
-        <div class="floatBox" style="margin-top: 40px;">
-            <div class="flBox">
-                <div class="cnb_1" id="tottalcnt"><span style="font-weight:bold;color:#999" th:text="|${total} items total|"></span></div>
-            </div>
-            <div class="frBox">
+				}
+			</script>
+			<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg2U2hyWyH76p5rXTIptibx3d9SkuiEDQ&callback=initMap"></script>
+			<div class="floatBox" style="margin-top: 40px;">
+				<div class="flBox">
+					<div class="cnb_1" id="tottalcnt"><span style="font-weight:bold;color:#999" th:text="|${total} items total|"></span></div>
+				</div>
+				<div class="frBox">
 				<span id="REG_BTN" class="REG_BTN" style="display: none;">
 
                 </span>
-            </div>
-        </div>
-        <div class="board_box" style="margin-top: -35px;">
-			<table id="table1 mt45" cellpadding="0" cellspacing="0" border="0" class="data_sheet01 mt45">
-				<colgroup id="setCol"><col style="width:4%"><col style="width:4%"><col><col><col><col><col></colgroup>
-				<thead id="field1"><tr><th>No</th>
-				<th><a href="javascript:userSorting('FIELD_CATEGORY');">Classification</a></th>
-				<th><a href="javascript:userSorting('FIELD_TITLE');">Title</a></th>
-				<th><a href="javascript:userSorting('FIELD_REGISTER');">Registrant</a></th>
-				<th><a href="javascript:userSorting('FIELD_REG_DATE');">Registration date</a></th></tr></thead>
-				<tbody id="list1">
-						<tr th:if="${flag} == 1" th:each="dataDomain : ${lists}" style = "cursor:pointer;" onClick = " location.href='/MCHMSView/?&ID=${dataDomain.id}'">
-							<td class="FILE_CNT"><div th:text="${dataDomain.index}"></div></td>
-							<td class="FIELD_CATEGORY" title="Monuments"><div th:text="${dataDomain.clResult}"></div></td>
-							<td class="FIELD_TITLE al elli"><div th:text="${dataDomain.title}"></div></td>
-							<td class="FIELD_REGISTER"><div th:text="${dataDomain.registrant}"></div></td>
-							<td class="FIELD_REG_DATE"><div th:text="${dataDomain.registrationDate}"></div></td>
-						</tr>
-
-						<tr th:unless="${flag} == 1" th:each="dataDomain : ${cl}" style = "cursor:pointer;" onClick = " location.href='/MCHMSView/?&ID=${dataDomain.id}'">
-							<td class="FILE_CNT" style = "text-align= center"><div th:text="${dataDomain.id}"></div></td>
-							<td class="FIELD_CATEGORY" title="Monuments"><div></div></td>
-							<td class="FIELD_TITLE elli"><div th:text="${dataDomain.title}"></div></td>
-							<td class="FIELD_REGISTER"><div th:text="${dataDomain.registrant}"></div></td>
-							<td class="FIELD_REG_DATE"><div th:text="${dataDomain.registrationDate}"></div></td>
-						</tr>
-				</tbody>
-			</table>
+				</div>
 			</div>
-            <div class="floatBox" style="margin-top: 10px;">
-                <div class="flBox">
+			<div class="board_box" style="margin-top: -35px;">
+				<table id="table1 mt45" cellpadding="0" cellspacing="0" border="0" class="data_sheet01 mt45">
+					<colgroup id="setCol"><col style="width:4%"><col style="width:4%"><col><col><col><col><col></colgroup>
+					<thead id="field1"><tr><th>No</th>
+						<th><a href="javascript:userSorting('FIELD_CATEGORY');">Classification</a></th>
+						<th><a href="javascript:userSorting('FIELD_TITLE');">Title</a></th>
+						<th><a href="javascript:userSorting('FIELD_REGISTER');">Registrant</a></th>
+						<th><a href="javascript:userSorting('FIELD_REG_DATE');">Registration date</a></th></tr></thead>
+					<tbody id="list1">
+					<tr th:if="${flag} == 1" th:each="dataDomain : ${lists}" style = "cursor:pointer;" th:onclick="'location.href = \'' + @{/MCHMSView/?ID={ID}(ID=${dataDomain.id})} + '\''">
+						<td class="FILE_CNT"><div th:text="${dataDomain.index}"></div></td>
+						<td class="FIELD_CATEGORY" title="Monuments"><div th:text="${dataDomain.clResult}"></div></td>
+						<td class="FIELD_TITLE al elli"><div th:text="${dataDomain.title}"></div></td>
+						<td class="FIELD_REGISTER"><div th:text="${dataDomain.registrant}"></div></td>
+						<td class="FIELD_REG_DATE"><div th:text="${dataDomain.registrationDate}"></div></td>
+					</tr>
 
-                    <div class="frBox REG_BTN" style="display: block; float:left;">
-	                    <a th:if="${session.value == null}" href="/MCHMSWrite/?City_id=${City_id}" style = "right:0; position : absolute" class="btn btnB">Upload</a>
-	                </div>
-                </div>
+					<tr th:unless="${flag} == 1" th:each="dataDomain : ${cl}" style = "cursor:pointer;" th:onclick="'location.href = \'' + @{/MCHMSView/?ID={ID}(ID=${dataDomain.id})} + '\''">
+						<td class="FILE_CNT" style = "text-align= center"><div th:text="${dataDomain.id}"></div></td>
+						<td class="FIELD_CATEGORY" title="Monuments"><div></div></td>
+						<td class="FIELD_TITLE elli"><div th:text="${dataDomain.title}"></div></td>
+						<td class="FIELD_REGISTER"><div th:text="${dataDomain.registrant}"></div></td>
+						<td class="FIELD_REG_DATE"><div th:text="${dataDomain.registrationDate}"></div></td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="floatBox" style="margin-top: 10px;">
+				<div class="flBox">
 
-            </div>
+					<div class="frBox REG_BTN" style="display: block; float:left;">
+						<a th:if="${session.value == null}" href="/MCHMSWrite/?City_id=${City_id}" style = "right:0; position : absolute" class="btn btnB">Upload</a>
+					</div>
+				</div>
+
+			</div>
 		</form>
 	</div>
 </div>

@@ -47,6 +47,7 @@ public class SearchCont {
             List<City> museums = cityService.getMuseums();
 
             if(StringUtils.isEmpty(cityId)) {
+
                 String keyWord = request.getParameter("Keyword");
                 List<DataDomain> totalList = dataService.getDataByKeyword(keyWord);
                 int totalLength = totalList.size();

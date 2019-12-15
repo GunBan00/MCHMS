@@ -33,29 +33,6 @@ public class MainController {
 
     private static Logger logger = LoggerFactory.getLogger(MainController.class);
 
-    @RequestMapping(value = "/mCHMSView", method = RequestMethod.GET)
-    public ModelAndView mCHMSView(HttpServletRequest request) {
-        ModelAndView mv = new ModelAndView();
-
-        HttpSession session = request.getSession();
-        try {
-           DataDomain dataDomain = dataService.getEventInfo(request.getParameter("ID"));
-
-
-            String remarks_en = dataDomain.getRemarksEn();
-
-            mv.addObject("ResultView", dataDomain);
-            mv.addObject("session",session);
-            mv.setViewName("View/MCHMSView");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return mv;
-    }
-
-
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView base(HttpServletRequest request) {
 
