@@ -16,7 +16,7 @@ public class DataService {
     @Autowired
     private DataMapper dataMapper;
 
-    public DataDomain getEventInfo(String id) throws Exception {
+    public DataDomain getDataInfo(String id) throws Exception {
         DataDomain dataDomain = dataMapper.selectData(id);
         return dataDomain;
     }

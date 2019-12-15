@@ -1,8 +1,12 @@
 package com.jeonbuk.mchms.cont.DispacherCont.view;
 
 import com.jeonbuk.mchms.cont.DispacherCont.main.MainController;
+import com.jeonbuk.mchms.domain.City;
 import com.jeonbuk.mchms.domain.DataDomain;
+import com.jeonbuk.mchms.domain.EventDomain;
+import com.jeonbuk.mchms.service.city.CityService;
 import com.jeonbuk.mchms.service.data.DataService;
+import com.jeonbuk.mchms.service.event.EventService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
+import java.util.List;
 
 @Controller
 public class ViewController {
@@ -25,14 +30,20 @@ public class ViewController {
     @Autowired
     private DataService dataService;
 
+    @Autowired
+    private CityService cityService;
+
+    @Autowired
+    private EventService eventService;
+
     @RequestMapping(value = "/MCHMSView", method = RequestMethod.GET)
     public ModelAndView mCHMSView(HttpServletRequest request, HttpServletResponse response) {
         ModelAndView mv = new ModelAndView();
 
         HttpSession session = request.getSession();
         try {
-
-            DataDomain dataDomain = dataService.getEventInfo(request.getParameter("ID"));
+            String id = request.getParameter("ID");
+            DataDomain dataDomain = dataService.getDataInfo(request.getParameter(id));
 
             if(dataDomain.getVisibility() == 1) {
                 if(session != null || dataDomain.getRegistrant() != session.getAttribute("id")) {
@@ -68,6 +79,15 @@ public class ViewController {
                 xPoint = dataDomain.getLatitude();
                 yPoint = dataDomain.getLongitude();
             }
+
+            List<City> museums = cityService.getMuseums();
+
+            List<EventDomain> eventDomain = eventService.getEventInfo(id);
+
+
+
+
+
 
 
 
