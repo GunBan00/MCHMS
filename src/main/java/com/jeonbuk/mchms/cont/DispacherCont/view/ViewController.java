@@ -2,9 +2,11 @@ package com.jeonbuk.mchms.cont.DispacherCont.view;
 
 import com.jeonbuk.mchms.cont.DispacherCont.main.MainController;
 import com.jeonbuk.mchms.domain.City;
+import com.jeonbuk.mchms.domain.Classification;
 import com.jeonbuk.mchms.domain.DataDomain;
 import com.jeonbuk.mchms.domain.EventDomain;
 import com.jeonbuk.mchms.service.city.CityService;
+import com.jeonbuk.mchms.service.classification.ClassificationService;
 import com.jeonbuk.mchms.service.data.DataService;
 import com.jeonbuk.mchms.service.event.EventService;
 import org.slf4j.Logger;
@@ -36,14 +38,19 @@ public class ViewController {
     @Autowired
     private EventService eventService;
 
+    @Autowired
+    private ClassificationService classificationService;
+
     @RequestMapping(value = "/MCHMSView", method = RequestMethod.GET)
     public ModelAndView mCHMSView(HttpServletRequest request, HttpServletResponse response) {
         ModelAndView mv = new ModelAndView();
 
         HttpSession session = request.getSession();
+        mv.addObject("session", session);
+
         try {
             String id = request.getParameter("ID");
-            DataDomain dataDomain = dataService.getDataInfo(request.getParameter(id));
+            DataDomain dataDomain = dataService.getDataInfo(id);
 
             if(dataDomain.getVisibility() == 1) {
                 if(session != null || dataDomain.getRegistrant() != session.getAttribute("id")) {
@@ -62,14 +69,14 @@ public class ViewController {
 
 
             String remarksEn = dataDomain.getRemarksEn();
-            String remarksMy = dataDomain.getRemarksMy();
+            String referenceEn = dataDomain.getReferenceEn();
 
             if(StringUtils.isEmpty(remarksEn)) {
                 remarksEn = "There is no content.";
             }
 
-            if(StringUtils.isEmpty(remarksMy)) {
-                remarksMy = "There is no content.";
+            if(StringUtils.isEmpty(referenceEn)) {
+                referenceEn = "There is no content.";
             }
 
             double xPoint = 0;
@@ -82,24 +89,23 @@ public class ViewController {
 
             List<City> museums = cityService.getMuseums();
 
-            List<EventDomain> eventDomain = eventService.getEventInfo(id);
+            List<EventDomain> image = eventService.getEventInfo(id);
 
+            City cityInfo = cityService.getCityInfoById(id);
 
-
-
-
-
-
-
-
-
-
-
-
-
+            Classification clInfo = classificationService.getClassificationInfoById(id);
 
             mv.addObject("ResultView", dataDomain);
-            mv.addObject("session",session);
+            mv.addObject("Remarks_en", remarksEn);
+            mv.addObject("Reference_en",referenceEn);
+            mv.addObject("City_id", dataDomain.getCityId());
+            mv.addObject("x", xPoint);
+            mv.addObject("y", yPoint);
+            mv.addObject("Museum", museums);
+            mv.addObject("Image", image);
+            mv.addObject("Image_num", 0);
+            mv.addObject("Clinfo", clInfo);
+            mv.addObject("Cityinfo", cityInfo);
             mv.setViewName("View/MCHMSView");
 
         } catch (Exception e) {

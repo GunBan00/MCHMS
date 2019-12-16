@@ -13,7 +13,7 @@ public class EventService {
     private EventMapper eventMapper;
 
     public List<EventDomain> getEventInfo(String id) {
-        eventMapper.getEventInfo(id);
+        return eventMapper.getEventInfo(id);
     }
 
 }

@@ -967,7 +967,7 @@
 	<!-- 내용부분 -->
 	<div class="conts">
 
-		<div><h4>{{ResultView.1}}</h4></div>
+		<div><h4 th:text="${ResultView.title}"></h4></div>
 
 		<h4 id="BOARD_TITLE" style="font-size: 20px;">
 
@@ -1199,16 +1199,16 @@
 					<tbody id="WriteUi">
 					<tr> <th>Classification</th>				<td colspan="3" th:text = "${cityInfo.cities}'-'${cityInfo.museum}'-'${clInfo.large}'-'${clInfo.middle}'-'${clInfo.Small}">
 					</td></tr>
-					<tr> <th>Title(EN)</th>						<td colspan="3" th:text = "%{resultView.text}"></td></tr>
-					<tr> <th>Period</th>						<td colspan="3" th:text = "%{resultView.period}"></td></tr>
-					<tr> <th>Location</th>						<td colspan="3" th:text = "%{resultView.location}"></td></tr>
-					<tr> <th>Place of Origin</th>				<td colspan="3" th:text = "%{resultView.origin}"></td></tr>
-					<tr> <th>Material</th>						<td colspan="3" th:text = "%{resultView.material}"></td></tr>
-					<tr> <th>Serial Number<span>(*)</span></th>	<td colspan="3" th:text = "%{resultView.serialNumber}"></td></tr>
-					<tr> <th>Latitude</th>						<td colspan="3" th:text = "%{resultView.latitude}"></td></tr>
-					<tr> <th>Longitude</th>						<td colspan="3" th:text = "%{resultView.longtitude}"></td></tr>
+					<tr> <th>Title(EN)</th>						<td colspan="3" th:text = "${ResultView.title}"></td></tr>
+					<tr> <th>Period</th>						<td colspan="3" th:text = "${ResultView.period}"></td></tr>
+					<tr> <th>Location</th>						<td colspan="3" th:text = "${ResultView.location}"></td></tr>
+					<tr> <th>Place of Origin</th>				<td colspan="3" th:text = "${ResultView.origin}"></td></tr>
+					<tr> <th>Material</th>						<td colspan="3" th:text = "${ResultView.material}"></td></tr>
+					<tr> <th>Serial Number<span>(*)</span></th>	<td colspan="3" th:text = "${ResultView.serialNumber}"></td></tr>
+					<tr> <th>Latitude</th>						<td colspan="3" th:text = "${ResultView.latitude}"></td></tr>
+					<tr> <th>Longitude</th>						<td colspan="3" th:text = "${ResultView.longtitude}"></td></tr>
 					<tr> <th>Department</th>					<td colspan="3">Business management 관리</td></tr>
-					<tr> <th>Registrant</th>					<td th:text = "%{resultView.registrant}"></td>	<th th:text = "%{resultView.registrationDate}">Registration date</th>	<td></td></tr>
+					<tr> <th>Registrant</th>					<td th:text = "${ResultView.registrant}"></td>	<th th:text = "${ResultView.registrationDate}">Registration date</th>	<td></td></tr>
 					</tbody>
 				</table>
 
@@ -1234,37 +1234,37 @@
 						</script>
 						<td style="padding:10px 0 10px 20px" id="FIELD_REMARK1">
 
-							<ul class="slider" th:if = "${imageNum} != 0">
-								<li th:each = "i : ${image}" th:each = "j : i" th:if = "j !=''">
+<!--							<ul class="slider" th:if = "${Image_num} != 0">-->
+<!--								<li th:each = "i : ${Image}" th:each = "j : i" th:if = "j !=''">-->
 
-									<img src="/MCHMS/${j}" style="cursor:pointer;"/>
+<!--									<img src="/MCHMS/${j}" style="cursor:pointer;"/>-->
 
-								</li>
-							</ul>
+<!--								</li>-->
+<!--							</ul>-->
 
 						</td>
 					</tr>
 					<tr id="trRemark1">
 						<!-- <td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Remark1(En)</strong></td> -->
 						<td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Remarks(En)</strong></td>
-						<td style="padding:10px 0 10px 20px" id="FIELD_REMARK2" th:text = "%{resultView.remarksEn}"></td>
+						<td style="padding:10px 0 10px 20px" id="FIELD_REMARK2" th:text = "%{ResultView.remarksEn}"></td>
 					</tr>
 
 					<tr id="trRemark1My" style="display: none;">
 						<!-- <td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Remark1(My)</strong></td> -->
 						<td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center" ><strong>Remarks(My)</strong></td>
-						<td style="padding:10px 0 10px 20px" th:text = "%{resultView.remarksEn}">
+						<td style="padding:10px 0 10px 20px" th:text = "%{ResultView.remarksEn}">
 							<!-- <textarea rows="8" cols="80" id="FIELD_REMARK1_MY" name="FIELD_REMARK1_MY" readonly="readonly"></textarea> -->
 						</td>
 					</tr>
 					<tr id="trRemark2">
 						<!-- <td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Remark2(En)</strong></td> -->
 						<td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Reference(En)</strong></td>
-						<td style="padding:10px 0 10px 20px" id="FIELD_REMARK2" th:text = "%{resultView.referenceEn}">{{ Reference_en }}</td>
+						<td style="padding:10px 0 10px 20px" id="FIELD_REMARK2" th:text = "%{ResultView.referenceEn}">{{ Reference_en }}</td>
 					</tr>
 					<tr id="trRemark2My" style="display: none;">
 						<td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Reference(My)</strong></td>
-						<td style="padding:10px 0 10px 20px" id="FIELD_REMARK2_MY" th:text = "%{resultView.referenceMy}">
+						<td style="padding:10px 0 10px 20px" id="FIELD_REMARK2_MY" th:text = "%{ResultView.referenceMy}">
 							<!-- <textarea rows="8" cols="80" id="FIELD_REMARK2_MY" name="FIELD_REMARK2_MY" readonly="readonly"></textarea> -->
 						</td>
 					</tr>
@@ -1276,12 +1276,12 @@
 					<a href="/MCHMSWrite/?City_id=${cityId}"style = "right:0; position : absolute" class="btn btnB">Upload</a>
 
 				</div>
-				<div class="frBox" style ="right: 10%; position: absolute;" th:unless="${session.value == null}" th:if="${Session.id == resultView.registrant}">
+				<div class="frBox" style ="right: 10%; position: absolute;" th:unless="${session.value == null}" th:if="${Session.id == ResultView.registrant}">
 
 					<a onclick="Alert_Del()" id="DELETE_BTN1" class="btn type2 btnB">Delete</a>
-					<a href="/MCHMSModify/?ID=${resultView.cityId}" onclick="" id="UPDATE_BTN1" class="btn type2 btnB">Modify</a>
+					<a href="/MCHMSModify/?ID=${ResultView.cityId}" onclick="" id="UPDATE_BTN1" class="btn type2 btnB">Modify</a>
 
-					<a href="/MCHMSSearch/?City_id=${resultView.cityId}" class="btn type2 btnG">List</a>
+					<a href="/MCHMSSearch/?City_id=${ResultView.cityId}" class="btn type2 btnG">List</a>
 				</div>
 			</div>
 		</form>

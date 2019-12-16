@@ -22,4 +22,11 @@ public class CityService {
 
         return cityMapper.getMuseums();
     }
+
+
+    public City getCityInfoById(String id) {
+
+        return cityMapper.getCityInfoById(id);
+
+    }
 }

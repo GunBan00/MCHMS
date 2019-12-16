@@ -14,4 +14,7 @@ public interface CityMapper {
 
     @Select("SELECT City_id as cityId, Cities as cities, Museum as museum FROM City")
     List<City> getMuseums();
+
+    @Select("SELECT City.Cities, City.Museum FROM City natural join Data as D WHERE D.ID = #{id}")
+    City getCityInfoById(String id);
 }
