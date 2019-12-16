@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class EventService {
@@ -12,7 +13,7 @@ public class EventService {
     @Autowired
     private EventMapper eventMapper;
 
-    public List<EventDomain> getEventInfo(String id) {
+    public Map<String, String> getEventInfo(String id) {
         return eventMapper.getEventInfo(id);
     }
 

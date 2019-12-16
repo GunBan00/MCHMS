@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class ViewController {
@@ -89,7 +89,33 @@ public class ViewController {
 
             List<City> museums = cityService.getMuseums();
 
-            List<EventDomain> image = eventService.getEventInfo(id);
+            Map<String, String> imageMap = eventService.getEventInfo(id);
+
+            List<String> imageList = new ArrayList<>();
+
+            if(imageMap != null) {
+                Set<String> keySet = imageMap.keySet();
+
+                Iterator it = keySet.iterator();
+
+                while(it.hasNext()) {
+                    String imageFile = imageMap.get(it.next());
+                    if(!StringUtils.isEmpty(imageFile)) {
+                        imageList.add(imageFile);
+                    }
+                }
+            }
+
+
+
+
+
+
+
+
+
+
+
 
             City cityInfo = cityService.getCityInfoById(id);
 
@@ -102,8 +128,8 @@ public class ViewController {
             mv.addObject("x", xPoint);
             mv.addObject("y", yPoint);
             mv.addObject("Museum", museums);
-            mv.addObject("Image", image);
-            mv.addObject("Image_num", 0);
+            mv.addObject("Image", imageList);
+            mv.addObject("Image_num", imageList.size());
             mv.addObject("Clinfo", clInfo);
             mv.addObject("Cityinfo", cityInfo);
             mv.setViewName("View/MCHMSView");
