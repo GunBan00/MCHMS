@@ -2,8 +2,10 @@ package com.jeonbuk.mchms.cont.DispacherCont.main;
 
 
 import com.jeonbuk.mchms.domain.City;
+import com.jeonbuk.mchms.domain.Classification;
 import com.jeonbuk.mchms.domain.DataDomain;
 import com.jeonbuk.mchms.service.city.CityService;
+import com.jeonbuk.mchms.service.classification.ClassificationService;
 import com.jeonbuk.mchms.service.data.DataService;
 
 import groovy.util.logging.Slf4j;
@@ -21,17 +23,17 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
-@Controller
-@Slf4j
-public class MainController {
+    @Controller
+    @Slf4j
+    public class MainController {
 
-    @Autowired
-    DataService dataService;
+        @Autowired
+        DataService dataService;
 
-    @Autowired
-    CityService cityService;
+        @Autowired
+        CityService cityService;
 
-    private static Logger logger = LoggerFactory.getLogger(MainController.class);
+        private static Logger logger = LoggerFactory.getLogger(MainController.class);
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView base(HttpServletRequest request) {
@@ -43,7 +45,6 @@ public class MainController {
 
             List<City> cities = cityService.getCities();
             List<City> museums = cityService.getMuseums();
-
             mv.addObject("City", cities);
             mv.addObject("Museum", museums);
             mv.addObject("MID_Page", "Main/Main.html");
