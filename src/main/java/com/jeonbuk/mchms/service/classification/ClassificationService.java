@@ -18,8 +18,11 @@ public class ClassificationService {
     public Classification getClassificationInfoById(String id) {
         return classificationMapper.getClassificationInfoById(id);
     }
-    public List<ClassificationCount> getClassificationCountByCities(String Cities) {
-        return classificationMapper.getClassificationCountByCities(Cities);
+
+    public List<ClassificationCount> getClassificationCountById(String Cities){
+        return classificationMapper.getClassificationCountById(Cities);
     }
+
+
 
 }
