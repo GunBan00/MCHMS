@@ -1,10 +1,7 @@
 package com.jeonbuk.mchms.service.user;
 
-import com.jeonbuk.mchms.domain.Classification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.jeonbuk.mchms.domain.UserInfo;
 
 import java.util.HashMap;
 import java.util.List;
@@ -24,8 +21,5 @@ public class UserService {
         sqlParam.put("pw", encPw);
 
         return userMapper.loginUser(sqlParam);
-    }
-    public UserInfo getUserInfo(String id) {
-        return userMapper.getUserInfo(id);
     }
 }
