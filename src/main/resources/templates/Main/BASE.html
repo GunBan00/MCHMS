@@ -129,6 +129,7 @@
 					<a href="/MCHMSLogin" class="btnLogout on" ><span id="spanLogout">Login</span></a>
 				</div>
 				<div th:unless="${session.value == null}">
+					<a href="/Mypage" class="MyPage">MY PAGE</a>
 					<span class="info" id="spanWelcome" th:text="|Welcome to ${session.id}|"></span>&nbsp;
 					<select id="SLT_USER_LANG" name="USER_LANG" onchange="selectUserLang();">
 						<option value="EN">English</option>
