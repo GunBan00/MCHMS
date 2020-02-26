@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="/js/jquery-ui-1.12.1/jquery-ui.min.css?ver=3">
     <script src="https://code.jquery.com/jquery-1.12.4.js?ver=3"></script>
     <script src="/js/jquery-ui-1.12.1/jquery-ui.min.js?ver=3"></script>
-
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8?ver=3">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi?ver=3">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -487,20 +487,20 @@
     </div>
 </div>
 
-<script type="text/javascript">
-     google.charts.load("current", {packages:["corechart"]});
+<script type="text/javascript" th:inline="javascript">
+      google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
          var data = google.visualization.arrayToDataTable([
-         ['Task', 'Hours per Day'],
-        /*<![CDATA[*/
+			['Task', 'Hours per Day'],
+		  /*<![CDATA[*/
 
-                /*[# th:each="cc : ${classCount}"]*/
+                /*[# th:each="cc : ${UsersClassificationCount}"]*/
                 [ /*[[${cc.large}]]*/,  /*[[${cc.count}]]*/ ],
           /*[/]*/
 
         /*]]>*/
-            ['abc',    0]
+				['abc',    0]
 
         ]);
         var options = {
@@ -510,10 +510,10 @@
         var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
         chart.draw(data, options);
       }
-    </script>
+</script>
 
 <div style="width:100%;">
-    <table class="tbType01 type2" style="width: 50%; margin-bottom: 50px;float:left">
+    <table class="tbType01 type2" style="width: 49%; margin-bottom: 50px; float:left; margin-top:4%;">
         <tbody id="WriteUi">
         <tr>
             <th>ID</th>
@@ -533,6 +533,40 @@
         </tr>
         </tbody>
     </table>
+    <div style="width: 49%;float: right;margin-top:3%;">
+        <div id="piechart_3d" style="width: 100%;height: 300px;"></div>
+        <div style="width: 100%;">
+            <table class="tbType01 type2" style="width: 80%;margin: 0 auto;">
+                <tbody id="WriteUi" th:each="UserClassificationStatistics : ${UsersClassificationCount}">
+                <tr th:if="${UserClassificationStatistics.count != 0}">
+                    <th colspan="3" th:text="${UserClassificationStatistics.large}"></th>
+                    <td colspan="3" th:text="${UserClassificationStatistics.count}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="board_box">
+    <table id="data_sheet01" cellpadding="0" cellspacing="0" border="0" class="tablesorter" style="border-top: 2px solid #646464; border-bottom:1px solid #dcdcdc; margin-top:45px !important;">
+        <colgroup id="setCol"><col><col><col><col><col></colgroup>
+        <th>Num</th>
+        <th id ="serial"style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc; color: #333; text-align: center; vertical-align: middle; cursor:pointer;">Serial</th>
+        <th  style="border-top:none; border-bottom: none; border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc;  color: #333; text-align: center; vertical-align: middle;">Region</th>
+        <th style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc; color: #333; text-align: center; vertical-align: middle;">Classification</th>
+        <th id ="title" style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc;  color: #333; text-align: center; vertical-align: middle; cursor:pointer;">Title</th>
+        <th id ="reg" style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc;   color: #333; text-align: center; vertical-align: middle; cursor:pointer;" >Registration date</th>
+        </tr></thead>
 
-    <div id="piechart_3d" style="width: 50%;float:right;height: 300px;"></div>
+        <tbody id="list1">
+            <tr th:each="dataDomain : ${lists}" th:onclick="'location.href = \'' + @{/MCHMSView/?ID={ID}(ID=${dataDomain.id})} + '\''" style=" border-top:none; border-bottom: none; padding:14px 0; color: #333; text-align: center; vertical-align: middle; cursor:pointer;">
+                <td class="FILE_NUM"><div th:text="${dataDomain.index}"></div></td>
+                <td class="FILE_CNT"><div th:text="${dataDomain.serialNumber}"></div></td>
+                <td class="FIELD_CATEGORY" title="Monuments"><div th:text="${dataDomain.ciResult}"></div></td>
+                <td class="FIELD_TITLE elli"><div th:text="${dataDomain.clResult}"></div></td>
+                <td class="FIELD_REGISTER"><div th:text="${dataDomain.Title}"></div></td>
+                <td class="FIELD_REG_DATE"><div th:text="${dataDomain.registrationDate}"></div></td>
+            </tr>
+        </tbody>
+    </table>
 </div>

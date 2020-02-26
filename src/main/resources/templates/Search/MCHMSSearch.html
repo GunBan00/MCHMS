@@ -960,24 +960,27 @@
 			</div>
 			<div class="board_box" style="margin-top: -35px;">
 				<table id="table1 mt45" cellpadding="0" cellspacing="0" border="0" class="data_sheet01 mt45">
-					<colgroup id="setCol"><col style="width:4%"><col style="width:4%"><col><col><col><col><col></colgroup>
-					<thead id="field1"><tr><th>No</th>
-						<th><a href="javascript:userSorting('FIELD_CATEGORY');">Classification</a></th>
-						<th><a href="javascript:userSorting('FIELD_TITLE');">Title</a></th>
-						<th><a href="javascript:userSorting('FIELD_REGISTER');">Registrant</a></th>
-						<th><a href="javascript:userSorting('FIELD_REG_DATE');">Registration date</a></th></tr></thead>
+					<colgroup id="setCol"><col style="width:4%"><col style="width:4%"><col><col><col><col><col><col></colgroup>
+					<thead id="field1"><tr><th>Num</th>
+						<th>Serial</th>
+						<th>Region</th>
+						<th>Classification</th>
+						<th>Title</th>
+						<th>Registration date</th></tr></thead>
 					<tbody id="list1">
-					<tr th:if="${flag} == 1" th:each="dataDomain : ${lists}" style = "cursor:pointer;" th:onclick="'location.href = \'' + @{/MCHMSView/?ID={ID}(ID=${dataDomain.id})} + '\''">
-						<td class="FILE_CNT"><div th:text="${dataDomain.index}"></div></td>
-						<td class="FIELD_CATEGORY" title="Monuments"><div th:text="${dataDomain.clResult}"></div></td>
-						<td class="FIELD_TITLE al elli"><div th:text="${dataDomain.title}"></div></td>
-						<td class="FIELD_REGISTER"><div th:text="${dataDomain.registrant}"></div></td>
+					<tr th:if="${flag} == 0" th:each="dataDomain : ${lists}" style = "cursor:pointer;" th:onclick="'location.href = \'' + @{/MCHMSView/?ID={ID}(ID=${dataDomain.id})} + '\''">
+						<td class="FILE_NUM"><div th:text="${dataDomain.index}"></div></td>
+						<td class="FIELD_SERIAL" title="Monuments"><div th:text="${dataDomain.serialNumber}"></div></td>
+						<td class="FIELD_REGION"><div th:text="${Rejeon}"></div></td>
+						<td class="FIELD_CATEGORY"><div th:text="${dataDomain.clResult}"></div></td>
+						<td class="FIELD_TITLE"><div th:text="${dataDomain.title}"></div></td>
 						<td class="FIELD_REG_DATE"><div th:text="${dataDomain.registrationDate}"></div></td>
 					</tr>
 
-					<tr th:unless="${flag} == 1" th:each="dataDomain : ${cl}" style = "cursor:pointer;" th:onclick="'location.href = \'' + @{/MCHMSView/?ID={ID}(ID=${dataDomain.id})} + '\''">
-						<td class="FILE_CNT" style = "text-align= center"><div th:text="${dataDomain.id}"></div></td>
-						<td class="FIELD_CATEGORY" title="Monuments"><div></div></td>
+					<tr th:unless="${flag} == 0" th:each="dataDomain : ${lists}" style = "cursor:pointer;" th:onclick="'location.href = \'' + @{/MCHMSView/?ID={ID}(ID=${dataDomain.id})} + '\''">
+						<td class="FILE_CNT" style = "text-align= center"><div th:text="${dataDomain.index}"></div></td>
+						<td class="FIELD_CATEGORY" title="Monuments"><div th:text="${dataDomain.clResult}"></div></td>
+						<td class="FIELD_CATEGORY"><div th:text="${dataDomain.clResult}"></div></td>
 						<td class="FIELD_TITLE elli"><div th:text="${dataDomain.title}"></div></td>
 						<td class="FIELD_REGISTER"><div th:text="${dataDomain.registrant}"></div></td>
 						<td class="FIELD_REG_DATE"><div th:text="${dataDomain.registrationDate}"></div></td>

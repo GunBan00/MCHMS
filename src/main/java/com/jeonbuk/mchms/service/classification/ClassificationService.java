@@ -23,6 +23,8 @@ public class ClassificationService {
         return classificationMapper.getClassificationCountById(Cities);
     }
 
-
+    public Classification getCategoryFromClassification(int Classifi){
+        return classificationMapper.getCategoryFromClassification(Classifi);
+    }
 
 }

@@ -1,7 +1,9 @@
 package com.jeonbuk.mchms.service.user;
 
 import com.jeonbuk.mchms.domain.City;
+import com.jeonbuk.mchms.domain.UserDataDomain;
 import com.jeonbuk.mchms.domain.UserInfo;
+import com.jeonbuk.mchms.domain.UserWriteClassificationCount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +27,14 @@ public class UserService {
         return userMapper.loginUser(sqlParam);
     }
     public UserInfo selectUserInfo(String id) {
-
         return userMapper.selectUserInfo(id);
+    }
 
+    public List<UserWriteClassificationCount> getClassificationCountByUserId(String id) {
+        return userMapper.getClassificationCountByUserId(id);
+    }
+
+    public List<UserDataDomain> selectUserData(String Registrant){
+        return userMapper.selectUserData(Registrant);
     }
 }

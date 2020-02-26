@@ -19,7 +19,7 @@ public interface DataMapper {
     List<DataDomain> getDataByKeyword(String keyword);
 
     @Select("<script><choose><when test=\"cityId != 0\"> " +
-            "SELECT ID as id, Title as title, Latitude as latitude, Longitude as longitude FROM Data WHERE City_id = #{cityId} ORDER BY Data.ID desc"
+            "SELECT ID as id, Title as title, Serial_Number as serialnumber, Classification_id as classificationId, Latitude as latitude, Longitude as longitude, Registration_Date as registrationDate FROM Data WHERE City_id = #{cityId} ORDER BY Data.ID desc"
             +"</when><otherwise> "
             +"SELECT * FROM Data ORDER BY Data.ID desc"
             +"</otherwise></choose></script>"

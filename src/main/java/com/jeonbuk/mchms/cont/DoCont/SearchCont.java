@@ -4,6 +4,7 @@ import com.jeonbuk.mchms.domain.City;
 import com.jeonbuk.mchms.domain.Classification;
 import com.jeonbuk.mchms.domain.DataDomain;
 import com.jeonbuk.mchms.service.city.CityService;
+import com.jeonbuk.mchms.service.classification.ClassificationService;
 import com.jeonbuk.mchms.service.data.DataService;
 import groovy.util.logging.Slf4j;
 import org.slf4j.Logger;
@@ -32,6 +33,9 @@ public class SearchCont {
     @Autowired
     private CityService cityService;
 
+    @Autowired
+    private ClassificationService classificationService;
+
     @RequestMapping(value = "/MCHMSSearch", method = RequestMethod.GET)
     public ModelAndView base(ModelAndView mv, HttpServletRequest request) {
 
@@ -46,8 +50,8 @@ public class SearchCont {
             double avgLong = 0;
             List<City> museums = cityService.getMuseums();
 
-            if(StringUtils.isEmpty(cityId)) {
-
+           if(StringUtils.isEmpty(cityId)) {
+                flag = 1;
                 String keyWord = request.getParameter("Keyword");
                 List<DataDomain> totalList = dataService.getDataByKeyword(keyWord);
                 int totalLength = totalList.size();
@@ -66,14 +70,14 @@ public class SearchCont {
                     mv.addObject("avg_Lat", avgLat);
                     mv.addObject("avg_Long", avgLong);
                 }else {
-                    int pi = 0;
-                    flag = 1;
 
                     int index = 1;
                     for(DataDomain dataDomain : totalList) {
-                        Classification classification = dataService.getClassficationById(dataDomain.getClassificationId());
-                        dataDomain.setClResult("");
+                        Classification Category = classificationService.getCategoryFromClassification(dataDomain.getClassificationId());
+
+                        dataDomain.setClResult(Category.getLarge());
                         dataDomain.setIndex(index);
+
                         avgLat = avgLat + dataDomain.getLatitude();
                         avgLong = avgLong + dataDomain.getLongitude();
                         index++;
@@ -92,16 +96,24 @@ public class SearchCont {
                     mv.addObject("Session", session);
                     mv.addObject("flag", flag);
                 }
-            }else {
+            }
+            else {
                 List<DataDomain> totalList =  dataService.getDataByCityId(Integer.parseInt(cityId));
 
-                int totalLength = totalList.size();
+                City Rejeon = cityService.getRejeonFromCityId(Integer.parseInt(cityId));
 
+                int totalLength = totalList.size();
+                System.out.println("test : " + totalLength);
                 int index = 1;
                 for(DataDomain dataDomain : totalList) {
+                    Classification Category = classificationService.getCategoryFromClassification(dataDomain.getClassificationId());
+                    dataDomain.setClResult(Category.getLarge());
+
                     dataDomain.setIndex(index);
+
                     avgLat = avgLat + dataDomain.getLatitude();
                     avgLong = avgLong + dataDomain.getLongitude();
+                    index++;
                 }
 
                 if(totalLength != 0) {
@@ -112,7 +124,7 @@ public class SearchCont {
                     avgLong = 96.10056;
                 }
 
-                mv.addObject("cl", totalList);
+                mv.addObject("Rejeon", Rejeon);
                 mv.addObject("avg_Lat", avgLat);
                 mv.addObject("avg_Long", avgLong);
                 mv.addObject("total", totalLength);

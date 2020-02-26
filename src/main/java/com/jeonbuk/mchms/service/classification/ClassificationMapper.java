@@ -16,4 +16,6 @@ public interface ClassificationMapper {
     @Select("SELECT COUNT(Large) as count, Large as large FROM City LEFT OUTER JOIN (Data LEFT OUTER JOIN Classification ON (Data.Classification_id = Classification.classification_id)) ON (Data.City_id = City.City_id) WHERE City.Cities = #{Cities} GROUP BY Large;")
     List<ClassificationCount> getClassificationCountById(String Cities);
 
+    @Select("SELECT Large as large FROM Classification WHERE classification_id = #{Classifi}")
+    Classification getCategoryFromClassification(int Classifi);
 }

@@ -17,4 +17,7 @@ public interface CityMapper {
 
     @Select("SELECT City.Cities, City.Museum FROM City natural join Data as D WHERE D.ID = #{id}")
     City getCityInfoById(String id);
+
+    @Select("SELECT Cities as cities FROM City WHERE City_id = #{CityId}")
+    City getRejeonFromCityId(int CityId);
 }
