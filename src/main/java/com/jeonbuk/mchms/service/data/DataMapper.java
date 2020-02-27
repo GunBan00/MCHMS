@@ -27,5 +27,5 @@ public interface DataMapper {
     List<DataDomain> getDataByCityId(int cityId);
 
     @Select("SELECT classification_id as classificationId, Large as large, Middle as middle, Small as small FROM Classification WHERE classification_id = #{classId}")
-    Classification getClassficationById(int classId);
+    Classification getClassificationById(int classId);
 }

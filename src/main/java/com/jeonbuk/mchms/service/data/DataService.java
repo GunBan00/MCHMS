@@ -27,9 +27,9 @@ public class DataService {
         return dataMapper.getDataByKeyword(keyword);
     }
 
-    public Classification getClassficationById(int classId) throws Exception{
+    public Classification getClassificationById(int classId) throws Exception{
 
-        return dataMapper.getClassficationById(classId);
+        return dataMapper.getClassificationById(classId);
     }
 
     public List<DataDomain> getDataByCityId(int cityId) throws Exception {

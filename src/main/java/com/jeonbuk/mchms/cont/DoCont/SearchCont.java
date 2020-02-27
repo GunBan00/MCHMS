@@ -3,9 +3,11 @@ package com.jeonbuk.mchms.cont.DoCont;
 import com.jeonbuk.mchms.domain.City;
 import com.jeonbuk.mchms.domain.Classification;
 import com.jeonbuk.mchms.domain.DataDomain;
+import com.jeonbuk.mchms.domain.FileEventDomain;
 import com.jeonbuk.mchms.service.city.CityService;
 import com.jeonbuk.mchms.service.classification.ClassificationService;
 import com.jeonbuk.mchms.service.data.DataService;
+import com.jeonbuk.mchms.service.fileevent.FileEventService;
 import groovy.util.logging.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,6 +37,9 @@ public class SearchCont {
 
     @Autowired
     private ClassificationService classificationService;
+
+    @Autowired
+    private FileEventService fileEventService;
 
     @RequestMapping(value = "/MCHMSSearch", method = RequestMethod.GET)
     public ModelAndView base(ModelAndView mv, HttpServletRequest request) {
@@ -102,6 +107,8 @@ public class SearchCont {
 
                 City Rejeon = cityService.getRejeonFromCityId(Integer.parseInt(cityId));
 
+                String RejeonName = Rejeon.getCities();
+
                 int totalLength = totalList.size();
                 System.out.println("test : " + totalLength);
                 int index = 1;
@@ -109,24 +116,23 @@ public class SearchCont {
                     Classification Category = classificationService.getCategoryFromClassification(dataDomain.getClassificationId());
                     dataDomain.setClResult(Category.getLarge());
 
+                    FileEventDomain fileEventDomain = fileEventService.getFilesNameFromDataID(dataDomain.getClassificationId());
+
+                    if (fileEventDomain != null){
+                        String[] filesArray = fileEventDomain.getFiles().split("|");
+                        String ImageFileInMap = "/Staitc/MCHMS/" + filesArray[0];
+
+                        dataDomain.setImageFileInMap(ImageFileInMap);
+                    }
                     dataDomain.setIndex(index);
 
-                    avgLat = avgLat + dataDomain.getLatitude();
-                    avgLong = avgLong + dataDomain.getLongitude();
                     index++;
                 }
 
-                if(totalLength != 0) {
-                    avgLat = avgLat / totalLength;
-                    avgLong = avgLong / totalLength;
-                }else {
-                    avgLat = 19.75056;
-                    avgLong = 96.10056;
-                }
+                City selectCityLocation = cityService.getCityLocationFromCityid(Integer.parseInt(cityId));
 
-                mv.addObject("Rejeon", Rejeon);
-                mv.addObject("avg_Lat", avgLat);
-                mv.addObject("avg_Long", avgLong);
+                mv.addObject("Rejeon", RejeonName);
+                mv.addObject("CityLocation", selectCityLocation);
                 mv.addObject("total", totalLength);
                 mv.addObject("lists", totalList);
                 mv.addObject("Museum", museums);

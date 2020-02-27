@@ -20,4 +20,7 @@ public interface CityMapper {
 
     @Select("SELECT Cities as cities FROM City WHERE City_id = #{CityId}")
     City getRejeonFromCityId(int CityId);
+
+    @Select("SELECT Latitude as latitude, Longtitude as longitude FROM City WHERE City_id = #{CityId}")
+    City getCityLocationFromCityid(int CityId);
 }

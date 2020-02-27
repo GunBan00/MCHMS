@@ -28,4 +28,8 @@ public class CityService {
     public City getRejeonFromCityId(int CityId){
         return cityMapper.getRejeonFromCityId(CityId);
     }
+
+    public City getCityLocationFromCityid(int CityId){
+        return cityMapper.getCityLocationFromCityid(CityId);
+    }
 }

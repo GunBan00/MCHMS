@@ -30,5 +30,6 @@ public class DataDomain {
     String registrant;
     String registrationDate;
     String clResult;
+    String imageFileInMap;
     int index;
 }

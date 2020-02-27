@@ -1,14 +1,11 @@
 package com.jeonbuk.mchms.cont.DispacherCont.view;
 
-import com.jeonbuk.mchms.cont.DispacherCont.main.MainController;
 import com.jeonbuk.mchms.domain.City;
 import com.jeonbuk.mchms.domain.Classification;
 import com.jeonbuk.mchms.domain.DataDomain;
-import com.jeonbuk.mchms.domain.EventDomain;
 import com.jeonbuk.mchms.service.city.CityService;
 import com.jeonbuk.mchms.service.classification.ClassificationService;
 import com.jeonbuk.mchms.service.data.DataService;
-import com.jeonbuk.mchms.service.event.EventService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +31,6 @@ public class ViewController {
 
     @Autowired
     private CityService cityService;
-
-    @Autowired
-    private EventService eventService;
 
     @Autowired
     private ClassificationService classificationService;
@@ -89,34 +83,6 @@ public class ViewController {
 
             List<City> museums = cityService.getMuseums();
 
-            Map<String, String> imageMap = eventService.getEventInfo(id);
-
-            List<String> imageList = new ArrayList<>();
-
-            if(imageMap != null) {
-                Set<String> keySet = imageMap.keySet();
-
-                Iterator it = keySet.iterator();
-
-                while(it.hasNext()) {
-                    String imageFile = imageMap.get(it.next());
-                    if(!StringUtils.isEmpty(imageFile)) {
-                        imageList.add(imageFile);
-                    }
-                }
-            }
-
-
-
-
-
-
-
-
-
-
-
-
             City cityInfo = cityService.getCityInfoById(id);
 
             Classification clInfo = classificationService.getClassificationInfoById(id);
@@ -128,8 +94,6 @@ public class ViewController {
             mv.addObject("x", xPoint);
             mv.addObject("y", yPoint);
             mv.addObject("Museum", museums);
-            mv.addObject("Image", imageList);
-            mv.addObject("Image_num", imageList.size());
             mv.addObject("Clinfo", clInfo);
             mv.addObject("Cityinfo", cityInfo);
             mv.setViewName("View/MCHMSView");

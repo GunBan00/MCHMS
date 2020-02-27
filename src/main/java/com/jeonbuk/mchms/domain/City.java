@@ -9,4 +9,6 @@ public class City {
     int cityId;
     String cities;
     String museum;
+    Double latitude;
+    Double longitude;
 }
