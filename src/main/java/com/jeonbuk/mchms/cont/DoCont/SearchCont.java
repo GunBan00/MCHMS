@@ -1,5 +1,4 @@
 package com.jeonbuk.mchms.cont.DoCont;
-
 import com.jeonbuk.mchms.domain.City;
 import com.jeonbuk.mchms.domain.Classification;
 import com.jeonbuk.mchms.domain.DataDomain;
@@ -17,7 +16,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.xml.crypto.Data;
@@ -28,13 +26,10 @@ import java.util.Map;
 @Slf4j
 public class SearchCont {
     private static Logger logger = LoggerFactory.getLogger(SearchCont.class);
-
     @Autowired
     private DataService dataService;
-
     @Autowired
     private CityService cityService;
-
     @Autowired
     private ClassificationService classificationService;
 
@@ -46,51 +41,39 @@ public class SearchCont {
 
         try {
             mv.setViewName("Search/MCHMSSearch");
-
             HttpSession session = request.getSession();
             String cityId = request.getParameter("City_id");
-
             int flag = 0;
             double avgLat = 0;
             double avgLong = 0;
             List<City> museums = cityService.getMuseums();
-
-           if(StringUtils.isEmpty(cityId)) {
+            if(StringUtils.isEmpty(cityId)) {
                 flag = 1;
                 String keyWord = request.getParameter("Keyword");
                 List<DataDomain> totalList = dataService.getDataByKeyword(keyWord);
                 int totalLength = totalList.size();
-
-
 //            if(totalLength != 0) {
 //                avgLat = 0;
 //                avgLong = 0;
 //            }
-
                 if(totalLength ==0) {
                     avgLat = 19.75056;
                     avgLong = 96.10056;
-
                     mv.addObject("total", totalLength);
                     mv.addObject("avg_Lat", avgLat);
                     mv.addObject("avg_Long", avgLong);
                 }else {
-
                     int index = 1;
                     for(DataDomain dataDomain : totalList) {
                         Classification Category = classificationService.getCategoryFromClassification(dataDomain.getClassificationId());
-
                         dataDomain.setClResult(Category.getLarge());
                         dataDomain.setIndex(index);
-
                         avgLat = avgLat + dataDomain.getLatitude();
                         avgLong = avgLong + dataDomain.getLongitude();
                         index++;
                     }
-
                     avgLat = avgLat / totalLength;
                     avgLong = avgLong / totalLength;
-
                     mv.addObject("avg_Lat", avgLat);
                     mv.addObject("avg_Long", avgLong);
                     mv.addObject("Keyword", keyWord);
@@ -126,11 +109,23 @@ public class SearchCont {
                     }
                     dataDomain.setIndex(index);
 
+                    avgLat = avgLat + dataDomain.getLatitude();
+                    avgLong = avgLong + dataDomain.getLongitude();
                     index++;
                 }
 
+                if(totalLength != 0) {
+                    avgLat = avgLat / totalLength;
+                    avgLong = avgLong / totalLength;
+                }else {
+                    avgLat = 19.75056;
+                    avgLong = 96.10056;
+                }
                 City selectCityLocation = cityService.getCityLocationFromCityid(Integer.parseInt(cityId));
 
+                mv.addObject("Rejeon", Rejeon);
+                mv.addObject("avg_Lat", avgLat);
+                mv.addObject("avg_Long", avgLong);
                 mv.addObject("Rejeon", RejeonName);
                 mv.addObject("CityLocation", selectCityLocation);
                 mv.addObject("total", totalLength);
@@ -139,14 +134,10 @@ public class SearchCont {
                 mv.addObject("City_id", cityId);
                 mv.addObject("Session", session);
                 mv.addObject("flag", flag);
-
             }
-
         } catch (Exception e) {
-           logger.error(e.toString());
+            logger.error(e.toString());
         }
-
-
         return mv;
     }
 }

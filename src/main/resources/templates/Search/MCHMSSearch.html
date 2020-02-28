@@ -937,12 +937,8 @@
 							});
 
 							var infoContent = '<div style="width : 200px; text-align: center;">'+'<a href="/MCHMSView/?&ID=' + data[i].id + '"style="font-size: 17px; ">' +
-							'<div style="padding:5px; margin-bottom: 3px;">' + data[i].title + '</div>';
+							'<div style="padding:5px; margin-bottom: 3px;">' + data[i].title + '</div>' + '</a>' + '</div>';
 
-							if (data[i].imageFileInMap != "") {
-								infoContent = infoContent + '<img src='+ data[i].imageFileInMap + 'style="width:160px; height:90px;">';
-							}
-							infoContent = infoContent + '</a>' + '</div>';
 							google.maps.event.addListener(marker, 'click', (function(marker, content) {
 								return function() {
 									infowindow.setContent(content);
