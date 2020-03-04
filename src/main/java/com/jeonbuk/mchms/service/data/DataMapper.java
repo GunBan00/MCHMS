@@ -12,7 +12,7 @@ import java.util.Map;
 @Mapper
 public interface DataMapper {
 
-    @Select("SELECT Title title, City_id as cityId, Remarks_en as remarksEn , Reference_en as referenceEn, Latitude as latitude ,Longitude as longitude , Registrant as registrant, Visibility as visibility FROM Data WHERE ID = #{id}")
+    @Select("SELECT Title as title, City_id as cityId, Remarks_en as remarksEn, Reference_en as referenceEn, Latitude as latitude, Longitude as longitude, Registrant as registrant, Visibility as visibility FROM Data WHERE ID = #{id}")
     DataDomain selectData(String id);
 
     @Select("SELECT ID as id, Title as title, Latitude as latitude, Longitude as longitude, Classification_id as classificationId, Registrant as registrant,Registration_Date as registrationDate  FROM Data WHERE match(Title, Serial_Number, Remarks_en, Reference_en) against(#{keyword} in boolean mode)")
@@ -25,6 +25,15 @@ public interface DataMapper {
             +"</otherwise></choose></script>"
     )
     List<DataDomain> getDataByCityId(int cityId);
+
+    @Select("SELECT ID as id, Title as title, Serial_Number as serialnumber, Classification_id as classificationId, Data.Latitude as latitude, Data.Longitude as longitude, Registration_Date as registrationDate FROM Data LEFT OUTER JOIN City ON (Data.City_id = City.City_id) WHERE Data.City_id = ${cityId} ORDER BY City.Cities ${Order}")
+    List<DataDomain> getDataByCityIdAndJoinCity(Map<String, Object> sqlParam);
+
+    @Select("SELECT ID as id, Title as title, Serial_Number as serialnumber, Data.Classification_id as classificationId, Latitude as latitude, Longitude as longitude, Registration_Date as registrationDate FROM Data LEFT OUTER JOIN Classification ON (Data.Classification_id = Classification.classification_id) WHERE City_id = ${cityId} ORDER BY Classification.Large ${Order}")
+    List<DataDomain> getDataByCityIdAndJoinClassifi(Map<String, Object> sqlParam);
+
+    @Select("SELECT ID as id, Title as title, Serial_Number as serialnumber, Classification_id as classificationId, Latitude as latitude, Longitude as longitude, Registration_Date as registrationDate FROM Data WHERE City_id = ${cityId} ORDER BY Data.${TypeToSort} ${Order}")
+    List<DataDomain> getDataByCityIdAndNotJoin(Map<String, Object> sqlParam);
 
     @Select("SELECT classification_id as classificationId, Large as large, Middle as middle, Small as small FROM Classification WHERE classification_id = #{classId}")
     Classification getClassificationById(int classId);

@@ -976,24 +976,45 @@
 		<div id="map"></div>
 		<script th:inline="javascript">
 			function initMap() {
-				/*<![CDATA[*/
-				var locations = [['${ResultView.Title}', {{ x }}, {{ y }}]];
-				/*]]>*/
-				var map = new google.maps.Map(document.getElementById('map'), {
-					zoom: 16,
-					scrollwheel: false,
-					mapTypeId: google.maps.MapTypeId.HYBRID,
-					center: new google.maps.LatLng({{ x }},{{ y }})
-			});
+					/*<![CDATA[*/
+					var data = /*[[${ResultView}]]*/;
 
-				var marker, i;
-				for(i=0;i<=locations.length;i++){
-					var marker = new google.maps.Marker({
-						position: new google.maps.LatLng({{x}}, {{y}}),
-					map: map
-				});
+					var map = new google.maps.Map(document.getElementById('map'), {
+						zoom: 13,
+						scrollwheel: false,
+						zoomControl: true,
+						center: new google.maps.LatLng(/*[[${ResultView.latitude}]]*/, /*[[${ResultView.longitude}]]*/)
+					});
+
+					var infowindow = new google.maps.InfoWindow();
+
+					for(i=0;i<=data.length;i++){
+						if(data[i].latitude != 0 && data[i].longitude != 0){
+							var marker = new google.maps.Marker({
+								position: new google.maps.LatLng(data[i].latitude, data[i].longitude),
+								title : data[i].title,
+								map: map
+							});
+
+							var infoContent = '<div style="width : 200px; text-align: center;">'+'<a href="/MCHMSView/?&ID=' + data[i].id + '"style="font-size: 17px; ">' +
+							'<div style="padding:5px; margin-bottom: 3px;">' + data[i].title + '</div>';
+
+							if (data[i].imageFileInMap != null){
+								infoContent = infoContent + '<img src="/MCHMS/' + data[i].imageFileInMap + '" style="width:160px; height:90px;">';
+							}
+
+							infoContent = infoContent + '</a>' + '</div>';
+
+							google.maps.event.addListener(marker, 'click', (function(marker, content) {
+								return function() {
+									infowindow.setContent(content);
+									infowindow.open(map, marker);
+								}
+							})(marker, infoContent));
+						}
+					}
+					/*]]>*/
 				}
-			}
 		</script>
 		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg2U2hyWyH76p5rXTIptibx3d9SkuiEDQ&callback=initMap"></script>
 		<form id="listForm" name="listForm" method="post">

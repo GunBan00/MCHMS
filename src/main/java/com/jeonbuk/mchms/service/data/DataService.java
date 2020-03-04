@@ -21,7 +21,6 @@ public class DataService {
         return dataDomain;
     }
 
-
     public List<DataDomain> getDataByKeyword(String keyword) throws Exception{
         keyword = keyword + "*";
         return dataMapper.getDataByKeyword(keyword);
@@ -36,6 +35,33 @@ public class DataService {
         return dataMapper.getDataByCityId(cityId);
     }
 
+    public List<DataDomain> getDataByCityIdAndJoinCity(String cityId, String Order) throws Exception {
+        Map<String, Object> sqlParam = new HashMap<>();
 
+        sqlParam.put("cityId", cityId);
+        sqlParam.put("Order", Order);
+
+        return dataMapper.getDataByCityIdAndJoinCity(sqlParam);
+    }
+
+    public List<DataDomain> getDataByCityIdAndJoinClassifi(String cityId, String Order) throws Exception {
+        Map<String, Object> sqlParam = new HashMap<>();
+
+        sqlParam.put("cityId", cityId);
+        sqlParam.put("Order", Order);
+
+        return dataMapper.getDataByCityIdAndJoinClassifi(sqlParam);
+    }
+
+    public List<DataDomain> getDataByCityIdAndNotJoin(String cityId, String TypeToSort, String Order) throws Exception {
+
+        Map<String, Object> sqlParam = new HashMap<>();
+
+        sqlParam.put("cityId", cityId);
+        sqlParam.put("TypeToSort", TypeToSort);
+        sqlParam.put("Order", Order);
+
+        return dataMapper.getDataByCityIdAndNotJoin(sqlParam);
+    }
 
 }

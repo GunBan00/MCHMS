@@ -25,8 +25,8 @@ public class CityService {
         return cityMapper.getCityInfoById(id);
     }
 
-    public City getRejeonFromCityId(int CityId){
-        return cityMapper.getRejeonFromCityId(CityId);
+    public City getRegionFromCityId(int CityId){
+        return cityMapper.getRegionFromCityId(CityId);
     }
 
     public City getCityLocationFromCityid(int CityId){

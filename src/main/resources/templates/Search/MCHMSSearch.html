@@ -914,6 +914,7 @@
 
 			</div>
 			<div id="map"></div>
+
 			<script th:inline="javascript">
 				function initMap() {
 					/*<![CDATA[*/
@@ -937,7 +938,13 @@
 							});
 
 							var infoContent = '<div style="width : 200px; text-align: center;">'+'<a href="/MCHMSView/?&ID=' + data[i].id + '"style="font-size: 17px; ">' +
-							'<div style="padding:5px; margin-bottom: 3px;">' + data[i].title + '</div>' + '</a>' + '</div>';
+							'<div style="padding:5px; margin-bottom: 3px;">' + data[i].title + '</div>';
+
+							if (data[i].imageFileInMap != null){
+								infoContent = infoContent + '<img src="/MCHMS/' + data[i].imageFileInMap + '" style="width:160px; height:90px;">';
+							}
+
+							infoContent = infoContent + '</a>' + '</div>';
 
 							google.maps.event.addListener(marker, 'click', (function(marker, content) {
 								return function() {
@@ -950,6 +957,7 @@
 					/*]]>*/
 				}
 			</script>
+
 			<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg2U2hyWyH76p5rXTIptibx3d9SkuiEDQ&callback=initMap"></script>
 			<div class="floatBox" style="margin-top: 40px;">
 				<div class="flBox">
@@ -965,21 +973,42 @@
 				<table id="table1 mt45" cellpadding="0" cellspacing="0" border="0" class="data_sheet01 mt45">
 					<colgroup id="setCol"><col style="width:4%"><col style="width:4%"><col><col><col><col><col><col><col><col></colgroup>
 					<thead id="field1"><tr><th>Num</th>
-						<th>Serial</th>
-						<th>Region</th>
-						<th>Classification</th>
-						<th>Title</th>
-						<th>Registration date</th></tr></thead>
+						<th id="serial" style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc; color: #333; text-align: center; vertical-align: middle; cursor:pointer;">
+							<button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/MCHMSSearch/?City_id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=Serial_Number' + '\''">
+								Serial
+							</button>
+						</th>
+						<th  style="border-top:none; border-bottom: none; border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc;  color: #333; text-align: center; vertical-align: middle;">
+							<button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/MCHMSSearch/?City_id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=City' + '\''">
+								Region
+							</button>
+						</th>
+						<th style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc; color: #333; text-align: center; vertical-align: middle;">
+							<button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/MCHMSSearch/?City_id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=Classification' + '\''">
+								Classification
+							</button>
+						</th>
+						<th id ="title" style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc;  color: #333; text-align: center; vertical-align: middle; cursor:pointer;">
+							<button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/MCHMSSearch/?City_id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=Title' + '\''">
+								Title
+							</button>
+						</th>
+						<th id ="reg" style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc;   color: #333; text-align: center; vertical-align: middle; cursor:pointer;" >
+							<button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/MCHMSSearch/?City_id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=Registration_Date' + '\''">
+								Registration date
+							</button>
+						</th>
+					</tr>
+					</thead>
 					<tbody id="list1">
 					<tr th:if="${flag} == 0" th:each="dataDomain : ${lists}" style = "cursor:pointer;" th:onclick="'location.href = \'' + @{/MCHMSView/?ID={ID}(ID=${dataDomain.id})} + '\''">
 						<td class="FILE_NUM"><div th:text="${dataDomain.index}"></div></td>
 						<td class="FIELD_SERIAL" title="Monuments"><div th:text="${dataDomain.serialNumber}"></div></td>
-						<td class="FIELD_REGION"><div th:text="${Rejeon}"></div></td>
+						<td class="FIELD_REGION"><div th:text="${RegionName}"></div></td>
 						<td class="FIELD_CATEGORY"><div th:text="${dataDomain.clResult}"></div></td>
 						<td class="FIELD_TITLE"><div th:text="${dataDomain.title}"></div></td>
 						<td class="FIELD_REG_DATE"><div th:text="${dataDomain.registrationDate}"></div></td>
 					</tr>
-
 					<tr th:unless="${flag} == 0" th:each="dataDomain : ${lists}" style = "cursor:pointer;" th:onclick="'location.href = \'' + @{/MCHMSView/?ID={ID}(ID=${dataDomain.id})} + '\''">
 						<td class="FILE_CNT" style = "text-align= center"><div th:text="${dataDomain.index}"></div></td>
 						<td class="FIELD_CATEGORY" title="Monuments"><div th:text="${dataDomain.clResult}"></div></td>

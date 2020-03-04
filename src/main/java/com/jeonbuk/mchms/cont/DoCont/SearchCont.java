@@ -36,7 +36,7 @@ public class SearchCont {
     @Autowired
     private FileEventService fileEventService;
 
-    @RequestMapping(value = "/MCHMSSearch", method = RequestMethod.GET)
+    @RequestMapping(value = "/MCHMSSearch", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView base(ModelAndView mv, HttpServletRequest request) {
 
         try {
@@ -86,24 +86,60 @@ public class SearchCont {
                 }
             }
             else {
-                List<DataDomain> totalList =  dataService.getDataByCityId(Integer.parseInt(cityId));
+                String TypeToSort = request.getParameter("TypeToSort");
+                if (TypeToSort == null){
+                    TypeToSort = "Title";
+                }
+                String SortOrder = request.getParameter("SortOrder");
+                if (SortOrder == null){
+                    SortOrder = "Title0";
+                }
 
-                City Rejeon = cityService.getRejeonFromCityId(Integer.parseInt(cityId));
+                Integer OrderNum = Integer.parseInt(SortOrder.substring(SortOrder.length()-1, SortOrder.length()));
+                String Previous_Sort = SortOrder.substring(0, SortOrder.length()-1);
+                List<DataDomain> totalList;
+                if ((Previous_Sort.equals(TypeToSort)) && (OrderNum == 0)){
+                    SortOrder = TypeToSort + "1";
+                    if(TypeToSort.equals("Classification")){
+                        totalList = dataService.getDataByCityIdAndJoinClassifi(cityId, "asc");
+                    }
+                    else if(TypeToSort.equals("City")){
+                        totalList = dataService.getDataByCityIdAndJoinCity(cityId, "asc");
+                    }
+                    else {
+                        totalList = dataService.getDataByCityIdAndNotJoin(cityId, TypeToSort,"asc");
+                    }
+                }
+                else {
+                    SortOrder = TypeToSort + "0";
+                    if(TypeToSort.equals("Classification")){
+                        totalList = dataService.getDataByCityIdAndJoinClassifi(cityId, "desc");
+                    }
+                    else if(TypeToSort.equals("City")){
+                        totalList = dataService.getDataByCityIdAndJoinCity(cityId, "desc");
+                    }
+                    else {
+                        totalList = dataService.getDataByCityIdAndNotJoin(cityId, TypeToSort,"desc");
+                    }
+                }
+                System.out.println("test2 : " + totalList.size());
 
-                String RejeonName = Rejeon.getCities();
+                City Region = cityService.getRegionFromCityId(Integer.parseInt(cityId));
 
+                String RegionName = Region.getCities();
                 int totalLength = totalList.size();
-                System.out.println("test : " + totalLength);
                 int index = 1;
                 for(DataDomain dataDomain : totalList) {
                     Classification Category = classificationService.getCategoryFromClassification(dataDomain.getClassificationId());
                     dataDomain.setClResult(Category.getLarge());
 
-                    FileEventDomain fileEventDomain = fileEventService.getFilesNameFromDataID(dataDomain.getClassificationId());
+                    FileEventDomain fileEventDomain = fileEventService.getFilesNameFromDataID(dataDomain.getId());
 
                     if (fileEventDomain != null){
-                        String[] filesArray = fileEventDomain.getFiles().split("|");
-                        String ImageFileInMap = "/Staitc/MCHMS/" + filesArray[0];
+                        String filesname = fileEventDomain.getFiles();
+                        String[] filesArray = filesname.split("\\|");
+
+                        String ImageFileInMap = filesArray[0];
 
                         dataDomain.setImageFileInMap(ImageFileInMap);
                     }
@@ -113,20 +149,11 @@ public class SearchCont {
                     avgLong = avgLong + dataDomain.getLongitude();
                     index++;
                 }
-
-                if(totalLength != 0) {
-                    avgLat = avgLat / totalLength;
-                    avgLong = avgLong / totalLength;
-                }else {
-                    avgLat = 19.75056;
-                    avgLong = 96.10056;
-                }
                 City selectCityLocation = cityService.getCityLocationFromCityid(Integer.parseInt(cityId));
 
-                mv.addObject("Rejeon", Rejeon);
-                mv.addObject("avg_Lat", avgLat);
-                mv.addObject("avg_Long", avgLong);
-                mv.addObject("Rejeon", RejeonName);
+                mv.addObject("SortOrder", SortOrder);
+                mv.addObject("Region", Region);
+                mv.addObject("RegionName", RegionName);
                 mv.addObject("CityLocation", selectCityLocation);
                 mv.addObject("total", totalLength);
                 mv.addObject("lists", totalList);

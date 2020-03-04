@@ -50,7 +50,7 @@ public class MypageController {
                 Classification Category = classificationService.getCategoryFromClassification(UserData.getClassificationId());
                 UserData.setClResult(Category.getLarge());
 
-                City Rejeon = cityService.getRejeonFromCityId(UserData.getCityId());
+                City Rejeon = cityService.getRegionFromCityId(UserData.getCityId());
                 UserData.setCiResult(Rejeon.getCities());
 
                 UserData.setIndex(index);

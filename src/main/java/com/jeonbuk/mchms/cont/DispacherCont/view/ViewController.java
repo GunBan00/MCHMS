@@ -61,7 +61,6 @@ public class ViewController {
 
             }
 
-
             String remarksEn = dataDomain.getRemarksEn();
             String referenceEn = dataDomain.getReferenceEn();
 
