@@ -3,9 +3,11 @@ package com.jeonbuk.mchms.cont.DispacherCont.view;
 import com.jeonbuk.mchms.domain.City;
 import com.jeonbuk.mchms.domain.Classification;
 import com.jeonbuk.mchms.domain.DataDomain;
+import com.jeonbuk.mchms.domain.FileEventDomain;
 import com.jeonbuk.mchms.service.city.CityService;
 import com.jeonbuk.mchms.service.classification.ClassificationService;
 import com.jeonbuk.mchms.service.data.DataService;
+import com.jeonbuk.mchms.service.fileevent.FileEventService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,9 @@ public class ViewController {
 
     @Autowired
     private ClassificationService classificationService;
+
+    @Autowired
+    private FileEventService fileEventService;
 
     @RequestMapping(value = "/MCHMSView", method = RequestMethod.GET)
     public ModelAndView mCHMSView(HttpServletRequest request, HttpServletResponse response) {
@@ -82,10 +87,33 @@ public class ViewController {
 
             List<City> museums = cityService.getMuseums();
 
-            City cityInfo = cityService.getCityInfoById(id);
+            FileEventDomain fileEventDomain = fileEventService.getFilesNameFromDataID(Integer.parseInt(id));
 
+            String[] filesArray = {};
+
+            if(fileEventDomain != null){
+                String filesname = fileEventDomain.getFiles();
+                filesArray = filesname.split("\\|");
+            }
+
+            City cityInfo = cityService.getCityInfoById(id);
             Classification clInfo = classificationService.getClassificationInfoById(id);
 
+            String cityClInfo = cityInfo.getCities() + "-" + cityInfo.getMuseum() + "-" + clInfo.getLarge();
+            System.out.println("test : " + clInfo.getMiddle());
+            System.out.println("test : " + clInfo.getSmall());
+            System.out.println("test : " + clInfo.getSubSection());
+            if (!(clInfo.getMiddle().equals(""))){
+                cityClInfo = cityClInfo + "-" + clInfo.getMiddle();
+                if (!(clInfo.getSmall().equals(""))){
+                    cityClInfo = cityClInfo + "-" + clInfo.getSmall();
+                    if (!(clInfo.getSubSection().equals(""))){
+                        cityClInfo = cityClInfo + "-" + clInfo.getSubSection();
+                    }
+                }
+            }
+
+            mv.addObject("cityClInfo", cityClInfo);
             mv.addObject("ResultView", dataDomain);
             mv.addObject("Remarks_en", remarksEn);
             mv.addObject("Reference_en",referenceEn);
@@ -95,6 +123,8 @@ public class ViewController {
             mv.addObject("Museum", museums);
             mv.addObject("Clinfo", clInfo);
             mv.addObject("Cityinfo", cityInfo);
+            mv.addObject("fileEventDomain", fileEventDomain);
+            mv.addObject("filesArray", filesArray);
             mv.setViewName("View/MCHMSView");
 
         } catch (Exception e) {

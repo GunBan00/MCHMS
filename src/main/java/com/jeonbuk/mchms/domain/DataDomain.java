@@ -29,6 +29,7 @@ public class DataDomain {
     String fileName;
     String registrant;
     String registrationDate;
+    String department;
     String clResult;
     String imageFileInMap;
     int index;

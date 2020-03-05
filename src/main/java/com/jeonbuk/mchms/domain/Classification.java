@@ -10,4 +10,5 @@ public class Classification {
     String large;
     String middle;
     String small;
+    String subSection;
 }

@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface FileEventMapper {
-    @Select("SELECT FILES as files FROM FILEEVENT WHERE DATA_ID = #{id}")
+    @Select("SELECT FILES as files, COUNT as count FROM FILEEVENT WHERE DATA_ID = #{id}")
     FileEventDomain getFilesNameFromDataID(int id);
+
 }
