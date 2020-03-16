@@ -1022,10 +1022,16 @@
 			</div>
 			<div class="floatBox" style="margin-top: 10px;">
 				<div class="flBox">
+					<div class ="pageBox"  style ="display:inline-block;">
+						<a th:each ="num : ${pageNumberList}" th:href="@{/MCHMSSearch/?City_id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&' + @{TypeToSort={TypeToSort}(TypeToSort=${TypeToSort})} + '&' + @{currentPage={currentPage}(currentPage=${num})}" th:text="${num}"></a>
 
-					<div class="frBox REG_BTN" style="display: block; float:left;">
-						<a th:if="${session.value == null}" href="/MCHMSWrite/?City_id=${City_id}" style = "right:0; position : absolute" class="btn btnB">Upload</a>
 					</div>
+					<div>
+						<input type="text" size="34" maxlength="3" value="" style="margin-top : 1%; width: 60px;" class ="FIELD_RELIC_ZIP" id ="FIELD_RELIC_ZIP" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' ></input><input type ="button" style ="margin-top : 1%;width: 30px; height: 30px;" onclick="javascript:movePage();" value="P"></input>
+					</div>
+						<div class="frBox REG_BTN" style="display: block; float:left;">
+							<a th:if="${session.value == null}" href="/MCHMSWrite/?City_id=${City_id}" style = "right:0; position : absolute" class="btn btnB">Upload</a>
+						</div>
 				</div>
 
 			</div>
@@ -1033,7 +1039,47 @@
 	</div>
 </div>
 <!-- //내용부분 -->
+<script>
+function onlyNumber(event){
+    event = event || window.event;
+    var keyID = (event.which) ? event.which : event.keyCode;
+    if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 )
+        return;
+    else
+        return false;
+}
 
+function removeChar(event) {
+    event = event || window.event;
+    var keyID = (event.which) ? event.which : event.keyCode;
+    if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 )
+        return;
+    else
+        event.target.value = event.target.value.replace(/[^0-9]/g, "");
+}
+</script>
+<script th:inline="javascript">
+					function movePage()
+					{
+						var cp = document.getElementById("FIELD_RELIC_ZIP");
+						var movepage = cp.value;
+						/*<![CDATA[*/
+						var City_id = /*[[${City_id}]]*/;
+						var sortPage = /*[[${TypeToSort}]]*/;
+						var asc = /*[[${SortOrder}]]*/;
+						var lastNum = /*[[${pageNumber}]]*/;
+						if (movepage != "" && movepage <= lastNum)
+						{
+							location.href ="/MCHMSSearch/?City_id="+City_id+"&SortOrder=" + asc + "&TypeToSort=" + sortPage + "&currentPage="+movepage;
+						}
+						else
+						{
+							alert("Invalid Page");
+							cp.value = "";
+						}
+					}
+						 /*]]>*/
+					</script>
 <script type="text/javascript">
 	$('#list1 tr').hover (function () {
 		$(this).addClass ("hover");
