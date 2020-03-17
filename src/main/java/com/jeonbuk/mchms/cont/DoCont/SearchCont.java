@@ -46,6 +46,32 @@ public class SearchCont {
             int flag = 0;
             double avgLat = 0;
             double avgLong = 0;
+
+            //////////////////////////////////////////////////////////////////////
+            int pageNumber = 0;
+            int dataForPage = 10;
+            int startPage = 0;
+            int icp=0;
+            int startNum=1;
+
+            String currentPage = null;
+            currentPage = request.getParameter("currentPage");
+            System.out.print("currentPage : ");
+            System.out.println(currentPage);
+            if(currentPage == null)
+            {
+                currentPage = "0";
+                startNum = 0;
+                icp =0;
+            }
+            else
+            {
+                icp = Integer.parseInt(currentPage);
+                startNum =(icp-1)*10;
+            }
+
+            //////////////////////////////////////////////////////////////////////
+
             List<City> museums = cityService.getMuseums();
             if(StringUtils.isEmpty(cityId)) {
                 flag = 1;
@@ -128,7 +154,53 @@ public class SearchCont {
 
                 String RegionName = Region.getCities();
                 int totalLength = totalList.size();
+
+                ///////////////////////////////////////////////////////////////////
+                double a = Double.valueOf(totalLength);
+                double b = Double.valueOf(dataForPage);
+
+                pageNumber = (int)Math.ceil(a/b);
+                int pageNumberList[] = new int[10];
+                System.out.println(pageNumber);
+                if(pageNumber > 10){
+                    if(icp > 6){
+                        if(icp+5 < pageNumber) {
+                            pageNumberList = new int[10];
+                            int k = 0;
+                            for (int i = icp - 4; i <= icp + 5; i++) {
+                                pageNumberList[k] = i + 1;
+                                k++;
+                            }
+                        }
+                        else
+                        {
+                            pageNumberList = new int[(pageNumber-icp+4)];
+                            int k = 0;
+                            for (int i = icp - 4; i < pageNumber; i++) {
+                                pageNumberList[k] = i + 1;
+                                k++;
+                            }
+
+                        }
+                    }
+                    else{
+                        pageNumberList = new int[10];
+                        for(int i = 0; i < 10; i++){
+                            pageNumberList[i] = i + 1;
+                        }
+                    }
+                }
+                else{
+                    pageNumberList = new int[pageNumber];
+                    for (int i = 0; i < pageNumber; i++) {
+                        pageNumberList[i] = i + 1;
+                    }
+                }
+                ///////////////////////////////////////////////////////////////////
+
+
                 int index = 1;
+
                 for(DataDomain dataDomain : totalList) {
                     Classification Category = classificationService.getCategoryFromClassification(dataDomain.getClassificationId());
                     dataDomain.setClResult(Category.getLarge());
@@ -149,14 +221,33 @@ public class SearchCont {
                     avgLong = avgLong + dataDomain.getLongitude();
                     index++;
                 }
+                int k = 0;
+                DataDomain[] pageList;
+                int as = totalLength - (icp*10) + 10;
+                if(as < 10) {
+                    pageList = new DataDomain[as];
+                }
+                else
+                {
+                    pageList = new DataDomain[10];
+                }
+                System.out.println(as);
+                for(int i = startNum; i < startNum + dataForPage; i++) {
+                    if(i >= totalLength) break;
+                    pageList[k] = totalList.get(i);
+                    k++;
+                }
                 City selectCityLocation = cityService.getCityLocationFromCityid(Integer.parseInt(cityId));
 
                 mv.addObject("SortOrder", SortOrder);
+                mv.addObject("TypeToSort", TypeToSort);
                 mv.addObject("Region", Region);
                 mv.addObject("RegionName", RegionName);
                 mv.addObject("CityLocation", selectCityLocation);
                 mv.addObject("total", totalLength);
-                mv.addObject("lists", totalList);
+                mv.addObject("pageNumberList", pageNumberList);
+                mv.addObject("pageNumber", pageNumber);
+                mv.addObject("lists", pageList);
                 mv.addObject("Museum", museums);
                 mv.addObject("City_id", cityId);
                 mv.addObject("Session", session);
