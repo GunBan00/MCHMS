@@ -90,12 +90,21 @@ public class ViewController {
             FileEventDomain fileEventDomain = fileEventService.getFilesNameFromDataID(Integer.parseInt(id));
 
             String[] filesArray = {};
-
+            String filesname =  "";
             if(fileEventDomain != null){
-                String filesname = fileEventDomain.getFiles();
+                filesname = fileEventDomain.getFiles();
                 filesArray = filesname.split("\\|");
             }
-
+            String ImgContents = "";
+            for (int i=0; i<filesArray.length; i++){
+                ImgContents = ImgContents + "<li class=\"bxslider\">\n" +
+                        "<div id ="+ "\"viewdiv" + filesArray[i] + "\"" + "style=\"width:95%; margin:0 auto;\">\n" +
+                        "<a href =\"/MCHMS/"+ filesArray[i] + "\">\n" +
+                        "<img id =\"viewimg\" src=\"/MCHMS/" + filesArray[i] + "\"" + "style=\"cursor:pointer;\"/>\n" +
+                        "</a>\n" +
+                        "</div>\n" +
+                        "</li>";
+            }
             City cityInfo = cityService.getCityInfoById(id);
             Classification clInfo = classificationService.getClassificationInfoById(id);
 
@@ -124,7 +133,9 @@ public class ViewController {
             mv.addObject("Clinfo", clInfo);
             mv.addObject("Cityinfo", cityInfo);
             mv.addObject("fileEventDomain", fileEventDomain);
-            mv.addObject("filesArray", filesArray);
+            mv.addObject("filesname", filesname);
+            mv.addObject("ImgContents", ImgContents);
+            mv.addObject("file_length", filesArray.length);
             mv.setViewName("View/MCHMSView");
 
         } catch (Exception e) {

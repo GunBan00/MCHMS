@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface CityMapper {
@@ -23,4 +24,7 @@ public interface CityMapper {
 
     @Select("SELECT Latitude as latitude, Longtitude as longitude FROM City WHERE City_id = #{CityId}")
     City getCityLocationFromCityid(int CityId);
+
+    @Select("SELECT City_id as cityId FROM City WHERE Cities = #{Cities} And Museum = #{Museum}")
+    City getCityIdByCategory(Map<String, Object> sqlParam);
 }

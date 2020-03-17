@@ -111,62 +111,32 @@
 	});
 </script>
 <style>
-	.bx-wrapper {
-		width: 802px;
-		height: 402px;
-		min-height:450px;
-		margin-top:30px;
-		box-shadow: none !important;
-		border: 1px solid #eee !important;
-	}
 
-	.bx-viewport {
-		position: absolute !important;
-		height:100% !important;
-	}
+/*slider css*/
+.bx-wrapper img {
+max-height:500px;
+}
+.bx-wrapper .bx-prev{
+opacity:0.2;
+left:-13px
+}
+.bx-wrapper .bx-next {
+  right: -13px;
+}
+#viewimg
+{
+margin:0 auto;
+}
+.bx-viewport{
+overflow:unset !important;
+}
+.bx-wrapper
+{
+height:550px;/*이미지 크기*/
+border:none;
+margin-top:0%;
+}
 
-	.slider {
-		height: 100% !important;
-		padding-left: 0px;
-	}
-
-	.slider li {
-		height:100%;
-	}
-
-	.slider a {
-		text-decoration:none;
-	}
-
-	.slider a:visited {
-		color:blue;
-	}
-
-	.slider li {
-		list-style: none;
-		line-height: 15px;
-	}
-
-	.slider li img {
-		margin:0px auto;
-		height:100%;
-		width: auto;
-		max-width: 100%;
-	}
-
-	.slider {
-		width: auto;
-		height: auto;
-		max-width: 100%;
-		max-height: 100%;
-		display:block;
-		margin:auto;
-		text-align:center;
-	}
-
-	.bx-prev, .bx-next {
-		display: none;
-	}
 </style>
 <script>
 	function goPrint() {
@@ -1221,16 +1191,17 @@
 					<tbody><tr id="trRemark1">
 						<!-- <td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Remark1(En)</strong></td> -->
 						<td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Image</strong></td>
-						<script>
-					//slider에 마우스 오버시에만 사진 넘기는 버튼 표시
+						<script th:inline="javascript">
+						//slider에 마우스 오버시에만 사진 넘기는 버튼 표시
 						$(function(){
 						/*<![CDATA[*/
-						var data = /*[[${fileEventDomain}]]*/;
-						var data_split = (data.files).split("|");
+						var data = /*[[${filesname}]]*/;
+						int file_length = /*[[${file_length}]]*/;
+						var data_split = data.split("|");
 
 							$(".bx-wrapper").hover(
 								function(){
-									if(data.count > 1){
+									if(file_length > 1){
 										$(".bx-prev").css("display", "block");
 										$(".bx-next").css("display", "block");
 									}
@@ -1247,7 +1218,8 @@
 									var k = 1 ;
 									for(int i=0; i<data.count; i++){
 										if(!(data_split.equals(""))){
-											h[k] = document.getElementById('viewdiv{{data.split[i]}}');
+											var Imgname = "viewdiv" + "{{" + data_split[i] + "}}";
+											h[k] = document.getElementById(Imgname);
 											var u = h[k].offsetHeight;
 											if (u < 600 && u != 0)
 											{var al = (550 - u) / 15;
@@ -1272,7 +1244,8 @@
 									var k = 1 ;
 									for(int i=0; i<data.count; i++){
 										if(!(data_split.equals(""))){
-											h[k] = document.getElementById('viewdiv{{data.split[i]}}');
+											var Imgname = "viewdiv" + "{{" + data_split[i] + "}}";
+											h[k] = document.getElementById(Imgname);
 											var u = h[k].offsetHeight;
 												if (u < 600 && u != 0)
 											{var al = (550 - u) / 15;
@@ -1287,29 +1260,21 @@
 						/*]]>*/
 						});
 					</script>
-						<td th:if="${fileEventDomain.count} != 0" style="padding:10px 0 10px 20px" id="FIELD_REMARK1" th:each="filename : ${filesArray}">
-							<ul class="slider">
-								<li class="bxslider">
-									<div id ="viewdiv{{i}}" style="width:95%; margin:0 auto;">
-										<a href ="/Static/MCHMS/{{i}}">
-											<img id ="viewimg"src="/Static/MCHMS/{{i}}" style="cursor:pointer;"/>
-										</a>
-									</div>
-								</li>
+						<td th:if="${fileEventDomain.count} != 0" style="padding:10px 0 10px 20px" id="FIELD_REMARK1">
+							<ul class="slider" th:utext="${ImgContents}">
 							</ul>
-							{% endif %}
 						</td>
 					</tr>
 					<tr id="trRemark1">
 						<!-- <td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Remark1(En)</strong></td> -->
 						<td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Remarks(En)</strong></td>
-						<td style="padding:10px 0 10px 20px" id="FIELD_REMARK2" th:text = "${ResultView.remarksEn}"></td>
+						<td style="padding:10px 0 10px 20px" id="FIELD_REMARK2" th:utext = "${ResultView.remarksEn}"></td>
 					</tr>
 
 					<tr id="trRemark1My">
 						<!-- <td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Remark1(My)</strong></td> -->
 						<td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center" ><strong>Remarks(My)</strong></td>
-						<td style="padding:10px 0 10px 20px" th:text = "${ResultView.remarksMy}">
+						<td style="padding:10px 0 10px 20px" th:utext = "${ResultView.remarksMy}">
 							<!-- <textarea rows="8" cols="80" id="FIELD_REMARK1_MY" name="FIELD_REMARK1_MY" readonly="readonly"></textarea> -->
 						</td>
 					</tr>

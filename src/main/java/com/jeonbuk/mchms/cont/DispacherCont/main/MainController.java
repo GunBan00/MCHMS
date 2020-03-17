@@ -33,6 +33,9 @@ import java.util.Map;
         @Autowired
         CityService cityService;
 
+        @Autowired
+        ClassificationService classificationService;
+
         private static Logger logger = LoggerFactory.getLogger(MainController.class);
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -43,10 +46,61 @@ import java.util.Map;
         HttpSession session = request.getSession();
         try {
 
-            List<City> cities = cityService.getCities();
-            List<City> museums = cityService.getMuseums();
-            mv.addObject("City", cities);
-            mv.addObject("Museum", museums);
+            List<City> Cities = cityService.getCities();
+            List<City> Museum = cityService.getMuseums();
+
+            String CitiesContents = "<option value=\"\">:::: REGION ::::</option>";
+            for(City cities : Cities) {
+                CitiesContents = CitiesContents + "<option id=\"SEQ_CITY\"  value=\""+ cities.getCities() + "\">"+ cities.getCities() +"</option>";
+            }
+
+            String MuseumContents = "<option value=\"\" selected=\"selected\">:::: Division ::::</option>";
+            for(City museum : Museum) {
+                MuseumContents = MuseumContents + "<option class=\"" + museum.getCities() + "\" value=\""+ museum.getMuseum() + "\" style = \"display:none\">" + museum.getMuseum() +"</option>";
+            }
+
+            mv.addObject("CitiesContents", CitiesContents);
+            mv.addObject("MuseumContents", MuseumContents);
+
+            List<Classification> Large = classificationService.getLarge();
+            List<Classification> Middle = classificationService.getMiddle();
+            List<Classification> Small = classificationService.getSmall();
+            List<Classification> SubSection = classificationService.getSubSection();
+
+            String LargeContents = "<option value=\"\">:::: Category ::::</option>";
+            for(Classification large : Large) {
+                LargeContents = LargeContents + "<option id=\"SEL_LARGE\"  value=\""+ large.getLarge() + "\">"+ large.getLarge() +"</option>";
+            }
+
+            String MiddleContents = "<option value=\"\" selected=\"selected\">:::: Division ::::</option>";
+            for(Classification middle : Middle) {
+                if(!(middle.getMiddle().equals("")))
+                MiddleContents = MiddleContents + "<option class=\"middle " + middle.getLarge() + "\" id=\"" + middle.getLarge() + "\" name=\"" + middle.getLarge() + "\" value=\""+ middle.getMiddle() + "\" style = \"display:none\">" + middle.getMiddle() +"</option>";
+            }
+
+            String SmallContents = "<option value=\"\">:::: Section ::::</option>";
+            for(Classification small : Small) {
+                if (!((small.getLarge()).equals(""))) {
+                    SmallContents = SmallContents + "<option class=\"small " + small.getMiddle() + "\" value=\"" + small.getSmall() + "\" style = \"display:none\">" + small.getSmall() + "</option>";
+                }
+            }
+
+            String SubSectionContents = "<option value=\"\">:::: Sub Section ::::</option>";
+            for(Classification subSection : SubSection) {
+                if (!((subSection.getLarge()).equals(""))) {
+                    if ((subSection.getMiddle()).equals("Buddha_Museum")) {
+                        SubSectionContents = SubSectionContents + "<option class=\"sub_small " + subSection.getSmall() + "\" value=\"" + subSection.getSubSection() + "\" style = \"display:none\">" + subSection.getSubSection() + "</option>";
+                    }
+                }
+            }
+
+            mv.addObject("LargeContents", LargeContents);
+            mv.addObject("MiddleContents", MiddleContents);
+            mv.addObject("SmallContents", SmallContents);
+            mv.addObject("SubSectionContents", SubSectionContents);
+
+            mv.addObject("City", Cities);
+            mv.addObject("Museum", Museum);
             mv.addObject("MID_Page", "Main/Main.html");
 
             mv.setViewName("Main/BASE");

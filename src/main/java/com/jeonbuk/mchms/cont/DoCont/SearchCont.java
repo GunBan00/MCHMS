@@ -32,7 +32,6 @@ public class SearchCont {
     private CityService cityService;
     @Autowired
     private ClassificationService classificationService;
-
     @Autowired
     private FileEventService fileEventService;
 
@@ -49,33 +48,86 @@ public class SearchCont {
             List<City> museums = cityService.getMuseums();
             if(StringUtils.isEmpty(cityId)) {
                 flag = 1;
+
+                String TypeToSort = request.getParameter("TypeToSort");
+                if (TypeToSort == null){
+                    TypeToSort = "Title";
+                }
+                String SortOrder = request.getParameter("SortOrder");
+                if (SortOrder == null){
+                    SortOrder = "Title0";
+                }
+
                 String keyWord = request.getParameter("Keyword");
-                List<DataDomain> totalList = dataService.getDataByKeyword(keyWord);
+                Integer OrderNum = Integer.parseInt(SortOrder.substring(SortOrder.length()-1, SortOrder.length()));
+                String Previous_Sort = SortOrder.substring(0, SortOrder.length()-1);
+                List<DataDomain> totalList;
+
+                if ((Previous_Sort.equals(TypeToSort)) && (OrderNum == 0)){
+                    SortOrder = TypeToSort + "1";
+                    totalList = dataService.getDataByKeyword(keyWord, TypeToSort, "asc");
+                }
+                else {
+                    SortOrder = TypeToSort + "0";
+                    totalList = dataService.getDataByKeyword(keyWord, TypeToSort, "desc");
+                }
+
                 int totalLength = totalList.size();
-//            if(totalLength != 0) {
-//                avgLat = 0;
-//                avgLong = 0;
-//            }
-                if(totalLength ==0) {
+
+                if(totalLength == 0) {
                     avgLat = 19.75056;
                     avgLong = 96.10056;
                     mv.addObject("total", totalLength);
                     mv.addObject("avg_Lat", avgLat);
                     mv.addObject("avg_Long", avgLong);
-                }else {
+                }
+
+                else {
                     int index = 1;
                     for(DataDomain dataDomain : totalList) {
                         Classification Category = classificationService.getCategoryFromClassification(dataDomain.getClassificationId());
                         dataDomain.setClResult(Category.getLarge());
+                        System.out.println("test2 : " + Category.getLarge());
+                        City Cities = cityService.getRegionFromCityId(dataDomain.getCityId());
+                        dataDomain.setCiResult(Cities.getCities());
+                        System.out.println("test2 : " + Cities.getCities());
+
+                        FileEventDomain fileEventDomain = fileEventService.getFilesNameFromDataID(dataDomain.getId());
+
+
+
+                        if (fileEventDomain != null){
+                            String filesname = fileEventDomain.getFiles();
+                            String[] filesArray = filesname.split("\\|");
+
+                            String ImageFileInMap = filesArray[0];
+
+                            dataDomain.setImageFileInMap(ImageFileInMap);
+                        }
+
                         dataDomain.setIndex(index);
-                        avgLat = avgLat + dataDomain.getLatitude();
-                        avgLong = avgLong + dataDomain.getLongitude();
+                        System.out.println("test2 : " + dataDomain.getLatitude());
+                        System.out.println("test2 : " + dataDomain.getLongitude());
+                        if (dataDomain.getLatitude() != 0){
+                            avgLat = avgLat + dataDomain.getLatitude();
+                        }
+                        if (dataDomain.getLongitude() != 0) {
+                            avgLong = avgLong + dataDomain.getLongitude();
+                        }
                         index++;
                     }
-                    avgLat = avgLat / totalLength;
-                    avgLong = avgLong / totalLength;
-                    mv.addObject("avg_Lat", avgLat);
-                    mv.addObject("avg_Long", avgLong);
+                    if (totalLength != 0){
+                        avgLat = avgLat / totalLength;
+                        avgLong = avgLong / totalLength;
+                    }
+                    if (avgLat == 0 || avgLong == 0){
+                        avgLat = 19.75056;
+                        avgLong = 96.10056;
+                    }
+
+                    mv.addObject("SortOrder", SortOrder);
+                    mv.addObject("map_latitude", avgLat);
+                    mv.addObject("map_longitude", avgLong);
                     mv.addObject("Keyword", keyWord);
                     mv.addObject("total", totalLength);
                     mv.addObject("lists", totalList);
@@ -83,6 +135,7 @@ public class SearchCont {
                     mv.addObject("City_id", cityId);
                     mv.addObject("Session", session);
                     mv.addObject("flag", flag);
+
                 }
             }
             else {
@@ -122,7 +175,6 @@ public class SearchCont {
                         totalList = dataService.getDataByCityIdAndNotJoin(cityId, TypeToSort,"desc");
                     }
                 }
-                System.out.println("test2 : " + totalList.size());
 
                 City Region = cityService.getRegionFromCityId(Integer.parseInt(cityId));
 
@@ -133,7 +185,11 @@ public class SearchCont {
                     Classification Category = classificationService.getCategoryFromClassification(dataDomain.getClassificationId());
                     dataDomain.setClResult(Category.getLarge());
 
+                    System.out.println("test2 : " + dataDomain.getTitle() + index);
+
                     FileEventDomain fileEventDomain = fileEventService.getFilesNameFromDataID(dataDomain.getId());
+                    dataDomain.setIndex(index);
+                    index++;
 
                     if (fileEventDomain != null){
                         String filesname = fileEventDomain.getFiles();
@@ -143,18 +199,21 @@ public class SearchCont {
 
                         dataDomain.setImageFileInMap(ImageFileInMap);
                     }
-                    dataDomain.setIndex(index);
-
-                    avgLat = avgLat + dataDomain.getLatitude();
-                    avgLong = avgLong + dataDomain.getLongitude();
-                    index++;
+                    else if(totalList.size() + 1 == index){
+                        break;
+                    }
                 }
-                City selectCityLocation = cityService.getCityLocationFromCityid(Integer.parseInt(cityId));
+                System.out.println("test2 : " + totalList.size());
 
+                City selectCityLocation = cityService.getCityLocationFromCityid(Integer.parseInt(cityId));
+                if (cityId == "101"){
+                    System.out.println("test : " + flag);
+                }
                 mv.addObject("SortOrder", SortOrder);
                 mv.addObject("Region", Region);
                 mv.addObject("RegionName", RegionName);
-                mv.addObject("CityLocation", selectCityLocation);
+                mv.addObject("map_latitude", selectCityLocation.getLatitude());
+                mv.addObject("map_longitude", selectCityLocation.getLongitude());
                 mv.addObject("total", totalLength);
                 mv.addObject("lists", totalList);
                 mv.addObject("Museum", museums);

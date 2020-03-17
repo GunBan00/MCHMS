@@ -15,7 +15,7 @@ public interface DataMapper {
     @Select("SELECT *, Serial_Number as serialNumber, Registration_Date as registrationDate, Remarks_en as RemarksEn, Remarks_my as RemarksMy, Reference_en as ReferenceEn, Reference_my as ReferenceMy FROM Data WHERE ID = #{id}")
     DataDomain selectData(String id);
 
-    @Select("SELECT ID as id, Title as title, Latitude as latitude, Longitude as longitude, Classification_id as classificationId, Registrant as registrant,Registration_Date as registrationDate  FROM Data WHERE match(Title, Serial_Number, Remarks_en, Reference_en) against(#{keyword} in boolean mode)")
+    @Select("SELECT ID as id, Title as title, Serial_Number as serialnumber, Classification_id as classificationId, City_Id as cityId, Latitude as latitude, Longitude as longitude, Registration_Date as registrationDate FROM Data WHERE match(Title, Serial_Number, Remarks_en, Reference_en) against(#{keyword} in boolean mode)")
     List<DataDomain> getDataByKeyword(String keyword);
 
     @Select("<script><choose><when test=\"cityId != 0\"> " +
@@ -34,6 +34,18 @@ public interface DataMapper {
 
     @Select("SELECT ID as id, Title as title, Serial_Number as serialnumber, Classification_id as classificationId, Latitude as latitude, Longitude as longitude, Registration_Date as registrationDate FROM Data WHERE City_id = ${cityId} ORDER BY Data.${TypeToSort} ${Order}")
     List<DataDomain> getDataByCityIdAndNotJoin(Map<String, Object> sqlParam);
+
+    @Select("SELECT ID as id, Title as title, Serial_Number as serialnumber, Classification_id as classificationId, Data.Latitude as latitude, Data.Longitude as longitude, Registration_Date as registrationDate, City_id as cityId FROM Data LEFT OUTER JOIN City ON (Data.City_id = City.City_id) WHERE ${keywordQuery} ORDER BY City.Cities ${Order}")
+    List<DataDomain> getDataByKeywordIdAndJoinCity(Map<String, Object> sqlParam);
+
+    @Select("SELECT ID as id, Title as title, Serial_Number as serialnumber, Data.Classification_id as classificationId, Latitude as latitude, Longitude as longitude, Registration_Date as registrationDate, City_id as cityId FROM Data LEFT OUTER JOIN Classification ON (Data.Classification_id = Classification.classification_id) WHERE ${keywordQuery} ORDER BY Classification.Large ${Order}")
+    List<DataDomain> getDataByKeywordIdAndJoinClassifi(Map<String, Object> sqlParam);
+
+    @Select("SELECT ID as id, Title as title, Serial_Number as serialnumber, Classification_id as classificationId, Latitude as latitude, Longitude as longitude, Registration_Date as registrationDate, City_id as cityId FROM Data WHERE ${keywordQuery} ORDER BY Data.${TypeToSort} ${Order}")
+    List<DataDomain> getDataByKeywordIdAndNotJoin(Map<String, Object> sqlParam);
+
+    @Select("SELECT ID as id, Title as title, Serial_Number as serialnumber, Classification_id as classificationId, Latitude as latitude, Longitude as longitude, Registration_Date as registrationDate, City_id as cityId FROM Data WHERE (${sqlSentence})")
+    List<DataDomain> getDataAdvancedSearch(String sqlSentence);
 
     @Select("SELECT classification_id as classificationId, Large as large, Middle as middle, Small as small FROM Classification WHERE classification_id = #{classId}")
     Classification getClassificationById(int classId);
