@@ -2,11 +2,13 @@ plugins {
 	id 'org.springframework.boot' version '2.2.2.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 	id 'java'
+	id 'org.hidetake.ssh' version '2.10.1'
 }
 
 group = 'com.jeonbuk'
-version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
+
+apply from: 'upload.gradle'
 
 configurations {
 	compileOnly {
@@ -16,6 +18,10 @@ configurations {
 
 repositories {
 	mavenCentral()
+}
+
+bootJar {
+	launchScript()
 }
 
 dependencies {
