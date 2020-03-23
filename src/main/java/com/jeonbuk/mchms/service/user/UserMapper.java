@@ -18,6 +18,9 @@ public interface UserMapper {
     @Select("SELECT ID, NAME, EMAIL, NICKNAME FROM User WHERE ID = #{id}")
     UserInfo selectUserInfo(String id);
 
+    @Select("SELECT ID, NICKNAME FROM User WHERE ID = #{id}")
+    UserInfo selectUserIdNicknameInfo(String id);
+
     @Select("SELECT COUNT(Large) as count, Large as large FROM Data LEFT OUTER JOIN Classification ON (Data.Classification_id = Classification.classification_id) WHERE Data.Registrant = #{id} GROUP BY Large")
     List<UserWriteClassificationCount> getClassificationCountByUserId(String id);
 

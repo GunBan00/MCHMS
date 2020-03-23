@@ -1059,7 +1059,7 @@
 						<input type="text" size="34" maxlength="3" value="" style="margin-top : 1%; width: 60px;" class ="FIELD_RELIC_ZIP" id ="FIELD_RELIC_ZIP" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' ></input><input type ="button" style ="margin-top : 1%;width: 30px; height: 30px;" onclick="javascript:movePage();" value="P"></input>
 					</div>
 						<div class="frBox REG_BTN" style="display: block; float:left;">
-							<a th:if="${session.value == null}" href="/MCHMSWrite/?City_id=${City_id}" style = "right:0; position : absolute" class="btn btnB">Upload</a>
+							<a th:if="${session.value != null}" th:href="@{/MCHMSWrite/?City_id={id}(id=${City_id})}" style = "right:0; position : absolute" class="btn btnB">Upload</a>
 						</div>
 				</div>
 

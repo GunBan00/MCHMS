@@ -29,7 +29,7 @@ public class UserService {
     public UserInfo selectUserInfo(String id) {
         return userMapper.selectUserInfo(id);
     }
-
+    public UserInfo selectUserIdNicknameInfo(String id){ return userMapper.selectUserIdNicknameInfo(id);}
     public List<UserWriteClassificationCount> getClassificationCountByUserId(String id) {
         return userMapper.getClassificationCountByUserId(id);
     }

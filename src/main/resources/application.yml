@@ -25,5 +25,10 @@ spring:
       remove-abandoned-timeout: 60
       default-auto-commit: null
 
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
 logging:
   config: classpath:logback.groovy

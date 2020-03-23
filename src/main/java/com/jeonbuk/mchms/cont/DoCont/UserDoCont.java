@@ -65,12 +65,12 @@ public class UserDoCont {
 
             mv.addObject("session", session);
 
-            return mv;
+            return new ModelAndView("redirect:/");
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return mv;
+        return new ModelAndView("redirect:/");
 
     }
 
