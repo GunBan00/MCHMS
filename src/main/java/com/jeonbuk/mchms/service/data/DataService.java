@@ -16,6 +16,20 @@ public class DataService {
     @Autowired
     private DataMapper dataMapper;
 
+    public void setData(Map<String, String> sqlParam) throws Exception {
+        dataMapper.setData(sqlParam);
+    }
+    public void setFiles(int id, String filesName, int fileCount) throws Exception
+    {
+        System.out.println("service");
+        dataMapper.setFiles(id, filesName, fileCount);
+    }
+
+    public int getMaxId(String id)
+    {
+        return dataMapper.getMaxId(id);
+    }
+
     public DataDomain getDataInfo(String id) throws Exception {
         DataDomain dataDomain = dataMapper.selectData(id);
         return dataDomain;

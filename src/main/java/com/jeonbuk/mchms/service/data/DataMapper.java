@@ -3,6 +3,7 @@ package com.jeonbuk.mchms.service.data;
 import com.jeonbuk.mchms.domain.City;
 import com.jeonbuk.mchms.domain.Classification;
 import com.jeonbuk.mchms.domain.DataDomain;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -49,4 +50,14 @@ public interface DataMapper {
 
     @Select("SELECT classification_id as classificationId, Large as large, Middle as middle, Small as small FROM Classification WHERE classification_id = #{classId}")
     Classification getClassificationById(int classId);
+
+    @Select("SELECT MAX(ID) FROM Data WHERE Registrant = '${id}'")
+    int getMaxId(String id);
+
+    @Insert("INSERT INTO Data(Title, Title_my, Period, Location, Origin, Material, Serial_number, Latitude, Longitude, Latitude2, Longitude2, Remarks_en, Remarks_my, Reference_en, Reference_my, Visibility, City_id, Classification_id,Filename, Registrant, Registration_Date, Department) VALUES ('${title}', '${title_my}', '${period}', '${location}', '${origin}', '${material}', '${serialNumber}','${latitude}','${longtitude}','${latitude2}','${longtitude2}','${remarksEn}','${remarksMy}','${referenceEn}','${referenceMy}','${visibility}','${cityId}','${classificationId}','${filename}','${registrant}','${registrationDate}','${department}')")
+    void setData(Map<String, String> sqlParam);
+
+    @Insert("INSERT INTO FILEEVENT(ID, DATA_ID, FILES, COUNT) VALUES (0, '${id}', '${filesName}', '${fileCount}')")
+    void setFiles(int id, String filesName, int fileCount);
+
 }
