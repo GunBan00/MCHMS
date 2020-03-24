@@ -39,33 +39,33 @@ public class UserDoCont {
 
 
     @RequestMapping(value = "/MCHMSlogin_process", method = RequestMethod.POST)
-    public ModelAndView mCHMSView(ModelAndView mv , HttpServletRequest request, @ModelAttribute User user) {
+    public ModelAndView mCHMSView(ModelAndView mv, HttpServletRequest request, @ModelAttribute User user) {
 
-        mv.setViewName("Main/BASE");
+            mv.setViewName("Main/BASE");
 
-        try {
-            HttpSession session = request.getSession();
+            try {
+                HttpSession session = request.getSession();
 
-            Map<String, Object> userInfo = userService.loginUser(user.getUSER_ID(), makePassword(user.getUSER_PASS()));
+                Map<String, Object> userInfo = userService.loginUser(user.getUSER_ID(), makePassword(user.getUSER_PASS()));
 
-            logger.info((String)userInfo.get("ID"));
+                logger.info((String)userInfo.get("ID"));
 
 
-            if(userInfo != null) {
-                session.setAttribute("value", "1");
-                session.setAttribute("id", (String)userInfo.get("ID"));
-            }
+                if(userInfo != null) {
+                    session.setAttribute("value", "1");
+                    session.setAttribute("id", (String)userInfo.get("ID"));
+                }
 
-            List<City> cities = cityService.getCities();
-            List<City> museums = cityService.getMuseums();
+                List<City> cities = cityService.getCities();
+                List<City> museums = cityService.getMuseums();
 
-            mv.addObject("City", cities);
-            mv.addObject("Museum", museums);
-            mv.addObject("MID_Page", "Main/Main.html");
+                mv.addObject("City", cities);
+                mv.addObject("Museum", museums);
+                mv.addObject("MID_Page", "Main/Main.html");
 
-            mv.addObject("session", session);
+                mv.addObject("session", session);
 
-            return mv;
+                return mv;
         } catch (Exception e) {
             e.printStackTrace();
         }

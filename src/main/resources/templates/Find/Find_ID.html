@@ -1,0 +1,66 @@
+<head>
+    <link rel="stylesheet" href="/css/MCH/style.css" type="text/css">
+    <link rel="stylesheet" href="/common/css/jquery-ui.css" type="text/css">
+    <link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <script type="text/javascript" src="/js2/jquery-3.3.1.min.js?ver=1"></script>
+    <link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+
+</head>
+<script>
+$(function(){
+	$('input[type=radio][name=ID_Type]').on('click',function() {
+
+		var chkValue = $('input[type=radio][name=ID_Type]:checked').val();
+
+		if (chkValue == 'Name'){
+			$('#Find_Name').css('display','block');
+			$('#Find_Email').css('display','none');
+		}
+		else{
+			$('#Find_Name').css('display','none');
+			$('#Find_Email').css('display','block');
+		}
+	});
+});
+</script>
+<div class="login">
+    <div>
+        <div class="loginBox">
+            <div class="logon" id="input_type_1">
+                <h1><img src="/MCHMS/mams/mchms_logo_02.svg" alt="DAMS Digital Asset Management System"></h1>
+                <p class="tit">Find ID</p>
+                <form id="frm_FindID" name="frm_FindID" method="post">
+                    <div style="margin-bottom: 20px;">
+                        <label><input type="radio" name="ID_Type" id="Check_Name" value="Name" checked="checked"> Find by Name</input>
+                            <label><input type="radio" name="ID_Type" id="Check_Email" value="Email" style="margin-left: 10px;"> Find by Email</input>
+                    </div>
+                    <div id="Find_Name" name="Find_Name"><input type="text" id="Find_ID_Name" name="Find_ID_Name" placeholder="Name"></div>
+                    <div id="Find_Email" name="Find_Email" style="display: none;"><input type="text" id="Find_ID_Email" name="Find_ID_Email" placeholder="Email"></div>
+                    <div class="btnC"><a href="#" onclick="goFindID(this.event);" class="btn btnB2 btnB2_hover type3">Find ID</a></div>
+                </form>
+            </div>
+
+            <p id="err_message"></p>
+        </div>
+        <div class="foot">DIGITAL ARCHIVES MANAGEMENT SYSTEM. COPYRIGHT ALL RIGHT RESERVED.</div>
+    </div>
+</div>
+<style>
+.input { position: relative; } .input .eyes { position: absolute; top: 0; bottom: 0; right: 0; margin: auto 2px; height: 30px; font-size: 22px; cursor: pointer; }
+
+</style>
+<script>
+$(function(){
+	$('.eyes').on('click',function(){ $('.input.password').toggleClass('active'); if( $('.input.password').hasClass('active') == true ){ $(this).find('.fa-eye').attr('class',"fa fa-eye-slash fa-lg").parents('.input').find('#password').attr('type',"text");
+	} else{ $(this).find('.fa-eye-slash').attr('class',"fa fa-eye fa-lg").parents('.input').find('#password').attr('type','password'); } }); });
+
+function goFindID(){
+
+	var form = document.getElementById("frm_FindID");
+
+	form.action = "/Find_process/";
+	form.submit();
+
+    return false;
+}
+</script>

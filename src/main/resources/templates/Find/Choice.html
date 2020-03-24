@@ -1,0 +1,46 @@
+<head>
+    <link rel="stylesheet" href="/css/MCH/style.css" type="text/css">
+    <link rel="stylesheet" href="/common/css/jquery-ui.css" type="text/css">
+    <link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <script type="text/javascript" src="/js2/jquery-3.3.1.min.js?ver=1"></script>
+    <link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+
+</head>
+<script>
+</script>
+<div class="login">
+    <div>
+        <div class="loginBox">
+            <div class="logon" id="input_type_1">
+                <h1><img src="/MCHMS/mams/mchms_logo_02.svg" alt="DAMS Digital Asset Management System"></h1>
+                <p class="tit">Find ID</p>
+                <form id="frm_FindID" name="frm_FindID" method="post">
+                    <div class="btnC"><a href="/MCHMSFind?Find=ID" class="btn btnB2 btnB2_hover type3">Forgot ID</a></div>
+                    <div class="btnC"><a href="/MCHMSFind?Find=PW" class="btn btnB2 btnB2_hover type3">Forgot Password</a></div>
+                </form>
+            </div>
+
+            <p id="err_message"></p>
+        </div>
+        <div class="foot">DIGITAL ARCHIVES MANAGEMENT SYSTEM. COPYRIGHT ALL RIGHT RESERVED.</div>
+    </div>
+</div>
+<style>
+.input { position: relative; } .input .eyes { position: absolute; top: 0; bottom: 0; right: 0; margin: auto 2px; height: 30px; font-size: 22px; cursor: pointer; }
+
+</style>
+<script>
+$(function(){
+	$('.eyes').on('click',function(){ $('.input.password').toggleClass('active'); if( $('.input.password').hasClass('active') == true ){ $(this).find('.fa-eye').attr('class',"fa fa-eye-slash fa-lg").parents('.input').find('#password').attr('type',"text");
+	} else{ $(this).find('.fa-eye-slash').attr('class',"fa fa-eye fa-lg").parents('.input').find('#password').attr('type','password'); } }); });
+
+function goFindID(){
+
+	var form = document.getElementById("frm_FindID");
+
+	form.action = "/FindID_process/";
+	form.submit();
+
+    return false;
+}
+</script>

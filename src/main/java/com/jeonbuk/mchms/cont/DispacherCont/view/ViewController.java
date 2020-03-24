@@ -48,6 +48,65 @@ public class ViewController {
         mv.addObject("session", session);
 
         try {
+            List<City> Cities = cityService.getCities();
+            List<City> Museum = cityService.getMuseums();
+
+            String CitiesContents = "<option value=\"\">:::: REGION ::::</option>";
+            for(City cities : Cities) {
+                CitiesContents = CitiesContents + "<option id=\"SEQ_CITY\"  value=\""+ cities.getCities() + "\">"+ cities.getCities() +"</option>";
+            }
+
+            String MuseumContents = "<option value=\"\" selected=\"selected\">:::: Division ::::</option>";
+            for(City museum : Museum) {
+                MuseumContents = MuseumContents + "<option class=\"" + museum.getCities() + "\" value=\""+ museum.getMuseum() + "\" style = \"display:none\">" + museum.getMuseum() +"</option>";
+            }
+
+            mv.addObject("CitiesContents", CitiesContents);
+            mv.addObject("MuseumContents", MuseumContents);
+
+            List<Classification> Large = classificationService.getLarge();
+            List<Classification> Middle = classificationService.getMiddle();
+            List<Classification> Small = classificationService.getSmall();
+            List<Classification> SubSection = classificationService.getSubSection();
+
+            String LargeContents = "<option value=\"\">:::: Category ::::</option>";
+            for(Classification large : Large) {
+                LargeContents = LargeContents + "<option id=\"SEL_LARGE\"  value=\""+ large.getLarge() + "\">"+ large.getLarge() +"</option>";
+            }
+
+            String MiddleContents = "<option value=\"\" selected=\"selected\">:::: Division ::::</option>";
+            for(Classification middle : Middle) {
+                if(!(middle.getMiddle().equals("")))
+                    MiddleContents = MiddleContents + "<option class=\"middle " + middle.getLarge() + "\" id=\"" + middle.getLarge() + "\" name=\"" + middle.getLarge() + "\" value=\""+ middle.getMiddle() + "\" style = \"display:none\">" + middle.getMiddle() +"</option>";
+            }
+
+            String SmallContents = "<option value=\"\">:::: Section ::::</option>";
+            for(Classification small : Small) {
+                if (!((small.getLarge()).equals(""))) {
+                    SmallContents = SmallContents + "<option class=\"small " + small.getMiddle() + "\" value=\"" + small.getSmall() + "\" style = \"display:none\">" + small.getSmall() + "</option>";
+                }
+            }
+
+            String SubSectionContents = "<option value=\"\">:::: Sub Section ::::</option>";
+            for(Classification subSection : SubSection) {
+                if (!((subSection.getLarge()).equals(""))) {
+                    if ((subSection.getMiddle()).equals("Buddha_Museum")) {
+                        SubSectionContents = SubSectionContents + "<option class=\"sub_small " + subSection.getSmall() + "\" value=\"" + subSection.getSubSection() + "\" style = \"display:none\">" + subSection.getSubSection() + "</option>";
+                    }
+                }
+            }
+
+            mv.addObject("LargeContents", LargeContents);
+            mv.addObject("MiddleContents", MiddleContents);
+            mv.addObject("SmallContents", SmallContents);
+            mv.addObject("SubSectionContents", SubSectionContents);
+
+            mv.addObject("City", Cities);
+            mv.addObject("Museum", Museum);
+            mv.addObject("MID_Page", "View/MCHMSView.html");
+
+            mv.setViewName("Contents_Base");
+
             String id = request.getParameter("ID");
             DataDomain dataDomain = dataService.getDataInfo(id);
 
@@ -91,9 +150,14 @@ public class ViewController {
 
             String[] filesArray = {};
             String filesname =  "";
+            int imgCount;
             if(fileEventDomain != null){
                 filesname = fileEventDomain.getFiles();
                 filesArray = filesname.split("\\|");
+                imgCount = fileEventDomain.getCount();
+            }
+            else{
+                imgCount = 0;
             }
             String ImgContents = "";
             for (int i=0; i<filesArray.length; i++){
@@ -133,10 +197,10 @@ public class ViewController {
             mv.addObject("Clinfo", clInfo);
             mv.addObject("Cityinfo", cityInfo);
             mv.addObject("fileEventDomain", fileEventDomain);
+            mv.addObject("imgCount", imgCount);
             mv.addObject("filesname", filesname);
             mv.addObject("ImgContents", ImgContents);
             mv.addObject("file_length", filesArray.length);
-            mv.setViewName("View/MCHMSView");
 
         } catch (Exception e) {
             e.printStackTrace();

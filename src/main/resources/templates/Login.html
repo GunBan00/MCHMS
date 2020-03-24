@@ -12,8 +12,10 @@
                     <input type="text" id="USER_ID" name="USER_ID" style="ime-mode:disabled" placeholder="ID" onkeypress="if((event.keyCode > 32 &amp;&amp; event.keyCode < 48)||(event.keyCode > 57 &amp;&amp; event.keyCode < 65)||(event.keyCode > 90 &amp;&amp; event.keyCode < 97)||event.keyCode == '13'){event.returnValue = false;}">
                     <input type="password" id="USER_PASS" name="USER_PASS" placeholder="Password" onkeypress="if(event.keyCode == '13'){goLogin();}">
                     <div class="save_apply">
-                    	<label><input type="checkbox">Save ID</label>
-                    	<p class="btnS"><a href="/MCHMSApply">Register ID</a></p>
+                        <p class="btnS"><a href="/MCHMSApply">Register ID</a></p>
+                    </div>
+                    <div class="save_apply">
+                        <p class="btnS" style="margin-top: 10px; float: right;"><a href="/MCHMSFind">Forgot Your ID/PASSWORD?</a></p>
                     </div>
                     <div class="btnC"><a href="#" onclick="goLogin(this.event);" class="btn btnB2 btnB2_hover type3">Login</a></div>
                 </form>
