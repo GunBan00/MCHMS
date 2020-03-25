@@ -27,4 +27,3 @@ appender('root_log', RollingFileAppender) {
 
 logger('com.jeonbuk', debug, ['debug_log'], false)
 root(error, ['root_log'])
-

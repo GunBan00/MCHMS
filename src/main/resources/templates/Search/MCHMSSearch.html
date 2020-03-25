@@ -1,114 +1,113 @@
+<!-- 내용부분 -->
+<div class="conts">
 
-	<!-- 내용부분 -->
-	<div class="conts">
+	<div id="divContsTtl">
+		<h4></h4>
 
-		<div id="divContsTtl">
-			<h4></h4>
+	</div>
 
+
+	<h4 id="BOARD_TITLE" style="display: block;"></h4>
+	<form id="listForm" name="listForm" method="post">
+		<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX" value="1">
+		<input type="hidden" id="DEPT_SEQ1" name="DEPT_SEQ1" value="">
+		<input type="hidden" id="DEPT_SEQ2" name="DEPT_SEQ2" value="">
+		<input type="hidden" id="DEPT_SEQ3" name="DEPT_SEQ3" value="000000">
+		<input type="hidden" id="DEPT_NAME1" name="DEPT_NAME1" value="">
+		<input type="hidden" id="DEPT_NAME2" name="DEPT_NAME2" value="">
+		<input type="hidden" id="LEVEL1_SEQ" name="LEVEL1_SEQ" value="">
+		<input type="hidden" id="LEVEL2_SEQ" name="LEVEL2_SEQ" value="">
+		<input type="hidden" id="SELECT_DEPTH" name="SELECT_DEPTH" value="">
+		<input type="hidden" id="SMUSEUM_CODE" name="SMUSEUM_CODE" value="PS01001001">
+		<input type="hidden" id="BOARD_SEQ" name="BOARD_SEQ" value="">
+		<input type="hidden" id="MENU_SEQ" name="MENU_SEQ" value="">
+		<input type="hidden" id="BOARDS" name="BOARDS" value="">
+		<input type="hidden" id="MODE" name="MODE" value="MORE">
+		<input type="hidden" id="SORT_FIELD" name="SORT_FIELD">
+		<input type="hidden" id="SORT_MODE" name="SORT_MODE">
+
+		<input type="hidden" id="REG_AUTH" name="REG_AUTH" value="N">
+		<input type="hidden" id="MOVE_AUTH" name="MOVE_AUTH" value="N">
+		<input type="hidden" id="TOTAL_UPLOAD" name="TOTAL_UPLOAD" value="N">
+		<input type="hidden" name="MCSJGBNC_CODE" id="MCSJGBNC_CODE">
+		<input type="hidden" name="MCSJGBNC_LV" id="MCSJGBNC_LV">
+		<input type="hidden" name="CODECOPY" id="CODECOPY">
+		<input type="hidden" name="tdCount" id="tdCount" value="">
+		<input type="hidden" name="TOP_TOPWORD" id="TOP_TOPWORD" value="an">
+
+		<!-- isKang 추가 190625 Start-->
+		<input type="hidden" id="pageId" value="BoardList">
+		<input type="hidden" name="LANG" id="LANG" value="EN">
+		<!-- isKang 추가 190625 End-->
+
+		<!-- 상세검색 Start-->
+		<input type="hidden" name="SRCH_TITLE" value="">
+		<input type="hidden" name="SRCH_TITLE_OP" value="AND">
+		<input type="hidden" name="SRCH_TITLE_MY" value="">
+		<input type="hidden" name="SRCH_TITLE_MY_OP" value="AND">
+
+		<input type="hidden" name="SRCH_REMARK1" value="">
+		<input type="hidden" name="SRCH_REMARK1_OP" value="AND">
+		<input type="hidden" name="SRCH_REMARK1_MY" value="">
+		<input type="hidden" name="SRCH_REMARK1_MY_OP" value="AND">
+
+		<input type="hidden" name="SRCH_REMARK2" value="">
+		<input type="hidden" name="SRCH_REMARK2_OP" value="AND">
+		<input type="hidden" name="SRCH_REMARK2_MY" value="">
+		<input type="hidden" name="SRCH_REMARK2_MY_OP" value="AND">
+
+		<input type="hidden" name="SRCH_REG" value="">
+		<input type="hidden" name="SRCH_REG_OP" value="AND">
+		<input type="hidden" name="SRCH_MUESUM_CODE" value="">
+
+		<input type="hidden" name="SRCH_LEVEL1_SEQ" value="">
+		<input type="hidden" name="SRCH_LEVEL2_SEQ" value="">
+		<input type="hidden" name="SRCH_LARGE_SEQ" value="">
+		<input type="hidden" name="SRCH_MEDIUM_SEQ" value="">
+		<input type="hidden" name="SRCH_SMALL_SEQ" value="">
+
+		<input type="hidden" name="SRCH_LEVEL1_MY_SEQ" value="">
+		<input type="hidden" name="SRCH_LEVEL2_MY_SEQ" value="">
+		<input type="hidden" name="SRCH_LARGE_MY_SEQ" value="">
+		<input type="hidden" name="SRCH_MEDIUM_MY_SEQ" value="">
+		<input type="hidden" name="SRCH_SMALL_MY_SEQ" value="">
+
+		<input type="hidden" name="SRCH_REG_SRT_DATE" value="">
+		<input type="hidden" name="SRCH_REG_END_DATE" value="">
+		<input type="hidden" name="SRCH_BIZ_SRT_DATE" value="">
+		<input type="hidden" name="SRCH_BIZ_END_DATE" value="">
+		<input type="hidden" name="SRCH_RELIC_NUM" value="">
+
+		<input type="hidden" id="SRCH_MODE" name="SRCH_MODE" value="상세검색">
+		<input type="hidden" id="CATEGORY_NAME2" name="CATEGORY_NAME2" value="">
+		<!-- 상세검색 End-->
+
+		<!-- menuForm 추가 Start -->
+		<input type="hidden" id="MENU_DEPT_SEQ1" name="MENU_DEPT_SEQ1" value="">
+		<input type="hidden" id="MENU_DEPT_SEQ2" name="MENU_DEPT_SEQ2" value="">
+		<input type="hidden" id="DEPTH" name="DEPTH" value="2">
+		<input type="hidden" id="LANG" name="LANG" value="EN">
+		<input type="hidden" id="StrMODE" name="StrMODE" value="">
+		<!-- menuForm 추가 End -->
+
+		<!--	 <h4>타이틀</h4> 유민재 추가 	190820 -->
+		<input type="hidden" value="" name="CODE_TITLE" id="CODE_TITLE">
+
+		<div id="divRegAtclGuid">
 		</div>
 
 
-		<h4 id="BOARD_TITLE" style="display: block;"></h4>
-		<form id="listForm" name="listForm" method="post">
-			<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX" value="1">
-			<input type="hidden" id="DEPT_SEQ1" name="DEPT_SEQ1" value="">
-			<input type="hidden" id="DEPT_SEQ2" name="DEPT_SEQ2" value="">
-			<input type="hidden" id="DEPT_SEQ3" name="DEPT_SEQ3" value="000000">
-			<input type="hidden" id="DEPT_NAME1" name="DEPT_NAME1" value="">
-			<input type="hidden" id="DEPT_NAME2" name="DEPT_NAME2" value="">
-			<input type="hidden" id="LEVEL1_SEQ" name="LEVEL1_SEQ" value="">
-			<input type="hidden" id="LEVEL2_SEQ" name="LEVEL2_SEQ" value="">
-			<input type="hidden" id="SELECT_DEPTH" name="SELECT_DEPTH" value="">
-			<input type="hidden" id="SMUSEUM_CODE" name="SMUSEUM_CODE" value="PS01001001">
-			<input type="hidden" id="BOARD_SEQ" name="BOARD_SEQ" value="">
-			<input type="hidden" id="MENU_SEQ" name="MENU_SEQ" value="">
-			<input type="hidden" id="BOARDS" name="BOARDS" value="">
-			<input type="hidden" id="MODE" name="MODE" value="MORE">
-			<input type="hidden" id="SORT_FIELD" name="SORT_FIELD">
-			<input type="hidden" id="SORT_MODE" name="SORT_MODE">
-
-			<input type="hidden" id="REG_AUTH" name="REG_AUTH" value="N">
-			<input type="hidden" id="MOVE_AUTH" name="MOVE_AUTH" value="N">
-			<input type="hidden" id="TOTAL_UPLOAD" name="TOTAL_UPLOAD" value="N">
-			<input type="hidden" name="MCSJGBNC_CODE" id="MCSJGBNC_CODE">
-			<input type="hidden" name="MCSJGBNC_LV" id="MCSJGBNC_LV">
-			<input type="hidden" name="CODECOPY" id="CODECOPY">
-			<input type="hidden" name="tdCount" id="tdCount" value="">
-			<input type="hidden" name="TOP_TOPWORD" id="TOP_TOPWORD" value="an">
-
-			<!-- isKang 추가 190625 Start-->
-			<input type="hidden" id="pageId" value="BoardList">
-			<input type="hidden" name="LANG" id="LANG" value="EN">
-			<!-- isKang 추가 190625 End-->
-
-			<!-- 상세검색 Start-->
-			<input type="hidden" name="SRCH_TITLE" value="">
-			<input type="hidden" name="SRCH_TITLE_OP" value="AND">
-			<input type="hidden" name="SRCH_TITLE_MY" value="">
-			<input type="hidden" name="SRCH_TITLE_MY_OP" value="AND">
-
-			<input type="hidden" name="SRCH_REMARK1" value="">
-			<input type="hidden" name="SRCH_REMARK1_OP" value="AND">
-			<input type="hidden" name="SRCH_REMARK1_MY" value="">
-			<input type="hidden" name="SRCH_REMARK1_MY_OP" value="AND">
-
-			<input type="hidden" name="SRCH_REMARK2" value="">
-			<input type="hidden" name="SRCH_REMARK2_OP" value="AND">
-			<input type="hidden" name="SRCH_REMARK2_MY" value="">
-			<input type="hidden" name="SRCH_REMARK2_MY_OP" value="AND">
-
-			<input type="hidden" name="SRCH_REG" value="">
-			<input type="hidden" name="SRCH_REG_OP" value="AND">
-			<input type="hidden" name="SRCH_MUESUM_CODE" value="">
-
-			<input type="hidden" name="SRCH_LEVEL1_SEQ" value="">
-			<input type="hidden" name="SRCH_LEVEL2_SEQ" value="">
-			<input type="hidden" name="SRCH_LARGE_SEQ" value="">
-			<input type="hidden" name="SRCH_MEDIUM_SEQ" value="">
-			<input type="hidden" name="SRCH_SMALL_SEQ" value="">
-
-			<input type="hidden" name="SRCH_LEVEL1_MY_SEQ" value="">
-			<input type="hidden" name="SRCH_LEVEL2_MY_SEQ" value="">
-			<input type="hidden" name="SRCH_LARGE_MY_SEQ" value="">
-			<input type="hidden" name="SRCH_MEDIUM_MY_SEQ" value="">
-			<input type="hidden" name="SRCH_SMALL_MY_SEQ" value="">
-
-			<input type="hidden" name="SRCH_REG_SRT_DATE" value="">
-			<input type="hidden" name="SRCH_REG_END_DATE" value="">
-			<input type="hidden" name="SRCH_BIZ_SRT_DATE" value="">
-			<input type="hidden" name="SRCH_BIZ_END_DATE" value="">
-			<input type="hidden" name="SRCH_RELIC_NUM" value="">
-
-			<input type="hidden" id="SRCH_MODE" name="SRCH_MODE" value="상세검색">
-			<input type="hidden" id="CATEGORY_NAME2" name="CATEGORY_NAME2" value="">
-			<!-- 상세검색 End-->
-
-			<!-- menuForm 추가 Start -->
-			<input type="hidden" id="MENU_DEPT_SEQ1" name="MENU_DEPT_SEQ1" value="">
-			<input type="hidden" id="MENU_DEPT_SEQ2" name="MENU_DEPT_SEQ2" value="">
-			<input type="hidden" id="DEPTH" name="DEPTH" value="2">
-			<input type="hidden" id="LANG" name="LANG" value="EN">
-			<input type="hidden" id="StrMODE" name="StrMODE" value="">
-			<!-- menuForm 추가 End -->
-
-			<!--	 <h4>타이틀</h4> 유민재 추가 	190820 -->
-			<input type="hidden" value="" name="CODE_TITLE" id="CODE_TITLE">
-
-			<div id="divRegAtclGuid">
-			</div>
-
-
-			<div class="searchBox04" style="visibility:hidden">
-				<input name="LARGE_SEQ" id="LARGE_SEQ" value="" type="hidden">
-				<input name="MEDIUM_SEQ" id="MEDIUM_SEQ" value="" type="hidden">
-				<input name="SMALL_SEQ" id="SMALL_SEQ" value="" type="hidden">
+		<div class="searchBox04" style="visibility:hidden">
+			<input name="LARGE_SEQ" id="LARGE_SEQ" value="" type="hidden">
+			<input name="MEDIUM_SEQ" id="MEDIUM_SEQ" value="" type="hidden">
+			<input name="SMALL_SEQ" id="SMALL_SEQ" value="" type="hidden">
 
 
 
-			</div>
-			<div id="map"></div>
+		</div>
+		<div id="map"></div>
 
-			<script th:inline="javascript">
+		<script th:inline="javascript">
 				function initMap() {
 					/*<![CDATA[*/
 					var data = /*[[${lists}]]*/;
@@ -152,114 +151,114 @@
 				}
 			</script>
 
-			<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg2U2hyWyH76p5rXTIptibx3d9SkuiEDQ&callback=initMap"></script>
-			<div class="floatBox" style="margin-top: 40px;">
-				<div class="flBox">
-					<div class="cnb_1" id="tottalcnt"><span style="font-weight:bold;color:#999" th:text="|${total} items total|"></span></div>
-				</div>
-				<div class="frBox">
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg2U2hyWyH76p5rXTIptibx3d9SkuiEDQ&callback=initMap"></script>
+		<div class="floatBox" style="margin-top: 40px;">
+			<div class="flBox">
+				<div class="cnb_1" id="tottalcnt"><span style="font-weight:bold;color:#999" th:text="|${total} items total|"></span></div>
+			</div>
+			<div class="frBox">
 				<span id="REG_BTN" class="REG_BTN" style="display: none;">
 
                 </span>
+			</div>
+		</div>
+		<div class="board_box" style="margin-top: -35px;">
+			<table id="table1 mt45" cellpadding="0" cellspacing="0" border="0" class="data_sheet01 mt45">
+				<colgroup id="setCol"><col style="width:4%"><col style="width:4%"><col><col><col><col><col><col><col><col></colgroup>
+				<thead id="field1"><tr th:if="${flag} == 0">
+					<th>Num</th>
+					<th id="serial" style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc; color: #333; text-align: center; vertical-align: middle; cursor:pointer;">
+						<button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/MCHMSSearch/?City_id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=Serial_Number' + '\''">
+							Serial
+						</button>
+					</th>
+					<th  style="border-top:none; border-bottom: none; border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc;  color: #333; text-align: center; vertical-align: middle;">
+						<button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/MCHMSSearch/?City_id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=City' + '\''">
+							Region
+						</button>
+					</th>
+					<th style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc; color: #333; text-align: center; vertical-align: middle;">
+						<button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/MCHMSSearch/?City_id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=Classification' + '\''">
+							Classification
+						</button>
+					</th>
+					<th id ="title" style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc;  color: #333; text-align: center; vertical-align: middle; cursor:pointer;">
+						<button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/MCHMSSearch/?City_id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=Title' + '\''">
+							Title
+						</button>
+					</th>
+					<th id ="reg" style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc;   color: #333; text-align: center; vertical-align: middle; cursor:pointer;" >
+						<button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/MCHMSSearch/?City_id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=Registration_Date' + '\''">
+							Registration date
+						</button>
+					</th>
+				</tr>
+				<tr th:unless="${flag} == 0">
+					<th>Num</th>
+					<th id="serial" style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc; color: #333; text-align: center; vertical-align: middle; cursor:pointer;">
+						<button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/MCHMSSearch/?Keyword={Keyword}(Keyword=${Keyword})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=Serial_Number' + '\''">
+							Serial
+						</button>
+					</th>
+					<th  style="border-top:none; border-bottom: none; border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc;  color: #333; text-align: center; vertical-align: middle;">
+						<button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/MCHMSSearch/?Keyword={Keyword}(Keyword=${Keyword})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=City' + '\''">
+							Region
+						</button>
+					</th>
+					<th style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc; color: #333; text-align: center; vertical-align: middle;">
+						<button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/MCHMSSearch/?Keyword={Keyword}(Keyword=${Keyword})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=Classification' + '\''">
+							Classification
+						</button>
+					</th>
+					<th id ="title" style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc;  color: #333; text-align: center; vertical-align: middle; cursor:pointer;">
+						<button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/MCHMSSearch/?Keyword={Keyword}(Keyword=${Keyword})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=Title' + '\''">
+							Title
+						</button>
+					</th>
+					<th id ="reg" style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc;   color: #333; text-align: center; vertical-align: middle; cursor:pointer;" >
+						<button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/MCHMSSearch/?Keyword={Keyword}(Keyword=${Keyword})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=Registration_Date' + '\''">
+							Registration date
+						</button>
+					</th>
+				</tr>
+				</thead>
+				<tbody id="list1">
+				<tr th:if="${flag} == 0" th:each="dataDomain : ${lists}" style = "cursor:pointer;" th:onclick="'location.href = \'' + @{/MCHMSView/?ID={ID}(ID=${dataDomain.id})} + '\''">
+					<td class="FILE_NUM"><div th:text="${dataDomain.index}"></div></td>
+					<td class="FIELD_SERIAL" title="Monuments"><div th:text="${dataDomain.serialNumber}"></div></td>
+					<td class="FIELD_REGION"><div th:text="${RegionName}"></div></td>
+					<td class="FIELD_CATEGORY"><div th:text="${dataDomain.clResult}"></div></td>
+					<td class="FIELD_TITLE"><div th:text="${dataDomain.title}"></div></td>
+					<td class="FIELD_REG_DATE"><div th:text="${dataDomain.registrationDate}"></div></td>
+				</tr>
+				<tr th:unless="${flag} == 0" th:each="dataDomain : ${lists}" style = "cursor:pointer;" th:onclick="'location.href = \'' + @{/MCHMSView/?ID={ID}(ID=${dataDomain.id})} + '\''">
+					<td class="FILE_CNT" style = "text-align= center"><div th:text="${dataDomain.index}"></div></td>
+					<td class="FIELD_SERIAL" title="Monuments"><div th:text="${dataDomain.serialNumber}"></div></td>
+					<td class="FIELD_REGION"><div th:text="${dataDomain.ciResult}"></div></td>
+					<td class="FIELD_CATEGORY elli"><div th:text="${dataDomain.clResult}"></div></td>
+					<td class="FIELD_TITLE"><div th:text="${dataDomain.title}"></div></td>
+					<td class="FIELD_REG_DATE"><div th:text="${dataDomain.registrationDate}"></div></td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="floatBox" style="margin-top: 10px;">
+			<div class="flBox">
+				<div class ="pageBox"  style ="display:inline-block;">
+					<a th:each ="num : ${pageNumberList}" th:href="@{/MCHMSSearch/?City_id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&' + @{TypeToSort={TypeToSort}(TypeToSort=${TypeToSort})} + '&' + @{currentPage={currentPage}(currentPage=${num})}" th:text="${num}"></a>
+
+				</div>
+				<div>
+					<input type="text" size="34" maxlength="3" value="" style="margin-top : 1%; width: 60px;" class ="FIELD_RELIC_ZIP" id ="FIELD_RELIC_ZIP" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' ></input><input type ="button" style ="margin-top : 1%;width: 30px; height: 30px;" onclick="javascript:movePage();" value="P"></input>
+				</div>
+				<div class="frBox REG_BTN" style="display: block; float:left;">
+					<a th:if="${session.value != null}" th:href="@{/MCHMSWrite/?City_id={id}(id=${City_id})}" style = "right:0; position : absolute" class="btn btnB">Upload</a>
 				</div>
 			</div>
-			<div class="board_box" style="margin-top: -35px;">
-				<table id="table1 mt45" cellpadding="0" cellspacing="0" border="0" class="data_sheet01 mt45">
-					<colgroup id="setCol"><col style="width:4%"><col style="width:4%"><col><col><col><col><col><col><col><col></colgroup>
-					<thead id="field1"><tr th:if="${flag} == 0">
-						<th>Num</th>
-						<th id="serial" style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc; color: #333; text-align: center; vertical-align: middle; cursor:pointer;">
-							<button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/MCHMSSearch/?City_id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=Serial_Number' + '\''">
-								Serial
-							</button>
-						</th>
-						<th  style="border-top:none; border-bottom: none; border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc;  color: #333; text-align: center; vertical-align: middle;">
-							<button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/MCHMSSearch/?City_id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=City' + '\''">
-								Region
-							</button>
-						</th>
-						<th style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc; color: #333; text-align: center; vertical-align: middle;">
-							<button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/MCHMSSearch/?City_id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=Classification' + '\''">
-								Classification
-							</button>
-						</th>
-						<th id ="title" style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc;  color: #333; text-align: center; vertical-align: middle; cursor:pointer;">
-							<button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/MCHMSSearch/?City_id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=Title' + '\''">
-								Title
-							</button>
-						</th>
-						<th id ="reg" style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc;   color: #333; text-align: center; vertical-align: middle; cursor:pointer;" >
-							<button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/MCHMSSearch/?City_id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=Registration_Date' + '\''">
-								Registration date
-							</button>
-						</th>
-					</tr>
-					<tr th:unless="${flag} == 0">
-						<th>Num</th>
-						<th id="serial" style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc; color: #333; text-align: center; vertical-align: middle; cursor:pointer;">
-							<button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/MCHMSSearch/?Keyword={Keyword}(Keyword=${Keyword})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=Serial_Number' + '\''">
-								Serial
-							</button>
-						</th>
-						<th  style="border-top:none; border-bottom: none; border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc;  color: #333; text-align: center; vertical-align: middle;">
-							<button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/MCHMSSearch/?Keyword={Keyword}(Keyword=${Keyword})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=City' + '\''">
-								Region
-							</button>
-						</th>
-						<th style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc; color: #333; text-align: center; vertical-align: middle;">
-							<button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/MCHMSSearch/?Keyword={Keyword}(Keyword=${Keyword})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=Classification' + '\''">
-								Classification
-							</button>
-						</th>
-						<th id ="title" style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc;  color: #333; text-align: center; vertical-align: middle; cursor:pointer;">
-							<button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/MCHMSSearch/?Keyword={Keyword}(Keyword=${Keyword})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=Title' + '\''">
-								Title
-							</button>
-						</th>
-						<th id ="reg" style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc;   color: #333; text-align: center; vertical-align: middle; cursor:pointer;" >
-							<button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/MCHMSSearch/?Keyword={Keyword}(Keyword=${Keyword})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=Registration_Date' + '\''">
-								Registration date
-							</button>
-						</th>
-					</tr>
-					</thead>
-					<tbody id="list1">
-					<tr th:if="${flag} == 0" th:each="dataDomain : ${lists}" style = "cursor:pointer;" th:onclick="'location.href = \'' + @{/MCHMSView/?ID={ID}(ID=${dataDomain.id})} + '\''">
-						<td class="FILE_NUM"><div th:text="${dataDomain.index}"></div></td>
-						<td class="FIELD_SERIAL" title="Monuments"><div th:text="${dataDomain.serialNumber}"></div></td>
-						<td class="FIELD_REGION"><div th:text="${RegionName}"></div></td>
-						<td class="FIELD_CATEGORY"><div th:text="${dataDomain.clResult}"></div></td>
-						<td class="FIELD_TITLE"><div th:text="${dataDomain.title}"></div></td>
-						<td class="FIELD_REG_DATE"><div th:text="${dataDomain.registrationDate}"></div></td>
-					</tr>
-					<tr th:unless="${flag} == 0" th:each="dataDomain : ${lists}" style = "cursor:pointer;" th:onclick="'location.href = \'' + @{/MCHMSView/?ID={ID}(ID=${dataDomain.id})} + '\''">
-						<td class="FILE_CNT" style = "text-align= center"><div th:text="${dataDomain.index}"></div></td>
-						<td class="FIELD_SERIAL" title="Monuments"><div th:text="${dataDomain.serialNumber}"></div></td>
-						<td class="FIELD_REGION"><div th:text="${dataDomain.ciResult}"></div></td>
-						<td class="FIELD_CATEGORY elli"><div th:text="${dataDomain.clResult}"></div></td>
-						<td class="FIELD_TITLE"><div th:text="${dataDomain.title}"></div></td>
-						<td class="FIELD_REG_DATE"><div th:text="${dataDomain.registrationDate}"></div></td>
-					</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="floatBox" style="margin-top: 10px;">
-				<div class="flBox">
-					<div class ="pageBox"  style ="display:inline-block;">
-						<a th:each ="num : ${pageNumberList}" th:href="@{/MCHMSSearch/?City_id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&' + @{TypeToSort={TypeToSort}(TypeToSort=${TypeToSort})} + '&' + @{currentPage={currentPage}(currentPage=${num})}" th:text="${num}"></a>
 
-					</div>
-					<div>
-						<input type="text" size="34" maxlength="3" value="" style="margin-top : 1%; width: 60px;" class ="FIELD_RELIC_ZIP" id ="FIELD_RELIC_ZIP" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' ></input><input type ="button" style ="margin-top : 1%;width: 30px; height: 30px;" onclick="javascript:movePage();" value="P"></input>
-					</div>
-						<div class="frBox REG_BTN" style="display: block; float:left;">
-							<a th:if="${session.value != null}" th:href="@{/MCHMSWrite/?City_id={id}(id=${City_id})}" style = "right:0; position : absolute" class="btn btnB">Upload</a>
-						</div>
-				</div>
-
-			</div>
-		</form>
-	</div>
+		</div>
+	</form>
+</div>
 </div>
 <!-- //내용부분 -->
 <script>

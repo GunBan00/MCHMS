@@ -42,7 +42,7 @@ public class FindController {
                     if (CFind.equals("PW")){
                         mv.setViewName("Find/Find_PW");
                     }
-                    
+
                     else {
                         mv.setViewName("Find/Find_ID");
                     }

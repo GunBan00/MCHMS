@@ -737,24 +737,24 @@
 			<h1>
 				<a href=""><img src="/MCHMS/mams/mchms_logo_02.svg" alt="MAMS Myanmar Asset Management System"></a>
 			</h1>
-            <form action = "/MCHMSSearch_process/" method = "post" enctype="multipart/form-data" id="AdvsearchFrom" name="AdvsearchFrom">
-                <input type="hidden" id="SRCH_MODE" name="SRCH_MODE">
-                <input type="hidden" id="SELECT_DEPTH" name="SELECT_DEPTH">
-                <input type="hidden" id="StrMODE" name="StrMODE" value="MORE">
-                <input type="hidden" id="TSSEARCH" name="USER_TSGROUP_CODE" value="PS01001001_000000013">
-                <input type="hidden" id="USER_TSGROUP_CODE" name="USER_TSGROUP_CODE" value="PS01001001_000000013">
-                <input type="hidden" id="USER_LGROUP_CODE_SEQ" name="USER_LGROUP_CODE_SEQ" value="20190730193223383814_000000102">
-                <input type="hidden" id="STR_TOP_SEARCH_MUESUM_CODE" name="STR_TOP_SEARCH_MUESUM_CODE" value="">
+			<form action = "/MCHMSSearch_process/" method = "post" enctype="multipart/form-data" id="AdvsearchFrom" name="AdvsearchFrom">
+				<input type="hidden" id="SRCH_MODE" name="SRCH_MODE">
+				<input type="hidden" id="SELECT_DEPTH" name="SELECT_DEPTH">
+				<input type="hidden" id="StrMODE" name="StrMODE" value="MORE">
+				<input type="hidden" id="TSSEARCH" name="USER_TSGROUP_CODE" value="PS01001001_000000013">
+				<input type="hidden" id="USER_TSGROUP_CODE" name="USER_TSGROUP_CODE" value="PS01001001_000000013">
+				<input type="hidden" id="USER_LGROUP_CODE_SEQ" name="USER_LGROUP_CODE_SEQ" value="20190730193223383814_000000102">
+				<input type="hidden" id="STR_TOP_SEARCH_MUESUM_CODE" name="STR_TOP_SEARCH_MUESUM_CODE" value="">
 
-                <!-- isKang 추가 190628 -->
-                <input type="hidden" name="LANG" value="EN">
-                <input type="hidden" id="STR_SRCH_MUESUM_CODE" name="STR_SRCH_MUESUM_CODE" value="">
+				<!-- isKang 추가 190628 -->
+				<input type="hidden" name="LANG" value="EN">
+				<input type="hidden" id="STR_SRCH_MUESUM_CODE" name="STR_SRCH_MUESUM_CODE" value="">
 
 
-                <div class="searchBox">
-                    <input type="text" id="TOP_TOPWORD" name="TOP_TOPWORD" onkeypress="speCharBlock(this)" value="">
-                    <a href="#" onclick="Search();" class="serch_icon"><img src="/static/MCHMS/mams/serch_icon_06.svg" alt="Search Btn" style="height: 22px;">Search</a>
-                    <script>
+				<div class="searchBox">
+					<input type="text" id="TOP_TOPWORD" name="TOP_TOPWORD" onkeypress="speCharBlock(this)" value="">
+					<a href="#" onclick="Search();" class="serch_icon"><img src="/static/MCHMS/mams/serch_icon_06.svg" alt="Search Btn" style="height: 22px;">Search</a>
+					<script>
 
 					function Search() {
 						SearchKey = $("#TOP_TOPWORD").val();
@@ -786,8 +786,8 @@
 					});
 					</script>
 
-                    <a href="#layerPopup" class="btnSearch"><img src="/static/MCHMS/mams/serch_icon_07.svg" alt="" style="height: 22px;">Advanced</a>
-                    <script>
+					<a href="#layerPopup" class="btnSearch"><img src="/static/MCHMS/mams/serch_icon_07.svg" alt="" style="height: 22px;">Advanced</a>
+					<script>
 						$('.btnSearch').click(function(){
 							var $href = $(this).attr('href');
 							layer_popup($href);
@@ -817,95 +817,95 @@
 
 						}
 					</script>
-                </div>
+				</div>
 
-                <div id="detailSearchLayer" class="layerPopup">
-                    <div>
-                        <p class="tit">Advanced search</p>
-                        <div class="content">
-                            <table class="tbType01 type2">
-                                <colgroup>
-                                    <col style="width:160px">
-                                    <col>
-                                </colgroup>
-                                <tbody>
-                                <tr id="trSrchTitleEn">
-                                    <th>Classification</th>
-                                    <td>
-                                        <input type="hidden" name="SMUSEUM_CODE" id="SMUSEUM_CODE" value="PS01001001" />
-                                        <div style="width:580px; float:left;">
-                                            <select name="LARGE_SEQ" id="LARGE_SEQ" class="LARGE_SEQ" style="width: 201px; float:left;" th:utext="${LargeContents}">
-                                            </select>
-                                            <select name="MEDIUM_SEQ" id="MEDIUM_SEQ" class="MEDIUM_SEQ" style="width: 374px; float:right;" th:utext="${MiddleContents}">
-                                            </select>
-                                            <select name="SMALL_SEQ" id="SMALL_SEQ" style="width: 201px;float:left; margin-top: 5px;" th:utext="${SmallContents}">
-                                            </select>
-                                            <select name="SUB_SEQ" id="SUB_SEQ" style="width: 374px; float:right; margin-top: 5px;" th:utext="${SubSectionContents}">
-                                            </select>
-                                        </div>
-                                        <div style="float:right;">
-                                            <select class="SEQ_Sel" id="SEL_SEQ" name="SEL_SEQ" style="">
-                                                <option value="">SELECT</option>
-                                                <option value="OR">OR</option>
-                                                <option value="AND">AND</option>
-                                                <option value="NOT">NOT</option>
-                                            </select>
-                                            <div>
-                                    </td>
-                                </tr>
-                                <tr id="trSrchCityEn">
-                                    <th>Region</th>
-                                    <td>
-                                        <select name="CITY_SEQ" id="CITY_SEQ" style="width: 201px; float:left;" th:utext="${CitiesContents}"></select>
-                                        <select name="MUSEUM_SEQ" id="MUSEUM_SEQ" style="width: 374px; float:left; margin-left: 5px;" th:utext="${MuseumContents}"></select>
-                                        <select class="Ad_Sel" id="SEL_CITY" name="SEL_CITY" style="">
-                                            <option value="">SELECT</option>
-                                            <option value="OR">OR</option>
-                                            <option value="AND">AND</option>
-                                            <option value="NOT">NOT</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr id="trSrchTitleEn">
-                                    <th>Title(En)</th>
-                                    <td>
-                                        <input type="text" class="sizeL" id="SRCH_TITLE" name="SRCH_TITLE" value="" onkeypress="speCharBlock(this)">
-                                        <select class="Ad_Sel" id="SEL_TITLE" name="SEL_TITLE">
-                                            <option value="">SELECT</option>
-                                            <option value="OR">OR</option>
-                                            <option value="AND">AND</option>
-                                            <option value="NOT">NOT</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr id="trSrchRemark1En">
-                                    <th>Remark(En)</th>
-                                    <td>
-                                        <input type="text" class="sizeL" id="SRCH_REMARK" name="SRCH_REMARK" value="" onkeypress="speCharBlock(this)">
-                                        <select class="Ad_Sel" id="SEL_REMARK" name="SEL_REMARK">
-                                            <option value="">SELECT</option>
-                                            <option value="OR">OR</option>
-                                            <option value="AND">AND</option>
-                                            <option value="NOT">NOT</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Registrant</th>
-                                    <td>
-                                        <input type="text" class="sizeL" id="SRCH_REG" name="SRCH_REG" value="" onkeypress="speCharBlock(this)">
-                                        <select class="Ad_Sel" id="SEL_REG" name="SEL_REG">
-                                            <option value="">SELECT</option>
-                                            <option value="OR">OR</option>
-                                            <option value="AND">AND</option>
-                                            <option value="NOT">NOT</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Registration date</th>
-                                    <td>
-                                        <script>
+				<div id="detailSearchLayer" class="layerPopup">
+					<div>
+						<p class="tit">Advanced search</p>
+						<div class="content">
+							<table class="tbType01 type2">
+								<colgroup>
+									<col style="width:160px">
+									<col>
+								</colgroup>
+								<tbody>
+								<tr id="trSrchTitleEn">
+									<th>Classification</th>
+									<td>
+										<input type="hidden" name="SMUSEUM_CODE" id="SMUSEUM_CODE" value="PS01001001" />
+										<div style="width:580px; float:left;">
+											<select name="LARGE_SEQ" id="LARGE_SEQ" class="LARGE_SEQ" style="width: 201px; float:left;" th:utext="${LargeContents}">
+											</select>
+											<select name="MEDIUM_SEQ" id="MEDIUM_SEQ" class="MEDIUM_SEQ" style="width: 374px; float:right;" th:utext="${MiddleContents}">
+											</select>
+											<select name="SMALL_SEQ" id="SMALL_SEQ" style="width: 201px;float:left; margin-top: 5px;" th:utext="${SmallContents}">
+											</select>
+											<select name="SUB_SEQ" id="SUB_SEQ" style="width: 374px; float:right; margin-top: 5px;" th:utext="${SubSectionContents}">
+											</select>
+										</div>
+										<div style="float:right;">
+											<select class="SEQ_Sel" id="SEL_SEQ" name="SEL_SEQ" style="">
+												<option value="">SELECT</option>
+												<option value="OR">OR</option>
+												<option value="AND">AND</option>
+												<option value="NOT">NOT</option>
+											</select>
+											<div>
+									</td>
+								</tr>
+								<tr id="trSrchCityEn">
+									<th>Region</th>
+									<td>
+										<select name="CITY_SEQ" id="CITY_SEQ" style="width: 201px; float:left;" th:utext="${CitiesContents}"></select>
+										<select name="MUSEUM_SEQ" id="MUSEUM_SEQ" style="width: 374px; float:left; margin-left: 5px;" th:utext="${MuseumContents}"></select>
+										<select class="Ad_Sel" id="SEL_CITY" name="SEL_CITY" style="">
+											<option value="">SELECT</option>
+											<option value="OR">OR</option>
+											<option value="AND">AND</option>
+											<option value="NOT">NOT</option>
+										</select>
+									</td>
+								</tr>
+								<tr id="trSrchTitleEn">
+									<th>Title(En)</th>
+									<td>
+										<input type="text" class="sizeL" id="SRCH_TITLE" name="SRCH_TITLE" value="" onkeypress="speCharBlock(this)">
+										<select class="Ad_Sel" id="SEL_TITLE" name="SEL_TITLE">
+											<option value="">SELECT</option>
+											<option value="OR">OR</option>
+											<option value="AND">AND</option>
+											<option value="NOT">NOT</option>
+										</select>
+									</td>
+								</tr>
+								<tr id="trSrchRemark1En">
+									<th>Remark(En)</th>
+									<td>
+										<input type="text" class="sizeL" id="SRCH_REMARK" name="SRCH_REMARK" value="" onkeypress="speCharBlock(this)">
+										<select class="Ad_Sel" id="SEL_REMARK" name="SEL_REMARK">
+											<option value="">SELECT</option>
+											<option value="OR">OR</option>
+											<option value="AND">AND</option>
+											<option value="NOT">NOT</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th>Registrant</th>
+									<td>
+										<input type="text" class="sizeL" id="SRCH_REG" name="SRCH_REG" value="" onkeypress="speCharBlock(this)">
+										<select class="Ad_Sel" id="SEL_REG" name="SEL_REG">
+											<option value="">SELECT</option>
+											<option value="OR">OR</option>
+											<option value="AND">AND</option>
+											<option value="NOT">NOT</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th>Registration date</th>
+									<td>
+										<script>
 										$(function() {
 
 											SRCH_REG_SRT_DATE = $("#SRCH_REG_SRT_DATE").datepicker({
@@ -944,54 +944,54 @@
 											}
 										});
 										</script>
-                                        <div class="calBox">
-                                            <input type="text" size="6" readonly="readonly" id="SRCH_REG_SRT_DATE" name="SRCH_REG_SRT_DATE">
-                                        </div>
-                                        ~
-                                        <div class="calBox">
-                                            <input type="text" size="6" readonly="readonly" id="SRCH_REG_END_DATE" name="SRCH_REG_END_DATE">
-                                        </div>
-                                        <select class="Ad_Sel" id="SEL_DATE" name="SEL_DATE">
-                                            <option value="">SELECT</option>
-                                            <option value="OR">OR</option>
-                                            <option value="AND">AND</option>
-                                            <option value="NOT">NOT</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Serial number</th>
-                                    <td>
-                                        <input type="text" class="sizeS" name="SRCH_RELIC_NUM" id="SRCH_RELIC_NUM" value="" size="6" onkeypress="speCharBlock(this)">
-                                        <select class="Ad_Sel" id="SEL_RELIC_NUM" name="SEL_RELIC_NUM">
-                                            <option value="">SELECT</option>
-                                            <option value="OR">OR</option>
-                                            <option value="AND">AND</option>
-                                            <option value="NOT">NOT</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <div class="btnC">
-                                <input type="hidden" name="TOPMCSJGBNC_CODE" id="TOPMCSJGBNC_CODE">
-                                <input type="hidden" name="TOPMCSJGBNC_LV" id="TOPMCSJGBNC_LV">
-                                <input type="hidden" name="TOPCODECOPY" id="TOPCODECOPY">
-                                <a href="#" onclick="adv_Search();" class="btn type2 btnB">Search</a>
-                                <script>
+										<div class="calBox">
+											<input type="text" size="6" readonly="readonly" id="SRCH_REG_SRT_DATE" name="SRCH_REG_SRT_DATE">
+										</div>
+										~
+										<div class="calBox">
+											<input type="text" size="6" readonly="readonly" id="SRCH_REG_END_DATE" name="SRCH_REG_END_DATE">
+										</div>
+										<select class="Ad_Sel" id="SEL_DATE" name="SEL_DATE">
+											<option value="">SELECT</option>
+											<option value="OR">OR</option>
+											<option value="AND">AND</option>
+											<option value="NOT">NOT</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th>Serial number</th>
+									<td>
+										<input type="text" class="sizeS" name="SRCH_RELIC_NUM" id="SRCH_RELIC_NUM" value="" size="6" onkeypress="speCharBlock(this)">
+										<select class="Ad_Sel" id="SEL_RELIC_NUM" name="SEL_RELIC_NUM">
+											<option value="">SELECT</option>
+											<option value="OR">OR</option>
+											<option value="AND">AND</option>
+											<option value="NOT">NOT</option>
+										</select>
+									</td>
+								</tr>
+								</tbody>
+							</table>
+							<div class="btnC">
+								<input type="hidden" name="TOPMCSJGBNC_CODE" id="TOPMCSJGBNC_CODE">
+								<input type="hidden" name="TOPMCSJGBNC_LV" id="TOPMCSJGBNC_LV">
+								<input type="hidden" name="TOPCODECOPY" id="TOPCODECOPY">
+								<a href="#" onclick="adv_Search();" class="btn type2 btnB">Search</a>
+								<script>
 									function adv_Search(){
 
 										AdvsearchFrom.submit();
 
 									}
 								</script>
-                                <a href="javascript:reset();" class="btn type2">Reset</a>
-                            </div>
-                        </div>
-                        <a href="#a" class="close"><img src="/MCHMS/btn/close.png" alt=""></a>
-                    </div>
-                </div>
-            </form>
+								<a href="javascript:reset();" class="btn type2">Reset</a>
+							</div>
+						</div>
+						<a href="#a" class="close"><img src="/MCHMS/btn/close.png" alt=""></a>
+					</div>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>
