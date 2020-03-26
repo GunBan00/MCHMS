@@ -91,7 +91,7 @@ public class WriteDoCont {
             String serialNumber = FIELD_RELIC_ZIP+FIELD_RELIC_ZIP;
             List<MultipartFile> files = request.getFiles("files");
             System.out.println("files");
-            String path = "C:\\image\\";
+            String path = "C:\\image\\";//directory 수정해야됨
             String filesName = "";
             int fileCount = 1;
 
