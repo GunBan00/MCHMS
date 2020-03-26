@@ -20,10 +20,10 @@ public interface CityMapper {
     City getCityInfoById(String id);
 
     @Select("SELECT Cities as cities FROM City WHERE City_id = #{CityId}")
-    City getRegionFromCityId(int CityId);
+    City getRegionFromCityId(String CityId);
 
     @Select("SELECT Latitude as latitude, Longtitude as longitude FROM City WHERE City_id = #{CityId}")
-    City getCityLocationFromCityid(int CityId);
+    City getCityLocationFromCityid(String CityId);
 
     @Select("SELECT City_id as cityId FROM City WHERE Cities = #{Cities} And Museum = #{Museum}")
     City getCityIdByCategory(Map<String, Object> sqlParam);

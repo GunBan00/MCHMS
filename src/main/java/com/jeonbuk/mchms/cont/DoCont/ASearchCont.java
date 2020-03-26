@@ -76,7 +76,7 @@ public class ASearchCont {
             String SEL_RELIC_NUM = request.getParameter("SEL_RELIC_NUM");
 
             int clid = classificationService.getClassificationIdByCategory(LARGE_SEQ, MEDIUM_SEQ, SMALL_SEQ, SUB_SEQ);
-            int ctid = cityService.getCityIdByCategory(CITY_SEQ, MUSEUM_SEQ);
+            String ctid = cityService.getCityIdByCategory(CITY_SEQ, MUSEUM_SEQ);
 
             System.out.println("test : " + clid);
 
@@ -94,7 +94,7 @@ public class ASearchCont {
             Param.put("SRCH_RELIC_NUM", SRCH_RELIC_NUM);
             Param.put("SEL_RELIC_NUM", SEL_RELIC_NUM);
             Param.put("clid", Integer.toString(clid));
-            Param.put("ctid", Integer.toString(ctid));
+            Param.put("ctid", ctid);
 
             List<DataDomain> totalList = dataService.getDataAdvancedSearch(Param);
             int totalLength = totalList.size();

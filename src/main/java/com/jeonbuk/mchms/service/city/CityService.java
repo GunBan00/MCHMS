@@ -28,15 +28,15 @@ public class CityService {
         return cityMapper.getCityInfoById(id);
     }
 
-    public City getRegionFromCityId(int CityId){
+    public City getRegionFromCityId(String CityId){
         return cityMapper.getRegionFromCityId(CityId);
     }
 
-    public City getCityLocationFromCityid(int CityId){
+    public City getCityLocationFromCityid(String CityId){
         return cityMapper.getCityLocationFromCityid(CityId);
     }
 
-    public int getCityIdByCategory(String Cities, String Museum){
+    public String getCityIdByCategory(String Cities, String Museum){
         Map<String, Object> sqlParam = new HashMap<>();
 
         sqlParam.put("Cities", Cities);
@@ -44,9 +44,9 @@ public class CityService {
 
         City city = cityMapper.getCityIdByCategory(sqlParam);
 
-        int ctid;
-        if(city == null){
-            ctid = 0;
+        String ctid;
+        if(city.equals(null)){
+            ctid = "0";
             return ctid;
         }
         else{

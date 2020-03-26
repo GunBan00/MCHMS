@@ -24,7 +24,7 @@ public class DataDomain {
     String referenceEn;
     String referenceMy;
     int visibility;
-    int cityId;
+    String cityId;
     int classificationId;
     String fileName;
     String registrant;

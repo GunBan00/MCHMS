@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class City {
-    int cityId;
+    String cityId;
     String cities;
     String museum;
     Double latitude;

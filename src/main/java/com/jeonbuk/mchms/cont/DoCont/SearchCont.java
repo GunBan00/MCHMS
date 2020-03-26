@@ -114,8 +114,6 @@ public class SearchCont {
 
             String currentPage = null;
             currentPage = request.getParameter("currentPage");
-            System.out.print("currentPage : ");
-            System.out.println(currentPage);
             if(currentPage == null)
             {
                 currentPage = "0";
@@ -206,9 +204,10 @@ public class SearchCont {
                         totalList = dataService.getDataByCityIdAndNotJoin(cityId, TypeToSort,"desc");
                     }
                 }
-                System.out.println("test2 : " + totalList.size());
 
-                City Region = cityService.getRegionFromCityId(Integer.parseInt(cityId));
+                City Region = cityService.getRegionFromCityId(cityId);
+                String RegionName123 = Region.getMuseum();
+
 
                 String RegionName = Region.getCities();
                 int totalLength = totalList.size();
@@ -219,7 +218,6 @@ public class SearchCont {
 
                 pageNumber = (int)Math.ceil(a/b);
                 int pageNumberList[] = new int[10];
-                System.out.println(pageNumber);
                 if(pageNumber > 10){
                     if(icp > 6){
                         if(icp+5 < pageNumber) {
@@ -289,18 +287,27 @@ public class SearchCont {
                 {
                     pageList = new DataDomain[10];
                 }
-                System.out.println(as);
                 for(int i = startNum; i < startNum + dataForPage; i++) {
                     if(i >= totalLength) break;
                     pageList[k] = totalList.get(i);
                     k++;
                 }
-                City selectCityLocation = cityService.getCityLocationFromCityid(Integer.parseInt(cityId));
 
+                if(cityId.length() == 3)
+                {
+                    String zero = "0";
+                    cityId = zero + cityId;
+                }
+                City selectCityLocation = cityService.getCityLocationFromCityid(cityId);
+                City selectRegionName = cityService.getRegionFromCityId(cityId);
+                String regionNameById = selectRegionName.getMuseum();
+                System.out.println(cityId);
                 mv.addObject("SortOrder", SortOrder);
                 mv.addObject("TypeToSort", TypeToSort);
                 mv.addObject("Region", Region);
                 mv.addObject("RegionName", RegionName);
+                mv.addObject("RegionName123", RegionName123);
+                mv.addObject("regionNameById", regionNameById);
                 mv.addObject("map_longitude", selectCityLocation.getLongitude());
                 mv.addObject("map_latitude", selectCityLocation.getLatitude());
                 mv.addObject("total", totalLength);

@@ -1,8 +1,14 @@
 <!-- 내용부분 -->
-<div class="conts">
+<div class="conts" xmlns:th="http://www.w3.org/1999/xhtml">
 
+	<div style="height:40px; display:table;" th:if="${flag} == 0">
+		<strong style=" display: table-cell; vertical-align: middle;" th:text="|${regionNameById}|"></strong>
+
+	</div>
 	<div id="divContsTtl">
-		<h4></h4>
+		<h4>
+
+		</h4>
 
 	</div>
 

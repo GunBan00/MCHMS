@@ -9,7 +9,7 @@ public class UserDataDomain {
     int id;
     String title;
     String serialNumber;
-    int cityId;
+    String cityId;
     int classificationId;
     String registrationDate;
     String clResult;
