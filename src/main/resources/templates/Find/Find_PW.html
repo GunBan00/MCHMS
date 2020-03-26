@@ -30,6 +30,8 @@ $(function(){
                 <h1><img src="/MCHMS/mams/mchms_logo_02.svg" alt="DAMS Digital Asset Management System"></h1>
                 <p class="tit">Find Password</p>
                 <form id="frm_FindPW" name="frm_FindPW" method="post">
+                    <input type="text" name="Change" id="Change" value="Find" style="display: none">Find</input>
+                    <input type="text" name="Type" id="Type" value="PW" style="display: none">PW</input>
                     <div style="margin-bottom: 20px;">
                         <label><input type="radio" name="PW_Type" id="Check_Name" value="Name" checked="checked"> Find by Name</input>
                             <label><input type="radio" name="PW_Type" id="Check_Email" value="Email" style="margin-left: 10px;"> Find by Email</input>
@@ -59,7 +61,7 @@ function goFindPW(){
 
 	var form = document.getElementById("frm_FindPW");
 
-	form.action = "/MCHMSChangePW/";
+	form.action = "/FindProcess/";
 	form.submit();
 
     return false;

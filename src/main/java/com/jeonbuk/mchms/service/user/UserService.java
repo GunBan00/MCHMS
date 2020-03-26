@@ -37,4 +37,63 @@ public class UserService {
     public List<UserDataDomain> selectUserData(String Registrant){
         return userMapper.selectUserData(Registrant);
     }
+
+    public String FindUserDataForID (String Type, String Kinds){
+        if (Type.equals("Name")){
+            UserInfo userInfo = userMapper.FindUserDataForIdAndName(Kinds);
+
+            if (userInfo != null){
+                return userInfo.getId();
+            }
+            else {
+                return "none";
+            }
+        }
+        else {
+            UserInfo userInfo = userMapper.FindUserDataForIdAndEmail(Kinds);
+
+            if (userInfo != null){
+                return userInfo.getId();
+            }
+            else {
+                return "none";
+            }
+        }
+    }
+    public String FindUserDataForPW (String Type, String ID, String Kinds){
+        Map<String, Object> sqlParam = new HashMap<>();
+
+        sqlParam.put("ID", ID);
+        sqlParam.put("Kinds", Kinds);
+
+        if (Type.equals("Name")){
+            UserInfo userInfo = userMapper.FindUserDataForPWAndName(sqlParam);
+
+            if (userInfo != null){
+                return userInfo.getId();
+            }
+            else {
+                return "none";
+            }
+        }
+        else {
+            UserInfo userInfo = userMapper.FindUserDataForPWAndEmail(sqlParam);
+
+            if (userInfo != null){
+                return userInfo.getId();
+            }
+            else {
+                return "none";
+            }
+        }
+    }
+    public void changePassword(String ID, String encPw) throws Exception {
+
+        Map<String, Object> sqlParam = new HashMap<>();
+
+        sqlParam.put("ID", ID);
+        sqlParam.put("encPw", encPw);
+
+        userMapper.changePassword(sqlParam);
+    }
 }

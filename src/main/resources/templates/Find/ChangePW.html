@@ -1,0 +1,68 @@
+<head>
+    <link rel="stylesheet" href="/css/MCH/style.css" type="text/css">
+    <link rel="stylesheet" href="/common/css/jquery-ui.css" type="text/css">
+    <link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <script type="text/javascript" src="/js2/jquery-3.3.1.min.js?ver=1"></script>
+    <link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+
+</head>
+<div class="login">
+    <div>
+        <div class="loginBox">
+            <div class="logon" id="input_type_1">
+                <h1><img src="/MCHMS/mams/mchms_logo_02.svg" alt="DAMS Digital Asset Management System"></h1>
+                <p class="tit">Change Password</p>
+                <form id="frmCHPW" name="frmCHPW" method="post">
+                    <input type="text" name="Type" id="Type" value="Change" style="display: none">Change</input>
+                    <input type="text" name="Change" id="Change" value="Change" style="display: none">Change</input>
+                    <div>
+                        <p class="text">Please enter a password.</p>
+                        <input type="text" id="password" name="password" class="form-input" placeholder="Password (16)"  maxlength="16"onkeypress="if(event.keyCode == '13'){goCHPW();}">
+                    </div>
+                    <div style="margin-top:5%;">
+                        <p class="text">Please enter your password again.</p>
+                        <input type="text" id="re_password" name="re_password" class="form-input" placeholder="Password (16)"  maxlength="16"onkeypress="if(event.keyCode == '13'){goCHPW();}">
+                    </div>
+                    <div class="btnC"><a href="#" onclick="goCHPW(this.event);" class="btn btnB2 btnB2_hover type3">Change Password</a></div>
+                </form>
+            </div>
+
+            <p id="err_message"></p>
+        </div>
+        <div class="foot">DIGITAL ARCHIVES MANAGEMENT SYSTEM. COPYRIGHT ALL RIGHT RESERVED.</div>
+    </div>
+</div>
+<style>
+.input { position: relative; } .input .eyes { position: absolute; top: 0; bottom: 0; right: 0; margin: auto 2px; height: 30px; font-size: 22px; cursor: pointer; }
+
+</style>
+<script th:inline="javascript">
+
+function goCHPW(){
+    /*<![CDATA[*/
+	var form = document.getElementById("frmCHPW");
+	var ID = /*[[${userId}]]*/
+	if (form.password.value == "") {
+		alert("Please enter a password.");
+		form.password.focus();
+		return false;
+	}
+
+	if (form.re_password.value == "") {
+		alert("Please enter your password again.");
+		form.re_password.focus();
+		return false;
+	}
+
+	if (form.re_password.value != form.password.value) {
+		alert("The password entered is different");
+		return false;
+	}
+
+	form.action = "/FindProcess/?ID=" + ID;
+	form.submit();
+
+    return false;
+    /*]]>*/
+}
+</script>

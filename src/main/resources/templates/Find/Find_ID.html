@@ -30,6 +30,7 @@ $(function(){
                 <h1><img src="/MCHMS/mams/mchms_logo_02.svg" alt="DAMS Digital Asset Management System"></h1>
                 <p class="tit">Find ID</p>
                 <form id="frm_FindID" name="frm_FindID" method="post">
+                    <input type="text" name="Type" id="Type" value="ID" style="display: none">ID</input>
                     <div style="margin-bottom: 20px;">
                         <label><input type="radio" name="ID_Type" id="Check_Name" value="Name" checked="checked"> Find by Name</input>
                             <label><input type="radio" name="ID_Type" id="Check_Email" value="Email" style="margin-left: 10px;"> Find by Email</input>
@@ -58,7 +59,7 @@ function goFindID(){
 
 	var form = document.getElementById("frm_FindID");
 
-	form.action = "/Find_process/";
+	form.action = "/FindProcess/";
 	form.submit();
 
     return false;
