@@ -42,6 +42,7 @@ public class SearchCont {
         try {
             List<City> Cities = cityService.getCities();
             List<City> Museum = cityService.getMuseums();
+            HttpSession session = request.getSession();
 
             String CitiesContents = "<option value=\"\">:::: REGION ::::</option>";
             for(City cities : Cities) {
@@ -92,14 +93,13 @@ public class SearchCont {
             mv.addObject("MiddleContents", MiddleContents);
             mv.addObject("SmallContents", SmallContents);
             mv.addObject("SubSectionContents", SubSectionContents);
+            mv.addObject("Session", session);
 
             mv.addObject("City", Cities);
             mv.addObject("Museum", Museum);
             mv.addObject("MID_Page", "Search/MCHMSSearch.html");
 
             mv.setViewName("Contents_BASE");
-
-            HttpSession session = request.getSession();
             String cityId = request.getParameter("City_id");
             int flag = 0;
             double avgLat = 0;
@@ -138,12 +138,22 @@ public class SearchCont {
 //                avgLat = 0;
 //                avgLong = 0;
 //            }
-                if(totalLength ==0) {
+                if(totalLength == 0) {
                     avgLat = 19.75056;
                     avgLong = 96.10056;
+                    String[] pageList = {};
+                    int firstFlag = 0;
+                    int pageNumberList[] = new int[10];
                     mv.addObject("total", totalLength);
+                    mv.addObject("firstFlag", firstFlag);
                     mv.addObject("avg_Lat", avgLat);
                     mv.addObject("avg_Long", avgLong);
+                    mv.addObject("lists", pageList);
+                    mv.addObject("Session", session);
+                    mv.addObject("currentPage", currentPage);
+                    mv.addObject("pageNumberList", pageNumberList);
+
+                    return mv;
                 }else {
                     int index = 1;
                     for(DataDomain dataDomain : totalList) {
@@ -156,6 +166,7 @@ public class SearchCont {
                     }
                     avgLat = avgLat / totalLength;
                     avgLong = avgLong / totalLength;
+                    int pageNumberList[] = new int[10];
                     mv.addObject("avg_Lat", avgLat);
                     mv.addObject("avg_Long", avgLong);
                     mv.addObject("Keyword", keyWord);
@@ -163,8 +174,9 @@ public class SearchCont {
                     mv.addObject("lists", totalList);
                     mv.addObject("Museum", museums);
                     mv.addObject("City_id", cityId);
-                    mv.addObject("Session", session);
+                    mv.addObject("session", session);
                     mv.addObject("flag", flag);
+                    mv.addObject("pageNumberList", pageNumberList);
                 }
             }
             else {
@@ -298,16 +310,23 @@ public class SearchCont {
                     String zero = "0";
                     cityId = zero + cityId;
                 }
+                int firstFlag =  0;
+                if (icp > 7 && pageNumber > 10)
+                {
+                    firstFlag = 1;
+                }
                 City selectCityLocation = cityService.getCityLocationFromCityid(cityId);
                 City selectRegionName = cityService.getRegionFromCityId(cityId);
                 String regionNameById = selectRegionName.getMuseum();
-                System.out.println(cityId);
+                String cityNameById = selectRegionName.getCities();
+                String cityRegionName = cityNameById + " - " + regionNameById;
+
+                System.out.println(session.getId());
                 mv.addObject("SortOrder", SortOrder);
                 mv.addObject("TypeToSort", TypeToSort);
                 mv.addObject("Region", Region);
                 mv.addObject("RegionName", RegionName);
-                mv.addObject("RegionName123", RegionName123);
-                mv.addObject("regionNameById", regionNameById);
+                mv.addObject("cityRegionName", cityRegionName);
                 mv.addObject("map_longitude", selectCityLocation.getLongitude());
                 mv.addObject("map_latitude", selectCityLocation.getLatitude());
                 mv.addObject("total", totalLength);
@@ -317,6 +336,7 @@ public class SearchCont {
                 mv.addObject("Museum", museums);
                 mv.addObject("City_id", cityId);
                 mv.addObject("Session", session);
+                mv.addObject("firstFlag", firstFlag);
                 mv.addObject("flag", flag);
             }
         } catch (Exception e) {

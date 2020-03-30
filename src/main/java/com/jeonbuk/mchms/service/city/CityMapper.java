@@ -19,7 +19,7 @@ public interface CityMapper {
     @Select("SELECT City.Cities, City.Museum FROM City LEFT OUTER JOIN Data ON (City.City_id = Data.City_id) WHERE Data.ID = #{id}")
     City getCityInfoById(String id);
 
-    @Select("SELECT Cities as cities FROM City WHERE City_id = #{CityId}")
+    @Select("SELECT Cities as cities, Museum as museum FROM City WHERE City_id = #{CityId}")
     City getRegionFromCityId(String CityId);
 
     @Select("SELECT Latitude as latitude, Longtitude as longitude FROM City WHERE City_id = #{CityId}")
