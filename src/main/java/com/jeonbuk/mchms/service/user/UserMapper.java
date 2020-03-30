@@ -5,6 +5,7 @@ import com.jeonbuk.mchms.domain.UserInfo;
 import com.jeonbuk.mchms.domain.UserWriteClassificationCount;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 import java.util.Map;
@@ -27,5 +28,19 @@ public interface UserMapper {
     @Select("SELECT ID as id, Title as title, City_id as cityId, Classification_id as classificationId , Serial_Number as serialNumber, Registration_Date as registrationDate FROM Data WHERE Registrant = #{Registrant}")
     List<UserDataDomain> selectUserData(String Registrant);
 
+    @Select("SELECT ID FROM User WHERE NAME = #{name}")
+    UserInfo FindUserDataForIdAndName(String name);
+
+    @Select("SELECT ID FROM User WHERE EMAIL = #{email}")
+    UserInfo FindUserDataForIdAndEmail(String email);
+
+    @Select("SELECT ID FROM User WHERE ID = #{ID} AND NAME = #{Kinds}")
+    UserInfo FindUserDataForPWAndName(Map<String, Object> sqlParam);
+
+    @Select("SELECT ID FROM User WHERE ID = #{ID} AND EMAIL = #{Kinds}")
+    UserInfo FindUserDataForPWAndEmail(Map<String, Object> sqlParam);
+
+    @Update("UPDATE User SET PW = #{encPw} WHERE ID = #{ID}")
+    void changePassword(Map<String, Object> sqlParam);
 
 }
