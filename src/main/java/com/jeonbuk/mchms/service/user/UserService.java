@@ -96,4 +96,16 @@ public class UserService {
 
         userMapper.changePassword(sqlParam);
     }
+
+    public int CheckingUserIDProcess(String ID){
+        return userMapper.CheckingUserIDProcess(ID);
+    }
+
+    public int CheckingUserNicknameProcess(String NICKNAME){
+        return userMapper.CheckingUserNicknameProcess(NICKNAME);
+    }
+
+    public void setUser(Map<String, Object> sqlParam) throws Exception {
+        userMapper.setUser(sqlParam);
+    }
 }
