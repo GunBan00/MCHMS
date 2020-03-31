@@ -1,4 +1,4 @@
-<style>
+<style xmlns:th="http://www.w3.org/1999/xhtml">
 
 /*slider css*/
 .bx-wrapper img {
@@ -11,6 +11,10 @@ left:-13px
 .bx-wrapper .bx-next {
   right: -13px;
 }
+.tbType01.type2 td {
+	text-align: left
+}
+
 #viewimg
 {
 margin:0 auto;
@@ -83,102 +87,7 @@ margin-top:0%;
 			}
 		</script>
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg2U2hyWyH76p5rXTIptibx3d9SkuiEDQ&callback=initMap"></script>
-	<form id="listForm" name="listForm" method="post">
-		<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX" value="1">
-		<input type="hidden" id="DEPT_SEQ1" name="DEPT_SEQ1" value="">
-		<input type="hidden" id="DEPT_SEQ2" name="DEPT_SEQ2" value="">
-		<input type="hidden" id="DEPT_SEQ3" name="DEPT_SEQ3" value="20190703184803683345_000002870">
-		<input type="hidden" id="BOARD_SEQ" name="BOARD_SEQ" value="20190923131955980647_000000040">
-		<input type="hidden" id="SMUSEUM_CODE" name="SMUSEUM_CODE" value="PS01001001">
-		<input type="hidden" id="IMGMODE" name="IMGMODE" value="LIST">
-		<input type="hidden" id="MODE" name="MODE" value="LIST">
-		<input type="hidden" id="FILSDOWNS" name="FILSDOWNS" value="">
-		<input type="hidden" id="DOWNLOAD_EXPIRATION_DATE" name="DOWNLOAD_EXPIRATION_DATE" value="0">
-		<input type="hidden" id="FILEMODE" name="FILEMODE" value="BOARD">
-		<input type="hidden" id="DOWNLOAD_APPROVE_YN" name="DOWNLOAD_APPROVE_YN" value="N">
-		<input type="hidden" id="info_Appro" name="info_Appro" value="N">
-		<input type="hidden" id="view_Appro" name="view_Appro" value="">
-		<input type="hidden" id="VUSER_ID" name="VUSER_ID" value="myadmin">
-		<input type="hidden" id="ADMIN_YN_CHK" name="ADMIN_YN_CHK" value="Y">
-		<input type="hidden" id="select_relic" name="select_relic" value="">
-		<input type="hidden" name="StrBOARDS" id="StrBOARDS" value="">
-		<input type="hidden" name="StrBOARD_SEQ" id="StrBOARD_SEQ" value="20190923131955980647_000000040">
-		<input type="hidden" name="StrCATEGORY_NAME2" id="StrCATEGORY_NAME2" value="">
-		<input type="hidden" name="StrCODECOPY" id="StrCODECOPY" value="">
-		<input type="hidden" name="StrCODE_TITLE" id="StrCODE_TITLE" value="">
-		<input type="hidden" name="StrDEPTH" id="StrDEPTH" value="2">
-		<input type="hidden" name="StrDEPT_NAME1" id="StrDEPT_NAME1" value="">
-		<input type="hidden" name="StrDEPT_NAME2" id="StrDEPT_NAME2" value="">
-		<input type="hidden" name="StrDEPT_SEQ1" id="StrDEPT_SEQ1" value="">
-		<input type="hidden" name="StrDEPT_SEQ2" id="StrDEPT_SEQ2" value="">
-		<input type="hidden" name="StrDEPT_SEQ3" id="StrDEPT_SEQ3" value="20190703184803683345_000002870">
-		<input type="hidden" name="StrFIELD_REG_DATEEND" id="StrFIELD_REG_DATEEND" value="">
-		<input type="hidden" name="StrFIELD_REG_DATESTAT" id="StrFIELD_REG_DATESTAT" value="">
-		<input type="hidden" name="StrKEY" id="StrKEY" value="">
-		<input type="hidden" name="StrKEYWORD" id="StrKEYWORD" value="">
-		<input type="hidden" name="StrLANG" id="StrLANG" value="[Ljava.lang.String;@cebda04">
-		<input type="hidden" name="StrLARGE_SEQ" id="StrLARGE_SEQ" value="">
-		<input type="hidden" name="StrLEVEL1_SEQ" id="StrLEVEL1_SEQ" value="">
-		<input type="hidden" name="StrLEVEL2_SEQ" id="StrLEVEL2_SEQ" value="">
-		<input type="hidden" name="StrMCSJGBNC1" id="StrMCSJGBNC1" value="PS01001">
-		<input type="hidden" name="StrMCSJGBNC2" id="StrMCSJGBNC2" value="PS01001001">
-		<input type="hidden" name="StrMCSJGBNC3" id="StrMCSJGBNC3" value="PS01001001001">
-		<input type="hidden" name="StrMCSJGBNC_CODE" id="StrMCSJGBNC_CODE" value="">
-		<input type="hidden" name="StrMCSJGBNC_LV" id="StrMCSJGBNC_LV" value="">
-		<input type="hidden" name="StrMEDIUM_SEQ" id="StrMEDIUM_SEQ" value="">
-		<input type="hidden" name="StrMENU_DEPT_SEQ1" id="StrMENU_DEPT_SEQ1" value="">
-		<input type="hidden" name="StrMENU_DEPT_SEQ2" id="StrMENU_DEPT_SEQ2" value="">
-		<input type="hidden" name="StrMENU_SEQ" id="StrMENU_SEQ" value="20190703184803683345_000002870">
-		<input type="hidden" name="StrMODE" id="StrMODE" value="LIST">
-		<input type="hidden" name="StrMOVE_AUTH" id="StrMOVE_AUTH" value="N">
-		<input type="hidden" name="StrPAGECNT" id="StrPAGECNT" value="10">
-		<input type="hidden" name="StrPAGE_INDEX" id="StrPAGE_INDEX" value="1">
-		<input type="hidden" name="StrREG_AUTH" id="StrREG_AUTH" value="N">
-		<input type="hidden" name="StrRELIC_NO1" id="StrRELIC_NO1" value="">
-		<input type="hidden" name="StrRELIC_NO2" id="StrRELIC_NO2" value="">
-		<input type="hidden" name="StrSELECT_DEPTH" id="StrSELECT_DEPTH" value="">
-		<input type="hidden" name="StrSMALL_SEQ" id="StrSMALL_SEQ" value="">
-		<input type="hidden" name="StrSMUSEUM_CODE" id="StrSMUSEUM_CODE" value="PS01001001">
-		<input type="hidden" name="StrSORT_FIELD" id="StrSORT_FIELD" value="">
-		<input type="hidden" name="StrSORT_MODE" id="StrSORT_MODE" value="">
-		<input type="hidden" name="StrSRCH_BIZ_END_DATE" id="StrSRCH_BIZ_END_DATE" value="">
-		<input type="hidden" name="StrSRCH_BIZ_SRT_DATE" id="StrSRCH_BIZ_SRT_DATE" value="">
-		<input type="hidden" name="StrSRCH_LARGE_MY_SEQ" id="StrSRCH_LARGE_MY_SEQ" value="">
-		<input type="hidden" name="StrSRCH_LARGE_SEQ" id="StrSRCH_LARGE_SEQ" value="">
-		<input type="hidden" name="StrSRCH_LEVEL1_MY_SEQ" id="StrSRCH_LEVEL1_MY_SEQ" value="">
-		<input type="hidden" name="StrSRCH_LEVEL1_SEQ" id="StrSRCH_LEVEL1_SEQ" value="">
-		<input type="hidden" name="StrSRCH_LEVEL2_MY_SEQ" id="StrSRCH_LEVEL2_MY_SEQ" value="">
-		<input type="hidden" name="StrSRCH_LEVEL2_SEQ" id="StrSRCH_LEVEL2_SEQ" value="">
-		<input type="hidden" name="StrSRCH_MEDIUM_MY_SEQ" id="StrSRCH_MEDIUM_MY_SEQ" value="">
-		<input type="hidden" name="StrSRCH_MEDIUM_SEQ" id="StrSRCH_MEDIUM_SEQ" value="">
-		<input type="hidden" name="StrSRCH_MODE" id="StrSRCH_MODE" value="상세검색">
-		<input type="hidden" name="StrSRCH_MUESUM_CODE" id="StrSRCH_MUESUM_CODE" value="">
-		<input type="hidden" name="StrSRCH_REG" id="StrSRCH_REG" value="">
-		<input type="hidden" name="StrSRCH_REG_END_DATE" id="StrSRCH_REG_END_DATE" value="">
-		<input type="hidden" name="StrSRCH_REG_OP" id="StrSRCH_REG_OP" value="AND">
-		<input type="hidden" name="StrSRCH_REG_SRT_DATE" id="StrSRCH_REG_SRT_DATE" value="">
-		<input type="hidden" name="StrSRCH_RELIC_NUM" id="StrSRCH_RELIC_NUM" value="">
-		<input type="hidden" name="StrSRCH_REMARK1" id="StrSRCH_REMARK1" value="">
-		<input type="hidden" name="StrSRCH_REMARK1_MY" id="StrSRCH_REMARK1_MY" value="">
-		<input type="hidden" name="StrSRCH_REMARK1_MY_OP" id="StrSRCH_REMARK1_MY_OP" value="AND">
-		<input type="hidden" name="StrSRCH_REMARK1_OP" id="StrSRCH_REMARK1_OP" value="AND">
-		<input type="hidden" name="StrSRCH_REMARK2" id="StrSRCH_REMARK2" value="">
-		<input type="hidden" name="StrSRCH_REMARK2_MY" id="StrSRCH_REMARK2_MY" value="">
-		<input type="hidden" name="StrSRCH_REMARK2_MY_OP" id="StrSRCH_REMARK2_MY_OP" value="AND">
-		<input type="hidden" name="StrSRCH_REMARK2_OP" id="StrSRCH_REMARK2_OP" value="AND">
-		<input type="hidden" name="StrSRCH_SMALL_MY_SEQ" id="StrSRCH_SMALL_MY_SEQ" value="">
-		<input type="hidden" name="StrSRCH_SMALL_SEQ" id="StrSRCH_SMALL_SEQ" value="">
-		<input type="hidden" name="StrSRCH_TITLE" id="StrSRCH_TITLE" value="">
-		<input type="hidden" name="StrSRCH_TITLE_MY" id="StrSRCH_TITLE_MY" value="">
-		<input type="hidden" name="StrSRCH_TITLE_MY_OP" id="StrSRCH_TITLE_MY_OP" value="AND">
-		<input type="hidden" name="StrSRCH_TITLE_OP" id="StrSRCH_TITLE_OP" value="AND">
-		<input type="hidden" name="StrStrMODE" id="StrStrMODE" value="">
-		<input type="hidden" name="StrTOP_TOPWORD" id="StrTOP_TOPWORD" value="">
-		<input type="hidden" name="StrTOTAL_UPLOAD" id="StrTOTAL_UPLOAD" value="N">
-		<input type="hidden" name="StrUSERS" id="StrUSERS" value="myadmin">
-		<input type="hidden" name="StrUSER_ID" id="StrUSER_ID" value="myadmin">
-		<input type="hidden" name="StrtdCount" id="StrtdCount" value="">
-
+	<form id="listForm" name="listForm" method="post" style="margin-top: 4%;">
 
 		<!-- isKang 추가 190625 Start-->
 		<input type="hidden" id="MENU_SEQ" name="MENU_SEQ" value="20190703184803683345_000002870">
@@ -233,25 +142,22 @@ margin-top:0%;
                 <a href="#" onclick="javascript:bookmarkadd();" class="btn type2 btnG">Add bookmark</a>
             </div> -->
 
-			<div class="flBox">
-				<a href="#" onclick="goPrint();" class="btn type2 btnG" id="btnPrint">Print</a>
-			</div>&nbsp;
+
 
 			<div class="flBox" style="padding-left: 4px;">
-				<!-- <a href="#" id="btnTest" class="btn type2 btnG">테스트2</a>
-                <a href="javascript:goPrint();"  class="btn type2 btnG">테스트</a> -->
-				<!-- <button type="button" onclick="javascript:mjTest();">유민재</button> -->
-				<!-- <a href="#" onclick="javascript:mjTest();" id="UPDATE_BTN1" class="btn type2 btnB">자바스크립트</a>  -->
-				<!-- <a href="javascript:printTextArea();" class="btn type2 btnG">테스트</a> -->
 			</div>
-			<script>
+			<script th:inline="javascript">
 					function Alert_Del(){
+						/*<![CDATA[*/
+
+						alert(url);
 						if (confirm("You want to delete?") == true){    //확인
 							location.href="/MCHMSDelete/?ID={{ResultView.0}}";
 
 						}else{   //취소
 							return;
 						}
+						/*]]>*/
 					}
 
 				</script>
@@ -283,7 +189,7 @@ margin-top:0%;
 		<!-- //게시물 삭제사유 팝업 -->
 
 		<div id="printarea">
-			<table class="tbType01 type2">
+			<table class="tbType01 type2" style="border-bottom:2px solid #646464;">
 				<tbody id="WriteUi">
 				<tr> <th>Classification</th>				<td colspan="3" th:text = "${cityClInfo}">
 				</td></tr>
@@ -300,10 +206,10 @@ margin-top:0%;
 				</tbody>
 			</table>
 
-			<table class="tbType01 type2">
-				<tbody><tr id="trRemark1">
+			<table class="tbType01 type2" style="border-top: none;">
+				<tbody style="border-bottom: 2px solid #646464;"><tr id="trRemark1">
 					<!-- <td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Remark1(En)</strong></td> -->
-					<td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Image</strong></td>
+					<td style="background:#f3f5f7;border-right:1px solid #dedede;width:169px;text-align:center"><strong>Image</strong></td>
 					<script th:inline="javascript">
 						//slider에 마우스 오버시에만 사진 넘기는 버튼 표시
 						$(function(){
@@ -381,33 +287,38 @@ margin-top:0%;
 				<tr id="trRemark1">
 					<!-- <td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Remark1(En)</strong></td> -->
 					<td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Remarks(En)</strong></td>
-					<td style="padding:10px 0 10px 20px" id="FIELD_REMARK2" th:utext = "${ResultView.remarksEn}"></td>
+					<td style="padding:10px 0 10px 20px" id="FIELD_REMARK2"><pre style="white-space: pre-wrap;" th:utext = "${ResultView.remarksEn}"></pre></td>
 				</tr>
 
 				<tr id="trRemark1My">
 					<!-- <td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Remark1(My)</strong></td> -->
 					<td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center" ><strong>Remarks(My)</strong></td>
-					<td style="padding:10px 0 10px 20px" th:utext = "${ResultView.remarksMy}">
+					<td style="padding:10px 0 10px 20px"><pre style="white-space: pre-wrap; line-height:2em;" th:utext = "${ResultView.remarksMy}"></pre>
 						<!-- <textarea rows="8" cols="80" id="FIELD_REMARK1_MY" name="FIELD_REMARK1_MY" readonly="readonly"></textarea> -->
 					</td>
 				</tr>
 				<tr id="trRemark2">
 					<!-- <td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Remark2(En)</strong></td> -->
 					<td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Reference(En)</strong></td>
-					<td style="padding:10px 0 10px 20px" id="FIELD_REMARK2" th:text = "${ResultView.referenceEn}"></td>
+					<td style="padding:10px 0 10px 20px" id="FIELD_REMARK2"><pre style="white-space: pre-wrap;" th:text = "${ResultView.referenceEn}"></pre></td>
 				</tr>
 				<tr id="trRemark2My">
 					<td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Reference(My)</strong></td>
-					<td style="padding:10px 0 10px 20px" id="FIELD_REMARK2_MY" th:text = "${ResultView.referenceMy}">
+					<td style="padding:10px 0 10px 20px" id="FIELD_REMARK2_MY" ><pre style="white-space: pre-wrap; line-height:2em;"th:text = "${ResultView.referenceMy}"></pre>
 						<!-- <textarea rows="8" cols="80" id="FIELD_REMARK2_MY" name="FIELD_REMARK2_MY" readonly="readonly"></textarea> -->
 					</td>
 				</tr>
 				</tbody></table>
 		</div>
 
-		<div class="floatBox">
+		<div class="floatBox" style ="margin-top:2%;">
+			<div class="flBox">
+				<a href="#" onclick="goPrint();" class="btn type2 btnG" id="btnPrint" style ="margin-top:">Print</a>
+				<a href="/MCHMSSearch/?City_id=${cityId}" class="btn type2 btnG">List</a>
+			</div>
+
 			<div class="flBox" style="" th:if="${session.value == null}">
-				<a href="/MCHMSWrite/?City_id=${cityId}"style = "right:0; position : absolute" class="btn btnB">Upload</a>
+				<a <a th:href="@{/MCHMSWrite/(City_id=${ms.cityId})}"style = "right:0; position : absolute" class="btn btnB">Upload</a>
 
 			</div>
 			<div class="frBox" style ="right: 10%; position: absolute;" th:unless="${session.value == null}" th:if="${Session.id == ResultView.registrant}">
@@ -415,7 +326,7 @@ margin-top:0%;
 				<a onclick="Alert_Del()" id="DELETE_BTN1" class="btn type2 btnB">Delete</a>
 				<a href="/MCHMSModify/?ID=${ResultView.cityId}" onclick="" id="UPDATE_BTN1" class="btn type2 btnB">Modify</a>
 
-				<a href="/MCHMSSearch/?City_id=${ResultView.cityId}" class="btn type2 btnG">List</a>
+				<a <a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" class="btn type2 btnG">List</a>
 			</div>
 		</div>
 	</form>
@@ -446,100 +357,9 @@ margin-top:0%;
 	</div>
 </div>
 <div id="footer">MCHMS Myanmar Culture Heritage Management System &nbsp;&nbsp; &nbsp;&nbsp; Copyright. All right reserved.</div>
-<form id="openForm" name="openForm" method="post">
-	<input type="hidden" id="BOARD_SEQ" name="BOARD_SEQ">
-	<input type="hidden" id="FILE_SEQ" name="FILE_SEQ">
-	<input type="hidden" id="FILE_PATH" name="FILE_PATH">
-	<input type="hidden" id="FILE_NAME" name="FILE_NAME">
-	<input type="hidden" id="FILE_SIZE" name="FILE_SIZE">
-</form>
+
 <form id="SearchForm" name="SearchForm" method="post">
-	<input type="hidden" name="StrBOARDS" id="StrBOARDS" value="">
-	<input type="hidden" name="StrBOARD_SEQ" id="StrBOARD_SEQ" value="20190923131955980647_000000040">
-	<input type="hidden" name="StrCATEGORY_NAME2" id="StrCATEGORY_NAME2" value="">
-	<input type="hidden" name="StrCODECOPY" id="StrCODECOPY" value="">
-	<input type="hidden" name="StrCODE_TITLE" id="StrCODE_TITLE" value="">
-	<input type="hidden" name="StrDEPTH" id="StrDEPTH" value="2">
-	<input type="hidden" name="StrDEPT_NAME1" id="StrDEPT_NAME1" value="">
-	<input type="hidden" name="StrDEPT_NAME2" id="StrDEPT_NAME2" value="">
-	<input type="hidden" name="StrDEPT_SEQ1" id="StrDEPT_SEQ1" value="">
-	<input type="hidden" name="StrDEPT_SEQ2" id="StrDEPT_SEQ2" value="">
-	<input type="hidden" name="StrDEPT_SEQ3" id="StrDEPT_SEQ3" value="20190703184803683345_000002870">
-	<input type="hidden" name="StrFIELD_REG_DATEEND" id="StrFIELD_REG_DATEEND" value="">
-	<input type="hidden" name="StrFIELD_REG_DATESTAT" id="StrFIELD_REG_DATESTAT" value="">
-	<input type="hidden" name="StrKEY" id="StrKEY" value="">
-	<input type="hidden" name="StrKEYWORD" id="StrKEYWORD" value="">
-	<input type="hidden" name="StrLANG" id="StrLANG" value="[Ljava.lang.String;@cebda04">
-	<input type="hidden" name="StrLARGE_SEQ" id="StrLARGE_SEQ" value="">
-	<input type="hidden" name="StrLEVEL1_SEQ" id="StrLEVEL1_SEQ" value="">
-	<input type="hidden" name="StrLEVEL2_SEQ" id="StrLEVEL2_SEQ" value="">
-	<input type="hidden" name="StrMCSJGBNC1" id="StrMCSJGBNC1" value="PS01001">
-	<input type="hidden" name="StrMCSJGBNC2" id="StrMCSJGBNC2" value="PS01001001">
-	<input type="hidden" name="StrMCSJGBNC3" id="StrMCSJGBNC3" value="PS01001001001">
-	<input type="hidden" name="StrMCSJGBNC_CODE" id="StrMCSJGBNC_CODE" value="">
-	<input type="hidden" name="StrMCSJGBNC_LV" id="StrMCSJGBNC_LV" value="">
-	<input type="hidden" name="StrMEDIUM_SEQ" id="StrMEDIUM_SEQ" value="">
-	<input type="hidden" name="StrMENU_DEPT_SEQ1" id="StrMENU_DEPT_SEQ1" value="">
-	<input type="hidden" name="StrMENU_DEPT_SEQ2" id="StrMENU_DEPT_SEQ2" value="">
-	<input type="hidden" name="StrMENU_SEQ" id="StrMENU_SEQ" value="20190703184803683345_000002870">
-	<input type="hidden" name="StrMODE" id="StrMODE" value="LIST">
-	<input type="hidden" name="StrMOVE_AUTH" id="StrMOVE_AUTH" value="N">
-	<input type="hidden" name="StrPAGECNT" id="StrPAGECNT" value="10">
-	<input type="hidden" name="StrPAGE_INDEX" id="StrPAGE_INDEX" value="1">
-	<input type="hidden" name="StrREG_AUTH" id="StrREG_AUTH" value="N">
-	<input type="hidden" name="StrRELIC_NO1" id="StrRELIC_NO1" value="">
-	<input type="hidden" name="StrRELIC_NO2" id="StrRELIC_NO2" value="">
-	<input type="hidden" name="StrSELECT_DEPTH" id="StrSELECT_DEPTH" value="">
-	<input type="hidden" name="StrSMALL_SEQ" id="StrSMALL_SEQ" value="">
-	<input type="hidden" name="StrSMUSEUM_CODE" id="StrSMUSEUM_CODE" value="PS01001001">
-	<input type="hidden" name="StrSORT_FIELD" id="StrSORT_FIELD" value="">
-	<input type="hidden" name="StrSORT_MODE" id="StrSORT_MODE" value="">
-	<input type="hidden" name="StrSRCH_BIZ_END_DATE" id="StrSRCH_BIZ_END_DATE" value="">
-	<input type="hidden" name="StrSRCH_BIZ_SRT_DATE" id="StrSRCH_BIZ_SRT_DATE" value="">
-	<input type="hidden" name="StrSRCH_LARGE_MY_SEQ" id="StrSRCH_LARGE_MY_SEQ" value="">
-	<input type="hidden" name="StrSRCH_LARGE_SEQ" id="StrSRCH_LARGE_SEQ" value="">
-	<input type="hidden" name="StrSRCH_LEVEL1_MY_SEQ" id="StrSRCH_LEVEL1_MY_SEQ" value="">
-	<input type="hidden" name="StrSRCH_LEVEL1_SEQ" id="StrSRCH_LEVEL1_SEQ" value="">
-	<input type="hidden" name="StrSRCH_LEVEL2_MY_SEQ" id="StrSRCH_LEVEL2_MY_SEQ" value="">
-	<input type="hidden" name="StrSRCH_LEVEL2_SEQ" id="StrSRCH_LEVEL2_SEQ" value="">
-	<input type="hidden" name="StrSRCH_MEDIUM_MY_SEQ" id="StrSRCH_MEDIUM_MY_SEQ" value="">
-	<input type="hidden" name="StrSRCH_MEDIUM_SEQ" id="StrSRCH_MEDIUM_SEQ" value="">
-	<input type="hidden" name="StrSRCH_MODE" id="StrSRCH_MODE" value="상세검색">
-	<input type="hidden" name="StrSRCH_MUESUM_CODE" id="StrSRCH_MUESUM_CODE" value="">
-	<input type="hidden" name="StrSRCH_REG" id="StrSRCH_REG" value="">
-	<input type="hidden" name="StrSRCH_REG_END_DATE" id="StrSRCH_REG_END_DATE" value="">
-	<input type="hidden" name="StrSRCH_REG_OP" id="StrSRCH_REG_OP" value="AND">
-	<input type="hidden" name="StrSRCH_REG_SRT_DATE" id="StrSRCH_REG_SRT_DATE" value="">
-	<input type="hidden" name="StrSRCH_RELIC_NUM" id="StrSRCH_RELIC_NUM" value="">
-	<input type="hidden" name="StrSRCH_REMARK1" id="StrSRCH_REMARK1" value="">
-	<input type="hidden" name="StrSRCH_REMARK1_MY" id="StrSRCH_REMARK1_MY" value="">
-	<input type="hidden" name="StrSRCH_REMARK1_MY_OP" id="StrSRCH_REMARK1_MY_OP" value="AND">
-	<input type="hidden" name="StrSRCH_REMARK1_OP" id="StrSRCH_REMARK1_OP" value="AND">
-	<input type="hidden" name="StrSRCH_REMARK2" id="StrSRCH_REMARK2" value="">
-	<input type="hidden" name="StrSRCH_REMARK2_MY" id="StrSRCH_REMARK2_MY" value="">
-	<input type="hidden" name="StrSRCH_REMARK2_MY_OP" id="StrSRCH_REMARK2_MY_OP" value="AND">
-	<input type="hidden" name="StrSRCH_REMARK2_OP" id="StrSRCH_REMARK2_OP" value="AND">
-	<input type="hidden" name="StrSRCH_SMALL_MY_SEQ" id="StrSRCH_SMALL_MY_SEQ" value="">
-	<input type="hidden" name="StrSRCH_SMALL_SEQ" id="StrSRCH_SMALL_SEQ" value="">
-	<input type="hidden" name="StrSRCH_TITLE" id="StrSRCH_TITLE" value="">
-	<input type="hidden" name="StrSRCH_TITLE_MY" id="StrSRCH_TITLE_MY" value="">
-	<input type="hidden" name="StrSRCH_TITLE_MY_OP" id="StrSRCH_TITLE_MY_OP" value="AND">
-	<input type="hidden" name="StrSRCH_TITLE_OP" id="StrSRCH_TITLE_OP" value="AND">
-	<input type="hidden" name="StrStrMODE" id="StrStrMODE" value="">
-	<input type="hidden" name="StrTOP_TOPWORD" id="StrTOP_TOPWORD" value="">
-	<input type="hidden" name="StrTOTAL_UPLOAD" id="StrTOTAL_UPLOAD" value="N">
-	<input type="hidden" name="StrUSERS" id="StrUSERS" value="myadmin">
-	<input type="hidden" name="StrUSER_ID" id="StrUSER_ID" value="myadmin">
-	<input type="hidden" name="StrtdCount" id="StrtdCount" value="">
 
-	<input type="hidden" id="SEARCH_AUTH" name="SEARCH_AUTH" value="Y">
-	<input type="hidden" id="UPDATE_AUTH" name="UPDATE_AUTH" value="Y">
-	<input type="hidden" id="DELETE_AUTH" name="DELETE_AUTH" value="Y">
-	<input type="hidden" id="DOWNLOAD_AUTH" name="DOWNLOAD_AUTH" value="Y">
-
-	<!-- isKang 추가 190625 Start-->
-	<input type="hidden" name="LANG" id="LANG" value="EN">
-	<!-- isKang 추가 190625 End-->
 
 	<!-- 상세검색 Start-->
 	<input type="hidden" name="SRCH_TITLE" value="">
