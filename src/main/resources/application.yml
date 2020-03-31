@@ -4,8 +4,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://13.125.168.244:3306/MCHMS?autoReconnect=true&characterEncoding=utf8&tcpNoDelay=true&socketTimeout=7000
 #    url: jdbc:mysql://127.0.0.1:3306/MCHMS?autoReconnect=true&characterEncoding=utf8&tcpNoDelay=true&socketTimeout=7000
-    username: root
-    password: ch3cooh
+    username: ENC(EKsxaGS5lwjVkLGtSM8Ahg==)
+    password: ENC(e0x1W2HSnd2XLSs19X8zJg==)
     tomcat:
       default-transaction-isolation: -1
       initial-size: 50
@@ -32,3 +32,4 @@ spring:
 
 logging:
   config: classpath:logback.groovy
+
