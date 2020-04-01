@@ -15,11 +15,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.bind.DatatypeConverter;
 
+import java.io.PrintWriter;
 import java.security.MessageDigest;
 import java.util.Formatter;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -106,6 +109,52 @@ public class UserDoCont {
         String result = formatter.toString();
         formatter.close();
         return result;
+    }
+
+    @RequestMapping(value = "/MCHMSLogout")
+    public ModelAndView mchmsLogout(ModelAndView mv , HttpServletRequest request, HttpServletResponse response, @ModelAttribute User user){
+        try {
+            request.getSession().removeAttribute("value");
+            request.getSession().removeAttribute("id");
+
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out_equals = response.getWriter();
+
+            out_equals.println("<script type = 'text/javascript'> alert('You have successfully logged out.');location.href='/';</script>");
+            out_equals.flush();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return mv;
+    }
+
+    @RequestMapping(value = "/Apply_process", method = RequestMethod.POST)
+    public ModelAndView Apply_process(ModelAndView mv, HttpServletRequest request, HttpServletResponse response){
+        try {
+            Map<String, Object> obj = new HashMap<>();
+
+            obj.put("USER_ID", request.getParameter("USER_ID"));
+            obj.put("USER_PASS", makePassword(request.getParameter("USER_PASS")));
+            obj.put("USER_NAME", request.getParameter("USER_NAME"));
+            obj.put("USER_EMAIL", request.getParameter("USER_EMAIL"));
+            obj.put("USER_NICK", request.getParameter("USER_NICK"));
+            obj.put("NoPermission", 3);
+
+            userService.setUser(obj);
+
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out_equals = response.getWriter();
+
+            out_equals.println("<script type = 'text/javascript'> alert('Apply completed.');location.href='/';</script>");
+            out_equals.flush();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return mv;
     }
 
 

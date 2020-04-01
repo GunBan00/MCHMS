@@ -230,7 +230,19 @@ public class SearchCont {
 
                 String RegionName = Region.getCities();
                 int totalLength = totalList.size();
+                if(totalLength == 0) {
+                    avgLat = 19.75056;
+                    avgLong = 96.10056;
+                    String[] pageList = {};
+                    int pageNumberList[] = new int[10];
+                    mv.addObject("total", totalLength);
+                    mv.addObject("avg_Lat", avgLat);
+                    mv.addObject("avg_Long", avgLong);
+                    mv.addObject("lists", pageList);
+                    mv.addObject("pageNumberList", pageNumberList);
 
+                    return mv;
+                }
                 ///////////////////////////////////////////////////////////////////
                 double a = Double.valueOf(totalLength);
                 double b = Double.valueOf(dataForPage);

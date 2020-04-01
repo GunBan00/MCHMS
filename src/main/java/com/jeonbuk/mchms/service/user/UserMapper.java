@@ -3,6 +3,7 @@ package com.jeonbuk.mchms.service.user;
 import com.jeonbuk.mchms.domain.UserDataDomain;
 import com.jeonbuk.mchms.domain.UserInfo;
 import com.jeonbuk.mchms.domain.UserWriteClassificationCount;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -43,4 +44,12 @@ public interface UserMapper {
     @Update("UPDATE User SET PW = #{encPw} WHERE ID = #{ID}")
     void changePassword(Map<String, Object> sqlParam);
 
+    @Select("SELECT COUNT(*) FROM User WHERE ID = ${ID}")
+    int CheckingUserIDProcess(String ID);
+
+    @Select("SELECT COUNT(*) FROM User WHERE NICKNAME = ${NICKNAME}")
+    int CheckingUserNicknameProcess(String NICKNAME);
+
+    @Insert("INSERT INTO User(`ID`, `PW`, `NAME`, `EMAIL`, `NICKNAME`, `GRADE`) VALUES ('${USER_ID}', '${USER_PASS}', '${USER_NAME}', '${USER_EMAIL}', '${USER_NICKNAME}', '${NoPermission}')")
+    void setUser(Map<String, Object> sqlParam);
 }

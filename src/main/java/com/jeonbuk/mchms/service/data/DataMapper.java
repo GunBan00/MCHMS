@@ -42,7 +42,9 @@ public interface DataMapper {
     @Select("SELECT ID as id, Title as title, Serial_Number as serialnumber, Data.Classification_id as classificationId, Latitude as latitude, Longitude as longitude, Registration_Date as registrationDate, City_id as cityId FROM Data LEFT OUTER JOIN Classification ON (Data.Classification_id = Classification.classification_id) WHERE ${keywordQuery} ORDER BY Classification.Large ${Order}")
     List<DataDomain> getDataByKeywordIdAndJoinClassifi(Map<String, Object> sqlParam);
 
-    @Select("SELECT ID as id, Title as title, Serial_Number as serialnumber, Classification_id as classificationId, Latitude as latitude, Longitude as longitude, Registration_Date as registrationDate, City_id as cityId FROM Data WHERE ${keywordQuery} ORDER BY Data.${TypeToSort} ${Order}")
+    @Select("SELECT ID as id, Title as title, Serial_Number as serialnumber, Classification_id as classificationId, " +
+            "Latitude as latitude, Longitude as longitude, Registration_Date as registrationDate, City_id as cityId " +
+            "FROM Data WHERE ${keywordQuery} ORDER BY Data.${TypeToSort} ${Order}")
     List<DataDomain> getDataByKeywordIdAndNotJoin(Map<String, Object> sqlParam);
 
     @Select("SELECT ID as id, Title as title, Serial_Number as serialnumber, Classification_id as classificationId, Latitude as latitude, Longitude as longitude, Registration_Date as registrationDate, City_id as cityId FROM Data WHERE (${sqlSentence})")
