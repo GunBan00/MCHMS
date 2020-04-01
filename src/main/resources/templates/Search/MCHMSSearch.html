@@ -250,11 +250,18 @@
 		</div>
 		<div class="floatBox">
 			<div class="flBox" style="width:100%; margin-top: 10px;text-align:center;">
-				<div class ="pageBox" th:if="${pageNumber>7}" style ="display:inline-block;">
-					<a th:if="${firstFlag == 1}"th:href="@{/MCHMSSearch/?City_id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&' + @{TypeToSort={TypeToSort}(TypeToSort=${TypeToSort})} + '&' + @{currentPage={currentPage}(currentPage=1)}" id="page">< First</a>
-					<a th:each ="num : ${pageNumberList}" th:href="@{/MCHMSSearch/?City_id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&' + @{TypeToSort={TypeToSort}(TypeToSort=${TypeToSort})} + '&' + @{currentPage={currentPage}(currentPage=${num})}" th:text="${num}+' '"></a>
+				<div class ="pageBox" style ="display:inline-block;">
+					<div style="width: 800px;text-align: center;">
+						<a th:if="${firstFlag == 1}"th:href="@{/MCHMSSearch/?City_id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&' + @{TypeToSort={TypeToSort}(TypeToSort=${TypeToSort})} + '&' + @{currentPage={currentPage}(currentPage=1)}" id="page">< First</a>
+						<div class="pageNum" th:each ="num : ${pageNumberList}" >
+					<a th:if="${num} != ${currentPage}" th:href="@{/MCHMSSearch/?City_id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&' + @{TypeToSort={TypeToSort}(TypeToSort=${TypeToSort})} + '&' + @{currentPage={currentPage}(currentPage=${num})}" th:text="${num}+' '"></a>
+						<strong><a th:unless="${num} != ${currentPage}" th:text="${num}+' '"></a></strong>
+					</div>
+						<a th:if="${pageNumber}>10" th:href="@{/MCHMSSearch/?City_id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&' + @{TypeToSort={TypeToSort}(TypeToSort=${TypeToSort})} + '&' + @{currentPage={currentPage}(currentPage=${pageNumber})}" id="page">Last ></a>
 				</div>
-				<a th:if="${pageNumber}>10" th:href="@{/MCHMSSearch/?City_id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&' + @{TypeToSort={TypeToSort}(TypeToSort=${TypeToSort})} + '&' + @{currentPage={currentPage}(currentPage=${pageNumber})}" id="page">Last ></a>
+				</div>
+				</div>
+
 				<div  th:if="${pageNumber} > 10">
 					<input type="text" size="34" maxlength="3" value="" style="margin-top : 1%; width: 60px;" class ="FIELD_RELIC_ZIP" id ="FIELD_RELIC_ZIP" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' ></input><input type ="button" style ="margin-top : 1%;width: 30px; height: 30px;" onclick="javascript:movePage();" value="P"></input>
 				</div>
@@ -262,6 +269,7 @@
 					<a th:if="${session.value != null}" th:href="@{/MCHMSWrite/?City_id={id}(id=${City_id})}" style = "right:0; position : absolute" class="btn btnB">Upload</a>
 				</div>
 			</div>
+
 
 		</div>
 	</form>

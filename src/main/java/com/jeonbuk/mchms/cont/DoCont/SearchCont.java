@@ -109,7 +109,7 @@ public class SearchCont {
             int pageNumber = 0;
             int dataForPage = 10;
             int startPage = 0;
-            int icp=0;
+            int intCurrentPage=0;
             int startNum=1;
 
             String currentPage = null;
@@ -118,12 +118,12 @@ public class SearchCont {
             {
                 currentPage = "0";
                 startNum = 0;
-                icp =0;
+                intCurrentPage =0;
             }
             else
             {
-                icp = Integer.parseInt(currentPage);
-                startNum =(icp-1)*10;
+                intCurrentPage = Integer.parseInt(currentPage);
+                startNum =(intCurrentPage-1)*10;
             }
 
             //////////////////////////////////////////////////////////////////////
@@ -164,14 +164,21 @@ public class SearchCont {
                         avgLong = avgLong + dataDomain.getLongitude();
                         index++;
                     }
+                    City Region = cityService.getRegionFromCityId(cityId);
+
+
+                    String RegionName = Region.getCities();
                     avgLat = avgLat / totalLength;
                     avgLong = avgLong / totalLength;
                     int pageNumberList[] = new int[10];
+                    System.out.println("aasdf");
                     mv.addObject("avg_Lat", avgLat);
                     mv.addObject("avg_Long", avgLong);
                     mv.addObject("Keyword", keyWord);
                     mv.addObject("total", totalLength);
                     mv.addObject("lists", totalList);
+                    mv.addObject("RegionName", RegionName);
+                    mv.addObject("dataDomain", totalList);
                     mv.addObject("Museum", museums);
                     mv.addObject("City_id", cityId);
                     mv.addObject("session", session);
@@ -228,23 +235,24 @@ public class SearchCont {
                 double a = Double.valueOf(totalLength);
                 double b = Double.valueOf(dataForPage);
 
+
                 pageNumber = (int)Math.ceil(a/b);
-                int pageNumberList[] = new int[10];
+                int pageNumberList[];
                 if(pageNumber > 10){
-                    if(icp > 6){
-                        if(icp+5 < pageNumber) {
+                    if(intCurrentPage > 6){
+                        if(intCurrentPage+5 < pageNumber) {
                             pageNumberList = new int[10];
                             int k = 0;
-                            for (int i = icp - 4; i <= icp + 5; i++) {
+                            for (int i = intCurrentPage - 4; i <= intCurrentPage + 5; i++) {
                                 pageNumberList[k] = i + 1;
                                 k++;
                             }
                         }
                         else
                         {
-                            pageNumberList = new int[(pageNumber-icp+4)];
+                            pageNumberList = new int[(pageNumber-intCurrentPage+4)];
                             int k = 0;
-                            for (int i = icp - 4; i < pageNumber; i++) {
+                            for (int i = intCurrentPage - 4; i < pageNumber; i++) {
                                 pageNumberList[k] = i + 1;
                                 k++;
                             }
@@ -291,13 +299,17 @@ public class SearchCont {
                 }
                 int k = 0;
                 DataDomain[] pageList;
-                int as = totalLength - (icp*10) + 10;
-                if(as < 10) {
-                    pageList = new DataDomain[as];
+                if(totalLength > 10) {
+                    int as = totalLength - (intCurrentPage * 10) + 10;
+                    System.out.println(as);
+                    if (as < 10) {
+                        pageList = new DataDomain[as];
+                    } else {
+                        pageList = new DataDomain[10];
+                    }
                 }
-                else
-                {
-                    pageList = new DataDomain[10];
+                else{
+                    pageList = new DataDomain[totalLength];
                 }
                 for(int i = startNum; i < startNum + dataForPage; i++) {
                     if(i >= totalLength) break;
@@ -311,7 +323,7 @@ public class SearchCont {
                     cityId = zero + cityId;
                 }
                 int firstFlag =  0;
-                if (icp > 7 && pageNumber > 10)
+                if (intCurrentPage > 7 && pageNumber > 10)
                 {
                     firstFlag = 1;
                 }
@@ -320,8 +332,8 @@ public class SearchCont {
                 String regionNameById = selectRegionName.getMuseum();
                 String cityNameById = selectRegionName.getCities();
                 String cityRegionName = cityNameById + " - " + regionNameById;
-
-                System.out.println(session.getId());
+                if(currentPage == "0")
+                    currentPage = "1";
                 mv.addObject("SortOrder", SortOrder);
                 mv.addObject("TypeToSort", TypeToSort);
                 mv.addObject("Region", Region);
@@ -332,6 +344,7 @@ public class SearchCont {
                 mv.addObject("total", totalLength);
                 mv.addObject("pageNumberList", pageNumberList);
                 mv.addObject("pageNumber", pageNumber);
+                mv.addObject("currentPage", currentPage);
                 mv.addObject("lists", pageList);
                 mv.addObject("Museum", museums);
                 mv.addObject("City_id", cityId);
