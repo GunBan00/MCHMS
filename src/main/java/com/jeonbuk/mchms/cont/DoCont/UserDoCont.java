@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.bind.DatatypeConverter;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.MessageDigest;
 import java.util.Formatter;
@@ -42,7 +43,7 @@ public class UserDoCont {
 
 
     @RequestMapping(value = "/MCHMSlogin_process", method = RequestMethod.POST)
-    public ModelAndView mCHMSView(ModelAndView mv , HttpServletRequest request, @ModelAttribute User user) {
+    public ModelAndView mCHMSView(ModelAndView mv , HttpServletRequest request,HttpServletResponse response, @ModelAttribute User user) throws IOException {
 
         mv.setViewName("Main/BASE");
 
@@ -50,7 +51,7 @@ public class UserDoCont {
             HttpSession session = request.getSession();
 
             Map<String, Object> userInfo = userService.loginUser(user.getUSER_ID(), makePassword(user.getUSER_PASS()));
-
+            System.out.println(userInfo);
             logger.info((String)userInfo.get("ID"));
 
 
@@ -70,10 +71,19 @@ public class UserDoCont {
 
             return new ModelAndView("redirect:/");
         } catch (Exception e) {
-            e.printStackTrace();
+
+            ModelAndView modelAndView = new ModelAndView("redirect:/MCHMSLogin");
+
+
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out_equals = response.getWriter();
+            out_equals.println("<script type = 'text/javascript'> alert('Login Failed! Invalid ID and/or Password, Please try again');location.href='/MCHMSLogin';</script>");
+
+            out_equals.flush();
+
+            return modelAndView;
         }
 
-        return new ModelAndView("redirect:/");
 
     }
 

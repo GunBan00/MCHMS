@@ -99,7 +99,7 @@ public class SearchCont {
             mv.addObject("Museum", Museum);
             mv.addObject("MID_Page", "Search/MCHMSSearch.html");
 
-            mv.setViewName("Contents_BASE");
+            mv.setViewName("Contents_Base.html");
             String cityId = request.getParameter("City_id");
             int flag = 0;
             double avgLat = 0;

@@ -15,11 +15,7 @@
 	<link rel="stylesheet" href="/css/MCH/layout.css" type="text/css" />
 	<link rel="stylesheet" href="/css/MCH/style.css" type="text/css" />
 	<link rel="stylesheet" href="/common/css/jquery-ui.css?ver=3" type="text/css" />
-	<script type="text/javascript">
-		var _CONTEXT_PATH = "";
-		var _CONTEXT_PORT = '80';
-		var _CONTEXT_DOMAIN = "localhost:8080/";
-	</script>
+
 
 	<script type="text/javascript" src="/js2/jquery-3.3.1.min.js?ver=3"></script>
 
@@ -753,7 +749,7 @@
 
 				<div class="searchBox">
 					<input type="text" id="TOP_TOPWORD" name="TOP_TOPWORD" onkeypress="speCharBlock(this)" value="">
-					<a href="#" onclick="Search();" class="serch_icon"><img src="/static/MCHMS/mams/serch_icon_06.svg" alt="Search Btn" style="height: 22px;">Search</a>
+					<a href="#" onclick="Search();" class="serch_icon"><img src="/MCHMS/mams/serch_icon_06.svg" alt="Search Btn" style="height: 22px;">Search</a>
 					<script>
 
 					function Search() {
@@ -762,7 +758,7 @@
 						var regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi
 						str = SearchKey.replace(regExp,"");
 						if(str == ""){
-							path = "http://mchms.net/MCHMSSearch/?&Keyword=" + SearchKey;
+							path = "/MCHMSSearch/?&Keyword=" + SearchKey;
 
 
 							window.location.href = path;
@@ -772,7 +768,7 @@
 						}else{
 							var ESearchKey = encodeURI(SearchKey);
 
-							path = "http://mchms.net/MCHMSSearch/?&Keyword=" + ESearchKey;
+							path = "/MCHMSSearch/?&Keyword=" + ESearchKey;
 
 
 							window.location.href = path;
@@ -786,7 +782,7 @@
 					});
 					</script>
 
-					<a href="#layerPopup" class="btnSearch"><img src="/static/MCHMS/mams/serch_icon_07.svg" alt="" style="height: 22px;">Advanced</a>
+					<a href="#layerPopup" class="btnSearch"><img src="/MCHMS/mams/serch_icon_07.svg" alt="" style="height: 22px;">Advanced</a>
 					<script>
 						$('.btnSearch').click(function(){
 							var $href = $(this).attr('href');
@@ -988,7 +984,7 @@
 								<a href="javascript:reset();" class="btn type2">Reset</a>
 							</div>
 						</div>
-						<a href="#a" class="close"><img src="/MCHMS/btn/close.png" alt=""></a>
+						<a href="" class="close"><img src="/MCHMS/btn/close.png" alt=""></a>
 					</div>
 				</div>
 			</form>
