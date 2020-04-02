@@ -173,9 +173,6 @@ public class ViewController {
             Classification clInfo = classificationService.getClassificationInfoById(id);
 
             String cityClInfo = cityInfo.getCities() + "-" + cityInfo.getMuseum() + "-" + clInfo.getLarge();
-            System.out.println("test : " + clInfo.getMiddle());
-            System.out.println("test : " + clInfo.getSmall());
-            System.out.println("test : " + clInfo.getSubSection());
             if (!(clInfo.getMiddle().equals(""))){
                 cityClInfo = cityClInfo + "-" + clInfo.getMiddle();
                 if (!(clInfo.getSmall().equals(""))){
@@ -185,12 +182,21 @@ public class ViewController {
                     }
                 }
             }
+            DataDomain dataDo = dataService.getDataInfo(id);
+            int modifyFlag = 0;
 
+            if(dataDomain.getRegistrant() == String.valueOf(String.valueOf(session.getAttribute("id"))))
+            {
+                System.out.println("asdf");
+
+                modifyFlag = 1;
+            }
             mv.addObject("cityClInfo", cityClInfo);
+            mv.addObject("modifyFlag", modifyFlag);
             mv.addObject("ResultView", dataDomain);
             mv.addObject("Remarks_en", remarksEn);
             mv.addObject("Reference_en",referenceEn);
-            mv.addObject("City_id", dataDomain.getCityId());
+            mv.addObject("City_id", dataDo.getCityId());
             mv.addObject("x", xPoint);
             mv.addObject("y", yPoint);
             mv.addObject("Museum", museums);

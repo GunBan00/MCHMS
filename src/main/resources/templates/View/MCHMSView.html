@@ -187,22 +187,30 @@ margin-top:0%;
 			</div>
 		</div>
 		<!-- //게시물 삭제사유 팝업 -->
+		<style>
+		.thwidth
+{
+width:169px;
+}
+
+		</style>
 
 		<div id="printarea">
 			<table class="tbType01 type2" style="border-bottom:2px solid #646464;">
 				<tbody id="WriteUi">
-				<tr> <th>Classification</th>				<td colspan="3" th:text = "${cityClInfo}">
+				<tr> <th class ="thwidth">Classification</th>				<td colspan="3" th:text = "${cityClInfo}">
 				</td></tr>
-				<tr> <th>Title(EN)</th>						<td colspan="3" th:text = "${ResultView.title}"></td></tr>
-				<tr> <th>Period</th>						<td colspan="3" th:text = "${ResultView.period}"></td></tr>
-				<tr> <th>Location</th>						<td colspan="3" th:text = "${ResultView.location}"></td></tr>
-				<tr> <th>Place of Origin</th>				<td colspan="3" th:text = "${ResultView.origin}"></td></tr>
-				<tr> <th>Material</th>						<td colspan="3" th:text = "${ResultView.material}"></td></tr>
-				<tr> <th>Serial Number<span>(*)</span></th>	<td colspan="3" th:text = "${ResultView.serialNumber}"></td></tr>
-				<tr> <th>Latitude</th>						<td colspan="3" th:text = "${ResultView.latitude}"></td></tr>
-				<tr> <th>Longitude</th>						<td colspan="3" th:text = "${ResultView.longitude}"></td></tr>
-				<tr> <th>Department</th>					<td colspan="3" th:text = "${ResultView.department}"></td></tr>
-				<tr> <th>Registrant</th>					<td th:text = "${ResultView.registrant}"></td>	<th>Registration date</th>	<td th:text = "${ResultView.registrationDate}"></td></tr>
+				<tr> <th class ="thwidth">Title(EN)</th>						<td colspan="3" th:text = "${ResultView.title}"></td></tr>
+				<tr> <th class ="thwidth">Title(MY)</th>						<td colspan="3" th:text = "${ResultView.titleMy}"></td></tr>
+				<tr> <th class ="thwidth">Period</th>						<td colspan="3" th:text = "${ResultView.period}"></td></tr>
+				<tr> <th class ="thwidth">Location</th>						<td colspan="3" th:text = "${ResultView.location}"></td></tr>
+				<tr> <th class ="thwidth">Place of Origin</th>				<td colspan="3" th:text = "${ResultView.origin}"></td></tr>
+				<tr> <th class ="thwidth">Material</th>						<td colspan="3" th:text = "${ResultView.material}"></td></tr>
+				<tr> <th class ="thwidth">Serial Number<span>(*)</span></th>	<td colspan="3" th:text = "${ResultView.serialNumber}"></td></tr>
+				<tr> <th class ="thwidth">Latitude</th>						<td colspan="3" th:text = "${ResultView.latitude}"></td></tr>
+				<tr> <th class ="thwidth">Longitude</th>						<td colspan="3" th:text = "${ResultView.longitude}"></td></tr>
+				<tr> <th class ="thwidth">Department</th>					<td colspan="3" th:text = "${ResultView.department}"></td></tr>
+				<tr> <th class ="thwidth">Registrant</th>					<td style="width:30%;" th:text = "${ResultView.registrant}"></td>	<th>Registration date</th>	<td th:text = "${ResultView.registrationDate}"></td></tr>
 				</tbody>
 			</table>
 
@@ -314,19 +322,19 @@ margin-top:0%;
 		<div class="floatBox" style ="margin-top:2%;">
 			<div class="flBox">
 				<a href="#" onclick="goPrint();" class="btn type2 btnG" id="btnPrint" style ="margin-top:">Print</a>
-				<a href="/MCHMSSearch/?City_id=${cityId}" class="btn type2 btnG">List</a>
+				<a th:href="@{/MCHMSSearch/?City_id={id}(id=${City_id})}" class="btn type2 btnG">List</a>
 			</div>
 
-			<div class="flBox" style="" th:if="${session.value == null}">
-				<a <a th:href="@{/MCHMSWrite/(City_id=${ms.cityId})}"style = "right:0; position : absolute" class="btn btnB">Upload</a>
+			<div class="flBox" style="" th:if="${session.value != null}">
+				<a th:href="@{/MCHMSWrite/?City_id={id}(id=${City_id})}"style = "right:0; position : absolute" class="btn btnB">Upload</a>
 
 			</div>
-			<div class="frBox" style ="right: 10%; position: absolute;" th:unless="${session.value == null}" th:if="${Session.id == ResultView.registrant}">
+			<div class="frBox" style ="right: 10%; position: absolute;" th:if="${session.id} == ${ResultView.registrant}">
 
 				<a onclick="Alert_Del()" id="DELETE_BTN1" class="btn type2 btnB">Delete</a>
-				<a href="/MCHMSModify/?ID=${ResultView.cityId}" onclick="" id="UPDATE_BTN1" class="btn type2 btnB">Modify</a>
+				<a th:href="@{/MCHMSModify/?ID={id}(id=${ResultView.id})}" onclick="" id="UPDATE_BTN1" class="btn type2 btnB">Modify</a>
 
-				<a <a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" class="btn type2 btnG">List</a>
+
 			</div>
 		</div>
 	</form>

@@ -13,7 +13,7 @@ import java.util.Map;
 @Mapper
 public interface DataMapper {
 
-    @Select("SELECT *, Serial_Number as serialNumber, Registration_Date as registrationDate, Remarks_en as RemarksEn, Remarks_my as RemarksMy, Reference_en as ReferenceEn, Reference_my as ReferenceMy FROM Data WHERE ID = #{id}")
+    @Select("SELECT *,Title_my as titleMy, Registrant as registrant, City_id as cityId, Serial_Number as serialNumber, Registration_Date as registrationDate, Remarks_en as RemarksEn, Remarks_my as RemarksMy, Reference_en as ReferenceEn, Reference_my as ReferenceMy FROM Data WHERE ID = #{id}")
     DataDomain selectData(String id);
 
     @Select("SELECT ID as id, Title as title, Serial_Number as serialnumber, Classification_id as classificationId, City_Id as cityId, Latitude as latitude, Longitude as longitude, Registration_Date as registrationDate FROM Data WHERE match(Title, Serial_Number, Remarks_en, Reference_en) against(#{keyword} in boolean mode)")
@@ -56,7 +56,7 @@ public interface DataMapper {
     @Select("SELECT MAX(ID) FROM Data WHERE Registrant = '${id}'")
     int getMaxId(String id);
 
-    @Insert("INSERT INTO Data(Title, Title_my, Period, Location, Origin, Material, Serial_number, Latitude, Longitude, Latitude2, Longitude2, Remarks_en, Remarks_my, Reference_en, Reference_my, Visibility, City_id, Classification_id,Filename, Registrant, Registration_Date, Department) VALUES ('${title}', '${title_my}', '${period}', '${location}', '${origin}', '${material}', '${serialNumber}','${latitude}','${longtitude}','${latitude2}','${longtitude2}','${remarksEn}','${remarksMy}','${referenceEn}','${referenceMy}','${visibility}','${cityId}','${classificationId}','${filename}','${registrant}','${registrationDate}','${department}')")
+    @Insert("INSERT INTO Data(Title, Title_my, Period, Location, Origin, Material, Serial_number, Latitude, Longitude, Latitude2, Longitude2, Remarks_en, Remarks_my, Reference_en, Reference_my, Visibility, City_id, Classification_id,Filename, Registrant, Registration_Date) VALUES ('${title}', '${title_my}', '${period}', '${location}', '${origin}', '${material}', '${serialNumber}','${latitude}','${longtitude}','${latitude2}','${longtitude2}','${remarksEn}','${remarksMy}','${referenceEn}','${referenceMy}','${visibility}','${cityId}','${classificationId}','${filename}','${registrant}','${registrationDate}')")
     void setData(Map<String, String> sqlParam);
 
     @Insert("INSERT INTO FILEEVENT(ID, DATA_ID, FILES, COUNT) VALUES (0, '${id}', '${filesName}', '${fileCount}')")
