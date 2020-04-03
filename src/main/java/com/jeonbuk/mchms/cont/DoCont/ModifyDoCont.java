@@ -1,13 +1,16 @@
 package com.jeonbuk.mchms.cont.DoCont;
 
 import com.jeonbuk.mchms.cont.DispacherCont.main.MainController;
+import com.jeonbuk.mchms.domain.DataDomain;
 import com.jeonbuk.mchms.domain.UserInfo;
 import com.jeonbuk.mchms.service.classification.ClassificationService;
 import com.jeonbuk.mchms.service.data.DataService;
 import com.jeonbuk.mchms.service.user.UserService;
+import groovy.util.logging.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,6 +27,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Controller
+@Slf4j
 public class ModifyDoCont {
     @Autowired
     ClassificationService classificationService;
@@ -41,19 +46,18 @@ public class ModifyDoCont {
         try {
             String redirectUrl = "MCHMSSearch/City_id/?";
 
-            String cityId = request.getParameter("cityId");
-            String LARGE_SEQ = request.getParameter("LARGE_SEQ1");
-            String MEDIUM_SEQ = request.getParameter("MEDIUM_SEQ1");
-            String SMALL_SEQ = request.getParameter("SMALL_SEQ1");
-            String SUB_SEQ1 = request.getParameter("SUB_SEQ1");
+            String dataId = request.getParameter("ID");
+            String LARGE_SEQ = request.getParameter("LARGE_SEQ_W");
+            String MEDIUM_SEQ = request.getParameter("MEDIUM_SEQ_W");
+            String SMALL_SEQ = request.getParameter("SMALL_SEQ_W");
+            String SUB_SEQ1 = request.getParameter("SUB_SEQ_W");
             String FIELD_TITLE = request.getParameter("FIELD_TITLE");
             String FIELD_TITLE_MY = request.getParameter("FIELD_TITLE_MY");
             String FIELD_PERIOD = request.getParameter("FIELD_PERIOD");
             String FIELD_Location = request.getParameter("FIELD_Location");
             String FIELD_ORIGIN = request.getParameter("FIELD_ORIGIN");
             String FIELD_MATERIAL = request.getParameter("FIELD_MATERIAL");
-            String FIELD_RELIC_ZIP = request.getParameter("FIELD_RELIC_ZIP");
-            String FIELD_RELIC_ADD = request.getParameter("FIELD_RELIC_ADD");
+            String FIELD_RELIC_NUMBER = request.getParameter("FIELD_RELIC_NUMBER");
             String FIELD_LTTD = request.getParameter("FIELD_LTTD");
             if (FIELD_LTTD.equals(""))
             {
@@ -76,7 +80,7 @@ public class ModifyDoCont {
             String Filename = "";
             String Registrant = "";
             String Department = "Ministry of Religious Affairs and Culture Department of Archaeology and National Museum";
-            String serialNumber = FIELD_RELIC_ZIP+FIELD_RELIC_ZIP;
+            String serialNumber = FIELD_RELIC_NUMBER;
             List<MultipartFile> files = request.getFiles("files");
             System.out.println("files");
             String path = "C:\\image\\";//directory 수정해야됨
@@ -100,6 +104,10 @@ public class ModifyDoCont {
             String time1 = format1.format(time);
             String time2 = format2.format(time);
 
+
+            DataDomain dataDomain = dataservice.getDataInfo(dataId);
+            String cityId = dataDomain.getCityId();
+            sqlParam.put("id", dataId);
             sqlParam.put("cityId", cityId);
             sqlParam.put("LARGE_SEQ", LARGE_SEQ);
             sqlParam.put("MEDIUM_SEQ", MEDIUM_SEQ);
@@ -128,7 +136,7 @@ public class ModifyDoCont {
             sqlParam.put("visibility", OPEN_YN);
             sqlParam.put("department", OPEN_YN);
             sqlParam.put("registrationDate", time1);
-
+            int fileFlag = 0;
             for (MultipartFile mf : files) {
                 String originFileName = mf.getOriginalFilename(); // 원본 파일 명
                 long fileSize = mf.getSize(); // 파일 사이즈
@@ -137,6 +145,7 @@ public class ModifyDoCont {
                     String fileName = id + "_" + time2 + "_" + fileCount;
                     String safeFile = path + fileName;
                     try {
+                        fileFlag = 1;
                         mf.transferTo(new File(safeFile));
                         fileCount++;
                         filesName = filesName + fileName + "|";
@@ -148,9 +157,9 @@ public class ModifyDoCont {
                     }
                 }
             }
-            dataservice.setData(sqlParam);
+            dataservice.changeData(sqlParam);
             int maxId = dataservice.getMaxId(id);
-            dataservice.setFiles(maxId, filesName, fileCount-1);
+            dataservice.changeFiles(maxId, filesName, fileCount-1, fileFlag);
 
 
 

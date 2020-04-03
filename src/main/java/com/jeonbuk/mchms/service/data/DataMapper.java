@@ -6,6 +6,7 @@ import com.jeonbuk.mchms.domain.DataDomain;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 import java.util.Map;
@@ -61,5 +62,11 @@ public interface DataMapper {
 
     @Insert("INSERT INTO FILEEVENT(ID, DATA_ID, FILES, COUNT) VALUES (0, '${id}', '${filesName}', '${fileCount}')")
     void setFiles(int id, String filesName, int fileCount);
+
+    @Update("UPDATE Data SET Title = #{title}, Title_my = #{title_my}, Period=#{period},  Location=#{location},  Origin=#{origin},  Material=#{material},  Serial_number=#{serialNumber}, Latitude=#{latitude}, Longitude=#{longtitude}, Latitude2=#{latitude2}, Longitude2=#{longtitude2}, Remarks_en=#{remarksEn}, Remarks_my=#{remarksMy}, Reference_en=#{referenceEn}, Reference_my=#{referenceMy}, Visibility=#{visibility}, City_id=#{cityId}, Classification_id=${classificationId},Filename=#{filename}, Registrant=#{registrant}, Registration_Date=#{registrationDate} WHERE ID = #{id}")
+    void changeData(Map<String, String> sqlParam);
+
+    @Update("Update FILEEVENT SET ID, FILES = '${filesName}', COUNT = '${fileCount}') WHERE DATA_ID = '${id}'")
+    void changeFiles(int id, String filesName, int fileCount);
 
 }

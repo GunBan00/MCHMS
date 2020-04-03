@@ -1439,7 +1439,7 @@ function removeChar(event) {
 		<div class="conts">
 			<h4 id="BOARD_TITLE">&nbsp;</h4>
 			<!-- <h4>Lang: English</h4> -->
-			<form th:action = "@{/MCHMSModify_process/?City_id={id}(id=${City_id})}" id="frm1"method = "post" enctype="multipart/form-data">
+			<form th:action = "@{/MCHMSModify_process/?ID={id}(id=${ResultView.id})}" id="frm1"method = "post" enctype="multipart/form-data">
 
 				<table class="tbType01 type2">
 					<colgroup>
@@ -1825,7 +1825,7 @@ function removeChar(event) {
 							<th>Location (50)</th>	<td colspan="3">		<input type="text" id="FIELD_Location" name="FIELD_Location" size="54" maxlength="50" th:value="${ResultView.location}">	</td></tr><tr>
 							<th>Place of Origin (50)</th>	<td colspan="3">		<input type="text" id="FIELD_ORIGIN" name="FIELD_ORIGIN" size="54" maxlength="50"  th:value="${ResultView.origin}">	</td></tr><tr>
 							<th>Material (50)</th>	<td colspan="3">		<input type="text" id="FIELD_MATERIAL" name="FIELD_MATERIAL" size="54" maxlength="50"  th:value="${ResultView.material}">	</td></tr><tr>
-							<th>Serial Number<span>(*)</span></th>	<td colspan="3"><div class="Clas_City" name="Clas_City" id="Clas_City" style="display:inline;">Classification-</div><input type="text" size="34" maxlength="5" th:value="${frontSerial}" style="width: 60px;" class ="FIELD_RELIC_ZIP" id ="FIELD_RELIC_ZIP" name="FIELD_RELIC_ZIP" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)'>-<input type="text" size="34" maxlength="2" th:value="${endSerial}" style="width: 40px;"  id ="FIELD_RELIC_ADD" name="FIELD_RELIC_ADD" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' th:text="${endSerialNumber2}"></td></tr><tr>
+							<th>Serial Number<span>(*)</span></th>		<td colspan="3">	<input type="text" id="FIELD_RELIC_NUMBER" name="FIELD_RELIC_NUMBER" size="34" maxlength="30" th:value="${ResultView.serialNumber}">	</td></tr><tr></td></tr><tr>
 							<th>Latitude (30)</th>	<td colspan="3">	<input type="text" id="FIELD_LTTD" name="FIELD_LTTD" size="34" maxlength="30" th:value="${ResultView.latitude}">	</td></tr><tr>
 							<th>Longitude (30)</th>	<td colspan="3">	<input type="text" id="FIELD_LNGTD" name="FIELD_LNGTD" size="34" maxlength="30" th:value="${ResultView.longitude}">	</td></tr></tbody>	<!-- .js에서 화면 그려짐 -->
 					</table>
@@ -1878,7 +1878,7 @@ function removeChar(event) {
 					</table>
 				</table>
 				<div class="btnR">
-					<div class="btn btnB" onclick="submit1();"style ="cursor :pointer">Upload</div>
+					<div class="btn btnB" onclick="submit1();"style ="cursor :pointer">Save</div>
 					<div class="btn" onclick="location.href = '/'" style ="cursor :pointer">Cancel</div>
 				</div>
 			</form>
@@ -1889,13 +1889,11 @@ function removeChar(event) {
 		var FIELD_TITLE = document.getElementByName('FIELD_TITLE");
 		var FIELD_TITLE_MY = document.getElementByName('FIELD_TITLE_MY");
 		var FIELD_RELIC_NUMBER = document.getElementByName('FIELD_RELIC_NUMBER");*/
-		if(frm1.LARGE_SEQ_w.value == "") { alert("Enter the Classification"); LARGE_SEQ.focus(); return; }
+		if(frm1.LARGE_SEQ_W.value == "") { alert("Enter the Classification"); LARGE_SEQ.focus(); return; }
 		if(frm1.FIELD_TITLE.value == "") { alert("Enter the Title"); FIELD_TITLE.focus(); return; }
 		if(frm1.FIELD_TITLE_MY.value == "") { alert("Enter the Title"); FIELD_TITLE_MY.focus(); return; }
 
-		if((frm1.FIELD_RELIC_ZIP.value).length != 5) { alert("Zip code must be 5 digits"); FIELD_RELIC_ZIP.focus(); return; }
-		if((frm1.FIELD_RELIC_ADD.value).length != 2) { alert("must be 2 digits"); FIELD_RELIC_ADD.focus(); return; }
-		localStorage.clear();
+
 		frm1.submit();
 
 	}
