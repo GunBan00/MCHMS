@@ -102,6 +102,7 @@ public class SearchCont {
             mv.setViewName("Contents_Base.html");
             String cityId = request.getParameter("City_id");
             int flag = 0;
+            int pageflag = 1;
             double avgLat = 0;
             double avgLong = 0;
 
@@ -130,63 +131,145 @@ public class SearchCont {
 
             List<City> museums = cityService.getMuseums();
             if(StringUtils.isEmpty(cityId)) {
+                int zoom = 5;
+                mv.addObject("zoom", zoom);
+
+                double map_latitude = 19.75056;
+                double map_longitude = 96.10056;
+
+                String TypeToSort = request.getParameter("TypeToSort");
+                if (TypeToSort == null){
+                    TypeToSort = "Title";
+                }
+
+                String SortOrder = request.getParameter("SortOrder");
+                if (SortOrder == null){
+                    SortOrder = "Title0";
+                }
+
                 flag = 1;
                 String keyWord = request.getParameter("Keyword");
-                List<DataDomain> totalList = dataService.getDataByKeyword(keyWord);
+
+                System.out.println("test : " + keyWord);
+                Integer OrderNum = Integer.parseInt(SortOrder.substring(SortOrder.length()-1, SortOrder.length()));
+                String Previous_Sort = SortOrder.substring(0, SortOrder.length()-1);
+                List<DataDomain> totalList;
+
+                if ((Previous_Sort.equals(TypeToSort)) && (OrderNum == 0)){
+                    SortOrder = TypeToSort + "1";
+                    totalList = dataService.getDataByKeyword(keyWord, TypeToSort,"asc");
+                }
+                else {
+                    SortOrder = TypeToSort + "0";
+                    totalList = dataService.getDataByKeyword(keyWord, TypeToSort,"desc");
+                }
+
                 int totalLength = totalList.size();
-//            if(totalLength != 0) {
-//                avgLat = 0;
-//                avgLong = 0;
-//            }
+                System.out.println(totalList.size());
+
                 if(totalLength == 0) {
-                    avgLat = 19.75056;
-                    avgLong = 96.10056;
+                    pageflag = 0;
                     String[] pageList = {};
                     int firstFlag = 0;
                     int pageNumberList[] = new int[10];
+
+                    mv.addObject("map_longitude", map_longitude);
+                    mv.addObject("map_latitude", map_latitude);
+
+                    mv.addObject("Keyword", keyWord);
                     mv.addObject("total", totalLength);
                     mv.addObject("firstFlag", firstFlag);
+                    mv.addObject("flag", flag);
                     mv.addObject("avg_Lat", avgLat);
                     mv.addObject("avg_Long", avgLong);
                     mv.addObject("lists", pageList);
                     mv.addObject("Session", session);
                     mv.addObject("currentPage", currentPage);
                     mv.addObject("pageNumberList", pageNumberList);
+                    mv.addObject("pageflag", pageflag);
 
                     return mv;
-                }else {
-                    int index = 1;
-                    for(DataDomain dataDomain : totalList) {
-                        Classification Category = classificationService.getCategoryFromClassification(dataDomain.getClassificationId());
-                        dataDomain.setClResult(Category.getLarge());
-                        dataDomain.setIndex(index);
-                        avgLat = avgLat + dataDomain.getLatitude();
-                        avgLong = avgLong + dataDomain.getLongitude();
-                        index++;
-                    }
-                    City Region = cityService.getRegionFromCityId(cityId);
-
-
-                    String RegionName = Region.getCities();
-                    avgLat = avgLat / totalLength;
-                    avgLong = avgLong / totalLength;
-                    int pageNumberList[] = new int[10];
-                    System.out.println("aasdf");
-                    mv.addObject("avg_Lat", avgLat);
-                    mv.addObject("avg_Long", avgLong);
-                    mv.addObject("Keyword", keyWord);
-                    mv.addObject("total", totalLength);
-                    mv.addObject("lists", totalList);
-                    mv.addObject("RegionName", RegionName);
-                    mv.addObject("dataDomain", totalList);
-                    mv.addObject("Museum", museums);
-                    mv.addObject("City_id", cityId);
-                    mv.addObject("session", session);
-                    mv.addObject("flag", flag);
-                    mv.addObject("pageNumberList", pageNumberList);
                 }
+
+                ///////////////////////////////////////////////////////////////////
+                double a = Double.valueOf(totalLength);
+                double b = Double.valueOf(dataForPage);
+
+
+                pageNumber = (int)Math.ceil(a/b);
+                int pageNumberList[];
+                if(pageNumber > 10){
+                    if(intCurrentPage > 6){
+                        if(intCurrentPage+5 < pageNumber) {
+                            pageNumberList = new int[10];
+                            int k = 0;
+                            for (int i = intCurrentPage - 4; i <= intCurrentPage + 5; i++) {
+                                pageNumberList[k] = i + 1;
+                                k++;
+                            }
+                        }
+                        else
+                        {
+                            pageNumberList = new int[(pageNumber-intCurrentPage+4)];
+                            int k = 0;
+                            for (int i = intCurrentPage - 4; i < pageNumber; i++) {
+                                pageNumberList[k] = i + 1;
+                                k++;
+                            }
+
+                        }
+                    }
+                    else{
+                        pageNumberList = new int[10];
+                        for(int i = 0; i < 10; i++){
+                            pageNumberList[i] = i + 1;
+                        }
+                    }
+                }
+                else{
+                    pageNumberList = new int[pageNumber];
+                    for (int i = 0; i < pageNumber; i++) {
+                        pageNumberList[i] = i + 1;
+                    }
+                }
+                ///////////////////////////////////////////////////////////////////
+
+                int index = 1;
+
+                for(DataDomain dataDomain : totalList) {
+                    Classification clCategory = classificationService.getCategoryFromClassification(dataDomain.getClassificationId());
+                    dataDomain.setClResult(clCategory.getLarge());
+                    City ciCategory = cityService.getRegionFromCityId(dataDomain.getCityId());
+                    dataDomain.setCiResult(ciCategory.getCities());
+                    System.out.println(dataDomain.getCiResult());
+                    dataDomain.setIndex(index);
+                    index++;
+                }
+
+
+                System.out.println(avgLat + "" + avgLong);
+
+                mv.addObject("SortOrder", SortOrder);
+                mv.addObject("map_longitude", map_longitude);
+                mv.addObject("map_latitude", map_latitude);
+                mv.addObject("Keyword", keyWord);
+                mv.addObject("total", totalLength);
+                mv.addObject("lists", totalList);
+                mv.addObject("dataDomain", totalList);
+                mv.addObject("Museum", museums);
+                mv.addObject("session", session);
+                mv.addObject("flag", flag);
+                mv.addObject("pageNumberList", pageNumberList);
+                mv.addObject("pageflag", pageflag);
+
+                return mv;
+
             }
             else {
+
+                int zoom = 14;
+                mv.addObject("zoom", zoom);
+
                 String TypeToSort = request.getParameter("TypeToSort");
                 if (TypeToSort == null){
                     TypeToSort = "Title";
@@ -227,20 +310,27 @@ public class SearchCont {
                 City Region = cityService.getRegionFromCityId(cityId);
                 String RegionName123 = Region.getMuseum();
 
+                City selectCityLocation = cityService.getCityLocationFromCityid(cityId);
+                City selectRegionName = cityService.getRegionFromCityId(cityId);
+                String regionNameById = selectRegionName.getMuseum();
+                String cityNameById = selectRegionName.getCities();
+                String cityRegionName = cityNameById + " - " + regionNameById;
 
                 String RegionName = Region.getCities();
                 int totalLength = totalList.size();
                 if(totalLength == 0) {
-                    avgLat = 19.75056;
-                    avgLong = 96.10056;
+
+                    pageflag = 0;
                     String[] pageList = {};
                     int pageNumberList[] = new int[10];
                     mv.addObject("total", totalLength);
-                    mv.addObject("avg_Lat", avgLat);
-                    mv.addObject("avg_Long", avgLong);
+                    mv.addObject("cityRegionName", cityRegionName);
+                    mv.addObject("map_longitude", selectCityLocation.getLongitude());
+                    mv.addObject("map_latitude", selectCityLocation.getLatitude());
                     mv.addObject("lists", pageList);
                     mv.addObject("pageNumberList", pageNumberList);
-
+                    mv.addObject("flag", flag);
+                    mv.addObject("pageflag", pageflag);
                     return mv;
                 }
                 ///////////////////////////////////////////////////////////////////
@@ -339,11 +429,7 @@ public class SearchCont {
                 {
                     firstFlag = 1;
                 }
-                City selectCityLocation = cityService.getCityLocationFromCityid(cityId);
-                City selectRegionName = cityService.getRegionFromCityId(cityId);
-                String regionNameById = selectRegionName.getMuseum();
-                String cityNameById = selectRegionName.getCities();
-                String cityRegionName = cityNameById + " - " + regionNameById;
+
                 if(currentPage == "0")
                     currentPage = "1";
                 mv.addObject("SortOrder", SortOrder);
@@ -363,6 +449,7 @@ public class SearchCont {
                 mv.addObject("Session", session);
                 mv.addObject("firstFlag", firstFlag);
                 mv.addObject("flag", flag);
+                mv.addObject("pageflag", pageflag);
             }
         } catch (Exception e) {
             logger.error(e.toString());

@@ -839,7 +839,7 @@ $(document).ready(function(){
 						var regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi
 						str = SearchKey.replace(regExp,"");
 						if(str == ""){
-							path = "MCHMSSearch/?&Keyword=" + SearchKey;
+							path = "/MCHMSSearch/?&Keyword=" + SearchKey;
 
 
 							window.location.href = path;
@@ -849,7 +849,7 @@ $(document).ready(function(){
 						}else{
 							var ESearchKey = encodeURI(SearchKey);
 
-							path = "MCHMSSearch/?&Keyword=" + ESearchKey;
+							path = "/MCHMSSearch/?&Keyword=" + ESearchKey;
 
 
 							window.location.href = path;

@@ -32,9 +32,9 @@ public class CityService {
         return cityMapper.getRegionFromCityId(CityId);
     }
 
-    public City getCityLocationFromCityid(String CityId){
-        return cityMapper.getCityLocationFromCityid(CityId);
-    }
+    public City getCityLocationFromCityid(String CityId){ return cityMapper.getCityLocationFromCityid(CityId); }
+
+    public City getCityLocationFromCitiesName(String Cities) { return cityMapper.getCityLocationFromCitiesName(Cities); }
 
     public String getCityIdByCategory(String Cities, String Museum){
         Map<String, Object> sqlParam = new HashMap<>();
@@ -45,6 +45,7 @@ public class CityService {
         City city = cityMapper.getCityIdByCategory(sqlParam);
 
         String ctid;
+
         if(city.equals(null)){
             ctid = "0";
             return ctid;
@@ -53,6 +54,5 @@ public class CityService {
             ctid = city.getCityId();
             return ctid;
         }
-
     }
 }

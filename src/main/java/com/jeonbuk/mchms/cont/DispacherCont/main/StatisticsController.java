@@ -24,10 +24,13 @@ import java.util.List;
 public class StatisticsController {
 
         @Autowired
-        DataService dataService;
+        private DataService dataService;
 
         @Autowired
-        ClassificationService classificationService;
+        private ClassificationService classificationService;
+
+        @Autowired
+        private CityService cityService;
 
         private static Logger logger = LoggerFactory.getLogger(com.jeonbuk.mchms.cont.DispacherCont.main.StatisticsController.class);
 
@@ -40,13 +43,19 @@ public class StatisticsController {
                 String Cities = request.getParameter("Cities");
                 List<ClassificationCount> classCount = classificationService.getClassificationCountById(Cities);
 
+                System.out.println("test : " + Cities);
+
                 for(ClassificationCount cc : classCount) {
                     System.out.println("test : " + cc.getCount());
                     System.out.println("test : " + cc.getLarge());
                 }
+
+                City locationCity = cityService.getCityLocationFromCitiesName(Cities);
+
+                mv.addObject("x", locationCity.getLatitude());
+                mv.addObject("y", locationCity.getLongitude());
                 mv.addObject("Cities", Cities);
                 mv.addObject("classCount", classCount);
-
 
                 mv.setViewName("Statistics/Statistics.html");
             } catch (Exception e) {

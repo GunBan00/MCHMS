@@ -25,6 +25,9 @@ public interface CityMapper {
     @Select("SELECT Latitude as latitude, Longtitude as longitude FROM City WHERE City_id = #{CityId}")
     City getCityLocationFromCityid(String CityId);
 
+    @Select("SELECT Latitude as latitude, Longtitude as longitude FROM City WHERE Cities = #{Cities} ORDER BY NUM desc limit 1")
+    City getCityLocationFromCitiesName(String Cities);
+
     @Select("SELECT City_id as cityId FROM City WHERE Cities = #{Cities} And Museum = #{Museum}")
     City getCityIdByCategory(Map<String, Object> sqlParam);
 }

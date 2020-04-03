@@ -3,7 +3,9 @@
 
 	<div style="height:40px; display:table;" th:if="${flag} == 0">
 		<strong style=" display: table-cell; vertical-align: middle;" th:text="'Region : ' + ${cityRegionName}"></strong>
-
+	</div>
+	<div style="height:40px; display:table;" th:unless="${flag} == 0">
+		<strong style=" display: table-cell; vertical-align: middle;" th:text="'Keyword : ' + ${Keyword}"></strong>
 	</div>
 	<div id="divContsTtl">
 		<h4>
@@ -116,10 +118,9 @@
 		<script th:inline="javascript">
 				function initMap() {
 					/*<![CDATA[*/
-					var data = /*[[${lists}]]*/;
 
 					var map = new google.maps.Map(document.getElementById('map'), {
-						zoom: 13,
+						zoom: /*[[${zoom}]]*/,
 						mapTypeId: google.maps.MapTypeId.HYBRID,
 						scrollwheel: false,
 						zoomControl: true,
@@ -248,7 +249,12 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="floatBox">
+		<div th:if="${pageflag} == 0">
+			<div class="frBox REG_BTN" style="display: block; float:left;" th:if="${flag} == 0">
+				<a th:if="${session.value != null}" th:href="@{/MCHMSWrite/?City_id={id}(id=${City_id})}" style = "right:0; position : absolute" class="btn btnB">Upload</a>
+			</div>
+		</div>
+		<div class="floatBox" style="margin-top: 10px;text-align:center;" th:unless="${pageflag} == 0">
 			<div class="flBox" style="width:100%; margin-top: 10px;text-align:center;">
 				<div class ="pageBox" style ="display:inline-block;">
 					<div style="width: 800px;text-align: center;">
@@ -261,12 +267,14 @@
 				</div>
 				</div>
 				</div>
-
-				<div  th:if="${pageNumber} > 10">
-					<input type="text" size="34" maxlength="3" value="" style="margin-top : 1%; width: 60px;" class ="FIELD_RELIC_ZIP" id ="FIELD_RELIC_ZIP" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' ></input><input type ="button" style ="margin-top : 1%;width: 30px; height: 30px;" onclick="javascript:movePage();" value="P"></input>
-				</div>
-				<div class="frBox REG_BTN" style="display: block; float:left;">
-					<a th:if="${session.value != null}" th:href="@{/MCHMSWrite/?City_id={id}(id=${City_id})}" style = "right:0; position : absolute" class="btn btnB">Upload</a>
+			<div>
+				<div >
+					<div  th:if="${pageNumber} > 10">
+						<input type="text" size="34" maxlength="3" value="" style="margin-top : 1%; width: 60px;" class ="FIELD_RELIC_ZIP" id ="FIELD_RELIC_ZIP" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' ></input><input type ="button" style ="margin-top : 1%;width: 30px; height: 30px;" onclick="javascript:movePage();" value="P"></input>
+					</div>
+					<div class="frBox REG_BTN" style="display: block; float:left;" th:if="${flag} == 0">
+						<a th:if="${session.value != null}" th:href="@{/MCHMSWrite/?City_id={id}(id=${City_id})}" style = "right:0; position : absolute" class="btn btnB">Upload</a>
+					</div>
 				</div>
 			</div>
 
