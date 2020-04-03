@@ -7,9 +7,7 @@ import com.jeonbuk.mchms.domain.UserWriteClassificationCount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class UserService {
@@ -26,8 +24,22 @@ public class UserService {
 
         return userMapper.loginUser(sqlParam);
     }
+
+    public void changeGrade(String id){}
     public UserInfo selectUserInfo(String id) {
         return userMapper.selectUserInfo(id);
+    }
+    public List<UserInfo> selectNotPermittedUser(){
+        List<UserInfo> userInfo = userMapper.selectNotPermittedUser();
+        List<UserInfo> notPermittedUser=new ArrayList<UserInfo>();
+        int index = 1;
+        for (UserInfo temp : userInfo) {
+            temp.setIndex(index);
+            index++;
+            notPermittedUser.add(temp);
+        }
+
+        return notPermittedUser;
     }
     public UserInfo selectUserIdNicknameInfo(String id){ return userMapper.selectUserIdNicknameInfo(id);}
     public List<UserWriteClassificationCount> getClassificationCountByUserId(String id) {

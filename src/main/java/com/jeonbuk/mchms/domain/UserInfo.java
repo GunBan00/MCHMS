@@ -10,4 +10,6 @@ public class UserInfo {
     private String name;
     private String email;
     private String nickname;
+    private String grade;
+    private int index;
 }

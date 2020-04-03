@@ -44,8 +44,14 @@ public interface UserMapper {
     @Update("UPDATE User SET PW = #{encPw} WHERE ID = #{ID}")
     void changePassword(Map<String, Object> sqlParam);
 
+    @Update("UPDATE User SET GRADE = '2' WHERE ID = #{id}")
+    void changeGrade(String id);
+
     @Select("SELECT COUNT(*) FROM User WHERE ID = ${ID}")
     int CheckingUserIDProcess(String ID);
+
+    @Select("SELECT ID as id, NAME as name, EMAIL as email, NICKNAME as nickname, GRADE as grade FROM User WHERE GRADE = '3'")
+    List<UserInfo> selectNotPermittedUser();
 
     @Select("SELECT COUNT(*) FROM User WHERE NICKNAME = ${NICKNAME}")
     int CheckingUserNicknameProcess(String NICKNAME);
