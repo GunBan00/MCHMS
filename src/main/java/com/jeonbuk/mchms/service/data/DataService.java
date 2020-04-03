@@ -25,6 +25,16 @@ public class DataService {
         dataMapper.setFiles(id, filesName, fileCount);
     }
 
+    public void changeData(Map<String, String> sqlParam) throws Exception {
+        System.out.println("asdf");
+        dataMapper.changeData(sqlParam);
+    }
+    public void changeFiles(int id, String filesName, int fileCount, int fileFlag) throws Exception
+    {
+        if (fileFlag == 1)
+        dataMapper.changeFiles(id, filesName, fileCount);
+    }
+
     public int getMaxId(String id)
     {
         return dataMapper.getMaxId(id);

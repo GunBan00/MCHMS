@@ -54,7 +54,47 @@
 			}
 		});
 	</script>
+<style>.tbType01.type2 td {
+	text-align: left;
+}
+@media print {
+  @page { margin: 0; }
+  body { margin: 1.6cm; }
+}
+#map {
+	height: 400px;
+	width: 100%;
+}
+	#autosave{
+position:fixed;
+bottom: 20px;right: 40px; font-size: 2em;display:none;
+}.LARGE_SEQ_W {
+	width: 200px;
+}
 
+.SUB_SEQ_W {
+	width: 440px;
+}
+</style>
+	<script>
+function onlyNumber(event){
+    event = event || window.event;
+    var keyID = (event.which) ? event.which : event.keyCode;
+    if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 )
+        return;
+    else
+        return false;
+}
+
+function removeChar(event) {
+    event = event || window.event;
+    var keyID = (event.which) ? event.which : event.keyCode;
+    if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 )
+        return;
+    else
+        event.target.value = event.target.value.replace(/[^0-9]/g, "");
+}
+</script>
 </head>
 <!-- 메인화면 -->
 <body><div id="divpop" style="z-index:150; position:absolute; display:none;" onmousedown="ddInit()" onmousemove="dd()" onmouseup="stopdrag()">
@@ -700,7 +740,7 @@
 <div id="header">
 	<div class="top">
 		<div>
-			<a href="" class="logo"><img src="/MCHMS/mams/mchms_logo_small.svg" alt="MCHMS"  width="35px;" height="35px;"></a>
+			<a href="/" class="logo"><img src="/MCHMS/mams/mchms_logo_small.svg" alt="MCHMS"  width="35px;" height="35px;"></a>
 			<div>
 				<!--
                 <div id="TOP_MUESUM" class="select">
@@ -737,7 +777,7 @@
 	<div>
 		<div>
 			<h1>
-				<a href=""><img src="/MCHMS/mams/mchms_logo_02.svg" alt="MAMS Myanmar Asset Management System"></a>
+				<a href="/"><img src="/MCHMS/mams/mchms_logo_02.svg" alt="MAMS Myanmar Asset Management System"></a>
 			</h1>
 			<form action = "/MCHMSSearch_process/" method = "post" enctype="multipart/form-data" id="AdvsearchFrom" name="AdvsearchFrom">
 				<input type="hidden" id="SRCH_MODE" name="SRCH_MODE">
@@ -764,7 +804,7 @@
 						var regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi
 						str = SearchKey.replace(regExp,"");
 						if(str == ""){
-							path = "http://mchms.net/MCHMSSearch/?&Keyword=" + SearchKey;
+							path = "/MCHMSSearch/?&Keyword=" + SearchKey;
 
 
 							window.location.href = path;
@@ -774,7 +814,7 @@
 						}else{
 							var ESearchKey = encodeURI(SearchKey);
 
-							path = "http://mchms.net/MCHMSSearch/?&Keyword=" + ESearchKey;
+							path = "/MCHMSSearch/?&Keyword=" + ESearchKey;
 
 
 							window.location.href = path;
@@ -1302,102 +1342,100 @@
 			<ul class="mainSide" id="menu">
 				<li><a href="#" id="mn04" onclick ="ck();" style = "display:block">Yangon</a>
 					<ul id="n" >
-						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Yangon"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Yangon"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 					</ul>
 				</li>
 				<li><a href="#" id="mn06"onclick ="ck1();" >Mandalay</a>
 					<ul id="n1" style = "display:blck" >
-						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Mandalay"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Mandalay"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 					</ul>
 				</li>
 
 				<li><a href="#" id="mn01"onclick ="ck2();" >Bago</a>
 					<ul id="n2" style = "display:blck" >
-						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Bago"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Bago"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 					</ul>
 				</li>
 
 				<li><a href="#" id="mn04"onclick ="ck3();" >Mon</a>
 					<ul id="n3" style = "display:blck" >
-						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Mon"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Mon"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 					</ul>
 				</li>
 
 				<li><a href="#" id="mn04"onclick ="ck4();" >Sagaing</a>
 					<ul id="n4" style = "display:blck" >
-						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Sagaing"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Sagaing"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 					</ul>
 				</li>
 
 				<li><a href="#" id="mn04"onclick ="ck5();" >Magway</a>
 					<ul id="n5" style = "display:blck" >
-						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Magway"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Magway"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 					</ul>
 				</li>
 
 				<li><a href="#" id="mn04"onclick ="ck6();" >Kayin</a>
 					<ul id="n6" style = "display:blck" >
-						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Kayin"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Kayin"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 					</ul>
 				</li>
 
 				<li><a href="#" id="mn04"onclick ="ck7();" >Kachin</a>
 					<ul id="n7" style = "display:blck" >
-						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Kachin"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Kachin"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 					</ul>
 				</li>
 
 				<li><a href="#" id="mn04"onclick ="ck8();" >Tanintharyi</a>
 					<ul id="n8" style = "display:blck" >
-						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Tanintharyi"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Tanintharyi"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 					</ul>
 				</li>
 
 				<li><a href="#" id="mn04"onclick ="ck9();" >Ayeyarwady</a>
 					<ul id="n9" style = "display:blck" >
-						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Ayeyarwady"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Ayeyarwady"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 					</ul>
 				</li>
 
 				<li><a href="#" id="mn04"onclick ="ck10();" >Rakhine</a>
 					<ul id="n10" style = "display:blck" >
-						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Rakhine"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Rakhine"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 					</ul>
 				</li>
 
 				<li><a href="#" id="mn04"onclick ="ck11();" >Shan</a>
 					<ul id="n11" style = "display:blck" >
-						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Shan"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Shan"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 					</ul>
 				</li>
 
 				<li><a href="#" id="mn04"onclick ="ck12();" >Chin</a>
 					<ul id="n12" style = "display:blck" >
-						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Chin"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Chin"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 					</ul>
 				</li>
 
 				<li><a href="#" id="mn04"onclick ="ck13();" >Kayah</a>
 					<ul id="n13" style = "display:blck" >
-						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Kayah"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Kayah"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 					</ul>
 				</li>
 
 				<li><a href="#" id="mn04"onclick ="ck14();" >Naypyitaw</a>
 					<ul id="n14" style = "display:blck" >
-						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Naypyitaw"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Naypyitaw"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 					</ul>
 				</li>
 
 				<li><a href="#" id="mn04"onclick ="ck15();" >Nationwide</a>
 					<ul id="n15" style = "display:blck" >
-						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Nationwide"><a href="/MCHMSSearch/?City_id=${ms.City_id}" th:text="${ms.museum}"></a></li>
+						<li th:each="ms : ${Museum}" th:if="${ms.cities} == Nationwide"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 					</ul>
 				</li>
 			</ul>
-			<div class="quickBox" style="display:none;">
-				<a href="javascript:goList('/user/board/BoardList.do?StrMODE=MORE');" class="btnTalk type2"><span id="spanRecntMtr">최근등록자료</span></a>
-			</div>
+
 		</div>
 		<div class="conts">
 			<h4 id="BOARD_TITLE">&nbsp;</h4>
@@ -1464,15 +1502,16 @@
 						<col style="width:145px">
 						<col>
 					</colgroup>
+
 					<script>
 	$(document).ready(function() {
 
-		$("#MEDIUM_SEQ1").css("display","none");
-		$("#SMALL_SEQ1").css("display","none");
-		$("#SUB_SEQ1").css("display","none");
+		$("#MEDIUM_SEQ").css("display","none");
+		$("#SMALL_SEQ").css("display","none");
+		$("#SUB_SEQ").css("display","none");
 
-		$("#LARGE_SEQ1").change(function() {	//사용자가 Classification 영역 selectBox를 변경할 경우
-			var lar = $("#LARGE_SEQ1 option:selected").text();
+		$("#LARGE_SEQ").change(function() {	//사용자가 Classification 영역 selectBox를 변경할 경우
+			var lar = $("#LARGE_SEQ option:selected").text();
 
 				$(".Archaeological").css("display","none");
 				$(".World").css("display","none");
@@ -1492,9 +1531,9 @@
 				$(".Colonial").css("display","none");
 				$(".Memorial").css("display","none");
 				$(".National").css("display","none");
-				$("#MEDIUM_SEQ1").css("display","block");
-				$("#SMALL_SEQ1").css("display","none");
-				$("#SUB_SEQ1").css("display","none");
+				$("#MEDIUM_SEQ").css("display","block");
+				$("#SMALL_SEQ").css("display","none");
+				$("#SUB_SEQ").css("display","none");
 			}
 			if (lar == "World Heritage Site")
 			{
@@ -1505,9 +1544,9 @@
 				$(".Colonial").css("display","none");
 				$(".Memorial").css("display","none");
 				$(".National").css("display","none");
-				$("#MEDIUM_SEQ1").css("display","block");
-				$("#SMALL_SEQ1").css("display","none");
-				$("#SUB_SEQ1").css("display","none");
+				$("#MEDIUM_SEQ").css("display","block");
+				$("#SMALL_SEQ").css("display","none");
+				$("#SUB_SEQ").css("display","none");
 			}
 			if (lar == "Museum")
 			{
@@ -1518,9 +1557,9 @@
 				$(".Colonial").css("display","none");
 				$(".Memorial").css("display","none");
 				$(".National").css("display","none");
-				$("#MEDIUM_SEQ1").css("display","block");
-				$("#SMALL_SEQ1").css("display","none");
-				$("#SUB_SEQ1").css("display","none");
+				$("#MEDIUM_SEQ").css("display","block");
+				$("#SMALL_SEQ").css("display","none");
+				$("#SUB_SEQ").css("display","none");
 			}
 			if (lar == "ICH")
 			{
@@ -1531,9 +1570,9 @@
 				$(".Colonial").css("display","none");
 				$(".Memorial").css("display","none");
 				$(".National").css("display","none");
-				$("#MEDIUM_SEQ1").css("display","block");
-				$("#SMALL_SEQ1").css("display","none");
-				$("#SUB_SEQ1").css("display","none");
+				$("#MEDIUM_SEQ").css("display","block");
+				$("#SMALL_SEQ").css("display","none");
+				$("#SUB_SEQ").css("display","none");
 			}
 			if (lar == "Colonial Building")
 			{
@@ -1544,9 +1583,9 @@
 				$(".Colonial").css("display","block");
 				$(".Memorial").css("display","none");
 				$(".National").css("display","none");
-				$("#MEDIUM_SEQ1").css("display","block");
-				$("#SMALL_SEQ1").css("display","none");
-				$("#SUB_SEQ1").css("display","none");
+				$("#MEDIUM_SEQ").css("display","block");
+				$("#SMALL_SEQ").css("display","none");
+				$("#SUB_SEQ").css("display","none");
 			}
 			if (lar == "Memorial of The World")
 			{
@@ -1557,9 +1596,9 @@
 				$(".Colonial").css("display","none");
 				$(".Memorial").css("display","block");
 				$(".National").css("display","none");
-				$("#MEDIUM_SEQ1").css("display","block");
-				$("#SMALL_SEQ1").css("display","none");
-				$("#SUB_SEQ1").css("display","none");
+				$("#MEDIUM_SEQ").css("display","block");
+				$("#SMALL_SEQ").css("display","none");
+				$("#SUB_SEQ").css("display","none");
 			}
 			if (lar == "National Library")
 			{
@@ -1570,44 +1609,44 @@
 				$(".Colonial").css("display","none");
 				$(".Memorial").css("display","none");
 				$(".National").css("display","block");
-				$("#MEDIUM_SEQ1").css("display","none");
-				$("#SMALL_SEQ1").css("display","none");
-				$("#SUB_SEQ1").css("display","none");
+				$("#MEDIUM_SEQ").css("display","none");
+				$("#SMALL_SEQ").css("display","none");
+				$("#SUB_SEQ").css("display","none");
 			}
 		})
-		$("#MEDIUM_SEQ1").change(function() {
-			var lar = $("#LARGE_SEQ1 option:selected").text();
-			var med = $("#MEDIUM_SEQ1 option:selected").text();
+		$("#MEDIUM_SEQ").change(function() {
+			var lar = $("#LARGE_SEQ option:selected").text();
+			var med = $("#MEDIUM_SEQ option:selected").text();
 			$(".small").css("display","none");
 
 			if (med == "National Museum")
 			{
-				$("#SMALL_SEQ1").css("display","block");
+				$("#SMALL_SEQ").css("display","block");
 				$(".National").css("display","block");
 			}
 			if (med == "Cultural Museum")
 			{
-				$("#SMALL_SEQ1").css("display","block");
+				$("#SMALL_SEQ").css("display","block");
 				$(".Cultural").css("display","block");
 			}
 			if (med == "Archaeological_Museum")
 			{
-				$("#SMALL_SEQ1").css("display","block");
+				$("#SMALL_SEQ").css("display","block");
 				$(".Archaeological_Museum").css("display","block");
 			}
 			if (med == "Buddha_Museum")
 			{
-				$("#SMALL_SEQ1").css("display","block");
+				$("#SMALL_SEQ").css("display","block");
 				$(".Buddha_Museum").css("display","block");
 			}
 			if (med == "Memorial_Museum")
 			{
-				$("#SMALL_SEQ1").css("display","block");
+				$("#SMALL_SEQ").css("display","block");
 				$(".Memorial_Museum").css("display","block");
 			}
 			if (med == "Others")
 			{
-				$("#SMALL_SEQ1").css("display","block");
+				$("#SMALL_SEQ").css("display","block");
 				$(".Others").css("display","block");
 			}
 			if (med == "Oraltraditions and Expression")
@@ -1620,43 +1659,43 @@
 			}
 			if (med == "Social Practices, Rituals and Festivals")
 			{
-				$("#SMALL_SEQ1").css("display","block");
+				$("#SMALL_SEQ").css("display","block");
 				$(".Social").css("display","block");
 			}
 			if (med == "Knowledge and Practices concerning Nature and the Universe")
 			{
-				$("#SMALL_SEQ1").css("display","block");
+				$("#SMALL_SEQ").css("display","block");
 				$(".Knowledge").css("display","block");
 			}
 			if (med == "Traditional_Craftsmanship")
 			{
-				$("#SMALL_SEQ1").css("display","block");
+				$("#SMALL_SEQ").css("display","block");
 				$(".Traditional_Craftsmanship").css("display","block");
 			}
 			if (med == "Administractive")
 			{
-				$("#SMALL_SEQ1").css("display","block");
+				$("#SMALL_SEQ").css("display","block");
 				$(".Administractive").css("display","block");
 			}
 			if (med == "Social Practices, Rituals and Festive Events")
 			{
-				$("#SMALL_SEQ1").css("display","block");
+				$("#SMALL_SEQ").css("display","block");
 				$(".Social").css("display","block");
 			}
 			if (med == "Religious")
 			{
-				$("#SMALL_SEQ1").css("display","block");
+				$("#SMALL_SEQ").css("display","block");
 				$(".Religious").css("display","block");
 			}
 			if (med == "Infrastructurep")
 			{
-				$("#SMALL_SEQ1").css("display","block");
+				$("#SMALL_SEQ").css("display","block");
 				$(".Infrastructure").css("display","block");
 			}
 
 		})
-		$("#SMALL_SEQ1").change(function() {
-			var sml = $("#SMALL_SEQ1 option:selected").text();
+		$("#SMALL_SEQ").change(function() {
+			var sml = $("#SMALL_SEQ option:selected").text();
 			$(".Sub_Section").css("display","none");
 
 			$(".Painting").css("display","none");
@@ -1669,151 +1708,675 @@
 			if (sml == "Painting")
 			{
 				$(".Painting").css("display","block");
-				$("#SUB_SEQ1").css("display","block");
+				$("#SUB_SEQ").css("display","block");
 
 			}
 			if (sml == "Sculpture")
 			{
 				$(".Sculpture").css("display","block");
-				$("#SUB_SEQ1").css("display","block");
+				$("#SUB_SEQ").css("display","block");
 			}
 			if (sml == "Relief")
 			{
 				$(".Relief").css("display","block");
-				$("#SUB_SEQ1").css("display","block");
+				$("#SUB_SEQ").css("display","block");
 			}
 			if (sml == "Pottery")
 			{
 				$(".Pottery").css("display","block");
-				$("#SUB_SEQ1").css("display","block");
+				$("#SUB_SEQ").css("display","block");
 			}
 			if (sml == "Stone")
 			{
 				$(".Stone").css("display","block");
-				$("#SUB_SEQ1").css("display","block");
+				$("#SUB_SEQ").css("display","block");
 			}
 			if (sml == "Records")
 			{
 				$(".Records").css("display","block");
-				$("#SUB_SEQ1").css("display","block");
+				$("#SUB_SEQ").css("display","block");
 			}
 			if (sml == "Paper")
 			{
 				$(".Paper").css("display","block");
-				$("#SUB_SEQ1").css("display","block");
+				$("#SUB_SEQ").css("display","block");
+			}
+
+		})
+	});
+</script>
+
+					<script>
+	$(document).ready(function() {
+		$("#MEDIUM_SEQ_W").css("display","none");
+		$("#SMALL_SEQ_W").css("display","none");
+		$("#SUB_SEQ_W").css("display","none");
+		$("#LARGE_SEQ_W").change(function() {	//사용자가 Classification 영역 selectBox를 변경할 경우
+			var lar = $("#LARGE_SEQ_W option:selected").text();
+
+				$(".Archaeological").css("display","none");
+				$(".World").css("display","none");
+				$(".Museum").css("display","none");
+				$(".ICH").css("display","none");
+				$(".Colonial").css("display","none");
+				$(".Memorial").css("display","none");
+				$(".National").css("display","none");
+				$("#MEDIUM_SEQ_W").css("display","none");
+				$("#SMALL_SEQ_W").css("display","none");
+				$("#SUB_SEQ_W").css("display","none");
+
+			if (lar == "Archaeological Site")
+			{
+				$(".Archaeological").css("display","block");
+				$(".World").css("display","none");
+				$(".Museum").css("display","none");
+				$(".ICH").css("display","none");
+				$(".Colonial").css("display","none");
+				$(".Memorial").css("display","none");
+				$(".National").css("display","none");
+				document.getElementById("Clas_City").innerHTML = '01-';
+				$("#MEDIUM_SEQ_W").css("display","block");
+				$("#SMALL_SEQ_W").css("display","none");
+				$("#SUB_SEQ_W").css("display","none");
+			}
+			if (lar == "World Heritage Site")
+			{
+				$(".Archaeological").css("display","none");
+				$(".World").css("display","block");
+				$(".Museum").css("display","none");
+				$(".ICH").css("display","none");
+				$(".Colonial").css("display","none");
+				$(".Memorial").css("display","none");
+				$(".National").css("display","none");
+				document.getElementById("Clas_City").innerHTML = '02-';
+				$("#MEDIUM_SEQ_W").css("display","block");
+				$("#SMALL_SEQ_W").css("display","none");
+				$("#SUB_SEQ_W").css("display","none");
+			}
+			if (lar == "Museum")
+			{
+				$(".Archaeological").css("display","none");
+				$(".World").css("display","none");
+				$(".Museum").css("display","block");
+				$(".ICH").css("display","none");
+				$(".Colonial").css("display","none");
+				$(".Memorial").css("display","none");
+				$(".National").css("display","none");
+				document.getElementById("Clas_City").innerHTML = '03-';
+				$("#MEDIUM_SEQ_W").css("display","block");
+				$("#SMALL_SEQ_W").css("display","none");
+				$("#SUB_SEQ_W").css("display","none");
+			}
+			if (lar == "ICH")
+			{
+				$(".Archaeological").css("display","none");
+				$(".World").css("display","none");
+				$(".Museum").css("display","none");
+				$(".ICH").css("display","block");
+				$(".Colonial").css("display","none");
+				$(".Memorial").css("display","none");
+				$(".National").css("display","none");
+				document.getElementById("Clas_City").innerHTML = '06-';
+				$("#MEDIUM_SEQ_W").css("display","block");
+				$("#SMALL_SEQ_W").css("display","none");
+				$("#SUB_SEQ_W").css("display","none");
+			}
+			if (lar == "Colonial Building")
+			{
+				$(".Archaeological").css("display","none");
+				$(".World").css("display","none");
+				$(".Museum").css("display","none");
+				$(".ICH").css("display","none");
+				$(".Colonial").css("display","block");
+				$(".Memorial").css("display","none");
+				$(".National").css("display","none");
+				document.getElementById("Clas_City").innerHTML = '04-';
+				$("#MEDIUM_SEQ_W").css("display","block");
+				$("#SMALL_SEQ_W").css("display","none");
+				$("#SUB_SEQ_W").css("display","none");
+			}
+			if (lar == "Memorial of The World")
+			{
+				$(".Archaeological").css("display","none");
+				$(".World").css("display","none");
+				$(".Museum").css("display","none");
+				$(".ICH").css("display","none");
+				$(".Colonial").css("display","none");
+				$(".Memorial").css("display","block");
+				$(".National").css("display","none");
+				document.getElementById("Clas_City").innerHTML = '05-';
+				$("#MEDIUM_SEQ_W").css("display","block");
+				$("#SMALL_SEQ_W").css("display","none");
+				$("#SUB_SEQ_W").css("display","none");
+			}
+			if (lar == "National Library")
+			{
+				$(".Archaeological").css("display","none");
+				$(".World").css("display","none");
+				$(".Museum").css("display","none");
+				$(".ICH").css("display","none");
+				$(".Colonial").css("display","none");
+				$(".Memorial").css("display","none");
+				$(".National").css("display","block");
+				document.getElementById("Clas_City").innerHTML = '07-';
+				$("#MEDIUM_SEQ_W").css("display","none");
+				$("#SMALL_SEQ_W").css("display","none");
+				$("#SUB_SEQ_W").css("display","none");
+			}
+		})
+		$("#MEDIUM_SEQ_W").change(function() {
+			var lar = $("#LARGE_SEQ_W option:selected").text();
+			var med = $("#MEDIUM_SEQ_W option:selected").text();
+			$(".small").css("display","none");
+
+			if (med == "National Museum")
+			{
+				$("#SMALL_SEQ_W").css("display","block");
+				$(".National").css("display","block");
+			}
+			if (med == "Cultural Museum")
+			{
+				$("#SMALL_SEQ_W").css("display","block");
+				$(".Cultural").css("display","block");
+			}
+			if (med == "Archaeological_Museum")
+			{
+				$("#SMALL_SEQ_W").css("display","block");
+				$(".Archaeological_Museum").css("display","block");
+			}
+			if (med == "Buddha_Museum")
+			{
+				$("#SMALL_SEQ_W").css("display","block");
+				$(".Buddha_Museum").css("display","block");
+			}
+			if (med == "Memorial_Museum")
+			{
+				$("#SMALL_SEQ_W").css("display","block");
+				$(".Memorial_Museum").css("display","block");
+			}
+			if (med == "Others")
+			{
+				$("#SMALL_SEQ_W").css("display","block");
+				$(".Others").css("display","block");
+			}
+			if (med == "Oraltraditions and Expression")
+			{
+				$("#SMALL_SEQ_W").css("display","block");
+				$(".Oraltraditions").css("display","block");
+			}
+			if (med == "Performing Arts")
+			{
+				$("#SMALL_SEQ_W").css("display","block");
+				$(".Performing").css("display","block");
+			}
+			if (med == "Social Practices, Rituals and Festivals")
+			{
+				$("#SMALL_SEQ_W").css("display","block");
+				$(".Social").css("display","block");
+			}
+			if (med == "Knowledge and Practices concerning Nature and the Universe")
+			{
+				$("#SMALL_SEQ_W").css("display","block");
+				$(".Knowledge").css("display","block");
+			}
+			if (med == "Traditional_Craftsmanship")
+			{
+				$("#SMALL_SEQ_W").css("display","block");
+				$(".Traditional_Craftsmanship").css("display","block");
+			}
+			if (med == "Administractive")
+			{
+				$("#SMALL_SEQ_W").css("display","block");
+				$(".Administractive").css("display","block");
+			}
+			if (med == "Social Practices, Rituals and Festive Events")
+			{
+				$("#SMALL_SEQ_W").css("display","block");
+				$(".Social").css("display","block");
+			}
+			if (med == "Religious")
+			{
+				$("#SMALL_SEQ_W").css("display","block");
+				$(".Religious").css("display","block");
+			}
+			if (med == "Infrastructurep")
+			{
+				$("#SMALL_SEQ_W").css("display","block");
+				$(".Infrastructure").css("display","block");
+			}
+
+		})
+		$("#SMALL_SEQ_W").change(function() {
+			var sml = $("#SMALL_SEQ_W option:selected").text();
+			$(".Sub_Section").css("display","none");
+
+			$(".Painting").css("display","none");
+			$(".Sculpture").css("display","none");
+			$(".Relief").css("display","none");
+			$(".Pottery").css("display","none");
+			$(".Stone").css("display","none");
+			$(".Records").css("display","none");
+
+			if (sml == "Painting")
+			{
+				$(".Painting").css("display","block");
+				$("#SUB_SEQ_W").css("display","block");
+
+			}
+			if (sml == "Sculpture")
+			{
+				$(".Sculpture").css("display","block");
+				$("#SUB_SEQ_W").css("display","block");
+			}
+			if (sml == "Relief")
+			{
+				$(".Relief").css("display","block");
+				$("#SUB_SEQ_W").css("display","block");
+			}
+			if (sml == "Pottery")
+			{
+				$(".Pottery").css("display","block");
+				$("#SUB_SEQ_W").css("display","block");
+			}
+			if (sml == "Stone")
+			{
+				$(".Stone").css("display","block");
+				$("#SUB_SEQ_W").css("display","block");
+			}
+			if (sml == "Records")
+			{
+				$(".Records").css("display","block");
+				$("#SUB_SEQ_W").css("display","block");
+			}
+			if (sml == "Paper")
+			{
+				$(".Paper").css("display","block");
+				$("#SUB_SEQ_W").css("display","block");
 			}
 
 
 		})
 	});
 </script>
+
 					<script>
-				$(document).ready(function() {
+	$(document).ready(function() {
+		$("#MUSEUM_SEQ").css("display","none");
 
-					$("#LARGE_SEQ").change(function() {	//사용자가 Classification 영역 selectBox를 변경할 경우
-						var lar = $("#LARGE_SEQ option:selected").text();
+		$("#CITY_SEQ").change(function() {
+			var city = $("#CITY_SEQ option:selected").text();
 
-						$(".Monument").css("display","none");
-						$(".ARTS").css("display","none");
-						$(".Records").css("display","none");
-						$(".ICHS").css("display","none");
+			$(".Yangon").css("display","none");
+			$(".Mandalay").css("display","none");
+			$(".Bago").css("display","none");
+			$(".Mon").css("display","none");
+			$(".Sagaing").css("display","none");
+			$(".Magway").css("display","none");
+			$(".Kayin").css("display","none");
+			$(".Kachin").css("display","none");
+			$(".Tanintharyi").css("display","none");
+			$(".Ayeyarwady").css("display","none");
+			$(".Rakhine").css("display","none");
+			$(".Shan").css("display","none");
+			$(".Chin").css("display","none");
+			$(".Kayah").css("display","none");
+			$(".Naypyitaw").css("display","none");
+			$(".Nationwide").css("display","none");
 
-						if (lar == "Monument")
-						{
-							$(".Monument").css("display","block");
-							$(".ARTS").css("display","none");
-							$(".Records").css("display","none");
-							$(".ICHS").css("display","none");
-						}
-						if (lar == "Arts/Artifacts")
-						{
-							$(".Monument").css("display","none");
-							$(".ARTS").css("display","block");
-							$(".Records").css("display","none");
-							$(".ICHS").css("display","none");
-						}
-						if (lar == "Records")
-						{
-							$(".Monument").css("display","none");
-							$(".ARTS").css("display","none");
-							$(".Records").css("display","block");
-							$(".ICHS").css("display","none");
-						}
-						if (lar == "Intangible Cultural Heritage (ICH)")
-						{
-							$(".Monument").css("display","none");
-							$(".ARTS").css("display","none");
-							$(".Records").css("display","none");
-							$(".ICHS").css("display","block");
-						}
-					})
-					$("#MEDIUM_SEQ").change(function() {
-						var med = $("#MEDIUM_SEQ option:selected").text();
-						$(".small").css("display","none");
-						if (med == "Building")
-						{
-							$(".Building").css("display","block");
-						}
-						if (med == "Painting")
-						{
-							$(".Painting").css("display","block");
-						}
-						if (med == "Sculpture")
-						{
-							$(".Sculpture").css("display","block");
-						}
-						if (med == "Relief")
-						{
-							$(".Relief").css("display","block");
-						}
-						if (med == "Pottery")
-						{
-							$(".Pottery").css("display","block");
-						}
-						if (med == "Inscription")
-						{
-							$(".Inscription").css("display","block");
-						}
-						if (med == "Document")
-						{
-							$(".Document").css("display","block");
-						}
-						if (med == "Oral Traditions and Expressions")
-						{
-							$(".Oral").css("display","block");
-						}
-						if (med == "Performing Arts")
-						{
-							$(".Perform").css("display","block");
-						}
-						if (med == "Social Practices, Rituals and Festive Events")
-						{
-							$(".Social").css("display","block");
-						}
-						if (med == "Knowledge and Practices concerning Nature and the Universe")
-						{
-							$(".Knowledge").css("display","block");
-						}
-						if (med == "Traditional Craftsmanship")
-						{
-							$(".Traditional").css("display","block");
-						}
+			if (city == "Yangon")
+			{
+				$(".Yangon").css("display","block");
+				$(".Mandalay").css("display","none");
+				$(".Bago").css("display","none");
+				$(".Mon").css("display","none");
+				$(".Sagaing").css("display","none");
+				$(".Magway").css("display","none");
+				$(".Kayin").css("display","none");
+				$(".Kachin").css("display","none");
+				$(".Tanintharyi").css("display","none");
+				$(".Ayeyarwady").css("display","none");
+				$(".Rakhine").css("display","none");
+				$(".Shan").css("display","none");
+				$(".Chin").css("display","none");
+				$(".Kayah").css("display","none");
+				$(".Naypyitaw").css("display","none");
+				$(".Nationwide").css("display","none");
+				$("#MUSEUM_SEQ").css("display","block");
+			}
+			if (city == "Mandalay")
+			{
+				$(".Yangon").css("display","none");
+				$(".Mandalay").css("display","block");
+				$(".Bago").css("display","none");
+				$(".Mon").css("display","none");
+				$(".Sagaing").css("display","none");
+				$(".Magway").css("display","none");
+				$(".Kayin").css("display","none");
+				$(".Kachin").css("display","none");
+				$(".Tanintharyi").css("display","none");
+				$(".Ayeyarwady").css("display","none");
+				$(".Rakhine").css("display","none");
+				$(".Shan").css("display","none");
+				$(".Chin").css("display","none");
+				$(".Kayah").css("display","none");
+				$(".Naypyitaw").css("display","none");
+				$(".Nationwide").css("display","none");
+				$("#MUSEUM_SEQ").css("display","block");
+			}
+			if (city == "Bago")
+			{
+				$(".Yangon").css("display","none");
+				$(".Mandalay").css("display","none");
+				$(".Bago").css("display","block");
+				$(".Mon").css("display","none");
+				$(".Sagaing").css("display","none");
+				$(".Magway").css("display","none");
+				$(".Kayin").css("display","none");
+				$(".Kachin").css("display","none");
+				$(".Tanintharyi").css("display","none");
+				$(".Ayeyarwady").css("display","none");
+				$(".Rakhine").css("display","none");
+				$(".Shan").css("display","none");
+				$(".Chin").css("display","none");
+				$(".Kayah").css("display","none");
+				$(".Naypyitaw").css("display","none");
+				$(".Nationwide").css("display","none");
+				$("#MUSEUM_SEQ").css("display","block");
+			}
+			if (city == "Mon")
+			{
+				$(".Yangon").css("display","none");
+				$(".Mandalay").css("display","none");
+				$(".Bago").css("display","none");
+				$(".Mon").css("display","block");
+				$(".Sagaing").css("display","none");
+				$(".Magway").css("display","none");
+				$(".Kayin").css("display","none");
+				$(".Kachin").css("display","none");
+				$(".Tanintharyi").css("display","none");
+				$(".Ayeyarwady").css("display","none");
+				$(".Rakhine").css("display","none");
+				$(".Shan").css("display","none");
+				$(".Chin").css("display","none");
+				$(".Kayah").css("display","none");
+				$(".Naypyitaw").css("display","none");
+				$(".Nationwide").css("display","none");
+				$("#MUSEUM_SEQ").css("display","block");
+			}
+			if (city == "Sagaing")
+			{
+				$(".Yangon").css("display","none");
+				$(".Mandalay").css("display","none");
+				$(".Bago").css("display","none");
+				$(".Mon").css("display","none");
+				$(".Sagaing").css("display","block");
+				$(".Magway").css("display","none");
+				$(".Kayin").css("display","none");
+				$(".Kachin").css("display","none");
+				$(".Tanintharyi").css("display","none");
+				$(".Ayeyarwady").css("display","none");
+				$(".Rakhine").css("display","none");
+				$(".Shan").css("display","none");
+				$(".Chin").css("display","none");
+				$(".Kayah").css("display","none");
+				$(".Naypyitaw").css("display","none");
+				$(".Nationwide").css("display","none");
+				$("#MUSEUM_SEQ").css("display","block");
+			}
+			if (city == "Magway")
+			{
+				$(".Yangon").css("display","none");
+				$(".Mandalay").css("display","none");
+				$(".Bago").css("display","none");
+				$(".Mon").css("display","none");
+				$(".Sagaing").css("display","none");
+				$(".Magway").css("display","block");
+				$(".Kayin").css("display","none");
+				$(".Kachin").css("display","none");
+				$(".Tanintharyi").css("display","none");
+				$(".Ayeyarwady").css("display","none");
+				$(".Rakhine").css("display","none");
+				$(".Shan").css("display","none");
+				$(".Chin").css("display","none");
+				$(".Kayah").css("display","none");
+				$(".Naypyitaw").css("display","none");
+				$(".Nationwide").css("display","none");
+				$("#MUSEUM_SEQ").css("display","block");
+			}
+			if (city == "Kayin")
+			{
+				$(".Yangon").css("display","none");
+				$(".Mandalay").css("display","none");
+				$(".Bago").css("display","none");
+				$(".Mon").css("display","none");
+				$(".Sagaing").css("display","none");
+				$(".Magway").css("display","none");
+				$(".Kayin").css("display","block");
+				$(".Kachin").css("display","none");
+				$(".Tanintharyi").css("display","none");
+				$(".Ayeyarwady").css("display","none");
+				$(".Rakhine").css("display","none");
+				$(".Shan").css("display","none");
+				$(".Chin").css("display","none");
+				$(".Kayah").css("display","none");
+				$(".Naypyitaw").css("display","none");
+				$(".Nationwide").css("display","none");
+				$("#MUSEUM_SEQ").css("display","block");
+			}
+			if (city == "Kachin")
+			{
+				$(".Yangon").css("display","none");
+				$(".Mandalay").css("display","none");
+				$(".Bago").css("display","none");
+				$(".Mon").css("display","none");
+				$(".Sagaing").css("display","none");
+				$(".Magway").css("display","none");
+				$(".Kayin").css("display","none");
+				$(".Kachin").css("display","block");
+				$(".Tanintharyi").css("display","none");
+				$(".Ayeyarwady").css("display","none");
+				$(".Rakhine").css("display","none");
+				$(".Shan").css("display","none");
+				$(".Chin").css("display","none");
+				$(".Kayah").css("display","none");
+				$(".Naypyitaw").css("display","none");
+				$(".Nationwide").css("display","none");
+				$("#MUSEUM_SEQ").css("display","block");
+			}
+			if (city == "Tanintharyi")
+			{
+				$(".Yangon").css("display","none");
+				$(".Mandalay").css("display","none");
+				$(".Bago").css("display","none");
+				$(".Mon").css("display","none");
+				$(".Sagaing").css("display","none");
+				$(".Magway").css("display","none");
+				$(".Kayin").css("display","none");
+				$(".Kachin").css("display","none");
+				$(".Tanintharyi").css("display","block");
+				$(".Ayeyarwady").css("display","none");
+				$(".Rakhine").css("display","none");
+				$(".Shan").css("display","none");
+				$(".Chin").css("display","none");
+				$(".Kayah").css("display","none");
+				$(".Naypyitaw").css("display","none");
+				$(".Nationwide").css("display","none");
+				$("#MUSEUM_SEQ").css("display","block");
+			}
+			if (city == "Ayeyarwady")
+			{
+				$(".Yangon").css("display","none");
+				$(".Mandalay").css("display","none");
+				$(".Bago").css("display","none");
+				$(".Mon").css("display","none");
+				$(".Sagaing").css("display","none");
+				$(".Magway").css("display","none");
+				$(".Kayin").css("display","none");
+				$(".Kachin").css("display","none");
+				$(".Tanintharyi").css("display","none");
+				$(".Ayeyarwady").css("display","block");
+				$(".Rakhine").css("display","none");
+				$(".Shan").css("display","none");
+				$(".Chin").css("display","none");
+				$(".Kayah").css("display","none");
+				$(".Naypyitaw").css("display","none");
+				$(".Nationwide").css("display","none");
+				$("#MUSEUM_SEQ").css("display","block");
+			}
+			if (city == "Rakhine")
+			{
+				$(".Yangon").css("display","none");
+				$(".Mandalay").css("display","none");
+				$(".Bago").css("display","none");
+				$(".Mon").css("display","none");
+				$(".Sagaing").css("display","none");
+				$(".Magway").css("display","none");
+				$(".Kayin").css("display","none");
+				$(".Kachin").css("display","none");
+				$(".Tanintharyi").css("display","none");
+				$(".Ayeyarwady").css("display","none");
+				$(".Rakhine").css("display","block");
+				$(".Shan").css("display","none");
+				$(".Chin").css("display","none");
+				$(".Kayah").css("display","none");
+				$(".Naypyitaw").css("display","none");
+				$(".Nationwide").css("display","none");
+				$("#MUSEUM_SEQ").css("display","block");
+			}
+			if (city == "Shan")
+			{
+				$(".Yangon").css("display","none");
+				$(".Mandalay").css("display","none");
+				$(".Bago").css("display","none");
+				$(".Mon").css("display","none");
+				$(".Sagaing").css("display","none");
+				$(".Magway").css("display","none");
+				$(".Kayin").css("display","none");
+				$(".Kachin").css("display","none");
+				$(".Tanintharyi").css("display","none");
+				$(".Ayeyarwady").css("display","none");
+				$(".Rakhine").css("display","none");
+				$(".Shan").css("display","block");
+				$(".Chin").css("display","none");
+				$(".Kayah").css("display","none");
+				$(".Naypyitaw").css("display","none");
+				$(".Nationwide").css("display","none");
+				$("#MUSEUM_SEQ").css("display","block");
+			}
+			if (city == "Chin")
+			{
+				$(".Yangon").css("display","none");
+				$(".Mandalay").css("display","none");
+				$(".Bago").css("display","none");
+				$(".Mon").css("display","none");
+				$(".Sagaing").css("display","none");
+				$(".Magway").css("display","none");
+				$(".Kayin").css("display","none");
+				$(".Kachin").css("display","none");
+				$(".Tanintharyi").css("display","none");
+				$(".Ayeyarwady").css("display","none");
+				$(".Rakhine").css("display","none");
+				$(".Shan").css("display","none");
+				$(".Chin").css("display","block");
+				$(".Kayah").css("display","none");
+				$(".Naypyitaw").css("display","none");
+				$(".Nationwide").css("display","none");
+				$("#MUSEUM_SEQ").css("display","block");
+			}
+			if (city == "Kayah")
+			{
+				$(".Yangon").css("display","none");
+				$(".Mandalay").css("display","none");
+				$(".Bago").css("display","none");
+				$(".Mon").css("display","none");
+				$(".Sagaing").css("display","none");
+				$(".Magway").css("display","none");
+				$(".Kayin").css("display","none");
+				$(".Kachin").css("display","none");
+				$(".Tanintharyi").css("display","none");
+				$(".Ayeyarwady").css("display","none");
+				$(".Rakhine").css("display","none");
+				$(".Shan").css("display","none");
+				$(".Chin").css("display","none");
+				$(".Kayah").css("display","block");
+				$(".Naypyitaw").css("display","none");
+				$(".Nationwide").css("display","none");
+				$("#MUSEUM_SEQ").css("display","block");
+			}
+			if (city == "Naypyitaw")
+			{
+				$(".Yangon").css("display","none");
+				$(".Mandalay").css("display","none");
+				$(".Bago").css("display","none");
+				$(".Mon").css("display","none");
+				$(".Sagaing").css("display","none");
+				$(".Magway").css("display","none");
+				$(".Kayin").css("display","none");
+				$(".Kachin").css("display","none");
+				$(".Tanintharyi").css("display","none");
+				$(".Ayeyarwady").css("display","none");
+				$(".Rakhine").css("display","none");
+				$(".Shan").css("display","none");
+				$(".Chin").css("display","none");
+				$(".Kayah").css("display","none");
+				$(".Naypyitaw").css("display","block");
+				$(".Nationwide").css("display","none");
+				$("#MUSEUM_SEQ").css("display","block");
+			}
+			if (city == "Nationwide")
+			{
+				$(".Yangon").css("display","none");
+				$(".Mandalay").css("display","none");
+				$(".Bago").css("display","none");
+				$(".Mon").css("display","none");
+				$(".Sagaing").css("display","none");
+				$(".Magway").css("display","none");
+				$(".Kayin").css("display","none");
+				$(".Kachin").css("display","none");
+				$(".Tanintharyi").css("display","none");
+				$(".Ayeyarwady").css("display","none");
+				$(".Rakhine").css("display","none");
+				$(".Shan").css("display","none");
+				$(".Chin").css("display","none");
+				$(".Kayah").css("display","none");
+				$(".Naypyitaw").css("display","none");
+				$(".Nationwide").css("display","block");
+				$("#MUSEUM_SEQ").css("display","block");
+			}
+		})
+	});
 
-					})
-				});
-			</script>
+
+	function Clear(){
+
+	document.getElementById("FIELD_TITLE").value = "";
+	document.getElementById("FIELD_TITLE_MY").value = "";
+	document.getElementById("FIELD_PERIOD").value = "";
+	document.getElementById("FIELD_Location").value = "";
+	document.getElementById("FIELD_ORIGIN").value = "";
+	document.getElementById("FIELD_MATERIAL").value = "";
+	document.getElementById("FIELD_LTTD").value = "";
+	document.getElementById("FIELD_LNGTD").value = "";
+	document.getElementById("FIELD_REMARK1").value = "";
+	document.getElementById("FIELD_REMARK1_MY").value = "";
+	document.getElementById("FIELD_REMARK2").value = "";
+	document.getElementById("FIELD_REMARK2_MY").value = "";
+		localStorage.clear();
+	}
+</script>
 					<tbody>
+					<div class="btn btnB" onclick="Clear();"style ="cursor :pointer">Clear</div>
 					<tr>
 						<th>Classification<span>(*)</span></th>
 						<td>
 							<input type="hidden" name="SMUSEUM_CODE" id="SMUSEUM_CODE" value="PS01001001" />
-							<select name="LARGE_SEQ1" id="LARGE_SEQ1" class="LARGE_SEQ" style="width: 201px; float:left;" th:utext="${LargeContents}">
+							<select name="LARGE_SEQ_W" id="LARGE_SEQ_W" class="LARGE_SEQ" style="width: 201px; float:left;" th:utext="${LargeContents}">
 							</select>
-							<select name="MEDIUM_SEQ1" id="MEDIUM_SEQ1" class="MEDIUM_SEQ" style="width: 374px; float:right;" th:utext="${MiddleContents}">
+							<select name="MEDIUM_SEQ_W" id="MEDIUM_SEQ_W" class="MEDIUM_SEQ" style="width: 374px; float:right;" th:utext="${MiddleContents}">
 							</select>
-							<select name="SMALL_SEQ1" id="SMALL_SEQ1" style="width: 201px;float:left; margin-top: 5px;" th:utext="${SmallContents}">
+							<select name="SMALL_SEQ_W" id="SMALL_SEQ_W" style="width: 201px;float:left; margin-top: 5px;" th:utext="${SmallContents}">
 							</select>
-							<select name="SUB_SEQ1" id="SUB_SEQ1" style="width: 374px; float:right; margin-top: 5px;" th:utext="${SubSectionContents}">
+							<select name="SUB_SEQ_W" id="SUB_SEQ_W" style="width: 374px; float:right; margin-top: 5px;" th:utext="${SubSectionContents}">
 							</select>
 
 
@@ -1838,15 +2401,15 @@
 							<col style="width:145px">
 							<col>
 						</colgroup>
-
-						<tbody id="WriteUi"><tr>	<th>Title<span>(*)</span></th>	<td colspan="3">		<input type="text" id="FIELD_TITLE" name="FIELD_TITLE" size="54" maxlength="50" >	</td></tr><tr>	<th>Title(My)<span>(*)</span></th>	<td colspan="3">		<input type="text" id="FIELD_TITLE_MY" name="FIELD_TITLE_MY" size="54" maxlength="50" >	</td></tr><tr>
-							<th>Period</th>	<td colspan="3">		<input type="text" id="FIELD_PERIOD" name="FIELD_PERIOD" value="" size="54" maxlength="50" >	</td></tr><tr>
-							<th>Location</th>	<td colspan="3">		<input type="text" id="FIELD_Location" name="FIELD_Location" size="54" maxlength="50" value="">	</td></tr><tr>
-							<th>Place of Origin</th>	<td colspan="3">		<input type="text" id="FIELD_ORIGIN" name="FIELD_ORIGIN" size="54" maxlength="50"  value="">	</td></tr><tr>
-							<th>Material</th>	<td colspan="3">		<input type="text" id="FIELD_MATERIAL" name="FIELD_MATERIAL" size="54" maxlength="50"  value="">	</td></tr><tr>
-							<th>Serial Number<span>(*)</span></th>	<td colspan="3"><div class="Clas_City" name="Clas_City" id="Clas_City" style="display:inline;">Classification-</div><input type="text" size="34" maxlength="5" value="" style="width: 60px;" class ="FIELD_RELIC_ZIP" id ="FIELD_RELIC_ZIP" name="FIELD_RELIC_ZIP" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)'>-<input type="text" size="34" maxlength="2" value="" style="width: 40px;"  id ="FIELD_RELIC_ADD" name="FIELD_RELIC_ADD" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)'>-{{RELIC_NUM}}-{{Nickname.0}}-{{Today}}</td></tr><tr>
-							<th>Latitude</th>	<td colspan="3">	<input type="text" id="FIELD_LTTD" name="FIELD_LTTD" size="34" maxlength="30" value="">	</td></tr><tr>
-							<th>Longitude</th>	<td colspan="3">	<input type="text" id="FIELD_LNGTD" name="FIELD_LNGTD" size="34" maxlength="30" value="">	</td></tr></tbody>	<!-- .js에서 화면 그려짐 -->
+						<div id = "autosave">Autosaving...</div>
+						<tbody id="WriteUi"><tr>	<th>Title (50)<span>(*)</span></th>	<td colspan="3">		<input type="text" id="FIELD_TITLE" name="FIELD_TITLE" size="54" maxlength="50" >	</td></tr><tr>	<th>Title(My) (50)<span>(*)</span></th>	<td colspan="3">		<input type="text" id="FIELD_TITLE_MY" name="FIELD_TITLE_MY" size="54" maxlength="50" >	</td></tr><tr>
+							<th>Period (50)</th>	<td colspan="3">		<input type="text" id="FIELD_PERIOD" name="FIELD_PERIOD" value="" size="54" maxlength="50" >	</td></tr><tr>
+							<th>Location (50)</th>	<td colspan="3">		<input type="text" id="FIELD_Location" name="FIELD_Location" size="54" maxlength="50" value="">	</td></tr><tr>
+							<th>Place of Origin (50)</th>	<td colspan="3">		<input type="text" id="FIELD_ORIGIN" name="FIELD_ORIGIN" size="54" maxlength="50"  value="">	</td></tr><tr>
+							<th>Material (50)</th>	<td colspan="3">		<input type="text" id="FIELD_MATERIAL" name="FIELD_MATERIAL" size="54" maxlength="50"  value="">	</td></tr><tr>
+							<th>Serial Number<span>(*)</span></th>	<td colspan="3"><div class="Clas_City" name="Clas_City" id="Clas_City" style="display:inline;">Classification-</div><input type="text" size="34" maxlength="5" value="" style="width: 60px;" class ="FIELD_RELIC_ZIP" id ="FIELD_RELIC_ZIP" name="FIELD_RELIC_ZIP" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)'>-<input type="text" size="34" maxlength="2" value="" style="width: 40px;"  id ="FIELD_RELIC_ADD" name="FIELD_RELIC_ADD" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' th:text="${serialNumber}"></td></tr><tr>
+							<th>Latitude (30)</th>	<td colspan="3">	<input type="text" id="FIELD_LTTD" name="FIELD_LTTD" size="34" maxlength="30" value="">	</td></tr><tr>
+							<th>Longitude (30)</th>	<td colspan="3">	<input type="text" id="FIELD_LNGTD" name="FIELD_LNGTD" size="34" maxlength="30" value="">	</td></tr></tbody>	<!-- .js에서 화면 그려짐 -->
 					</table>
 					<table class="tbType01 type2">
 						<colgroup>
@@ -1942,7 +2505,7 @@
 		var FIELD_TITLE = document.getElementByName('FIELD_TITLE");
 		var FIELD_TITLE_MY = document.getElementByName('FIELD_TITLE_MY");
 		var FIELD_RELIC_NUMBER = document.getElementByName('FIELD_RELIC_NUMBER");*/
-		if(frm1.LARGE_SEQ1.value == "") { alert("Enter the Classification"); LARGE_SEQ.focus(); return; }
+		if(frm1.LARGE_SEQ_W.value == "") { alert("Enter the Classification"); LARGE_SEQ.focus(); return; }
 		if(frm1.FIELD_TITLE.value == "") { alert("Enter the Title"); FIELD_TITLE.focus(); return; }
 		if(frm1.FIELD_TITLE_MY.value == "") { alert("Enter the Title"); FIELD_TITLE_MY.focus(); return; }
 
