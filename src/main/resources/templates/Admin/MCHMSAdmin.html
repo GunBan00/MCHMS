@@ -161,7 +161,7 @@
                 <td class="FILE_CNT"><div th:text="${user.id}"></div></td>
                 <td class="FIELD_CATEGORY" ><div th:text="${user.email}"></div></td>
                 <td class="FIELD_TITLE al elli"><div  style = "text-align :center" th:text="${user.nickname}"></div></td>
-                <td><button id ="btnApr" th:onclick="Approving('${user.1}')"><img src="/Static/greencheck.png" style="width:20px;height:20px;"/></button></td>
+                <td><button id ="btnApr" th:attr ="onclick=|Approving('${user.id}')|"><img src="/Static/greencheck.png" style="width:20px;height:20px;"/></button></td>
             </tr>
     </div>
     <script>
@@ -174,13 +174,13 @@ function Approving(USER_ID){
 				$.ajax({
 					type: "POST",
 					url: "/Approving_Process/",
-					data: {"USER_ID":a},
-					dataType: "json",
+					data: JSON.stringify(a),
+					contentType: "application/json",
 					success: function(result) {
 							console.log(result.CHK_ID)
 
 						if(result.CHK_ID=='Y'){
-							console.log(b);
+							console.log("asdf");
 							$(b).css('display', 'none');
 						}else{
 							/* console.log('N') */

@@ -34,7 +34,8 @@ public class AdminController {
 
         String adminId = "kkjy33";
         HttpSession session = request.getSession();
-        if(String.valueOf(session.getAttribute("id")) != adminId)
+
+        /*if(!session.getAttribute("id").equals(adminId))
         {
             response.setContentType("text/html; charset=UTF-8");
 
@@ -45,7 +46,7 @@ public class AdminController {
             mv.setViewName("/");
 
             return mv;
-        }
+        }*/
         try {
             List<UserInfo> userInfo = userService.selectNotPermittedUser();
 

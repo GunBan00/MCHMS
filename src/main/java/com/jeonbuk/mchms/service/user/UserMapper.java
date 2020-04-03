@@ -44,7 +44,7 @@ public interface UserMapper {
     @Update("UPDATE User SET PW = #{encPw} WHERE ID = #{ID}")
     void changePassword(Map<String, Object> sqlParam);
 
-    @Update("UPDATE User SET GRADE = '2' WHERE ID = #{id}")
+    @Update("UPDATE User SET GRADE = 2 WHERE ID = #{id}")
     void changeGrade(String id);
 
     @Select("SELECT COUNT(*) FROM User WHERE ID = ${ID}")
