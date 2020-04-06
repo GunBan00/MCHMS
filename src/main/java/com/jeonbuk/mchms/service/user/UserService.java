@@ -25,7 +25,12 @@ public class UserService {
         return userMapper.loginUser(sqlParam);
     }
 
-    public void changeGrade(String id){}
+    public String changeGrade(String id){
+        System.out.println(id);
+        userMapper.changeGrade(id);
+        return "Y";
+
+    }
     public UserInfo selectUserInfo(String id) {
         return userMapper.selectUserInfo(id);
     }
