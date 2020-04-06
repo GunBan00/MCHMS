@@ -131,12 +131,30 @@ public class ModifyController {
         String relicNumber = calNumService.selectRelicNumber(sessionId, time2);
 
         String serialNumber = dataDomain.getSerialNumber();
+        String remarksEn = dataDomain.getRemarksEn();
+        remarksEn = dataService.changeTagToBigbr(remarksEn);
+        remarksEn = dataService.changeTagToSmallbr(remarksEn);
+
+        String remarksMy = dataDomain.getRemarksMy();
+        remarksMy = dataService.changeTagToBigbr(remarksMy);
+        remarksMy = dataService.changeTagToSmallbr(remarksMy);
+
+        String referenceMy = dataDomain.getReferenceMy();
+        referenceMy = dataService.changeTagToBigbr(referenceMy);
+        referenceMy = dataService.changeTagToSmallbr(referenceMy);
+
+        String referenceEn = dataDomain.getReferenceEn();
+        referenceEn = dataService.changeTagToBigbr(referenceEn);
+        referenceEn = dataService.changeTagToSmallbr(referenceEn);
 
 
         String frontSerial = serialNumber.substring(3,8);
         String endSerial = serialNumber.substring(9,11);
         System.out.println(dataDomain.getTitleMy());
-
+        dataDomain.setRemarksMy(remarksMy);
+        dataDomain.setRemarksEn(remarksEn);
+        dataDomain.setReferenceMy(referenceMy);
+        dataDomain.setReferenceEn(referenceEn);
         String endSerialNumber2 = "-" + relicNumber + "-" + userNickname + "-" + time2;
 
         mv.addObject("LargeContents", LargeContents);

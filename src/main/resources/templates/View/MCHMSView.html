@@ -308,11 +308,11 @@ width:169px;
 				<tr id="trRemark2">
 					<!-- <td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Remark2(En)</strong></td> -->
 					<td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Reference(En)</strong></td>
-					<td style="padding:10px 0 10px 20px" id="FIELD_REMARK2"><pre style="white-space: pre-wrap;" th:text = "${ResultView.referenceEn}"></pre></td>
+					<td style="padding:10px 0 10px 20px" id="FIELD_REMARK2"><pre style="white-space: pre-wrap;" th:utext = "${ResultView.referenceEn}"></pre></td>
 				</tr>
 				<tr id="trRemark2My">
 					<td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Reference(My)</strong></td>
-					<td style="padding:10px 0 10px 20px" id="FIELD_REMARK2_MY" ><pre style="white-space: pre-wrap; line-height:2em;"th:text = "${ResultView.referenceMy}"></pre>
+					<td style="padding:10px 0 10px 20px" id="FIELD_REMARK2_MY" ><pre style="white-space: pre-wrap; line-height:2em;"th:utext = "${ResultView.referenceMy}"></pre>
 						<!-- <textarea rows="8" cols="80" id="FIELD_REMARK2_MY" name="FIELD_REMARK2_MY" readonly="readonly"></textarea> -->
 					</td>
 				</tr>

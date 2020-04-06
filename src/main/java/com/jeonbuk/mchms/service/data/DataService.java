@@ -19,6 +19,54 @@ public class DataService {
     public void setData(Map<String, String> sqlParam) throws Exception {
         dataMapper.setData(sqlParam);
     }
+    public String changeSmallTag(String stringContents)
+    {
+        String brTag = "<br><div class=";
+        String brr = "\"";
+        String tag = brTag+brr+"remark_title"+brr+">";
+
+        String ptag = "<p class=";
+        String tag2 = ptag + brr + "text_indent"+brr+">";
+        String returnContents = stringContents.replace("<<", tag);
+        returnContents = returnContents.replace(">>","</div>");
+        returnContents = returnContents.replace("<div>\r\n","</div>");
+
+
+        return returnContents;
+    }
+    public String changeBigTag(String stringContents)
+    {
+        String brr = "\"";
+        String ptag = "<p class=";
+        String tag2 = ptag + brr + "text_indent"+brr+">";
+        String returnContents = stringContents.replace("[[", tag2);
+        returnContents = returnContents.replace("]]","</p>");
+
+        return returnContents;
+    }
+    public String changeTagToSmallbr(String stringContents)
+    {
+        String brTag = "<br><div class=";
+        String brr = "\"";
+        String tag = brTag+brr+"remark_title"+brr+">";
+
+        String ptag = "<p class=";
+        String tag2 = ptag + brr + "text_indent"+brr+">";
+        String returnContents = stringContents.replace(tag, "<<");
+        returnContents = returnContents.replace("</div>",">>\r\n");
+
+        return returnContents;
+    }
+    public String changeTagToBigbr(String stringContents)
+    {
+        String brr = "\"";
+        String ptag = "<p class=";
+        String tag2 = ptag + brr + "text_indent"+brr+">";
+        String returnContents = stringContents.replace(tag2, "[[");
+        returnContents = returnContents.replace("</p>", "]]");
+
+        return returnContents;
+    }
     public void setFiles(int id, String filesName, int fileCount) throws Exception
     {
         System.out.println("service");
