@@ -107,10 +107,20 @@ public class WriteDoCont {
             }
             String FIELD_LTTD2 = "0";
             String FIELD_LNGTD2 ="0";
+
             String FIELD_REMARK1 = request.getParameter("FIELD_REMARK1");
+            FIELD_REMARK1 = dataservice.changeSmallTag(FIELD_REMARK1);
+            FIELD_REMARK1 = dataservice.changeBigTag(FIELD_REMARK1);
+            System.out.println(FIELD_REMARK1);
             String FIELD_REMARK1_MY = request.getParameter("FIELD_REMARK1_MY");
+            FIELD_REMARK1_MY = dataservice.changeSmallTag(FIELD_REMARK1_MY);
+            FIELD_REMARK1_MY = dataservice.changeBigTag(FIELD_REMARK1_MY);
             String FIELD_REMARK2 = request.getParameter("FIELD_REMARK2");
+            FIELD_REMARK2 = dataservice.changeSmallTag(FIELD_REMARK2);
+            FIELD_REMARK2 = dataservice.changeBigTag(FIELD_REMARK2);
             String FIELD_REMARK2_MY = request.getParameter("FIELD_REMARK2_MY");
+            FIELD_REMARK2_MY = dataservice.changeSmallTag(FIELD_REMARK2_MY);
+            FIELD_REMARK2_MY = dataservice.changeBigTag(FIELD_REMARK2_MY);
             String OPEN_YN = request.getParameter("OPEN_YN");
             String Filename = "";
             String Registrant = "";
@@ -209,4 +219,7 @@ public class WriteDoCont {
         System.out.print("Nasdfasdf");
         return new ModelAndView("redirect:/");
     }
+
+
 }
+
