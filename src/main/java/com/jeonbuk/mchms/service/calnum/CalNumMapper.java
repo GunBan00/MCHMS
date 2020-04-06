@@ -19,4 +19,7 @@ public interface CalNumMapper {
 
     @Select("SELECT RELIC_NUM FROM Cal_Num WHERE USER_ID = #{id}")
     String selectRelicNumber(String id);
+
+    @Update("UPDATE Cal_Num SET RELIC_NUM = #{Cal_Num}")
+    void updateCalNum(String Cal_Num);
 }
