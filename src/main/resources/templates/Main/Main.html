@@ -104,29 +104,7 @@
 		<li th:each="ms : ${Museum}" th:if="${ms.cities} == Nationwide"><a th:href="@{/MCHMSSearch/(City_id=${ms.cityId})}" th:text="${ms.museum}"></a></li>
 </div></div><!-- div class="grid" 끝 -->
 </div>
-<!-- <script>
-$("#menucent li:first-child").addClass("first");</script> -->
-<div class="wrapperMain">
-	<div class="main02">
-		<div class="main_regiData">
-			<div class="main_Btit">
-				<span id="spanMainNtc">Notice</span>
-				<div class="btn_more"><a href="/user/mypage/getNEBoardList.do?TYPE=N"><!--<img src="images/more_icon.svg" alt="더보기" width="20px">--></a></div>
-			</div>
-			<ul class="regidataList">
-				<li>
-					<a href="#" onClick="noticePopView('20190524105311363607_000000001')">
-						<div class="tit">
-							JKDS DAMS CONTROL
-						</div>
-						<div class="date">2019.05.24</div>
-						<div class="name">dev</div>
-					</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-</div>   	<!-- div class="wrapperMain" 끝 -->
+
 </div>
 </div><!-- //내용부분 -->
 </div>

@@ -1,16 +1,28 @@
-<link rel="stylesheet" href="/css/MCH/style.css" type="text/css">
-<link rel="stylesheet" href="/common/css/jquery-ui.css" type="text/css"> 
+<head>
+    <link rel="stylesheet" href="/css/MCH/style.css" type="text/css">
+    <link rel="stylesheet" href="/common/css/jquery-ui.css" type="text/css">
+    <link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <script type="text/javascript" src="/js2/jquery-3.3.1.min.js?ver=1"></script>
+    <link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 
+</head>
 <div class="login">
     <div>
         <div class="loginBox">
             <div class="logon" id="input_type_1">
-        <h1><img src="/static/MCHMS/mams/mchms_logo_02.svg" alt="DAMS Digital Asset Management System"></h1>
+        <h1><img src="http://mchms.net/Static/MCHMS/mams/mchms_logo_02.svg" alt="DAMS Digital Asset Management System"></h1>
                 <p class="tit">Login</p>
                 <form id="frmLogin" name="frmLogin" method="post">
                     <input type="hidden" name="LOGIN_FLAG" value="true">
                     <input type="text" id="USER_ID" name="USER_ID" style="ime-mode:disabled" placeholder="ID" onkeypress="if((event.keyCode > 32 &amp;&amp; event.keyCode < 48)||(event.keyCode > 57 &amp;&amp; event.keyCode < 65)||(event.keyCode > 90 &amp;&amp; event.keyCode < 97)||event.keyCode == '13'){event.returnValue = false;}">
-                    <input type="password" id="USER_PASS" name="USER_PASS" placeholder="Password" onkeypress="if(event.keyCode == '13'){goLogin();}">
+
+
+                    <div class="input password" style="MARGIN-TOP: 5%;">
+                        <input type="password" id="password" name="password" class="form-input" placeholder="Password (16)"  maxlength="16"onkeypress="if(event.keyCode == '13'){goLogin();}"> <div class="eyes" style="right:12.3px;top:2px;">
+                        <img src ="http://mchms.net/Static/eye-regular.svg" style ="width:30px;"class="far fa-eye"></img>
+                    </div> </div>
+
+
                     <div class="save_apply">
                         <p class="btnS"><a href="/MCHMSApply">Register ID</a></p>
                     </div>
@@ -24,9 +36,17 @@
             <p id="err_message">Please contact the administrator for login account inquiries.</p>
         </div>
         <div class="foot">DIGITAL ARCHIVES MANAGEMENT SYSTEM. COPYRIGHT ALL RIGHT RESERVED.</div>
+        <style>
+.input { position: relative; } .input .eyes { position: absolute; top: 0; bottom: 0; right: 0; margin: auto 2px; height: 30px; font-size: 22px; cursor: pointer; }
+
+</style>
     </div>
 </div>
 <script>
+$(function(){ // 눈표시 클릭 시 패스워드 보이기
+	$('.eyes').on('click',function(){ $('.input.password').toggleClass('active'); if( $('.input.password').hasClass('active') == true ){ $(this).find('.fa-eye').attr('class',"fa fa-eye-slash fa-lg").parents('.input').find('#password').attr('type',"text"); // i 클래스 // 텍스트 보이기 i 클래스
+	} else{ $(this).find('.fa-eye-slash').attr('class',"fa fa-eye fa-lg").parents('.input').find('#password').attr('type','password'); } }); });
+
 function goLogin(){
 
 	var form = document.getElementById("frmLogin");
@@ -36,9 +56,9 @@ function goLogin(){
 		return false;
 	}
 
-	if (form.USER_PASS.value == "") {
+	if (form.password.value == "") {
 		alert("Please enter a password.");
-		form.USER_PASS.focus();
+		form.password.focus();
 		return false;
 	}
 

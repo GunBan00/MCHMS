@@ -50,7 +50,7 @@ public class UserDoCont {
         try {
             HttpSession session = request.getSession();
 
-            Map<String, Object> userInfo = userService.loginUser(user.getUSER_ID(), makePassword(user.getUSER_PASS()));
+            Map<String, Object> userInfo = userService.loginUser(user.getUSER_ID(), makePassword(user.getPassword()));
             System.out.println(userInfo);
             logger.info((String)userInfo.get("ID"));
 
@@ -146,7 +146,7 @@ public class UserDoCont {
             Map<String, Object> obj = new HashMap<>();
 
             obj.put("USER_ID", request.getParameter("USER_ID"));
-            obj.put("USER_PASS", makePassword(request.getParameter("USER_PASS")));
+            obj.put("password", makePassword(request.getParameter("password")));
             obj.put("USER_NAME", request.getParameter("USER_NAME"));
             obj.put("USER_EMAIL", request.getParameter("USER_EMAIL"));
             obj.put("USER_NICK", request.getParameter("USER_NICK"));
