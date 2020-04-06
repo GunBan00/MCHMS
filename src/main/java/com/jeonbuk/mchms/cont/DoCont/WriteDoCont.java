@@ -207,7 +207,7 @@ public class WriteDoCont {
             int maxId = dataservice.getMaxId(id);
             dataservice.setFiles(maxId, filesName, fileCount-1);
 
-
+            calNumService.updateCalNum(relicNumber);
 
             return new ModelAndView("redirect:/");
 
