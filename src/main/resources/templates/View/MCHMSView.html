@@ -150,9 +150,8 @@ margin-top:0%;
 					function Alert_Del(){
 						/*<![CDATA[*/
 
-						alert(url);
 						if (confirm("You want to delete?") == true){    //확인
-							location.href="/MCHMSDelete/?ID={{ResultView.0}}";
+							location.href="/MCHMSDelete/?ID=/*[[${DataId}]]*/";
 
 						}else{   //취소
 							return;
@@ -179,7 +178,7 @@ margin-top:0%;
 			<!-- 				<div class="pt02"> -->
 			<div class="floatBox" style="width:500px;">
 				<div class="flBox">
-					<a href="#" onclick="Alert_Del()'" id="DELETE_BTN2" class="btn type2 btnB">Delete</a>
+					<a href="javascript:Alert_Del()" id="DELETE_BTN2" class="btn type2 btnB">Delete</a>
 				</div>
 				<div class="flBox">
 					<a href="javascript:boardDelete('OFF')" class="btn type2 btnC btnR" style="margin-top:0px;margin-bottom:10px;margin-left:10px;">Cancel</a>
@@ -331,7 +330,7 @@ width:169px;
 			</div>
 			<div class="frBox" style ="right: 10%; position: absolute;" th:if="${session.id} == ${ResultView.registrant}">
 
-				<a onclick="Alert_Del()" id="DELETE_BTN1" class="btn type2 btnB">Delete</a>
+				<a th:href="@{/MCHMSDelete/?ID={id}(id=${ResultView.id})}" id="DELETE_BTN1" class="btn type2 btnB">Delete</a>
 				<a th:href="@{/MCHMSModify/?ID={id}(id=${ResultView.id})}" onclick="" id="UPDATE_BTN1" class="btn type2 btnB">Modify</a>
 
 

@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.io.PrintWriter;
 import java.util.*;
 
@@ -191,6 +192,7 @@ public class ViewController {
 
                 modifyFlag = 1;
             }
+            mv.addObject("DataId", id);
             mv.addObject("cityClInfo", cityClInfo);
             mv.addObject("modifyFlag", modifyFlag);
             mv.addObject("ResultView", dataDomain);
@@ -207,6 +209,63 @@ public class ViewController {
             mv.addObject("filesname", filesname);
             mv.addObject("ImgContents", ImgContents);
             mv.addObject("file_length", filesArray.length);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return mv;
+    }
+    @RequestMapping(value = "/MCHMSDelete", method = RequestMethod.GET)
+    public ModelAndView mchmsDelete(HttpServletRequest request, HttpServletResponse response) {
+        ModelAndView mv = new ModelAndView();
+        HttpSession session = request.getSession();
+        mv.addObject("session", session);
+
+        try {
+            String id = request.getParameter("ID");
+
+            DataDomain dataDomain = dataService.getDataInfo(id);
+            String CityId = dataDomain.getCityId();
+
+            System.out.println(dataDomain.getRegistrant() + " " + session.getAttribute("id"));
+
+            if((session == null) || !(dataDomain.getRegistrant().equals(session.getAttribute("id")))){
+                response.setContentType("text/html; charset=UTF-8");
+
+                PrintWriter out = response.getWriter();
+
+                out.println("<script>alert('It cannot Delete'); location.href='/MCHMSSearch/?City_id=" + CityId + "';</script>");
+                out.flush();
+
+                return mv;
+            }
+
+            dataService.deleteData(id);
+
+            FileEventDomain file = fileEventService.getFilesNameFromDataID(Integer.parseInt(id));
+
+            String[] array = file.getFiles().split("\\|");
+            String path = "C:\\image\\";//directory 수정해야됨
+            String filesName = "";
+
+            for (int i = 0; i < file.getCount(); i++) {
+                filesName = path + array[i];
+                File f = new File(filesName);
+
+                f.delete();
+            }
+
+            fileEventService.deleteFileData(id);
+
+            response.setContentType("text/html; charset=UTF-8");
+
+            PrintWriter out = response.getWriter();
+
+            out.println("<script>alert('Deleted'); location.href='/MCHMSSearch/?City_id=" + CityId + "';</script>");
+            out.flush();
+
+            return mv;
 
         } catch (Exception e) {
             e.printStackTrace();

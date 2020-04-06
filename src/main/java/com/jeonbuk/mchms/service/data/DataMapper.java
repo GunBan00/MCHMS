@@ -3,10 +3,7 @@ package com.jeonbuk.mchms.service.data;
 import com.jeonbuk.mchms.domain.City;
 import com.jeonbuk.mchms.domain.Classification;
 import com.jeonbuk.mchms.domain.DataDomain;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 import java.util.Map;
@@ -68,5 +65,8 @@ public interface DataMapper {
 
     @Update("Update FILEEVENT SET ID, FILES = '${filesName}', COUNT = '${fileCount}') WHERE DATA_ID = '${id}'")
     void changeFiles(int id, String filesName, int fileCount);
+
+    @Delete("Delete From Data WHERE ID = #{id}")
+    void deleteData(String id);
 
 }
