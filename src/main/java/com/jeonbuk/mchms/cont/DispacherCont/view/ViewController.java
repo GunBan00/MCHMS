@@ -246,7 +246,7 @@ public class ViewController {
             FileEventDomain file = fileEventService.getFilesNameFromDataID(Integer.parseInt(id));
 
             String[] array = file.getFiles().split("\\|");
-            String path = "C:\\image\\";//directory 수정해야됨
+            String path = "/home/centos/public_html/MCHMS/Static/MCHMS";//directory 수정해야됨
             String filesName = "";
 
             for (int i = 0; i < file.getCount(); i++) {

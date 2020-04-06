@@ -54,7 +54,7 @@ public class WriteDoCont {
     public ModelAndView mypage(MultipartHttpServletRequest request, HttpServletResponse response) {
         ModelAndView mv = new ModelAndView();
         try {
-            String path = "C:\\image\\";//directory 수정해야됨
+            String path = "/home/centos/public_html/MCHMS/Static/MCHMS";//directory 수정해야됨
 
             HttpSession session = request.getSession();
 
