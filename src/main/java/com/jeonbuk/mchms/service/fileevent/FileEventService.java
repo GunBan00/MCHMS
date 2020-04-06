@@ -13,4 +13,8 @@ public class FileEventService {
     public FileEventDomain getFilesNameFromDataID(int id) {
         return fileEventMapper.getFilesNameFromDataID(id);
     }
+
+    public void deleteFileData(String id){
+        fileEventMapper.deleteFileData(id);
+    }
 }

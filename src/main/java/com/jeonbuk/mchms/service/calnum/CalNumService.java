@@ -23,7 +23,8 @@ public class CalNumService {
 
     public String selectRelicNumber(String id,String today){
         String calDate = calNumMapper.selectDateById(id);
-        if(calDate == "") calNumMapper.setCalNum(id, today);
+        System.out.println(calDate);
+        if(calDate == null) calNumMapper.setCalNum(id, today);
         else calNumMapper.changeCalNum(id, today);
         String relic =  calNumMapper.selectRelicNumber(id);
         int length = relic.length();

@@ -80,9 +80,12 @@ public class DataService {
     public void changeFiles(int id, String filesName, int fileCount, int fileFlag) throws Exception
     {
         if (fileFlag == 1)
-        dataMapper.changeFiles(id, filesName, fileCount);
+            dataMapper.changeFiles(id, filesName, fileCount);
     }
 
+    public void deleteData(String id){
+        dataMapper.deleteData(id);
+    }
     public int getMaxId(String id)
     {
         return dataMapper.getMaxId(id);
