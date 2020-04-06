@@ -130,7 +130,7 @@ public class WriteDoCont {
             String id = String.valueOf(session.getAttribute("id"));
             String userNickname = userService.selectUserInfo(id).getNickname();
 
-            SimpleDateFormat format2 = new SimpleDateFormat( "yyyyMMddHHmmss");
+            SimpleDateFormat format2 = new SimpleDateFormat( "ddMMyyyy");
             Date time = new Date();
             String time2 = format2.format(time);
 
