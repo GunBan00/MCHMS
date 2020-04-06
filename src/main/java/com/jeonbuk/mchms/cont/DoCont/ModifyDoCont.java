@@ -91,7 +91,7 @@ public class ModifyDoCont {
             String serialNumber = FIELD_RELIC_NUMBER;
             List<MultipartFile> files = request.getFiles("files");
             System.out.println("files");
-            String path = "C:\\image\\";//directory 수정해야됨
+            String path =  "/home/centos/public_html/MCHMS/Static/MCHMS/";//directory 수정해야됨
             String filesName = "";
             int fileCount = 1;
 

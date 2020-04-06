@@ -165,7 +165,7 @@ public class ViewController {
                 ImgContents = ImgContents + "<li class=\"bxslider\">\n" +
                         "<div id ="+ "\"viewdiv" + filesArray[i] + "\"" + "style=\"width:95%; margin:0 auto;\">\n" +
                         "<a href =\"/MCHMS/"+ filesArray[i] + "\">\n" +
-                        "<img id =\"viewimg\" src=\"/MCHMS/" + filesArray[i] + "\"" + "style=\"cursor:pointer;\"/>\n" +
+                        "<img id =\"viewimg\" src=\"http://mchms.net/Static/MCHMS/" + filesArray[i] + "\"" + "style=\"cursor:pointer;\"/>\n" +
                         "</a>\n" +
                         "</div>\n" +
                         "</li>";
@@ -246,7 +246,7 @@ public class ViewController {
             FileEventDomain file = fileEventService.getFilesNameFromDataID(Integer.parseInt(id));
 
             String[] array = file.getFiles().split("\\|");
-            String path = "C:\\image\\";//directory 수정해야됨
+            String path =  "/home/centos/public_html/MCHMS/Static/MCHMS/";//directory 수정해야됨
             String filesName = "";
 
             for (int i = 0; i < file.getCount(); i++) {

@@ -54,7 +54,7 @@ public class WriteDoCont {
     public ModelAndView mypage(MultipartHttpServletRequest request, HttpServletResponse response) {
         ModelAndView mv = new ModelAndView();
         try {
-            String path = "C:\\image\\";//directory 수정해야됨
+            String path =  "/home/centos/public_html/MCHMS/Static/MCHMS/";//directory 수정해야됨
 
             HttpSession session = request.getSession();
 
@@ -130,7 +130,7 @@ public class WriteDoCont {
             String id = String.valueOf(session.getAttribute("id"));
             String userNickname = userService.selectUserInfo(id).getNickname();
 
-            SimpleDateFormat format2 = new SimpleDateFormat( "ddMMyyyy");
+            SimpleDateFormat format2 = new SimpleDateFormat( "yyyyMMddHHmmss");
             Date time = new Date();
             String time2 = format2.format(time);
 
