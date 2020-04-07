@@ -146,7 +146,7 @@ public class SearchCont {
                 if (SortOrder == null){
                     SortOrder = "Title0";
                 }
-
+                System.out.println(SortOrder);
                 flag = 1;
                 String keyWord = request.getParameter("Keyword");
 

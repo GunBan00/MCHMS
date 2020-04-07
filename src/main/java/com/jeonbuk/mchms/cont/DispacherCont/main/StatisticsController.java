@@ -17,53 +17,61 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 @Slf4j
 public class StatisticsController {
 
-        @Autowired
-        private DataService dataService;
+    @Autowired
+    private DataService dataService;
 
-        @Autowired
-        private ClassificationService classificationService;
+    @Autowired
+    private ClassificationService classificationService;
 
-        @Autowired
-        private CityService cityService;
+    @Autowired
+    private CityService cityService;
 
-        private static Logger logger = LoggerFactory.getLogger(com.jeonbuk.mchms.cont.DispacherCont.main.StatisticsController.class);
+    private static Logger logger = LoggerFactory.getLogger(com.jeonbuk.mchms.cont.DispacherCont.main.StatisticsController.class);
 
-        @RequestMapping(value = "/Statistics", method = RequestMethod.GET)
-        public ModelAndView base(HttpServletRequest request) {
-            System.out.println("test");
-            ModelAndView mv = new ModelAndView();
+    @RequestMapping(value = "/Statistics", method = RequestMethod.GET)
+    public ModelAndView base(HttpServletRequest request) {
+        System.out.println("test");
+        ModelAndView mv = new ModelAndView();
 
-            try {
-                String Cities = request.getParameter("Cities");
-                List<ClassificationCount> classCount = classificationService.getClassificationCountById(Cities);
+        try {
+            String Cities = request.getParameter("Cities");
+            List<ClassificationCount> classCount = classificationService.getClassificationCountById(Cities);
+            List<ClassificationCount> temp = new ArrayList<ClassificationCount>();
 
-                System.out.println("test : " + Cities);
+            System.out.println("test : " + Cities);
+            int count = 0;
+            for(ClassificationCount cc : classCount) {
 
-                for(ClassificationCount cc : classCount) {
-                    System.out.println("test : " + cc.getCount());
-                    System.out.println("test : " + cc.getLarge());
+                if(cc.getCount() != 0) {
+                    temp.add(cc);
                 }
-
-                City locationCity = cityService.getCityLocationFromCitiesName(Cities);
-
-                mv.addObject("x", locationCity.getLatitude());
-                mv.addObject("y", locationCity.getLongitude());
-                mv.addObject("Cities", Cities);
-                mv.addObject("classCount", classCount);
-
-                mv.setViewName("Statistics/Statistics.html");
-            } catch (Exception e) {
-                logger.error(e.toString());
+                System.out.println("test : " + cc.getCount());
+                System.out.println("test : " + cc.getLarge());
+                count += cc.getCount();
             }
 
-            return mv;
+            City locationCity = cityService.getCityLocationFromCitiesName(Cities);
+
+            mv.addObject("x", locationCity.getLatitude());
+            mv.addObject("y", locationCity.getLongitude());
+            mv.addObject("Cities", Cities);
+            mv.addObject("classCount", temp);
+            mv.addObject("count1", count);
+
+            mv.setViewName("Statistics/Statistics.html");
+        } catch (Exception e) {
+            logger.error(e.toString());
         }
 
-
+        return mv;
     }
+
+
+}

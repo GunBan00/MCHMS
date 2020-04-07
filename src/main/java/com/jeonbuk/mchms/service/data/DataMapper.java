@@ -45,6 +45,19 @@ public interface DataMapper {
             "FROM Data WHERE ${keywordQuery} ORDER BY Data.${TypeToSort} ${Order}")
     List<DataDomain> getDataByKeywordIdAndNotJoin(Map<String, Object> sqlParam);
 
+
+    @Select("SELECT ID as id, Title as title, Serial_Number as serialnumber, Classification_id as classificationId, Data.Latitude as latitude, Data.Longitude as longitude, Registration_Date as registrationDate, Data.City_id as cityId FROM Data LEFT OUTER JOIN City ON (Data.City_id = City.City_id) WHERE Registrant = #{Registrant} ORDER BY City.Cities ${Order}")
+    List<DataDomain> getDataByIdAndJoinCity(Map<String, Object> sqlParam);
+
+    @Select("SELECT ID as id, Title as title, Serial_Number as serialnumber, Data.Classification_id as classificationId, Latitude as latitude, Longitude as longitude, Registration_Date as registrationDate, City_id as cityId FROM Data LEFT OUTER JOIN Classification ON (Data.Classification_id = Classification.classification_id) WHERE Registrant = #{Registrant} ORDER BY Classification.Large ${Order}")
+    List<DataDomain> getDataByIdAndJoinClassifi(Map<String, Object> sqlParam);
+
+    @Select("SELECT ID as id, Title as title, Serial_Number as serialnumber, Classification_id as classificationId, " +
+            "Latitude as latitude, Longitude as longitude, Registration_Date as registrationDate, City_id as cityId " +
+            "FROM Data WHERE Registrant = #{Registrant} ORDER BY Data.${TypeToSort} ${Order}")
+    List<DataDomain> getDataByIdAndNotJoin(Map<String, Object> sqlParam);
+
+
     @Select("SELECT ID as id, Title as title, Serial_Number as serialnumber, Classification_id as classificationId, Latitude as latitude, Longitude as longitude, Registration_Date as registrationDate, City_id as cityId FROM Data WHERE (${sqlSentence})")
     List<DataDomain> getDataAdvancedSearch(String sqlSentence);
 

@@ -500,14 +500,14 @@
                 [ /*[[${cc.large}]]*/,  /*[[${cc.count}]]*/ ],
           /*[/]*/
 
-        /*]]>*/
+
 				['abc',    0]
 
         ]);
         var options = {
-          title: '  items Classification ',
+          title: '[[${total}]]  items Classification ',
         };
-
+        /*]]>*/
         var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
         chart.draw(data, options);
       }
@@ -561,7 +561,7 @@
     <div class="btnC" style="width:50%;"><a class="btn btnB2 btnB2_hover type3" onclick = "testMj2()" style="display:contents; width: 100px; margin-bottom: 50px;margin-top: 2%;">Create</a></div>
     <div class="floatBox" style="margin-top: 225px;"><p style="margin-bottom: 0px;text-align:center;"><strong style="font-size:1.2em;text-align:center;">Input List</strong></p>
         <div class="flBox">
-            <div class="cnb_1" id="tottalcnt"><span style="font-weight:bold;color:#999">items total</span></div>
+            <div class="cnb_1" id="tottalcnt"><span style="font-weight:bold;color:#999" th:text="|${total} items total|"></span></div>
         </div>
         <div class="frBox">
             <span id="REG_BTN" class="REG_BTN" style="display: none;"></span>
@@ -572,28 +572,28 @@
         <colgroup id="setCol"><col style="width:4%"><col style="width:4%"><col><col><col><col><col><col><col><col></colgroup>
         <thead id="field1" style ="background-color:#f6f7f7"><tr>
             <th>Num</th>
-            <th id ="serial"style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc; height:50px; border-right: 1px solid #dcdcdc; color: #333; text-align: center; vertical-align: middle; cursor:pointer;">
-                <button type="button" class="sortbutton">
+            <th id ="serial"style="height:50px;border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc; color: #333; text-align: center; vertical-align: middle; cursor:pointer;">
+                <button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/Mypage/?id={id}(id=${userinfo.id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=Serial_Number' + '\''">
                     Serial
                 </button>
             </th>
             <th  style="border-top:none; border-bottom: none; border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc;  color: #333; text-align: center; vertical-align: middle;">
-                <button type="button" class="sortbutton">
+                <button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/Mypage/?id={id}(id=${userinfo.id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=City' + '\''">
                     Region
                 </button>
             </th>
             <th style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc; color: #333; text-align: center; vertical-align: middle;">
-                <button type="button" class="sortbutton">
+                <button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/Mypage/?id={id}(id=${userinfo.id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=Classification' + '\''">
                     Classification
                 </button>
             </th>
             <th id ="title" style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc;  color: #333; text-align: center; vertical-align: middle; cursor:pointer;">
-                <button type="button" class="sortbutton">
+                <button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/Mypage/?id={id}(id=${userinfo.id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=Title' + '\''">
                     Title
                 </button>
             </th>
             <th id ="reg" style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc;   color: #333; text-align: center; vertical-align: middle; cursor:pointer;" >
-                <button type="button" class="sortbutton">
+                <button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/Mypage/?id={id}(id=${userinfo.id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=Registration_Date' + '\''">
                     Registration date
                 </button>
             </th>
@@ -610,6 +610,79 @@
             </tr>
         </tbody>
     </table>
+    <div class="floatBox" style="margin-top: 10px;text-align:center;">
+        <div class="flBox" style="width:100%; margin-top: 10px;text-align:center;">
+            <div class ="pageBox" style ="display:inline-block;">
+                <div style="width: 800px;text-align: center;">
+                    <a th:if="${firstFlag == 1}"th:href="@{/Mypage/?id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&' + @{TypeToSort={TypeToSort}(TypeToSort=${TypeToSort})} + '&' + @{currentPage={currentPage}(currentPage=1)}" id="page">< First</a>
+                    <div class="pageNum" style="display: inline" th:each ="num : ${pageNumberList}" >
+                <a th:if="${num} != ${currentPage}" th:href="@{/Mypage/?id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&' + @{TypeToSort={TypeToSort}(TypeToSort=${TypeToSort})} + '&' + @{currentPage={currentPage}(currentPage=${num})}" th:text="${num}+' '"></a>
+                    <strong><a th:unless="${num} != ${currentPage}" th:text="${num}+' '"></a></strong>
+                </div>
+                    <a th:if="${pageNumber}>10" th:href="@{/Mypage/?id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&' + @{TypeToSort={TypeToSort}(TypeToSort=${TypeToSort})} + '&' + @{currentPage={currentPage}(currentPage=${pageNumber})}" id="page">Last ></a>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div >
+                <div  th:if="${pageNumber} > 10">
+                    <input type="text" size="34" maxlength="3" value="" style="margin-top : 1%; width: 60px;" class ="FIELD_RELIC_ZIP" id ="FIELD_RELIC_ZIP" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' ></input><input type ="button" style ="margin-top : 1%;width: 30px; height: 30px;" onclick="javascript:movePage();" value="P"></input>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
 </div>
 </div>
 </div>
+
+<script>
+function onlyNumber(event){
+    event = event || window.event;
+    var keyID = (event.which) ? event.which : event.keyCode;
+    if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 )
+        return;
+    else
+        return false;
+}
+
+function removeChar(event) {
+    event = event || window.event;
+    var keyID = (event.which) ? event.which : event.keyCode;
+    if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 )
+        return;
+    else
+        event.target.value = event.target.value.replace(/[^0-9]/g, "");
+}
+</script>
+<script th:inline="javascript">
+					function movePage()
+					{
+						var cp = document.getElementById("FIELD_RELIC_ZIP");
+						var movepage = cp.value;
+						/*<![CDATA[*/
+						var id = /*[[${id}]]*/;
+						var sortPage = /*[[${TypeToSort}]]*/;
+						var asc = /*[[${SortOrder}]]*/;
+						var lastNum = /*[[${pageNumber}]]*/;
+						if (movepage != "" && movepage <= lastNum)
+						{
+							location.href ="/Mypage/?id="+id+"&SortOrder=" + asc + "&TypeToSort=" + sortPage + "&currentPage="+movepage;
+						}
+						else
+						{
+							alert("Invalid Page");
+							cp.value = "";
+						}
+					}
+						 /*]]>*/
+					</script>
+<script type="text/javascript">
+	$('#list1 tr').hover (function () {
+		$(this).addClass ("hover");
+	}, function () {
+		$(this).removeClass ("hover");
+	});
+	$("select[name=MCSJGBNC3] option[value='"+$('#StrMCSJGBNC3').val()+"']").attr("selected",true);
+</script>

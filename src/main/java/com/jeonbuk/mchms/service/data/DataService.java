@@ -159,6 +159,24 @@ public class DataService {
         }
     }
 
+    public List<DataDomain> getDataById(String Registrant, String TypeToSort, String Order) throws Exception {
+        Map<String, Object> sqlParam = new HashMap<>();
+
+        sqlParam.put("Registrant", Registrant);
+        sqlParam.put("Order", Order);
+
+        if (TypeToSort.equals("Classification")){
+            return dataMapper.getDataByIdAndJoinClassifi(sqlParam);
+        }
+        else if(TypeToSort.equals("City")){
+            return dataMapper.getDataByIdAndJoinCity(sqlParam);
+        }
+        else{
+            sqlParam.put("TypeToSort", TypeToSort);
+            return dataMapper.getDataByIdAndNotJoin(sqlParam);
+        }
+    }
+
     public List<DataDomain> getDataAdvancedSearch(Map<String, String> Param){
         String sqlSentence = "";
         int searchNum = 0;
