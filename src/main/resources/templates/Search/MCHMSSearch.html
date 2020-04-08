@@ -254,7 +254,7 @@
 			</div>
 		</div>
 		<div class="floatBox" style="margin-top: 10px;text-align:center;" th:unless="${pageflag} == 0">
-			<div class="flBox" style="width:100%; margin-top: 10px;text-align:center;">
+			<div class="flBox" style="width:100%; margin-top: 10px;text-align:center;" th:if="${flag} == 0">
 				<div class ="pageBox" style ="display:inline-block;">
 					<div style="width: 800px;text-align: center;">
 						<a th:if="${firstFlag == 1}"th:href="@{/MCHMSSearch/?City_id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&' + @{TypeToSort={TypeToSort}(TypeToSort=${TypeToSort})} + '&' + @{currentPage={currentPage}(currentPage=1)}" id="page">< First</a>
@@ -266,6 +266,18 @@
 		</div>
 </div>
 </div>
+			<div class="flBox" style="width:100%; margin-top: 10px;text-align:center;" th:unless="${flag} == 0">
+				<div class ="pageBox" style ="display:inline-block;">
+					<div style="width: 800px;text-align: center;">
+						<a th:if="${firstFlag == 1}"th:href="@{/MCHMSSearch/?Keyword={Keyword}(Keyword=${Keyword})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&' + @{TypeToSort={TypeToSort}(TypeToSort=${TypeToSort})} + '&' + @{currentPage={currentPage}(currentPage=1)}" id="page">< First</a>
+						<div class="pageNum" th:each ="num : ${pageNumberList}" >
+							<a th:if="${num} != ${currentPage}" th:href="@{/MCHMSSearch/?Keyword={Keyword}(Keyword=${Keyword})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&' + @{TypeToSort={TypeToSort}(TypeToSort=${TypeToSort})} + '&' + @{currentPage={currentPage}(currentPage=${num})}" th:text="${num}+' '"></a>
+							<strong><a th:unless="${num} != ${currentPage}" th:text="${num}+' '"></a></strong>
+						</div>
+						<a th:if="${pageNumber}>10" th:href="@{/MCHMSSearch/?Keyword={Keyword}(Keyword=${Keyword})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&' + @{TypeToSort={TypeToSort}(TypeToSort=${TypeToSort})} + '&' + @{currentPage={currentPage}(currentPage=${pageNumber})}" id="page">Last ></a>
+					</div>
+				</div>
+			</div>
 			<div>
 				<div >
 					<div  th:if="${pageNumber} > 10">
@@ -312,9 +324,16 @@ function removeChar(event) {
 						var sortPage = /*[[${TypeToSort}]]*/;
 						var asc = /*[[${SortOrder}]]*/;
 						var lastNum = /*[[${pageNumber}]]*/;
+						var Keyword = /*[[${Keyword}]]*/;
+						int flag = /*[[${flag}]]*/;
 						if (movepage != "" && movepage <= lastNum)
 						{
-							location.href ="/MCHMSSearch/?City_id="+City_id+"&SortOrder=" + asc + "&TypeToSort=" + sortPage + "&currentPage="+movepage;
+							if (flag == 0){
+								location.href ="/MCHMSSearch/?City_id="+City_id+"&SortOrder=" + asc + "&TypeToSort=" + sortPage + "&currentPage="+movepage;
+							}
+							else {
+								location.href ="/MCHMSSearch/?Keyword="+Keyword+"&SortOrder=" + asc + "&TypeToSort=" + sortPage + "&currentPage="+movepage;
+							}
 						}
 						else
 						{

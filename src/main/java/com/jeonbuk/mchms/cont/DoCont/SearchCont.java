@@ -154,7 +154,7 @@ public class SearchCont {
                 Integer OrderNum = Integer.parseInt(SortOrder.substring(SortOrder.length()-1, SortOrder.length()));
                 String Previous_Sort = SortOrder.substring(0, SortOrder.length()-1);
                 List<DataDomain> totalList;
-
+                System.out.println("asdf : ");
                 if ((Previous_Sort.equals(TypeToSort)) && (OrderNum == 0)){
                     SortOrder = TypeToSort + "1";
                     totalList = dataService.getDataByKeyword(keyWord, TypeToSort,"asc");
@@ -241,26 +241,56 @@ public class SearchCont {
                     dataDomain.setClResult(clCategory.getLarge());
                     City ciCategory = cityService.getRegionFromCityId(dataDomain.getCityId());
                     dataDomain.setCiResult(ciCategory.getCities());
-                    System.out.println(dataDomain.getCiResult());
                     dataDomain.setIndex(index);
                     index++;
                 }
 
+                int k = 0;
+                DataDomain[] pageList;
+                if(totalLength > 10) {
+                    int as = totalLength - (intCurrentPage * 10) + 10;
+                    System.out.println(as);
+                    if (as < 10) {
+                        pageList = new DataDomain[as];
+                    } else {
+                        pageList = new DataDomain[10];
+                    }
+                }
+                else{
+                    pageList = new DataDomain[totalLength];
+                }
+                for(int i = startNum; i < startNum + dataForPage; i++) {
+                    if(i >= totalLength) break;
+                    pageList[k] = totalList.get(i);
+                    k++;
+                }
 
-                System.out.println(avgLat + "" + avgLong);
+                int firstFlag =  0;
+                if (intCurrentPage > 7 && pageNumber > 10)
+                {
+                    firstFlag = 1;
+                }
+
+                if(currentPage == "0")
+                    currentPage = "1";
+
+
 
                 mv.addObject("SortOrder", SortOrder);
+                mv.addObject("TypeToSort", TypeToSort);
                 mv.addObject("map_longitude", map_longitude);
                 mv.addObject("map_latitude", map_latitude);
                 mv.addObject("Keyword", keyWord);
                 mv.addObject("total", totalLength);
-                mv.addObject("lists", totalList);
-                mv.addObject("dataDomain", totalList);
+                mv.addObject("lists", pageList);
+                mv.addObject("dataDomain", pageList);
                 mv.addObject("Museum", museums);
                 mv.addObject("session", session);
                 mv.addObject("flag", flag);
                 mv.addObject("pageNumberList", pageNumberList);
                 mv.addObject("pageflag", pageflag);
+                mv.addObject("firstFlag", firstFlag);
+                mv.addObject("currentPage", currentPage);
 
                 return mv;
 
