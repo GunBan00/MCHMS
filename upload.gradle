@@ -1,8 +1,15 @@
 remotes {
-    real {
+    test {
         host = '13.125.168.244'
         user = 'mchms'
         password = 'elwlxjf7510'
+    }
+
+    real {
+        host = '103.83.190.250'
+        user = 'root'
+        port = 20022
+        password = 'NMNPW@1572015'
     }
 
 }
@@ -14,11 +21,30 @@ task Upload_SSH_MCHMS {
     doFirst {
 
         ssh.run {
-            session(remotes.real) {
+            session(remotes.test) {
                 put from: file("${buildDir}/libs/mchms.jar"), into: '/install/src/MCHMS/mchms.jar.temp'
                 execute '/usr/bin/mv /install/src/MCHMS/mchms.jar.temp /install/src/MCHMS/mchms.jar'
                 execute '/usr/bin/chmod 777 /install/src/MCHMS/mchms.jar'
                 execute '/usr/sbin/service mchms restart'
+
+            }
+        }
+
+    }
+}
+
+task Upload_SSH_MCHMS_REAL {
+    group = 'A_CICS'
+    dependsOn 'build'
+
+    doFirst {
+
+        ssh.run {
+            session(remotes.real) {
+                put from: file("${buildDir}/libs/mchms.jar"), into: '/install/src/MCHMS/mchms.jar.temp'
+                execute '/bin/mv /install/src/MCHMS/mchms.jar.temp /install/src/MCHMS/mchms.jar'
+                execute '/bin/chmod 777 /install/src/MCHMS/mchms.jar'
+//                execute '/usr/sbin/service mchms restart'
 
             }
         }

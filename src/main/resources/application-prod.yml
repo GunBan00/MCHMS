@@ -1,0 +1,36 @@
+spring:
+  datasource:
+    type: org.apache.tomcat.jdbc.pool.DataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    #url: jdbc:mysql://13.125.168.244:3306/MCHMS?autoReconnect=true&characterEncoding=utf8&tcpNoDelay=true&socketTimeout=7000
+    url: jdbc:mysql://127.0.0.1:3306/MCHMS?autoReconnect=true&characterEncoding=utf8&tcpNoDelay=true&socketTimeout=7000
+    username: ENC(EKsxaGS5lwjVkLGtSM8Ahg==)
+    password: ENC(e0x1W2HSnd2XLSs19X8zJg==)
+    tomcat:
+      default-transaction-isolation: -1
+      initial-size: 50
+      max-active: 120
+      min-idle: 50
+      max-idle: 120
+      max-wait: 3000
+      suspect-timeout: 60
+      time-between-eviction-runs-millis: 30000
+      min-evictable-idle-time-millis: 60000
+      test-while-idle: true
+      test-on-borrow: true
+      test-on-return: false
+      validation-query: SELECT 1
+      validation-interval: 30000
+      remove-abandoned: true
+      remove-abandoned-timeout: 60
+      default-auto-commit: null
+
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+logging:
+  config: classpath:logback.groovy
+server:
+  port: 80
