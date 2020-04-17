@@ -1,0 +1,101 @@
+
+<script type="text/javascript" th:inline="javascript">
+$(document).ready(function(){
+	$('.m_city').click(function(){
+		$(".mobile_city").html("");
+		var city = $(this).text();
+		city = $.trim(city)
+		console.log(city);
+		/*<![CDATA[*/
+		 /*[# th:each="i : ${Museum}"]*/
+			var z = /*[[${i.cities}]]*/;
+			if (z == city)
+			{
+				var a = /*[[${i.cityId}]]*/;
+				var b = /*[[${i.museum}]]*/;
+				var c = "";
+				var e = "<div class=";
+				var f = "m_cities1";
+				c = c + e + f+">";
+				var d = "http://mchms.net/MCHMSSearch/?City_id="
+				c = c + "<a href = ";
+				var e = c + d + a + ">"+b+"</a></div>";
+				$(".mobile_city").append(e);
+			}
+		/*[/]*/
+		/*]]>*/
+		$('.mobile_menu').show('fast');
+	});
+});
+
+function mobile_menu_hide(){
+
+		$('.mobile_menu').hide('fast');
+}
+</script>
+<div class="mtableCity">
+    <table class="mtable">
+        <tbody>
+        <tr class="m_citycol">
+            <td class="m_city" value="Yangon" style="background: #8c1c03;">
+                Yangon
+            </td><td class="m_city"style="background: #565902;">
+            Mandalay
+        </td><td class="m_city"style="background: #222501;">
+            Bago
+        </td>
+        </tr>
+        <tr>
+            <td class="m_city"style="background: #4a6c8c;">
+                Mon
+            </td><td class="m_city"style="background: #e97fbd;">
+            Sagaing
+        </td><td class="m_city"style="background: #9b8be4;">
+            Magway
+        </td>
+        </tr>
+        <tr>
+            <td class="m_city"style="background:  #678cd7;">
+                Kayin
+            </td><td class="m_city"style="background: #f08462;">
+            Kachin
+        </td><td class="m_city"style="background: #c5aa5a;">
+            Tanintharyi
+        </td>
+        </tr>
+        <tr>
+            <td class="m_city"style="background: #3cb0b7;">
+                Ayeyarwady
+            </td><td class="m_city"style="background: #8c1c03;">
+            Rakhine
+        </td><td class="m_city"style="background: #565902;">
+            Shan
+        </td>
+        </tr>
+        <tr>
+            <td class="m_city"style="background: #222501;">
+                Chin
+            </td><td class="m_city"style="background: #4a6c8c;">
+            Kayah
+        </td><td class="m_city"style="background: #e97fbd;">
+            Naypyitaw
+        </td>
+        </tr>
+        <tr>
+            <td class="m_city" style="border:none;"></td>
+            <td class="m_city"style="background: #9b8be4;">
+                Nationwide
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class ="mobile_menu" style="display:none;">
+    <div class="m_hide">
+        <button type="button" class="m_hidebutton" onclick="mobile_menu_hide()">
+            <img src ="/Static/x.png" style="width:22px;height:22px;"/>
+        </button>
+    </div>
+    <div class ="mobile_city">
+    </div>
+</div>

@@ -1,0 +1,388 @@
+<html xmlns="http://www.w3.org/1999/xhtml" style="overflow-y:auto;">
+<head>
+
+
+    <link rel="stylesheet" href="/js/jquery-ui-1.12.1/jquery-ui.min.css?ver=3">
+    <script src="https://code.jquery.com/jquery-1.12.4.js?ver=3"></script>
+    <script src="/js/jquery-ui-1.12.1/jquery-ui.min.js?ver=3"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8?ver=3">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi?ver=3">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>MAMS Myanmar Asset Management System</title>
+    <link rel="stylesheet" href="/css/HMCH/font.css" type="text/css" />
+    <link rel="stylesheet" href="/css/HMCH/common.css" type="text/css" />
+    <link rel="stylesheet" href="/css/HMCH/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/css/HMCH/style.css" type="text/css" />
+    <link rel="stylesheet" href="/common/css/jquery-ui.css?ver=3" type="text/css" />
+    <script type="text/javascript">
+var _CONTEXT_PATH = "";
+var _CONTEXT_PORT = '80';
+var _CONTEXT_DOMAIN = "localhost:8080/";
+</script>
+
+    <script type="text/javascript" src="/js2/jquery-3.3.1.min.js?ver=3"></script>
+
+    <script type="text/javascript" src="/js2/jquery-1.10.2.min.js?ver=3"></script>
+
+    <script type="text/javascript" src="/common/js/jquery-ui-1.8.23.custom.min.js?ver=3"></script>
+    <script type="text/javascript" src="/common/js/jquery.tmpl.js?ver=3"></script>
+    <script type="text/javascript" src="/common/js/jquery.form.js?ver=3"></script>
+    <script type="text/javascript" src="/common/js/jquery.DOMWindow.js?ver=3"></script>
+    <script type="text/javascript" src="/common/js/link.js?ver=3"></script>
+    <script type="text/javascript" src="/common/js/jkds.js?ver=3"></script>
+    <script type="text/javascript" src="/common/js/patch_flash_tran.js?ver=3"></script>
+    <script type="text/javascript" src="/common/js/AC_RunActiveContent.js?ver=3"></script>
+    <!-- <script type="text/javascript" src="/common/js/Calendar.js" ></script> -->
+    <script type="text/javascript" src="/common/js/makeDiv.js"></script><link type="text/css" rel="stylesheet">
+
+    <script type="text/javascript"></script>
+    <link rel="stylesheet" href="/js/bxslider/dist/jquery.bxslider.css">
+    <script src="/js/bxslider/dist/jquery.bxslider.min.js"></script>
+
+
+    <script type="text/javascript">
+
+	$(document).ready(function() {
+		$("#LARGE_SEQ").change(function() {	//사용자가 Classification 영역 selectBox를 변경할 경우
+var target = document.getElementById("LARGE_SEQ");
+var text22 = target.options[target.selectedIndex].text;
+$("#FIELD_CODE_NM").val(text22);
+/* console.log('셀렉트 박스 변경되었습니다')
+$("#CODE_TITLE").val(text22); */
+		});
+		if($("#FIELD_CODE_NM option:selected").text()){
+		}
+	});
+</script>
+
+</head>
+<!-- 메인화면 -->
+<body><div id="divpop" style="z-index:150; position:absolute; display:none;" onmousedown="ddInit()" onmousemove="dd()" onmouseup="stopdrag()">
+    <div style="position:absolute; top:0px; left:0px; width:100%; height:38px;">
+        <table border="0" width="100%" cellpadding="0" cellspacing="0" background="/images/common/pop_top_bg2.gif">
+            <tbody><tr>
+                <td width="120"><img id="popTitle" src=""></td>
+                <td class="menu1"><span id="textTitle"></span>&nbsp;</td>
+                <td width="40" align="center" background="/images/common/pop_top_bg2.gif"><input type="button" value="X" onclick="noCheck2()" style="width:20px"></td>
+            </tr>
+            </tbody></table>
+    </div>
+    <iframe src="" height="38" width="100%" frameborder="0" scrolling="no"></iframe>
+    <div id="dwindowcontent" style="height:100%">
+        <iframe name="fr01" src="" height="100%" width="100%" frameborder="0" scrolling="no"></iframe>
+    </div>
+</div>
+
+<!-- <script type="text/javascript" src="/common/cab/InnoFD.js" ></script> -->
+<script type="text/javascript" src="/common/js/default.js?ver=3"></script>
+<script type="text/javascript" src="/common/js/tree.js?ver=3"></script>
+<script type="text/javascript" src="/common/js/sortTable.js?ver=3"></script>
+<script type="text/javascript" src="/common/js/commonCode.js?ver=3"></script>
+
+<script type="text/javascript" src="/imageViewer/ZoomifyImageViewerPro-min.js?ver=3"></script>
+<script type="text/javascript" src="/js2/common.js?ver=3"></script>
+
+
+
+
+
+
+<script type="text/javascript" src="/js2/board/BoardViewN.js?version=20191111"></script>
+
+<script type="text/javascript" src="/common/js/jcalendar.js?ver=3"></script>
+<script type="text/javascript" src="/common/js/flowplayer-3.2.6.min.js?ver=3"></script>
+
+
+<!-- <script type="text/javascript" src="/js/jquery.mb.browser.min.js"></script>
+<script type="text/javascript" src="/js/jquery.printElement.min.js"></script> -->
+
+
+<script type="text/javascript"></script>
+<link rel="stylesheet" href="/js/bxslider/dist/jquery.bxslider.css?ver=3">
+<script src="/js/bxslider/dist/jquery.bxslider.min.js?ver=3"></script>
+
+
+<script type="text/javascript" src="/js2/cmm/inc/Inc.js?ver=3"></script>
+<!--<script type="text/javascript" src="/js/swiper-5.3.0/package/js/swiper.min.js"></script>-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
+<style>
+.swiper-container {
+	height:40% !important;
+	width: 100% !important;
+	box-shadow:0 0 20px #ccc inset;
+}
+.swiper-slide {
+	text-align:center;
+	display:flex; /* 내용을 중앙정렬 하기위해 flex 사용 */
+	align-items:center; /* 위아래 기준 중앙정렬 */
+	justify-content:center; /* 좌우 기준 중앙정렬 */
+	width:100% !important;
+}
+.swiper-slide img {
+	box-shadow:0 0 5px #555;
+	width: 100% !important;
+}
+#viewimg
+{
+margin:0 auto;
+}
+.bx-viewport{
+overflow:unset !important;
+}
+.bx-wrapper
+{
+border:none;
+margin-top:0%;
+}
+.text_indent{
+word-break: break-all;
+margin-left:3%;
+}
+</style>
+<script>
+	$(document).ready(function() {
+
+		$("#LARGE_SEQ").change(function() {	//사용자가 Classification 영역 selectBox를 변경할 경우
+			var lar = $("#LARGE_SEQ option:selected").text();
+
+				$(".Archaeological").css("display","none");
+				$(".World").css("display","none");
+				$(".Museum").css("display","none");
+				$(".ICH").css("display","none");
+				$(".Colonial").css("display","none");
+				$(".Memorial").css("display","none");
+
+			if (lar == "Archaeological Site")
+			{
+				$(".Archaeological").css("display","block");
+				$(".World").css("display","none");
+				$(".Museum").css("display","none");
+				$(".ICH").css("display","none");
+				$(".Colonial").css("display","none");
+				$(".Memorial").css("display","none");
+			}
+			if (lar == "World Heritage Site")
+			{
+				$(".Archaeological").css("display","none");
+				$(".World").css("display","block");
+				$(".Museum").css("display","none");
+				$(".ICH").css("display","none");
+				$(".Colonial").css("display","none");
+				$(".Memorial").css("display","none");
+			}
+			if (lar == "Museum")
+			{
+				$(".Archaeological").css("display","none");
+				$(".World").css("display","none");
+				$(".Museum").css("display","block");
+				$(".ICH").css("display","none");
+				$(".Colonial").css("display","none");
+				$(".Memorial").css("display","none");
+			}
+			if (lar == "ICH")
+			{
+				$(".Archaeological").css("display","none");
+				$(".World").css("display","none");
+				$(".Museum").css("display","none");
+				$(".ICH").css("display","block");
+				$(".Colonial").css("display","none");
+				$(".Memorial").css("display","none");
+			}
+			if (lar == "Colonial Building")
+			{
+				$(".Archaeological").css("display","none");
+				$(".World").css("display","none");
+				$(".Museum").css("display","none");
+				$(".ICH").css("display","none");
+				$(".Colonial").css("display","block");
+				$(".Memorial").css("display","none");
+			}
+			if (lar == "Memorial of The World")
+			{
+				$(".Archaeological").css("display","none");
+				$(".World").css("display","none");
+				$(".Museum").css("display","none");
+				$(".ICH").css("display","none");
+				$(".Colonial").css("display","none");
+				$(".Memorial").css("display","block");
+			}
+		})
+		$("#MEDIUM_SEQ").change(function() {
+			var lar = $("#LARGE_SEQ option:selected").text();
+			var med = $("#MEDIUM_SEQ option:selected").text();
+			$(".small").css("display","none");
+
+			if (med == "National Museum")
+			{
+				$(".National").css("display","block");
+			}
+			if (med == "Cultural Museum")
+			{
+				$(".Cultural").css("display","block");
+			}
+			if (med == "Archaeological_Museum")
+			{
+				$(".Archaeological_Museum").css("display","block");
+			}
+			if (med == "Buddha_Museum")
+			{
+				$(".Buddha_Museum").css("display","block");
+			}
+			if (med == "Memorial_Museum")
+			{
+				$(".Memorial_Museum").css("display","block");
+			}
+			if (med == "Others")
+			{
+				$(".Others").css("display","block");
+			}
+			if (med == "Oraltraditions and Expression")
+			{
+				$(".Oraltraditions").css("display","block");
+			}
+			if (med == "Performing Arts")
+			{
+				$(".Performing").css("display","block");
+			}
+			if (med == "Social Practices, Rituals and Festivals")
+			{
+				$(".Social").css("display","block");
+			}
+			if (med == "Knowledge and Practices concerning Nature and the Universe")
+			{
+				$(".Knowledge").css("display","block");
+			}
+			if (med == "Administractive")
+			{
+				$(".Administractive").css("display","block");
+			}
+			if (med == "Social Practices, Rituals and Festive Events")
+			{
+				$(".Social").css("display","block");
+			}
+			if (med == "Religious")
+			{
+				$(".Religious").css("display","block");
+			}
+			if (med == "Infrastructurep")
+			{
+				$(".Infrastructure").css("display","block");
+			}
+
+		})
+		$("#SMALL_SEQ").change(function() {
+			var sml = $("#SMALL_SEQ option:selected").text();
+			$(".Sub_Section").css("display","none");
+
+			$(".Painting").css("display","none");
+			$(".Sculpture").css("display","none");
+			$(".Relief").css("display","none");
+			$(".Pottery").css("display","none");
+			$(".Stone").css("display","none");
+			$(".Records").css("display","none");
+
+			if (sml == "Painting")
+			{
+				$(".Painting").css("display","block");
+			}
+			if (sml == "Sculpture")
+			{
+				$(".Sculpture").css("display","block");
+			}
+			if (sml == "Relief")
+			{
+				$(".Relief").css("display","block");
+			}
+			if (sml == "Pottery")
+			{
+				$(".Pottery").css("display","block");
+			}
+			if (sml == "Stone")
+			{
+				$(".Stone").css("display","block");
+			}
+			if (sml == "Records")
+			{
+				$(".Records").css("display","block");
+			}
+
+		})
+	});
+</script>
+
+<!-- 미얀마어 메인페이지 -->
+<div id="header">
+    <div class="top">
+        <div>
+            <!--<a href="/" class="logo"><img src="/Static/MCHMS/mams/mchms_logo_small.svg" alt="MCHMS"  width="35px;" height="35px;"></a>-->
+            <h1>
+                <a href="/"><img src="/MCHMS/mams/mchms_m_logo_01.png" alt="MAMS Myanmar Asset Management System"></a>
+            </h1>
+            <div>
+
+
+                <div th:if="${session.value == null}">
+                    <a href="/MCHMSLogin" class="btnLogout on" style="margin-left: 13px;" ><span id="spanLogout">Login</span></a>
+                    <!--<a href="/MCHMSLogin" class="btnLogout on" style="margin-left: 13px;" ><span id="spanLogout">Login</span></a>-->
+                </div>
+                <div th:unless="${session.value == null}">
+                    <a href="/Mypage" class="MyPage">MY PAGE</a>
+                    <span class="info" id="spanWelcome" th:text="|Welcome to ${session.id}|"></span>&nbsp;
+                    <a href="/MCHMSLogout" class="btnLogout on"style="margin-left: 13px;" ><span id="spanLogout">Logout</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div>
+
+            <form action = "/MCHMSSearch_process/?City_id={{City_id}}" method = "post" enctype="multipart/form-data" id="AdvsearchFrom" name="AdvsearchFrom">
+                <div class="searchBox">
+                    <div class ="searchBox_a">
+                        <input type="text" id="TOP_TOPWORD" name="TOP_TOPWORD" onkeypress="speCharBlock(this)" value="">
+                        <a href="#" onclick="Search();" class="serch_icon"><img src="/MCHMS/mams/serch_icon_06.svg" alt="Search Btn"></a>
+                    </div>
+                    <script>
+
+					function Search() {
+						SearchKey = $("#TOP_TOPWORD").val();
+
+						var regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi
+						str = SearchKey.replace(regExp,"");
+						if(str == ""){
+							path = "/MCHMSSearch/?&Keyword=" + SearchKey;
+
+
+							window.location.href = path;
+						}else if(str.length < 2) {
+							alert("검색어를 두 글자 이상으로 입력해 주세요.");
+
+						}else{
+							var ESearchKey = encodeURI(SearchKey);
+
+							path = "/MCHMSSearch/?&Keyword=" + ESearchKey;
+
+
+							window.location.href = path;
+						}
+					}
+					$('#TOP_TOPWORD').keypress(function(event){
+						if ( event.which == 13 ) {
+							Search();
+							return false;
+						}
+					});
+					</script>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class = "mbody">
+    <th:block th:include="${MID_Page}"></th:block>
+</div>
+<div id="footer" style="margin-top:10%;     padding: 12px;">
+    MCHMS Myanmar Cultural Heritage Management System Copyright. All rights reserved.
+</div>

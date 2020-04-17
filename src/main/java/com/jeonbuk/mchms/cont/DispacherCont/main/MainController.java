@@ -13,15 +13,22 @@ import groovy.util.logging.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mobile.device.DeviceUtils;
+import org.springframework.mobile.device.LiteDeviceResolver;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
+import org.springframework.mobile.device.*;
+import org.springframework.mobile.device.DeviceResolverHandlerInterceptor;
+
+
 
     @Controller
     @Slf4j
@@ -37,12 +44,16 @@ import java.util.Map;
         ClassificationService classificationService;
 
         private static Logger logger = LoggerFactory.getLogger(MainController.class);
-
+        public static final String IS_MOBILE = "MOBILE";
+        private static final String IS_PHONE = "PHONE";
+        public static final String IS_TABLET = "TABLET";
+        public static final String IS_PC = "PC";
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView base(HttpServletRequest request) {
+        String userAgent = request.getHeader("User-Agent").toUpperCase();
+
 
         ModelAndView mv = new ModelAndView();
-
         HttpSession session = request.getSession();
         try {
 
@@ -101,10 +112,20 @@ import java.util.Map;
 
             mv.addObject("City", Cities);
             mv.addObject("Museum", Museum);
-            mv.addObject("MID_Page", "Main/Main.html");
 
-            mv.setViewName("Main/BASE");
+            if(userAgent.indexOf(IS_MOBILE) > -1) {
+
+                mv.addObject("MID_Page", "MView/Main.html");
+                mv.setViewName("MView/Base");
+            } else {
+                mv.addObject("MID_Page", "Main/Main.html");
+
+                mv.setViewName("Main/BASE");
+            }
+
+
         } catch (Exception e) {
+            System.out.println("asdf");
             logger.error(e.toString());
         }
 
