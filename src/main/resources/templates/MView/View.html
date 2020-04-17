@@ -1,0 +1,195 @@
+
+<script type="text/javascript"></script>
+<link rel="stylesheet" href="/Static/js/bxslider/dist/jquery.bxslider.css?ver=3">
+<script src="/Static/js/bxslider/dist/jquery.bxslider.min.js?ver=3"></script>
+
+<style>
+	.remark_title{
+		color : ##bababa;
+		font-size : 1.2em;
+	}
+    .swiper-container {
+      width: 100%;
+      height: 100%;
+    }
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
+  </style>
+<div id="map"></div>
+<script th:inline="javascript">
+			function initMap() {
+				/*<![CDATA[*/
+					var data = /*[[${ResultView}]]*/;
+
+					var map = new google.maps.Map(document.getElementById('map'), {
+						zoom: 17,
+						mapTypeId: google.maps.MapTypeId.HYBRID,
+						scrollwheel: false,
+						zoomControl: true,
+						center: new google.maps.LatLng(data.latitude, data.longitude)
+					});
+
+					var infowindow = new google.maps.InfoWindow();
+
+
+					if(data.latitude != 0 && data.longitude != 0){
+						var marker = new google.maps.Marker({
+							position: new google.maps.LatLng(data.latitude, data.longitude),
+							title : data.title,
+							map: map
+						});
+					}
+				/*]]>*/
+			}
+		</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg2U2hyWyH76p5rXTIptibx3d9SkuiEDQ&callback=initMap"></script>
+
+<div class="floatBox">
+    <!--
+    <div class="flBox">
+        <a href="#" onclick="javascript:bookmarkadd();" class="btn type2 btnG">Add bookmark</a>
+    </div> -->
+
+
+
+    <div class="flBox" style="padding-left: 4px;">
+        <!-- <a href="#" id="btnTest" class="btn type2 btnG">테스트2</a>
+        <a href="javascript:goPrint();"  class="btn type2 btnG">테스트</a> -->
+        <!-- <button type="button" onclick="javascript:mjTest();">유민재</button> -->
+        <!-- <a href="#" onclick="javascript:mjTest();" id="UPDATE_BTN1" class="btn type2 btnB">자바스크립트</a>  -->
+        <!-- <a href="javascript:printTextArea();" class="btn type2 btnG">테스트</a> -->
+    </div>
+    <script>
+					function Alert_Del(){
+						if (confirm("You want to delete?") == true){    //확인
+							location.href="/MCHMSDelete/?ID=/*[[${DataId}]]*/";
+						}else{   //취소
+							return;
+						}
+					}
+
+				</script>
+</div>
+
+
+<!-- 게시물 삭제사유 팝업 -->
+<div id="boardDeleteInfo" class="boardFilePopup01" style="top:122px;right:82px;display:none; ">
+    <h5>Post removal reason</h5>
+    <div class="pt01">
+        <div>
+            <select id="REQ_DEL_REASON_CODE" name="REQ_DEL_REASON_CODE">
+            </select>
+        </div>
+    </div>
+    <div class="pt01 cont">
+        <textarea cols="20" rows="6" id="DELETE_AND_RESTORE_REASON" name="DELETE_AND_RESTORE_REASON"></textarea>
+    </div>
+    <!-- 				<div class="pt02"> -->
+    <div class="floatBox" style="width:500px;">
+        <div class="flBox">
+            <a href="#" onclick="Alert_Del()'" id="DELETE_BTN2" class="btn type2 btnB">Delete</a>
+        </div>
+        <div class="flBox">
+            <a href="javascript:boardDelete('OFF')" class="btn type2 btnC btnR" style="margin-top:0px;margin-bottom:10px;margin-left:10px;">Cancel</a>
+        </div>
+    </div>
+</div>
+<!-- //게시물 삭제사유 팝업 -->
+
+<div id="printarea">
+    <table class="tbType01 type2" style="border-bottom:2px solid #646464;">
+        <tbody id="WriteUi">
+        <tr> <th class ="thwidth">Classification</th>				<td colspan="3" th:text = "${cityClInfo}">
+        </td></tr>
+        <tr> <th class ="thwidth">Title(EN)</th>						<td colspan="3" th:text = "${ResultView.title}"></td></tr>
+        <tr> <th class ="thwidth">Title(MY)</th>						<td colspan="3" th:text = "${ResultView.titleMy}"></td></tr>
+        <tr> <th class ="thwidth">Period</th>						<td colspan="3" th:text = "${ResultView.period}"></td></tr>
+        <tr> <th class ="thwidth">Location</th>						<td colspan="3" th:text = "${ResultView.location}"></td></tr>
+        <tr> <th class ="thwidth">Place of Origin</th>				<td colspan="3" th:text = "${ResultView.origin}"></td></tr>
+        <tr> <th class ="thwidth">Material</th>						<td colspan="3" th:text = "${ResultView.material}"></td></tr>
+        <tr> <th class ="thwidth">Serial Number<span>(*)</span></th>	<td colspan="3" th:text = "${ResultView.serialNumber}"></td></tr>
+        <tr> <th class ="thwidth">Latitude</th>						<td colspan="3" th:text = "${ResultView.latitude}"></td></tr>
+        <tr> <th class ="thwidth">Longitude</th>						<td colspan="3" th:text = "${ResultView.longitude}"></td></tr>
+        <tr> <th class ="thwidth">Department</th>					<td colspan="3" th:text = "${ResultView.department}"></td></tr>
+        <tr> <th class ="thwidth">Registrant</th>					<td style="width:30%;" th:text = "${ResultView.registrant}"></td>	<th>Registration date</th>	<td th:text = "${ResultView.registrationDate}"></td></tr>
+        </tbody>
+    </table>
+
+    <div id="FIELD_REMARK1" th:if="${imgCount} != '0'">
+        <div class="swiper-container">
+            <div class="swiper-wrapper" th:utext="${ImgContents}">
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+        </td>
+    </div>
+    <script>
+					$(document).ready(function () {
+						var swiper = new Swiper ('.swiper-container', {
+							slidesPerView : 1,
+							pagination: {
+								el: '.swiper-pagination',
+							},
+						});
+					});
+				</script>
+    <table class="tbType01 type2" style="border-top: none;">
+        <tbody style="border-bottom: 2px solid #646464;">
+        <tr id="trRemark1">
+            <!-- <td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Remark1(En)</strong></td> -->
+            <td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Remarks(En)</strong></td>
+            <td style="padding:10px 0 10px 20px" id="FIELD_REMARK2"><pre style="white-space: pre-wrap;" th:utext = "${ResultView.remarksEn}"></pre></td>
+        </tr>
+
+        <tr id="trRemark1My">
+            <!-- <td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Remark1(My)</strong></td> -->
+            <td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center" ><strong>Remarks(My)</strong></td>
+            <td style="padding:10px 0 10px 20px"><pre style="white-space: pre-wrap; line-height:2em;" th:utext = "${ResultView.remarksMy}"></pre>
+                <!-- <textarea rows="8" cols="80" id="FIELD_REMARK1_MY" name="FIELD_REMARK1_MY" readonly="readonly"></textarea> -->
+            </td>
+        </tr>
+        <tr id="trRemark2">
+            <!-- <td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Remark2(En)</strong></td> -->
+            <td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Reference(En)</strong></td>
+            <td style="padding:10px 0 10px 20px" id="FIELD_REMARK2"><pre style="white-space: pre-wrap;" th:utext = "${ResultView.referenceEn}"></pre></td>
+        </tr>
+        <tr id="trRemark2My">
+            <td style="background:#f3f5f7;border-right:1px solid #dedede;width:140px;text-align:center"><strong>Reference(My)</strong></td>
+            <td style="padding:10px 0 10px 20px" id="FIELD_REMARK2_MY" ><pre style="white-space: pre-wrap; line-height:2em;"th:utext = "${ResultView.referenceMy}"></pre>
+                <!-- <textarea rows="8" cols="80" id="FIELD_REMARK2_MY" name="FIELD_REMARK2_MY" readonly="readonly"></textarea> -->
+            </td>
+        </tr>
+        </tbody></table>
+</div>
+
+<div class="floatBox" style ="margin-top:2%;">
+    <div class="flBox">
+        <a th:href="@{/MCHMSSearch/?City_id={id}(id=${City_id})}" class="btn type2 btnG">List</a>
+    </div>
+
+    <div class="frBox" style ="right: 10%; position: absolute;" th:if="${session.id} == ${ResultView.registrant}">
+        <a th:href="@{/MCHMSDelete/?ID={id}(id=${ResultView.id})}" id="DELETE_BTN1" class="btn type2 btnB">Delete</a>
+        <a th:href="@{/MCHMSModify/?ID={id}(id=${ResultView.id})}" onclick="" id="UPDATE_BTN1" class="btn type2 btnB">Modify</a>
+    </div>
+</div>
+</form>
+</div>
+</div>
+<!-- //내용부분 -->

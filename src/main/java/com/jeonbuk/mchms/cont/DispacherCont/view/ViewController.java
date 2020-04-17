@@ -41,10 +41,15 @@ public class ViewController {
     @Autowired
     private FileEventService fileEventService;
 
+    public static final String IS_MOBILE = "MOBILE";
+    private static final String IS_PHONE = "PHONE";
+    public static final String IS_TABLET = "TABLET";
+    public static final String IS_PC = "PC";
+
     @RequestMapping(value = "/MCHMSView", method = RequestMethod.GET)
     public ModelAndView mCHMSView(HttpServletRequest request, HttpServletResponse response) {
         ModelAndView mv = new ModelAndView();
-
+        String userAgent = request.getHeader("User-Agent").toUpperCase();
         HttpSession session = request.getSession();
         mv.addObject("session", session);
 
@@ -106,8 +111,6 @@ public class ViewController {
             mv.addObject("Museum", Museum);
             mv.addObject("MID_Page", "View/MCHMSView.html");
 
-            mv.setViewName("Contents_Base");
-
             String id = request.getParameter("ID");
             DataDomain dataDomain = dataService.getDataInfo(id);
 
@@ -161,15 +164,7 @@ public class ViewController {
                 imgCount = 0;
             }
             String ImgContents = "";
-            for (int i=0; i<filesArray.length; i++){
-                ImgContents = ImgContents + "<li class=\"bxslider\">\n" +
-                        "<div id ="+ "\"viewdiv" + filesArray[i] + "\"" + "style=\"width:95%; margin:0 auto;\">\n" +
-                        "<a href =\"/MCHMS/"+ filesArray[i] + "\">\n" +
-                        "<img id =\"viewimg\" src=\"http://mchms.net/Static/MCHMS/" + filesArray[i] + "\"" + "style=\"cursor:pointer;\"/>\n" +
-                        "</a>\n" +
-                        "</div>\n" +
-                        "</li>";
-            }
+
             City cityInfo = cityService.getCityInfoById(id);
             Classification clInfo = classificationService.getClassificationInfoById(id);
 
@@ -207,8 +202,29 @@ public class ViewController {
             mv.addObject("fileEventDomain", fileEventDomain);
             mv.addObject("imgCount", imgCount);
             mv.addObject("filesname", filesname);
-            mv.addObject("ImgContents", ImgContents);
             mv.addObject("file_length", filesArray.length);
+
+            if(userAgent.indexOf(IS_MOBILE) > -1) {
+                for (int i=0; i<filesArray.length; i++) {
+                    ImgContents = ImgContents + "<div class=\"swiper-slide\" style=\"width: 400px;\"> <img id =\"viewimg\"src=\"/Static/MCHMS/" + filesArray[i] + "\" style=\"width: 400px;\"></div>";
+                }
+                mv.addObject("MID_Page", "MView/View.html");
+                mv.setViewName("MView/Base");
+            } else {
+                for (int i=0; i<filesArray.length; i++){
+                    ImgContents = ImgContents + "<li class=\"bxslider\">\n" +
+                            "<div id ="+ "\"viewdiv" + filesArray[i] + "\"" + "style=\"width:95%; margin:0 auto;\">\n" +
+                            "<a href =\"/MCHMS/"+ filesArray[i] + "\">\n" +
+                            "<img id =\"viewimg\" src=\"http://mchms.net/Static/MCHMS/" + filesArray[i] + "\"" + "style=\"cursor:pointer;\"/>\n" +
+                            "</a>\n" +
+                            "</div>\n" +
+                            "</li>";
+                }
+                mv.addObject("ImgContents", ImgContents);
+                mv.addObject("MID_Page", "View/MCHMSView.html");
+
+                mv.setViewName("Contents_Base");
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
