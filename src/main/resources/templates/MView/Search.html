@@ -1,0 +1,231 @@
+<style>
+.field_title{
+white-space: nowrap;
+overflow: hidden;
+    width: 80%;
+text-overflow: ellipsis;
+margin: 0 auto;
+	}
+</style>
+<div id="map"></div>
+<script th:inline="javascript">
+				function initMap() {
+					/*<![CDATA[*/
+					var data = /*[[${lists}]]*/;
+
+					var map = new google.maps.Map(document.getElementById('map'), {
+						zoom: /*[[${zoom}]]*/,
+						mapTypeId: google.maps.MapTypeId.HYBRID,
+						scrollwheel: false,
+						zoomControl: true,
+						center: new google.maps.LatLng(/*[[${map_latitude}]]*/, /*[[${map_longitude}]]*/)
+					});
+
+					var infowindow = new google.maps.InfoWindow();
+
+					for(i=0;i<=data.length;i++){
+						if(data[i].latitude != 0 && data[i].longitude != 0){
+							var marker = new google.maps.Marker({
+								position: new google.maps.LatLng(data[i].latitude, data[i].longitude),
+								title : data[i].title,
+								map: map
+							});
+
+							var infoContent = '<div style="width : 200px; text-align: center;">'+'<a href="/MCHMSView/?&ID=' + data[i].id + '"style="font-size: 17px; ">' +
+							'<div style="padding:5px; margin-bottom: 3px;">' + data[i].title + '</div>';
+
+							if (data[i].imageFileInMap != null){
+								infoContent = infoContent + '<img src="/MCHMS/' + data[i].imageFileInMap + '" style="width:160px; height:90px;">';
+							}
+
+							infoContent = infoContent + '</a>' + '</div>';
+
+							google.maps.event.addListener(marker, 'click', (function(marker, content) {
+								return function() {
+									infowindow.setContent(content);
+									infowindow.open(map, marker);
+								}
+							})(marker, infoContent));
+						}
+					}
+					/*]]>*/
+				}
+			</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg2U2hyWyH76p5rXTIptibx3d9SkuiEDQ&callback=initMap"></script>
+
+<div class="floatBox" style="margin-top: 5px;">
+    <div class="flBox">
+        <div class="cnb_1" id="tottalcnt"><span style="font-weight:bold;color:#999" th:text="${total} + 'items total'"></span></div>
+    </div>
+    <div class="frBox">
+				<span id="REG_BTN" class="REG_BTN" style="display: none;">
+
+                </span>
+    </div>
+</div>
+<div class="board_box" style="margin-top: -35px;">
+    <table id="data_sheet01" cellpadding="0" cellspacing="0" border="0" class="tablesorter" style="border-top: 2px solid #646464; border-bottom:1px solid #dcdcdc; margin-top:45px !important;">
+        <colgroup id="setCol"><col><col><col><col><col><col><col><col></colgroup>
+        <!-- flag가 1이 아니면 검색해서 들어간거 1이면 cityid로 들어간거 -->
+
+        <thead id="field1" style =" background-color:#f6f7f7"><tr th:if="${flag} == 0">
+            <th id ="serial"style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc; color: #333; text-align: center; vertical-align: middle; cursor:pointer;    width: 13%;">
+                <button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/MCHMSSearch/?City_id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=Serial_Number' + '\''">
+                    Num</button></th>
+            <th id ="title" style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc;  color: #333; text-align: center; vertical-align: middle; cursor:pointer;">
+                <button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/MCHMSSearch/?City_id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=Title' + '\''">
+                    Title</button></th>
+
+            <th id ="reg" style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc;   color: #333; text-align: center; vertical-align: middle; cursor:pointer;    width: 29%;" >
+                <button type="button" class="sortbutton"
+                        th:onclick="'location.href = \'' + @{/MCHMSSearch/?City_id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=Registration_Date' + '\''">Reg. date
+                </button>
+            </th></tr></thead>
+
+
+
+        <thead id="field1" style =" background-color:#f6f7f7"><tr th:unless="${flag} == 0">
+            <th id ="serial"style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc; color: #333; text-align: center; vertical-align: middle; cursor:pointer;width: 13%;">
+                <button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/MCHMSSearch/?Keyword={Keyword}(Keyword=${Keyword})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=Serial_Number' + '\''">Num</button></th>
+
+            <th id ="title" style="border-top:none; border-bottom: none;  border-left: 1px solid #dcdcdc; border-right: 1px solid #dcdcdc;   color: #333; text-align: center; vertical-align: middle; cursor:pointer;">
+                <button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/MCHMSSearch/?Keyword={Keyword}(Keyword=${Keyword})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=Title' + '\''">Title</button></th>
+
+            <th id ="reg" style="border-top:none; border-bottom: none; border-left: 1px solid #dcdcdc; color: #333; text-align: center; vertical-align: middle; cursor:pointer;     width: 29%;" >
+                <button type="button" class="sortbutton" th:onclick="'location.href = \'' + @{/MCHMSSearch/?Keyword={Keyword}(Keyword=${Keyword})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&TypeToSort=Registration_Date' + '\''">Reg. date
+
+                </button></th></tr></thead>
+
+
+        <tbody id="list1">
+        <tr th:if="${flag} == 0" th:each="dataDomain : ${lists}" style = "border-top:none; border-bottom: none; padding:14px 0; color: #333; text-align: center; vertical-align: middle; cursor:pointer;height:35px;" th:onclick="'location.href = \'' + @{/MCHMSView/?ID={ID}(ID=${dataDomain.id})} + '\''">
+
+            <td class="FILE_CNT" ><div th:text="${dataDomain.index}"></div></td>
+            <td class="FIELD_REGISTER"><div class="field_title" th:text="${dataDomain.title}"></div></td>
+            <td class="FIELD_REG_DATE"><div th:text="${dataDomain.registrationDate}"></div></td>
+        </tr>
+        <tr th:unless="${flag} == 0" th:each="dataDomain : ${lists}" style = " border-top:none; border-bottom: none; padding:14px 0; color: #333; text-align: center; vertical-align: middle; cursor:pointer;height:35px;" th:onclick="'location.href = \'' + @{/MCHMSView/?ID={ID}(ID=${dataDomain.id})} + '\''">
+
+            <td class="FILE_CNT" style = "text-align= center"><div th:text="${dataDomain.index}"></div></td>
+            <td class="FIELD_REGISTER"><div class="field_title" th:text="${dataDomain.title}"></div></td>
+            <td class="FIELD_REG_DATE"><div th:text="${dataDomain.registrationDate}"></div></td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+<div th:if="${pageflag} == 0">
+    <div class="frBox REG_BTN" style="display: block; float:left;" th:if="${flag} == 0">
+        <a th:if="${session.value != null}" th:href="@{/MCHMSWrite/?City_id={id}(id=${City_id})}" style = "right:0; position : absolute" class="btn btnB">Upload</a>
+    </div>
+</div>
+<div class="floatBox" style="margin-top: 10px;text-align:center;" th:unless="${pageflag} == 0">
+    <div class="flBox" style="width:100%; margin-top: 10px;text-align:center;" th:if="${flag} == 0">
+        <div class ="pageBox" style ="width: 100%;display:inline-block;">
+            <div style="width: 100%;text-align: center;">
+                <a th:if="${firstFlag == 1}"th:href="@{/MCHMSSearch/?City_id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&' + @{TypeToSort={TypeToSort}(TypeToSort=${TypeToSort})} + '&' + @{currentPage={currentPage}(currentPage=1)}" id="page">< First</a>
+                <div class="pageNum"  th:each ="num : ${pageNumberList}" >
+                    <a th:if="${num} != ${currentPage}" th:href="@{/MCHMSSearch/?City_id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&' + @{TypeToSort={TypeToSort}(TypeToSort=${TypeToSort})} + '&' + @{currentPage={currentPage}(currentPage=${num})}" th:text="${num}+' '"></a>
+                    <strong><a th:unless="${num} != ${currentPage}" th:text="${num}+' '"></a></strong>
+                </div>
+                <a th:if="${pageNumber}>10" th:href="@{/MCHMSSearch/?City_id={id}(id=${City_id})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&' + @{TypeToSort={TypeToSort}(TypeToSort=${TypeToSort})} + '&' + @{currentPage={currentPage}(currentPage=${pageNumber})}" id="page">Last ></a>
+            </div>
+        </div>
+    </div>
+    <div class="flBox" style="width:100%; margin-top: 10px;text-align:center;" th:unless="${flag} == 0">
+        <div class ="pageBox" style ="width: 100%;display:inline-block;">
+            <div style="width: 100%;text-align: center;">
+                <a th:if="${firstFlag == 1}"th:href="@{/MCHMSSearch/?Keyword={Keyword}(Keyword=${Keyword})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&' + @{TypeToSort={TypeToSort}(TypeToSort=${TypeToSort})} + '&' + @{currentPage={currentPage}(currentPage=1)}" id="page">< First</a>
+                <div class="pageNum"  th:each ="num : ${pageNumberList}" >
+                    <a th:if="${num} != ${currentPage}" th:href="@{/MCHMSSearch/?Keyword={Keyword}(Keyword=${Keyword})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&' + @{TypeToSort={TypeToSort}(TypeToSort=${TypeToSort})} + '&' + @{currentPage={currentPage}(currentPage=${num})}" th:text="${num}+' '"></a>
+                    <strong><a th:unless="${num} != ${currentPage}" th:text="${num}+' '"></a></strong>
+                </div>
+                <a th:if="${pageNumber}>10" th:href="@{/MCHMSSearch/?Keyword={Keyword}(Keyword=${Keyword})} + '&'+ @{SortOrder={SortOrder}(SortOrder=${SortOrder})} + '&' + @{TypeToSort={TypeToSort}(TypeToSort=${TypeToSort})} + '&' + @{currentPage={currentPage}(currentPage=${pageNumber})}" id="page">Last ></a>
+            </div>
+        </div>
+    </div>
+    <style>
+        .pageNum{
+        text-align:center;
+        display: inline-block;
+        }
+    </style>
+    <div>
+        <div >
+            <div  th:if="${pageNumber} > 10">
+                <input type="text" size="34" maxlength="3" value="" style="margin-top : 1%; width: 60px;" class ="FIELD_RELIC_ZIP" id ="FIELD_RELIC_ZIP" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' ></input><input type ="button" style ="margin-top : 1%;width: 30px; height: 30px;" onclick="javascript:movePage();" value="P"></input>
+            </div>
+            <div class="frBox REG_BTN" style="display: block; float:left;" th:if="${flag} == 0">
+                <a th:if="${session.value != null}" th:href="@{/MCHMSWrite/?City_id={id}(id=${City_id})}" style = "right:0; position : absolute" class="btn btnB">Upload</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+</form>
+</div>
+</div>
+<!-- //내용부분 -->
+<script>
+function onlyNumber(event){
+    event = event || window.event;
+    var keyID = (event.which) ? event.which : event.keyCode;
+    if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 )
+        return;
+    else
+        return false;
+}
+
+function removeChar(event) {
+    event = event || window.event;
+    var keyID = (event.which) ? event.which : event.keyCode;
+    if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 )
+        return;
+    else
+        event.target.value = event.target.value.replace(/[^0-9]/g, "");
+}
+</script>
+<script type="text/javascript">
+	$('#list1 tr').hover (function () {
+		$(this).addClass ("hover");
+	},function () {
+		$(this).removeClass ("hover");
+	});
+	$('#field1').hover (function () {
+		$(this).addClass ("hover");
+	}, function () {
+		$(this).removeClass ("hover");
+	});
+	$("select[name=MCSJGBNC3] option[value='"+$('#StrMCSJGBNC3').val()+"']").attr("selected",true);
+</script>
+<script th:inline="javascript">
+					function movePage()
+					{
+						var cp = document.getElementById("FIELD_RELIC_ZIP");
+						var movepage = cp.value;
+						/*<![CDATA[*/
+						var City_id = /*[[${City_id}]]*/;
+						var sortPage = /*[[${TypeToSort}]]*/;
+						var asc = /*[[${SortOrder}]]*/;
+						var lastNum = /*[[${pageNumber}]]*/;
+						var Keyword = /*[[${Keyword}]]*/;
+						var flag = /*[[${flag}]]*/;
+						if (movepage != "" && movepage <= lastNum)
+						{
+							if (flag == 0){
+								location.href ="/MCHMSSearch/?City_id="+City_id+"&SortOrder=" + asc + "&TypeToSort=" + sortPage + "&currentPage="+movepage;
+							}
+							else {
+								location.href ="/MCHMSSearch/?Keyword="+Keyword+"&SortOrder=" + asc + "&TypeToSort=" + sortPage + "&currentPage="+movepage;
+							}
+						}
+						else
+						{
+							alert("Invalid Page");
+							cp.value = "";
+						}
+					}
+						 /*]]>*/
+					</script>
+
+<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div></body></html>

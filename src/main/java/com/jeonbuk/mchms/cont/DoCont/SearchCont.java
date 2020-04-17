@@ -36,6 +36,10 @@ public class SearchCont {
     @Autowired
     private FileEventService fileEventService;
 
+    public static final String IS_MOBILE = "MOBILE";
+    private static final String IS_PHONE = "PHONE";
+    public static final String IS_TABLET = "TABLET";
+    public static final String IS_PC = "PC";
     @RequestMapping(value = "/MCHMSSearch", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView base(ModelAndView mv, HttpServletRequest request) {
 
@@ -97,9 +101,19 @@ public class SearchCont {
 
             mv.addObject("City", Cities);
             mv.addObject("Museum", Museum);
-            mv.addObject("MID_Page", "Search/MCHMSSearch.html");
 
-            mv.setViewName("Contents_Base.html");
+
+            String userAgent = request.getHeader("User-Agent").toUpperCase();
+            if(userAgent.indexOf(IS_MOBILE) > -1) {
+
+                mv.addObject("MID_Page", "MView/Search.html");
+
+                mv.setViewName("MView/BASE");
+            } else {
+                mv.addObject("MID_Page", "Search/MCHMSSearch.html");
+
+                mv.setViewName("Contents_Base.html");
+            }
             String cityId = request.getParameter("City_id");
             int flag = 0;
             int pageflag = 1;
