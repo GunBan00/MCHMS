@@ -103,13 +103,21 @@ public class SearchCont {
             mv.addObject("Museum", Museum);
 
 
-            String userAgent = request.getHeader("User-Agent").toUpperCase();
-            if(userAgent.indexOf(IS_MOBILE) > -1) {
+            String userAgent;
+            if(request.getHeader("User-Agent") != null) {
+                userAgent = request.getHeader("User-Agent").toUpperCase();
+                if (userAgent.indexOf(IS_MOBILE) > -1) {
 
-                mv.addObject("MID_Page", "MView/Search.html");
+                    mv.addObject("MID_Page", "MView/Search.html");
 
-                mv.setViewName("MView/BASE");
-            } else {
+                    mv.setViewName("MView/BASE");
+                } else {
+                    mv.addObject("MID_Page", "Search/MCHMSSearch.html");
+
+                    mv.setViewName("Contents_Base.html");
+                }
+            }
+            else{
                 mv.addObject("MID_Page", "Search/MCHMSSearch.html");
 
                 mv.setViewName("Contents_Base.html");

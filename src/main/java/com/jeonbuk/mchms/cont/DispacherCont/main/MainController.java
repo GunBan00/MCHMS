@@ -50,10 +50,28 @@ import org.springframework.mobile.device.DeviceResolverHandlerInterceptor;
         public static final String IS_PC = "PC";
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView base(HttpServletRequest request) {
-        String userAgent = request.getHeader("User-Agent").toUpperCase();
-
-
         ModelAndView mv = new ModelAndView();
+        String userAgent;
+        if(request.getHeader("User-Agent") != null) {
+            userAgent = request.getHeader("User-Agent").toUpperCase();
+            if (userAgent.indexOf(IS_MOBILE) > -1) {
+
+                mv.addObject("MID_Page", "MView/Main.html");
+                mv.setViewName("MView/Base");
+            } else {
+                mv.addObject("MID_Page", "Main/Main.html");
+
+                mv.setViewName("Main/BASE");
+            }
+        }
+        else
+        {
+            mv.addObject("MID_Page", "Main/Main.html");
+
+            mv.setViewName("Main/BASE");
+        }
+
+
         HttpSession session = request.getSession();
         try {
 
@@ -113,15 +131,7 @@ import org.springframework.mobile.device.DeviceResolverHandlerInterceptor;
             mv.addObject("City", Cities);
             mv.addObject("Museum", Museum);
 
-            if(userAgent.indexOf(IS_MOBILE) > -1) {
 
-                mv.addObject("MID_Page", "MView/Main.html");
-                mv.setViewName("MView/Base");
-            } else {
-                mv.addObject("MID_Page", "Main/Main.html");
-
-                mv.setViewName("Main/BASE");
-            }
 
 
         } catch (Exception e) {
