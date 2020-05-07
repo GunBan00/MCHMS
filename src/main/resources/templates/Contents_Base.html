@@ -105,6 +105,7 @@ margin:0 auto;
 .bx-viewport{
 overflow:unset !important;
 }
+}
 .bx-wrapper
 {
 height:550px;/*이미지 크기*/
@@ -798,6 +799,7 @@ $(document).ready(function(){
                     <!--<a href="/MCHMSLogin" class="btnLogout on" style="margin-left: 13px;" ><span id="spanLogout">Login</span></a>-->
                 </div>
                 <div th:unless="${session.value == null}">
+                    <a href="/Manager" class="MyPage">Manage</a>
                     <a href="/Mypage" class="MyPage">MY PAGE</a>
                     <span class="info" id="spanWelcome" th:text="|Welcome to ${session.id}|"></span>&nbsp;
                     <select id="SLT_USER_LANG" name="USER_LANG" onchange="selectUserLang();">

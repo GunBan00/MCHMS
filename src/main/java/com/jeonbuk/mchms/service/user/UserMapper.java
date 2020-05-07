@@ -56,6 +56,10 @@ public interface UserMapper {
     @Select("SELECT COUNT(*) FROM User WHERE NICKNAME = ${NICKNAME}")
     int CheckingUserNicknameProcess(String NICKNAME);
 
+    @Select("SELECT GRADE FROM User WHERE ID = '${id}'")
+    String checkingUserGrade(String id);
+
     @Insert("INSERT INTO User(`ID`, `PW`, `NAME`, `EMAIL`, `NICKNAME`, `GRADE`) VALUES ('${USER_ID}', '${USER_PASS}', '${USER_NAME}', '${USER_EMAIL}', '${USER_NICKNAME}', '${NoPermission}')")
     void setUser(Map<String, Object> sqlParam);
+
 }
