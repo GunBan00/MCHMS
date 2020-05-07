@@ -110,7 +110,7 @@ public class SearchCont {
 
                     mv.addObject("MID_Page", "MView/Search.html");
 
-                    mv.setViewName("MView/BASE");
+                    mv.setViewName("MView/Base");
                 } else {
                     mv.addObject("MID_Page", "Search/MCHMSSearch.html");
 
