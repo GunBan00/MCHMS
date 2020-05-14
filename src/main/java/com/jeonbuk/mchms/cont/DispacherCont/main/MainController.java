@@ -8,6 +8,7 @@ import com.jeonbuk.mchms.service.city.CityService;
 import com.jeonbuk.mchms.service.classification.ClassificationService;
 import com.jeonbuk.mchms.service.data.DataService;
 
+import com.jeonbuk.mchms.service.user.UserService;
 import groovy.util.logging.Slf4j;
 
 import org.slf4j.Logger;
@@ -39,6 +40,9 @@ import org.springframework.mobile.device.DeviceResolverHandlerInterceptor;
 
         @Autowired
         CityService cityService;
+
+        @Autowired
+        UserService userService;
 
         @Autowired
         ClassificationService classificationService;
@@ -73,6 +77,9 @@ import org.springframework.mobile.device.DeviceResolverHandlerInterceptor;
 
 
         HttpSession session = request.getSession();
+
+        String grade = userService.checkingUserGrade(String.valueOf(session.getAttribute("id")));
+        System.out.println(grade);
         try {
 
             List<City> Cities = cityService.getCities();

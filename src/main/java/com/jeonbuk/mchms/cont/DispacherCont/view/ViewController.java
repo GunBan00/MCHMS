@@ -207,17 +207,16 @@ public class ViewController {
                 userAgent = request.getHeader("User-Agent").toUpperCase();
                 if (userAgent.indexOf(IS_MOBILE) > -1) {
                     for (int i = 0; i < filesArray.length; i++) {
-                        ImgContents = ImgContents + "<div class=\"swiper-slide\" style=\"width: 400px;\"> <img id =\"viewimg\"src=\"http://mchms.net/Static/MCHMS/" + filesArray[i] + "\" style=\"width: 400px;\"></div>";
+                        ImgContents = ImgContents + "<div class=\"swiper-slide\" style=\"width: 400px;\"> <img id =\"viewimg\"src=\"http://mchms.gov.mm:8080/MCHMS/" + filesArray[i] + "\" style=\"width: 400px;\"></div>";
                     }
-                    mv.addObject("ImgContents", ImgContents);
                     mv.addObject("MID_Page", "MView/View.html");
                     mv.setViewName("MView/Base");
                 } else {
                     for (int i = 0; i < filesArray.length; i++) {
                         ImgContents = ImgContents + "<li class=\"bxslider\">\n" +
                                 "<div id =" + "\"viewdiv" + filesArray[i] + "\"" + "style=\"width:95%; margin:0 auto;\">\n" +
-                                "<a href =\"/MCHMS/" + filesArray[i] + "\">\n" +
-                                "<img id =\"viewimg\" src=\"http://mchms.net/Static/MCHMS/" + filesArray[i] + "\"" + "style=\"cursor:pointer;\"/>\n" +
+                                "<a href =\"http://mchms.gov.mm:8080/MCHMS/" + filesArray[i] + "\">\n" +
+                                "<img id =\"viewimg\" src=\"http://mchms.gov.mm:8080/MCHMS/" + filesArray[i] + "\"" + "style=\"cursor:pointer;\"/>\n" +
                                 "</a>\n" +
                                 "</div>\n" +
                                 "</li>";

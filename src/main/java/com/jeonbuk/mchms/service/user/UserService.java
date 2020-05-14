@@ -50,6 +50,17 @@ public class UserService {
     public List<UserWriteClassificationCount> getClassificationCountByUserId(String id) {
         return userMapper.getClassificationCountByUserId(id);
     }
+    public String checkingUserGrade(String id){
+        String a = userMapper.checkingUserGrade(id);
+        if(id != null){
+            if(a != null)
+                return a;
+            else
+                return "3";
+        }
+        else
+            return "3";
+    }
 
     public List<UserDataDomain> selectUserData(String Registrant){
         return userMapper.selectUserData(Registrant);
