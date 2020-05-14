@@ -110,7 +110,7 @@ public class SearchCont {
 
                     mv.addObject("MID_Page", "MView/Search.html");
 
-                    mv.setViewName("MView/BASE");
+                    mv.setViewName("MView/Base");
                 } else {
                     mv.addObject("MID_Page", "Search/MCHMSSearch.html");
 
@@ -194,7 +194,7 @@ public class SearchCont {
                     String[] pageList = {};
                     int firstFlag = 0;
                     int pageNumberList[] = new int[10];
-
+                    pageNumber = 0;
                     mv.addObject("map_longitude", map_longitude);
                     mv.addObject("map_latitude", map_latitude);
 
@@ -209,6 +209,7 @@ public class SearchCont {
                     mv.addObject("currentPage", currentPage);
                     mv.addObject("pageNumberList", pageNumberList);
                     mv.addObject("pageflag", pageflag);
+                    mv.addObject("pageNumber", pageNumber);
 
                     return mv;
                 }
@@ -305,6 +306,7 @@ public class SearchCont {
                 mv.addObject("Keyword", keyWord);
                 mv.addObject("total", totalLength);
                 mv.addObject("lists", pageList);
+                mv.addObject("maplist", totalList);
                 mv.addObject("dataDomain", pageList);
                 mv.addObject("Museum", museums);
                 mv.addObject("session", session);
@@ -371,7 +373,7 @@ public class SearchCont {
                 String RegionName = Region.getCities();
                 int totalLength = totalList.size();
                 if(totalLength == 0) {
-
+                    pageNumber = 0;
                     pageflag = 0;
                     String[] pageList = {};
                     int pageNumberList[] = new int[10];
@@ -383,6 +385,7 @@ public class SearchCont {
                     mv.addObject("pageNumberList", pageNumberList);
                     mv.addObject("flag", flag);
                     mv.addObject("pageflag", pageflag);
+                    mv.addObject("pageNumber", pageNumber);
                     return mv;
                 }
                 ///////////////////////////////////////////////////////////////////
@@ -496,6 +499,7 @@ public class SearchCont {
                 mv.addObject("pageNumber", pageNumber);
                 mv.addObject("currentPage", currentPage);
                 mv.addObject("lists", pageList);
+                mv.addObject("maplist", totalList);
                 mv.addObject("Museum", museums);
                 mv.addObject("City_id", cityId);
                 mv.addObject("Session", session);

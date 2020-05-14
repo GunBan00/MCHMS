@@ -207,8 +207,9 @@ public class ViewController {
                 userAgent = request.getHeader("User-Agent").toUpperCase();
                 if (userAgent.indexOf(IS_MOBILE) > -1) {
                     for (int i = 0; i < filesArray.length; i++) {
-                        ImgContents = ImgContents + "<div class=\"swiper-slide\" style=\"width: 400px;\"> <img id =\"viewimg\"src=\"/Static/MCHMS/" + filesArray[i] + "\" style=\"width: 400px;\"></div>";
+                        ImgContents = ImgContents + "<div class=\"swiper-slide\" style=\"width: 400px;\"> <img id =\"viewimg\"src=\"http://mchms.net/Static/MCHMS/" + filesArray[i] + "\" style=\"width: 400px;\"></div>";
                     }
+                    mv.addObject("ImgContents", ImgContents);
                     mv.addObject("MID_Page", "MView/View.html");
                     mv.setViewName("MView/Base");
                 } else {

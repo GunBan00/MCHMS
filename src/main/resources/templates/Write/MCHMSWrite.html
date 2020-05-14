@@ -2505,7 +2505,16 @@ function removeChar(event) {
 		var FIELD_TITLE = document.getElementByName('FIELD_TITLE");
 		var FIELD_TITLE_MY = document.getElementByName('FIELD_TITLE_MY");
 		var FIELD_RELIC_NUMBER = document.getElementByName('FIELD_RELIC_NUMBER");*/
-		if(frm1.LARGE_SEQ_W.value == "") { alert("Enter the Classification"); LARGE_SEQ.focus(); return; }
+		if(frm1.LARGE_SEQ_W.value == "") { alert("Enter the Classification"); LARGE_SEQ_W.focus(); return; }
+		if ($('#MEDIUM_SEQ_W').css('display') == 'block'){
+			if (frm1.MEDIUM_SEQ_W.value == ""){ alert("Enter the Division"); MEDIUM_SEQ_W.focus(); return; }
+		}
+		if ($('#SMALL_SEQ_W').css('display') == 'block'){
+			if (frm1.SMALL_SEQ_W.value == ""){ alert("Enter the Section"); SMALL_SEQ_W.focus(); return; }
+		}
+		if ($('#SUB_SEQ_W').css('display') == 'block'){
+			if (frm1.SUB_SEQ_W.value == ""){ alert("Enter the Sub Section"); SUB_SEQ_W.focus(); return; }
+		}
 		if(frm1.FIELD_TITLE.value == "") { alert("Enter the Title"); FIELD_TITLE.focus(); return; }
 		if(frm1.FIELD_TITLE_MY.value == "") { alert("Enter the Title"); FIELD_TITLE_MY.focus(); return; }
 
