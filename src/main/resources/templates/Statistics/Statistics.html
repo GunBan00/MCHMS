@@ -117,6 +117,8 @@ var _CONTEXT_DOMAIN = "localhost:8080/";
             <script th:inline="javascript">
             function initMap() {
                 /*<![CDATA[*/
+                var data = /*[[${maplist}]]*/;
+
                var map = new google.maps.Map(document.getElementById('map'), {
                   zoom: 11,
                   scrollwheel: false,
@@ -124,6 +126,34 @@ var _CONTEXT_DOMAIN = "localhost:8080/";
                   zoomControl: true,
                   center: new google.maps.LatLng(/*[[${x}]]*/, /*[[${y}]]*/),
                });
+
+               var infowindow = new google.maps.InfoWindow();
+
+					for(i=0;i<=data.length;i++){
+						if(data[i].latitude != 0 && data[i].longitude != 0){
+							var marker = new google.maps.Marker({
+								position: new google.maps.LatLng(data[i].latitude, data[i].longitude),
+								title : data[i].title,
+								map: map
+							});
+
+							var infoContent = '<div style="width : 200px; text-align: center;">'+'<a href="/MCHMSView/?&ID=' + data[i].id + '"style="font-size: 17px; ">' +
+							'<div style="padding:5px; margin-bottom: 3px;">' + data[i].title + '</div>';
+
+							if (data[i].imageFileInMap != null){
+								infoContent = infoContent + '<img src="/MCHMS/' + data[i].imageFileInMap + '" style="width:160px; height:90px;">';
+							}
+
+							infoContent = infoContent + '</a>' + '</div>';
+
+							google.maps.event.addListener(marker, 'click', (function(marker, content) {
+								return function() {
+									infowindow.setContent(content);
+									infowindow.open(map, marker);
+								}
+							})(marker, infoContent));
+						}
+					}
                /*]]>*/
             }
          </script>

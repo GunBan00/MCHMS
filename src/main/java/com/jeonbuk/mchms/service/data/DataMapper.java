@@ -67,6 +67,9 @@ public interface DataMapper {
     @Select("SELECT MAX(ID) FROM Data WHERE Registrant = '${id}'")
     int getMaxId(String id);
 
+    @Select("SELECT Data.Title, Data.Latitude, Data.Longitude, Data.ID FROM Data LEFT OUTER JOIN City ON (Data.City_id = City.City_id) WHERE City.Cities = #{Cities}")
+    List<DataDomain> getDataByCityName(String Cities);
+
     @Insert("INSERT INTO Data(Title, Title_my, Period, Location, Origin, Material, Serial_number, Latitude, Longitude, Latitude2, Longitude2, Remarks_en, Remarks_my, Reference_en, Reference_my, Visibility, City_id, Classification_id,Filename, Registrant, Registration_Date) VALUES ('${title}', '${title_my}', '${period}', '${location}', '${origin}', '${material}', '${serialNumber}','${latitude}','${longtitude}','${latitude2}','${longtitude2}','${remarksEn}','${remarksMy}','${referenceEn}','${referenceMy}','${visibility}','${cityId}','${classificationId}','${filename}','${registrant}','${registrationDate}')")
     void setData(Map<String, String> sqlParam);
 

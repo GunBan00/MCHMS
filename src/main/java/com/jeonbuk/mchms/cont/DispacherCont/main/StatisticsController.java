@@ -1,11 +1,10 @@
 package com.jeonbuk.mchms.cont.DispacherCont.main;
 
-import com.jeonbuk.mchms.domain.City;
-import com.jeonbuk.mchms.domain.ClassificationCount;
-import com.jeonbuk.mchms.domain.DataDomain;
+import com.jeonbuk.mchms.domain.*;
 import com.jeonbuk.mchms.service.city.CityService;
 import com.jeonbuk.mchms.service.classification.ClassificationService;
 import com.jeonbuk.mchms.service.data.DataService;
+import com.jeonbuk.mchms.service.fileevent.FileEventService;
 import groovy.util.logging.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,15 +32,18 @@ public class StatisticsController {
     @Autowired
     private CityService cityService;
 
+    @Autowired
+    private FileEventService fileEventService;
     private static Logger logger = LoggerFactory.getLogger(com.jeonbuk.mchms.cont.DispacherCont.main.StatisticsController.class);
 
     @RequestMapping(value = "/Statistics", method = RequestMethod.GET)
     public ModelAndView base(HttpServletRequest request) {
-        System.out.println("test");
         ModelAndView mv = new ModelAndView();
 
         try {
+
             String Cities = request.getParameter("Cities");
+            System.out.println("Cities : " + Cities);
             List<ClassificationCount> classCount = classificationService.getClassificationCountById(Cities);
             List<ClassificationCount> temp = new ArrayList<ClassificationCount>();
 
@@ -59,8 +61,32 @@ public class StatisticsController {
 
             City locationCity = cityService.getCityLocationFromCitiesName(Cities);
 
+            List<DataDomain> totalList = dataService.getDataByCityName(Cities);
+
+            int index = 1;
+
+            for(DataDomain dataDomain : totalList) {
+                Classification Category = classificationService.getCategoryFromClassification(dataDomain.getClassificationId());
+                dataDomain.setClResult(Category.getLarge());
+
+                FileEventDomain fileEventDomain = fileEventService.getFilesNameFromDataID(dataDomain.getId());
+
+                if (fileEventDomain != null){
+                    String filesname = fileEventDomain.getFiles();
+                    String[] filesArray = filesname.split("\\|");
+
+                    String ImageFileInMap = filesArray[0];
+
+                    dataDomain.setImageFileInMap(ImageFileInMap);
+                }
+                dataDomain.setIndex(index);
+
+                index++;
+            }
+
             mv.addObject("x", locationCity.getLatitude());
             mv.addObject("y", locationCity.getLongitude());
+            mv.addObject("maplist", totalList);
             mv.addObject("Cities", Cities);
             mv.addObject("classCount", temp);
             mv.addObject("count1", count);

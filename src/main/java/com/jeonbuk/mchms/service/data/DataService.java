@@ -177,6 +177,11 @@ public class DataService {
         }
     }
 
+    public List<DataDomain> getDataByCityName(String Cities){
+        return dataMapper.getDataByCityName(Cities);
+
+    }
+
     public List<DataDomain> getDataAdvancedSearch(Map<String, String> Param){
         String sqlSentence = "";
         int searchNum = 0;
